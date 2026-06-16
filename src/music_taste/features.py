@@ -75,7 +75,7 @@ def score_to_tier_num(score: int | float) -> int:
 
 # A simpler 3-label set to use for a smaller set of training data
 def score_to_three_category_label(score: int | float) -> str:
-    if score <= 49:
+    if score <= 39:
         return "dislike"
     elif score <= 69:
         return "neutral"

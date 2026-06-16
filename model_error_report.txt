@@ -1,0 +1,257 @@
+
+================================================================================
+Overall Error Summary
+================================================================================
+Rows analyzed: 365
+Mean actual score: 67.16
+Mean predicted score: 66.06
+Mean error: -1.10
+Mean absolute error: 9.30
+Median absolute error: 7.35
+Max absolute error: 55.04
+
+================================================================================
+Error by Score Tier
+================================================================================
+                 count  avg_actual_score  avg_predicted_score  avg_error  avg_abs_error  median_abs_error
+SCORE_TIER                                                                                               
+love                25             81.84                70.36     -11.48          11.48             10.64
+like               195             74.36                67.16      -7.20           7.54              6.71
+moderately_like     90             62.79                64.51       1.72           5.47              4.90
+neutral             38             47.84                63.45      15.61          15.86             15.84
+dislike             17             29.29                61.15      31.85          31.85             30.31
+
+================================================================================
+Error by Three-Label Category
+================================================================================
+            count  avg_actual_score  avg_predicted_score  avg_error  avg_abs_error  median_abs_error
+LIKE_LABEL                                                                                          
+like          220             75.21                67.53      -7.68           7.99              7.31
+neutral       128             58.35                64.20       5.84           8.55              6.45
+dislike        17             29.29                61.15      31.85          31.85             30.31
+
+================================================================================
+Prediction Range Compression
+================================================================================
+Actual score range:
+count    365.00
+mean      67.16
+std       12.91
+min        6.00
+25%       62.00
+50%       70.00
+75%       77.00
+max       92.00
+Name: SCORE, dtype: float64
+
+Predicted score range:
+count    365.00
+mean      66.06
+std        6.14
+min       44.96
+25%       62.68
+50%       67.12
+75%       70.38
+max       76.67
+Name: PREDICTED_SCORE, dtype: float64
+
+If the predicted score range is much narrower than the actual score range, the model is probably compressing predictions toward the middle.
+
+================================================================================
+Largest Absolute Errors
+================================================================================
+                 ARTIST                                           ALBUM  SCORE  PREDICTED_SCORE  ERROR  ABS_ERROR SCORE_TIER PREDICTED_SCORE_TIER              GENRE_1             GENRE_2              GENRE_3
+           Bruiser Wolf                                         POTLUCK      6            61.04  55.04      55.04    dislike      moderately_like     Abstract Hip-Hop            Boom Bap     Drumless Hip-Hop
+       Childish Gambino                                            Camp     22            68.34  46.34      46.34    dislike      moderately_like              Pop-Rap Alternative Hip-Hop     Contemporary R&B
+                  Gunna                                    The Last Wun     25            65.86  40.86      40.86    dislike      moderately_like Contemporary Hip-Hop    Southern Hip-Hop     Contemporary R&B
+     Falling in Reverse                           The Drug In Me Is You     29            66.77  37.77      37.77    dislike      moderately_like            Metalcore            Pop-Punk             Rap-Rock
+             Audioslave                                      Audioslave     30            67.31  37.31      37.31    dislike      moderately_like               Grunge        Country-Rock     Alternative Rock
+           Benson Boone                                  American Heart     32            67.95  35.95      35.95    dislike      moderately_like     Contemporary Pop                 Pop            Dance-Pop
+             ROLE MODEL                                  Kansas Anymore     29            63.73  34.73      34.73    dislike      moderately_like          Country-Pop           Indie Pop    Singer-Songwriter
+              Radiohead                               Hail To The Thief     40            71.30  31.30      31.30    neutral                 like             Art Rock   Experimental Rock             Pop-Rock
+           Tierra Whack                                WORLD WIDE WHACK     29            59.63  30.63      30.63    dislike      moderately_like  Alternative Hip-Hop             Pop-Rap      Alternative Pop
+                  sombr                               I Barely Know Her     30            60.31  30.31      30.31    dislike      moderately_like            Indie Pop            Pop-Rock      Alternative Pop
+                  Lizzo                      MY FACE HURTS FROM SMILING     30            58.23  28.23      28.23    dislike      moderately_like              Pop-Rap                Trap Contemporary Hip-Hop
+              Lil Tecca                                        DOPAMINE     72            44.96 -27.04      27.04       like              neutral              Pop-Rap             Hip-Hop Contemporary Hip-Hop
+The Brave Little Abacus just got back from the discomfort—we're alright     38            64.84  26.84      26.84    dislike      moderately_like          Midwest Emo   Experimental Rock        Post-Hardcore
+           PlaqueBoyMax                                    Five Forever     32            58.53  26.53      26.53    dislike      moderately_like                 Trap                Rage             Hyperpop
+          Playboi Carti                                           MUSIC     77            50.66 -26.34      26.34       like              neutral                 Rage    Southern Hip-Hop                 Trap
+                    Nav                                    OMW2 REXDALE     35            60.18  25.18      25.18    dislike      moderately_like Contemporary Hip-Hop             Pop-Rap      Alternative R&B
+   Cigarettes After Sex                            Cigarettes After Sex     45            70.15  25.15      25.15    neutral                 like            Dream Pop           Indie Pop           Indie Rock
+             untiljapan                                   trompe l'oeil     75            50.16 -24.84      24.84       like              neutral Contemporary Hip-Hop             Pop-Rap                 Trap
+        Imagine Dragons                                   Night Visions     48            72.68  24.68      24.68    neutral                 like      Alternative Pop            Pop-Rock     Alternative Rock
+           Nine Vicious                                    TUMBLR MUSIC     28            52.55  24.55      24.55    dislike              neutral                 Rage    Southern Hip-Hop Contemporary Hip-Hop
+
+================================================================================
+Most Overpredicted Albums
+================================================================================
+                 ARTIST                                           ALBUM  SCORE  PREDICTED_SCORE  ERROR  ABS_ERROR SCORE_TIER PREDICTED_SCORE_TIER              GENRE_1             GENRE_2              GENRE_3
+           Bruiser Wolf                                         POTLUCK      6            61.04  55.04      55.04    dislike      moderately_like     Abstract Hip-Hop            Boom Bap     Drumless Hip-Hop
+       Childish Gambino                                            Camp     22            68.34  46.34      46.34    dislike      moderately_like              Pop-Rap Alternative Hip-Hop     Contemporary R&B
+                  Gunna                                    The Last Wun     25            65.86  40.86      40.86    dislike      moderately_like Contemporary Hip-Hop    Southern Hip-Hop     Contemporary R&B
+     Falling in Reverse                           The Drug In Me Is You     29            66.77  37.77      37.77    dislike      moderately_like            Metalcore            Pop-Punk             Rap-Rock
+             Audioslave                                      Audioslave     30            67.31  37.31      37.31    dislike      moderately_like               Grunge        Country-Rock     Alternative Rock
+           Benson Boone                                  American Heart     32            67.95  35.95      35.95    dislike      moderately_like     Contemporary Pop                 Pop            Dance-Pop
+             ROLE MODEL                                  Kansas Anymore     29            63.73  34.73      34.73    dislike      moderately_like          Country-Pop           Indie Pop    Singer-Songwriter
+              Radiohead                               Hail To The Thief     40            71.30  31.30      31.30    neutral                 like             Art Rock   Experimental Rock             Pop-Rock
+           Tierra Whack                                WORLD WIDE WHACK     29            59.63  30.63      30.63    dislike      moderately_like  Alternative Hip-Hop             Pop-Rap      Alternative Pop
+                  sombr                               I Barely Know Her     30            60.31  30.31      30.31    dislike      moderately_like            Indie Pop            Pop-Rock      Alternative Pop
+                  Lizzo                      MY FACE HURTS FROM SMILING     30            58.23  28.23      28.23    dislike      moderately_like              Pop-Rap                Trap Contemporary Hip-Hop
+The Brave Little Abacus just got back from the discomfort—we're alright     38            64.84  26.84      26.84    dislike      moderately_like          Midwest Emo   Experimental Rock        Post-Hardcore
+           PlaqueBoyMax                                    Five Forever     32            58.53  26.53      26.53    dislike      moderately_like                 Trap                Rage             Hyperpop
+                    Nav                                    OMW2 REXDALE     35            60.18  25.18      25.18    dislike      moderately_like Contemporary Hip-Hop             Pop-Rap      Alternative R&B
+   Cigarettes After Sex                            Cigarettes After Sex     45            70.15  25.15      25.15    neutral                 like            Dream Pop           Indie Pop           Indie Rock
+        Imagine Dragons                                   Night Visions     48            72.68  24.68      24.68    neutral                 like      Alternative Pop            Pop-Rock     Alternative Rock
+           Nine Vicious                                    TUMBLR MUSIC     28            52.55  24.55      24.55    dislike              neutral                 Rage    Southern Hip-Hop Contemporary Hip-Hop
+                  Lorde                                     Solar Power     50            73.55  23.55      23.55    neutral                 like             Folk-Pop   Singer-Songwriter            Indie Pop
+         McKinley Dixon                                   Magic, Alive!     45            68.22  23.22      23.22    neutral      moderately_like    Conscious Hip-Hop            Jazz-Rap             Neo-Soul
+           Jane Remover                                  Revengeseekerz     42            65.06  23.06      23.06    neutral      moderately_like             Hyperpop         Electronica             Digicore
+
+================================================================================
+Most Underpredicted Albums
+================================================================================
+                      ARTIST                             ALBUM  SCORE  PREDICTED_SCORE  ERROR  ABS_ERROR      SCORE_TIER PREDICTED_SCORE_TIER              GENRE_1              GENRE_2              GENRE_3
+                   Lil Tecca                          DOPAMINE     72            44.96 -27.04      27.04            like              neutral              Pop-Rap              Hip-Hop Contemporary Hip-Hop
+               Playboi Carti                             MUSIC     77            50.66 -26.34      26.34            like              neutral                 Rage     Southern Hip-Hop                 Trap
+                  untiljapan                     trompe l'oeil     75            50.16 -24.84      24.84            like              neutral Contemporary Hip-Hop              Pop-Rap                 Trap
+                Big K.R.I.T.     Dedicated to Cadalee Biarritz     75            54.31 -20.69      20.69            like      moderately_like     Southern Hip-Hop             Neo-Soul                 Trap
+                BIGBABYGUCCI                And When I'm Alone     70            50.38 -19.62      19.62            like              neutral              Pop-Rap Contemporary Hip-Hop     Southern Hip-Hop
+                     G Herbo                          Lil Herb     72            52.52 -19.48      19.48            like              neutral                 Trap Contemporary Hip-Hop              Pop-Rap
+                       Oklou                      choke enough     70            50.56 -19.44      19.44            like              neutral          Bedroom Pop      Alternative Pop              Ambient
+                 billy woods                          GOLLIWOG     69            49.65 -19.35      19.35 moderately_like              neutral     Abstract Hip-Hop     Drumless Hip-Hop           Horrorcore
+                     Ovrkast             While The Iron Is Hot     77            58.08 -18.92      18.92            like      moderately_like                  Rap Contemporary Hip-Hop             Jazz-Rap
+                  Deafheaven          Lonely People With Power     79            60.25 -18.75      18.75            like      moderately_like            Blackgaze     Post-Black Metal             Shoegaze
+                  The Weeknd                 Hurry Up Tomorrow     82            63.59 -18.41      18.41            love      moderately_like      Alternative R&B             Synthpop     Contemporary R&B
+                        Yeat                  DANGEROUS SUMMER     75            56.66 -18.34      18.34            like      moderately_like              Pop-Rap                 Rage                 Trap
+          Conway the Machine   You Can't Kill God With Bullets     80            61.67 -18.33      18.33            love      moderately_like   East Coast Hip-Hop          Gangsta Rap             Boom Bap
+                   Bad Bunny              DeBI TiRAR MaS FOToS     72            54.31 -17.69      17.69            like      moderately_like            Reggaeton            Latin Pop               Dembow
+Freddie Gibbs, The Alchemist                         Alfredo 2     77            59.51 -17.49      17.49            like      moderately_like             Jazz-Rap          Gangsta Rap              Hip-Hop
+                   Saya Gray                              SAYA     76            59.00 -17.00      17.00            like      moderately_like              Art Pop         Indietronica    Singer-Songwriter
+             Hayley Williams Ego Death at a Bachelorette Party     85            68.27 -16.73      16.73            love      moderately_like      Alternative Pop    Singer-Songwriter           Indie Rock
+                        MAVI                         The Pilot     78            61.34 -16.66      16.66            like      moderately_like              Hip-Hop             Jazz-Rap              Pop-Rap
+               Denison Marrs          World Renown for Romance     80            63.36 -16.64      16.64            love      moderately_like     Alternative Rock           Space Rock            Post-Rock
+                   Spiritbox                      Eternal Blue     92            75.42 -16.58      16.58            love                 like    Alternative Metal            Metalcore        Ethereal Wave
+
+================================================================================
+Error by Primary Genre
+================================================================================
+                      count  avg_actual_score  avg_predicted_score  avg_error  avg_abs_error
+GENRE_1                                                                                     
+Contemporary Hip-Hop      6             54.50                60.52       6.02          17.26
+Midwest Emo               3             62.67                64.40       1.74          16.16
+Pop-Rap                  15             52.47                57.84       5.38          16.11
+Jazz-Rap                  3             65.67                60.06      -5.61          14.98
+Experimental Hip-Hop      3             46.00                60.96      14.96          14.96
+Alternative Hip-Hop       3             50.33                63.10      12.76          13.65
+Grunge                    5             67.80                69.41       1.61          13.31
+Shoegaze                  4             70.25                66.61      -3.64          12.20
+Art Rock                  6             65.50                67.04       1.54          12.16
+Trap                      6             51.17                56.82       5.66          12.15
+Ambient                   3             68.33                66.89      -1.44          11.93
+Indie Pop                 4             60.75                64.22       3.47          11.68
+Metalcore                 5             64.00                68.47       4.47          11.52
+Djent                     3             68.67                71.33       2.67          11.19
+Conscious Hip-Hop         5             68.20                66.35      -1.85          11.14
+Rap                       4             71.75                60.64     -11.12          11.12
+Dance-Pop                 8             62.88                59.29      -3.58          10.50
+Bedroom Pop               3             66.67                60.54      -6.13          10.38
+East Coast Hip-Hop        4             70.25                68.52      -1.73          10.05
+Contemporary Pop          5             63.00                67.48       4.48           9.90
+Electronica               7             69.00                67.02      -1.98           9.80
+Hip-Hop                  13             67.15                67.30       0.14           9.57
+Dream Pop                14             72.07                67.61      -4.46           9.45
+Alternative R&B          10             66.80                64.07      -2.73           9.12
+Pop                       5             64.80                65.59       0.79           8.37
+
+================================================================================
+Error by All Genre Tags
+================================================================================
+                      count  avg_actual_score  avg_predicted_score  avg_error  avg_abs_error
+GENRE                                                                                       
+Abstract Hip-Hop          6             57.50                64.77       7.27          18.52
+Alternative Hip-Hop       6             52.17                63.30      11.13          17.52
+Contemporary Hip-Hop     22             56.55                57.93       1.38          15.04
+Experimental Hip-Hop      5             46.00                59.57      13.57          13.57
+Pop-Rap                  43             56.47                57.60       1.13          11.95
+Indie Pop                20             65.40                66.64       1.24          11.73
+Jazz-Rap                 15             69.93                64.08      -5.85          11.68
+Trap                     23             59.65                58.97      -0.68          11.59
+Ambient                   9             67.11                65.30      -1.81          11.36
+Southern Hip-Hop         19             59.58                58.20      -1.38          11.29
+Boom Bap                 19             64.74                64.19      -0.55          10.87
+Pop-Punk                  6             67.17                69.24       2.07          10.70
+Pop                      11             57.27                64.32       7.05          10.69
+Grunge                   10             68.80                70.40       1.60          10.52
+Hip-Hop                  20             65.95                63.68      -2.27          10.35
+Conscious Hip-Hop         8             66.75                67.58       0.83          10.26
+Gangsta Rap               9             70.22                63.66      -6.56          10.20
+Darkwave                  8             72.88                66.88      -6.00          10.10
+Metalcore                10             72.50                71.84      -0.66          10.07
+Post-Rock                 6             75.50                67.12      -8.38          10.06
+Art Rock                 14             70.57                67.08      -3.49          10.05
+Contemporary R&B         35             67.00                66.38      -0.62           9.78
+Neo-Psychedelia          13             68.23                65.90      -2.33           9.67
+Noise Rock                5             77.80                68.54      -9.26           9.26
+Dance-Pop                27             66.52                64.63      -1.89           9.12
+Synthpop                 23             66.65                65.51      -1.14           9.09
+Pop-Rock                 22             62.95                68.16       5.20           9.04
+Shoegaze                 19             73.42                67.58      -5.84           9.00
+Post-Hardcore             8             68.88                68.36      -0.51           8.98
+Alternative Pop          58             68.60                67.46      -1.14           8.92
+
+================================================================================
+Actual vs Predicted Score Tier
+================================================================================
+Rows = actual score tier
+Columns = predicted score tier
+PREDICTED_SCORE_TIER  love  like  moderately_like  neutral  dislike
+SCORE_TIER                                                         
+love                     0    18                7        0        0
+like                     0    77              112        6        0
+moderately_like          0    26               59        5        0
+neutral                  0     8               28        2        0
+dislike                  0     0               15        2        0
+
+================================================================================
+Actual vs Predicted Three-Label Category
+================================================================================
+Rows = actual three-label category
+Columns = predicted three-label category
+PREDICTED_LIKE_LABEL  like  neutral  dislike
+LIKE_LABEL                                  
+like                    95      125        0
+neutral                 34       94        0
+dislike                  0       17        0
+
+================================================================================
+Low-Score Album Analysis
+================================================================================
+Low-score albums: 17
+Average actual score: 29.29
+Average predicted score: 61.15
+Average error: 31.85
+Average absolute error: 31.85
+
+Low-score albums sorted by largest overprediction:
+                 ARTIST                                           ALBUM  SCORE  PREDICTED_SCORE  ERROR  ABS_ERROR              GENRE_1             GENRE_2              GENRE_3
+           Bruiser Wolf                                         POTLUCK      6            61.04  55.04      55.04     Abstract Hip-Hop            Boom Bap     Drumless Hip-Hop
+       Childish Gambino                                            Camp     22            68.34  46.34      46.34              Pop-Rap Alternative Hip-Hop     Contemporary R&B
+                  Gunna                                    The Last Wun     25            65.86  40.86      40.86 Contemporary Hip-Hop    Southern Hip-Hop     Contemporary R&B
+     Falling in Reverse                           The Drug In Me Is You     29            66.77  37.77      37.77            Metalcore            Pop-Punk             Rap-Rock
+             Audioslave                                      Audioslave     30            67.31  37.31      37.31               Grunge        Country-Rock     Alternative Rock
+           Benson Boone                                  American Heart     32            67.95  35.95      35.95     Contemporary Pop                 Pop            Dance-Pop
+             ROLE MODEL                                  Kansas Anymore     29            63.73  34.73      34.73          Country-Pop           Indie Pop    Singer-Songwriter
+           Tierra Whack                                WORLD WIDE WHACK     29            59.63  30.63      30.63  Alternative Hip-Hop             Pop-Rap      Alternative Pop
+                  sombr                               I Barely Know Her     30            60.31  30.31      30.31            Indie Pop            Pop-Rock      Alternative Pop
+                  Lizzo                      MY FACE HURTS FROM SMILING     30            58.23  28.23      28.23              Pop-Rap                Trap Contemporary Hip-Hop
+The Brave Little Abacus just got back from the discomfort—we're alright     38            64.84  26.84      26.84          Midwest Emo   Experimental Rock        Post-Hardcore
+           PlaqueBoyMax                                    Five Forever     32            58.53  26.53      26.53                 Trap                Rage             Hyperpop
+                    Nav                                    OMW2 REXDALE     35            60.18  25.18      25.18 Contemporary Hip-Hop             Pop-Rap      Alternative R&B
+           Nine Vicious                                    TUMBLR MUSIC     28            52.55  24.55      24.55                 Rage    Southern Hip-Hop Contemporary Hip-Hop
+         Injury Reserve                    By The Time I Get to Phoenix     38            60.31  22.31      22.31 Experimental Hip-Hop          Glitch Pop   Industrial Hip-Hop
+             Juice WRLD                            The Party Never Ends     36            56.28  20.28      20.28              Pop-Rap                 Emo Contemporary Hip-Hop
+                     YT                                             OI!     29            47.63  18.63      18.63               UK Rap                Jerk              Pop-Rap
+
+================================================================================
+Saved model error report to: model_error_report.txt
+================================================================================

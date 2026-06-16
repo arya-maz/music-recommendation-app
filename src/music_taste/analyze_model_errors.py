@@ -1,9 +1,12 @@
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 
 import pandas as pd
 
 
 PREDICTIONS_PATH = Path("data/processed/model_predictions.csv")
+REPORT_OUTPUT_PATH = Path("model_error_report.txt")
 
 SCORE_TIER_ORDER = [
     "love",
@@ -18,6 +21,7 @@ LIKE_LABEL_ORDER = [
     "neutral",
     "dislike",
 ]
+
 
 
 def print_section(title: str) -> None:
@@ -206,6 +210,8 @@ def summarize_error_by_all_genres(df: pd.DataFrame) -> None:
 
 def summarize_tier_confusion(df: pd.DataFrame) -> None:
     print_section("Actual vs Predicted Score Tier")
+    print("Rows = actual score tier")
+    print("Columns = predicted score tier")
 
     confusion = pd.crosstab(
         df["SCORE_TIER"],
@@ -223,6 +229,8 @@ def summarize_tier_confusion(df: pd.DataFrame) -> None:
 
 def summarize_like_label_confusion(df: pd.DataFrame) -> None:
     print_section("Actual vs Predicted Three-Label Category")
+    print("Rows = actual three-label category")
+    print("Columns = predicted three-label category")
 
     confusion = pd.crosstab(
         df["LIKE_LABEL"],
@@ -273,15 +281,7 @@ def summarize_low_score_problem(df: pd.DataFrame) -> None:
     )
 
 
-def main() -> None:
-    if not PREDICTIONS_PATH.exists():
-        raise FileNotFoundError(
-            f"Could not find predictions file at {PREDICTIONS_PATH}. "
-            "Run train_model.py first."
-        )
-
-    df = pd.read_csv(PREDICTIONS_PATH)
-
+def run_error_report(df: pd.DataFrame) -> None:
     summarize_overall_error(df)
     summarize_error_by_score_tier(df)
     summarize_error_by_like_label(df)
@@ -294,6 +294,36 @@ def main() -> None:
     summarize_tier_confusion(df)
     summarize_like_label_confusion(df)
     summarize_low_score_problem(df)
+
+
+def main() -> None:
+    if not PREDICTIONS_PATH.exists():
+        raise FileNotFoundError(
+            f"Could not find predictions file at {PREDICTIONS_PATH}. "
+            "Run train_model.py first."
+        )
+
+    df = pd.read_csv(PREDICTIONS_PATH)
+
+
+    report_buffer = StringIO()
+
+    with redirect_stdout(report_buffer):
+        run_error_report(df)
+
+    report_text = report_buffer.getvalue()
+    save_message = (
+        "\n"
+        + "=" * 80
+        + f"\nSaved model error report to: {REPORT_OUTPUT_PATH}\n"
+        + "=" * 80
+        + "\n"
+    )
+
+    REPORT_OUTPUT_PATH.write_text(report_text + save_message, encoding="utf-8")
+
+    print(report_text, end="")
+    print(save_message, end="")
 
 
 if __name__ == "__main__":
