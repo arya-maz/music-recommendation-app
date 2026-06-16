@@ -5,7 +5,7 @@ A personal machine learning music recommendation project that builds a user tast
 
 ## Background
 
-As a long-time avid music fanatic, I've always been eager to chase new experiences through different artists, genres, styles, and eras of music. Throughout 2025, I challenged myself to check out 365 albums that I had never heard before -- some of which were newer albums releasing on a rolling basis throughout the year, while the majority were either releases that I had missed from recent years or older records that I wanted to closely familiarize myself with.
+As a long-time avid music fanatic, I've always been eager to chase new experiences through different artists, genres, styles, and eras of music. Throughout 2025, I challenged myself to check out 365 albums that I had never heard before -- some of which were newer albums releasing on a rolling basis throughout the year, while the majority were either releases that I had missed from recent years or older records that I wanted to closely familiarize myself with. This experience inspired me to build a recommendation tool that would make finding new albums to experience much easier and more straightforward.
 
 The goal of this project is to recommend albums to a user based on their personal taste. At this stage, I am building the taste-modeling foundation for that larger recommendation system. Score prediction is being used as a practical way to estimate how much a user may enjoy an album, which can later help determine which candidate albums should be recommended, filtered out, or ranked higher.
 
@@ -123,8 +123,8 @@ The current model is being treated as a stable baseline before adding more featu
 
 Future improvements may include:
 
-- Adding more thorough analysis of taste (decade, genre combinations, etc.)
-- Visualizing score trends by genre, release year, runtime, and track count
+- Broadening the thorough analysis of taste by implementing new attributes (decade, genre combinations, etc.)
+- Using existing score-trend analysis to engineer stronger taste-profile and recommendation features
 - Comparing CatBoost against other regression models
 - Testing more advanced recommendation logic
 - Creating a web interface where users can upload data and receive personalized album recommendations
