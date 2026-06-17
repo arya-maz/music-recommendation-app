@@ -1,162 +1,144 @@
 {
   "070 shake|||petrichor": [
-    "2024",
     "art pop",
-    "emo rap"
+    "emo rap",
+    "pop rap"
   ],
-  "070 shake|||you can't kill me": [
-    "2022",
-    "3-5"
-  ],
+  "070 shake|||you can't kill me": [],
   "156/silence|||people watching": [
     "nu metal",
     "metalcore",
     "chaotic hardcore"
   ],
   "2 chainz|||collegrove": [
-    "2 chainz",
-    "2016",
     "hip-hop"
   ],
   "2 chainz|||dope don't sell itself": [
-    "2 chainz",
-    "2022",
-    "2020s"
+    "rap",
+    "hip-hop"
   ],
   "2 chainz|||pretty girls like trap music": [
-    "2 chainz",
-    "2017",
     "hip-hop"
   ],
   "2 chainz|||rap or go to the league": [
-    "2 chainz",
-    "2019",
-    "rap"
+    "rap",
+    "southern hip-hop",
+    "hip-hop"
   ],
   "21 lil harold|||after the curse": [],
-  "21 savage|||what happened to the streets?": [
-    "21 savage",
-    "2025"
-  ],
+  "21 savage|||what happened to the streets?": [],
   "21 savage|||american dream": [
-    "2024",
     "rap",
-    "usa"
+    "hip-hop"
   ],
   "21 savage, offset & metro boomin|||without warning": [
-    "offset",
-    "trap rap",
-    "metro boomin"
+    "trap rap"
   ],
   "38 spesh & conway the machine|||speshal machinery": [],
   "42 dugg & est gee|||last ones left": [],
   "4batz|||u made me a st4r": [],
   "50 cent|||animal ambition: an untamed desire to win": [
-    "50 cent",
-    "2014",
-    "2014 albums"
+    "rap",
+    "hip-hop"
   ],
   "50 cent|||curtis": [
-    "50 cent",
-    "2007",
-    "rap"
+    "rap",
+    "hip-hop",
+    "gangsta rap"
   ],
   "50 cent|||get rich or die tryin'": [
     "rap",
-    "50 cent",
-    "2003"
+    "hip-hop",
+    "gangsta rap"
   ],
   "50 cent|||the massacre": [
     "rap",
-    "50 cent",
-    "hip-hop"
+    "hip-hop",
+    "gangsta rap"
   ],
   "6lack|||love is the new gangsta": [],
   "6lack|||since i have a lover": [
-    "2023",
-    "rnb",
-    "lvrn"
+    "rnb"
   ],
   "a perfect circle|||mer de noms": [
     "alternative rock",
     "progressive rock",
-    "2000"
+    "rock"
   ],
   "a perfect circle|||thirteenth step": [
     "alternative rock",
     "progressive rock",
-    "2003"
+    "rock"
   ],
   "a$ap ferg|||trap lord": [
     "cloud rap",
-    "2013",
-    "rap"
+    "rap",
+    "trap"
   ],
   "a$ap rocky|||at.long.last.a$ap": [
-    "2015",
     "hip-hop",
-    "cloud rap"
+    "cloud rap",
+    "rap"
   ],
   "a$ap rocky|||don't be dumb": [
-    "2026",
     "trap",
-    "wikipedia"
+    "experimental hip hop",
+    "hardcore hip-hop"
   ],
   "a$ap rocky|||live.love.a$ap": [
     "cloud rap",
-    "2011",
-    "east coast hip hop"
+    "east coast hip-hop",
+    "hip-hop"
   ],
   "a$ap rocky|||long.live.a$ap": [
-    "2013",
     "hip-hop",
-    "cloud rap"
+    "cloud rap",
+    "rap"
   ],
   "a$ap rocky|||long.live.a$ap (deluxe)": [],
   "a$ap rocky|||testing": [
-    "2018",
     "hip-hop",
-    "cloud rap"
+    "cloud rap",
+    "rap"
   ],
   "adéla|||the provocateur": [
-    "2025",
-    "skipless albums",
-    "electropop"
+    "electropop",
+    "pop",
+    "experimental"
   ],
   "ab-soul|||herbert": [
     "rap",
     "hip-hop",
-    "ab-soul"
+    "welcome back soulo"
   ],
   "addison rae|||addison": [
-    "2025",
     "pop",
-    "alt-pop"
+    "alt-pop",
+    "trip-hop"
   ],
   "adele|||21": [
     "soul",
-    "2011",
-    "female vocalists"
+    "pop",
+    "singer-songwriter"
   ],
   "adele|||25": [
-    "2015",
-    "adele",
-    "soul"
+    "soul",
+    "pop"
   ],
   "adele|||30": [
-    "2021",
     "pop",
-    "soul"
+    "soul",
+    "rnb"
   ],
   "alice in chains|||dirt": [
     "grunge",
     "alternative metal",
-    "90s"
+    "rock"
   ],
   "alice in chains|||facelift": [
     "grunge",
     "hard rock",
-    "1990"
+    "heavy metal"
   ],
   "alice in chains|||jar of flies": [
     "grunge",
@@ -166,98 +148,96 @@
   "alicia keys|||the diary of alicia keys": [
     "soul",
     "rnb",
-    "alicia keys"
+    "neo-soul"
   ],
   "alvvays|||blue rev": [
-    "2022",
     "noise pop",
-    "indie pop"
+    "indie pop",
+    "shoegaze"
   ],
   "amy winehouse|||back to black": [
     "soul",
     "jazz",
-    "female vocalists"
+    "rnb"
   ],
   "andré 3000|||new blue sun": [
     "ambient",
-    "new age",
-    "spiritual jazz"
+    "spiritual jazz",
+    "progressive electronic"
   ],
   "andré 3000|||the love below": [],
   "animals as leaders|||animals as leaders": [
     "progressive metal",
-    "djent",
-    "2009"
+    "math metal",
+    "technical metal"
   ],
   "animals as leaders|||the joy of motion": [
     "progressive metal",
-    "2014",
-    "djent"
+    "jazz fusion",
+    "instrumental metal"
   ],
   "architects|||all our gods have abandoned us": [
     "metalcore",
-    "2016",
-    "post-hardcore"
+    "post-hardcore",
+    "progressive metalcore"
   ],
   "architects|||holy hell": [
     "metalcore",
-    "2018",
-    "progressive metalcore"
+    "progressive metalcore",
+    "technical metal"
   ],
   "architects|||the sky, the earth & all between": [
-    "2025",
     "metalcore",
-    "alternative metal"
+    "alternative metal",
+    "pop"
   ],
   "arctic monkeys|||am": [
-    "2013",
     "indie rock",
-    "rock"
+    "rock",
+    "blues rock"
   ],
   "arctic monkeys|||whatever people say i am, that's what i'm not": [
     "indie rock",
-    "2006",
-    "rock"
+    "rock",
+    "alternative rock"
   ],
   "ariana grande|||dangerous woman": [
     "pop",
-    "2016",
-    "rnb"
+    "rnb",
+    "dance-pop"
   ],
   "ariana grande|||my everything": [
-    "2014",
     "pop",
-    "best of 2014"
+    "rnb"
   ],
   "ariana grande|||positions": [
-    "positions (deluxe)",
     "pop",
-    "rnb"
+    "rnb",
+    "trap"
   ],
   "ariana grande|||sweetener": [
-    "2018",
     "pop",
-    "rnb"
+    "rnb",
+    "trap"
   ],
   "ariana grande|||yours truly": [
-    "2013",
     "pop",
-    "rnb"
+    "rnb",
+    "soul"
   ],
   "ariana grande|||eternal sunshine": [
-    "2024",
     "pop",
-    "rnb"
+    "rnb",
+    "trap"
   ],
   "ariana grande|||thank u, next": [
     "pop",
-    "2019",
-    "trap"
+    "trap",
+    "rnb"
   ],
   "aries|||welcome home": [
-    "acoustic",
     "rap",
-    "aries"
+    "pop-punk"
   ],
   "armani white|||road to casablanco.": [],
   "armani white|||there’s a ghost in my house.": [],
@@ -266,19 +246,15 @@
   ],
   "artemas|||getting up to no good": [],
   "artemas|||pretty": [
-    "cyprus",
-    "cypriot",
     "cypriot pop"
   ],
   "artemas|||yustyna": [
-    "cyprus",
-    "cypriot",
     "cypriot pop"
   ],
   "at the drive-in|||relationship of command": [
     "post-hardcore",
-    "2000",
-    "favourite albums"
+    "emo",
+    "alternative rock"
   ],
   "audioslave|||audioslave": [
     "hard rock",
@@ -286,153 +262,119 @@
     "rock"
   ],
   "ava max|||diamonds & dancefloors": [
-    "2023",
     "pop",
-    "electropop"
+    "electropop",
+    "dance-pop"
   ],
   "ava max|||don't click play": [
-    "2025",
     "pop",
-    "electropop"
+    "electropop",
+    "house"
   ],
   "b.o.b|||b.o.b presents: the adventures of bobby ray": [
-    "2010",
     "hip-hop",
-    "male vocalists"
+    "rap",
+    "alternative hip hop"
   ],
   "banks|||off with her head": [
-    "2025",
     "soul",
-    "rnb"
+    "rnb",
+    "art pop"
   ],
-  "bia|||bianca": [
-    "2025"
-  ],
+  "bia|||bianca": [],
   "bia|||for certain": [],
   "bia|||really her": [],
   "bigbabygucci|||and when i'm alone": [],
-  "bnyx®|||genesis fm": [
-    "2026"
-  ],
-  "bnyx®|||loading...": [
-    "2025"
-  ],
-  "baby keem|||ca$ino": [
-    "2026",
-    "baby keem"
-  ],
+  "bnyx®|||genesis fm": [],
+  "bnyx®|||loading...": [],
+  "baby keem|||ca$ino": [],
   "baby keem|||the melodic blue": [
-    "2021",
     "hip-hop",
-    "trap"
+    "trap",
+    "pop rap"
   ],
   "baby keem|||the melodic blue (deluxe)": [
-    "quirky",
-    "rhythmic",
-    "energetic"
+    "pop rap"
   ],
   "babytron|||bin reaper 3: new testament": [
     "rap",
     "hip-hop",
-    "sampling"
+    "gangsta rap"
   ],
   "babytron|||bin reaper 3: old testament": [
-    "party",
-    "quirky",
-    "sampling"
+    "gangsta rap"
   ],
   "babytron|||megatron": [
-    "warm",
-    "summer",
-    "2022"
+    "hip-hop",
+    "gangsta rap"
   ],
   "babyface ray|||face": [
     "gangsta rap",
     "trap",
-    "2022"
+    "detroit trap"
   ],
-  "babyface ray|||mob": [
-    "2022"
-  ],
+  "babyface ray|||mob": [],
   "babyface ray|||summer's mine": [],
   "bad bunny|||debí tirar más fotos": [
-    "2025",
-    "latin",
-    "reggaeton"
+    "latin electronic"
   ],
   "bad meets evil|||hell: the sequel": [
-    "rap album : number one",
-    "detroit",
-    "2011"
+    "hip-hop"
   ],
-  "bakar|||badkid": [
-    "lo-fi",
-    "2010s",
-    "listen list"
-  ],
+  "bakar|||badkid": [],
   "bakar|||halo": [],
-  "bakar|||nobody's home": [
-    "2022"
-  ],
+  "bakar|||nobody's home": [],
   "beach house|||bloom": [
-    "2012",
     "dream pop",
-    "best of 2012"
+    "indie pop",
+    "ethereal wave"
   ],
   "beach house|||once twice melody": [
     "dream pop",
-    "2022",
-    "neo-psychedelia"
+    "ethereal wave",
+    "shoegaze"
   ],
   "beach house|||teen dream": [
-    "2010",
     "dream pop",
-    "best of 2010"
+    "indie pop",
+    "sub pop"
   ],
-  "benny the butcher|||everybody can't go": [
-    "2024"
-  ],
+  "benny the butcher|||everybody can't go": [],
   "benny the butcher|||excelsior": [],
   "benny the butcher|||summertime butch 2": [],
   "benny the butcher|||tana talk 3": [
-    "2018",
     "rap",
-    "hardcore hip-hop"
+    "hardcore hip-hop",
+    "gangsta rap"
   ],
   "benny the butcher|||tana talk 4": [
-    "2022",
-    "hip-hop",
-    "finished"
+    "hip-hop"
   ],
   "benny the butcher|||the plugs i met": [
     "hip-hop",
-    "2019",
-    "rap"
+    "rap",
+    "gangsta rap"
   ],
-  "benson boone|||american heart": [
-    "raaah🦅🦅",
-    "16",
-    "2025"
-  ],
+  "benson boone|||american heart": [],
   "between the buried and me|||colors": [
     "progressive metal",
     "metalcore",
-    "masterpiece"
+    "mathcore"
   ],
   "beyoncé|||4": [
-    "2011",
     "rnb",
-    "soul"
+    "soul",
+    "pop"
   ],
   "beyoncé|||b'day": [
     "rnb",
-    "2006",
-    "pop"
+    "pop",
+    "soul"
   ],
   "beyoncé|||beyoncé": [
-    "surprise bitch",
     "pop",
-    "rnb"
+    "rnb",
+    "soul"
   ],
   "beyoncé|||beyoncé [platinum edition]": [
     "pop",
@@ -440,14 +382,14 @@
     "rnb"
   ],
   "beyoncé|||cowboy carter": [
-    "2024",
     "country",
-    "americana"
+    "folk",
+    "country pop"
   ],
   "beyoncé|||dangerously in love": [
     "rnb",
-    "2003",
-    "soul"
+    "soul",
+    "pop"
   ],
   "beyoncé|||i am...sasha fierce": [
     "rnb",
@@ -455,7 +397,7 @@
     "soul"
   ],
   "beyoncé|||i am...sasha fierce (deluxe edition)": [
-    "hip hop",
+    "hip-hop",
     "pop",
     "rnb"
   ],
@@ -466,61 +408,52 @@
   ],
   "beyoncé|||renaissance": [
     "house",
-    "2022",
-    "rnb"
+    "rnb",
+    "dance"
   ],
   "big boi|||sir lucious left foot: the son of chico dusty": [
-    "2010",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "southern hip-hop"
   ],
   "big boi|||speakerboxxx": [
-    "00s",
-    "hip hop",
-    "check"
+    "hip-hop"
   ],
   "big k.r.i.t.|||4eva is a mighty long time": [
-    "2017",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "southern hip-hop"
   ],
   "big k.r.i.t.|||dedicated to cadalee biarritz vol. 1": [],
   "big k.r.i.t., wiz khalifa, girl talk & smoke dza|||full court press": [],
   "big sean|||better me than you": [
-    "hip-hop",
-    "big sean",
-    "2020s"
+    "hip-hop"
   ],
   "big sean|||dark sky paradise": [
-    "2015",
-    "hip-hop",
-    "sky"
+    "hip-hop"
   ],
-  "big sean|||detroit 2": [
-    "big sean",
-    "2020"
-  ],
+  "big sean|||detroit 2": [],
   "big sean|||i decided.": [
-    "2017",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "pop rap"
   ],
   "billie eilish|||hit me hard and soft": [
-    "aoty",
-    "2024",
-    "pop"
+    "pop",
+    "art pop",
+    "alt-pop"
   ],
   "birdman & lil wayne|||like father, like son": [],
   "birdman, lil wayne & dj khaled|||the carter 2, part 2: like father, like son": [],
   "björk|||debut": [
-    "1993",
     "electronic",
-    "alternative"
+    "art pop",
+    "house"
   ],
   "björk|||post": [
     "electronic",
-    "1995",
-    "90s"
+    "art pop",
+    "trip-hop"
   ],
   "black country, new road|||ants from up there": [
     "post-rock",
@@ -529,23 +462,19 @@
   ],
   "black thought & danger mouse|||cheat codes": [],
   "blood orange|||essex honey": [
-    "2025",
     "soul",
-    "dream pop"
+    "dream pop",
+    "rnb"
   ],
   "blxst|||just for clarity 2": [],
-  "boldy james & the alchemist|||bo jackson": [
-    "2021"
-  ],
+  "boldy james & the alchemist|||bo jackson": [],
   "boris|||pink": [
     "stoner rock",
     "noise rock",
     "drone"
   ],
   "brent faiyaz|||fuck the world": [
-    "alternative rnb",
-    "love",
-    "vulgar"
+    "alternative rnb"
   ],
   "brent faiyaz|||icon": [
     "sophisti-pop",
@@ -555,182 +484,172 @@
   "brent faiyaz|||larger than life": [],
   "brent faiyaz|||wasteland": [
     "neo-soul",
-    "alternative rnb",
-    "2022"
+    "alternative rnb"
   ],
   "broadcast|||the noise made by people": [
     "ambient pop",
     "post-rock",
-    "2000"
+    "dream pop"
   ],
   "bruiser wolf|||potluck": [],
   "bruno mars|||24k magic": [
-    "2016",
     "funk",
-    "rnb"
+    "rnb",
+    "soul"
   ],
   "bruno mars|||doo-wops & hooligans": [
     "pop",
-    "2010",
-    "rnb"
+    "rnb",
+    "pop rock"
   ],
   "bruno mars|||the romantic": [
-    "2026",
-    "bruno mars",
-    "rnb"
+    "rnb",
+    "pop",
+    "latin pop"
   ],
   "bruno mars|||unorthodox jukebox": [
-    "2012",
     "pop",
-    "best of 2012"
+    "rnb",
+    "rock"
   ],
   "bryson tiller|||a n n i v e r s a r y": [],
   "bryson tiller|||bryson tiller": [
-    "rhythm and blues",
-    "2024",
-    "bryson tiller"
+    "rnb"
   ],
   "bryson tiller|||slum tiller vol. 1": [],
   "bryson tiller|||slum tiller, vol. 2": [],
   "bryson tiller|||slum tiller, vol. 3": [],
   "bryson tiller|||solace": [],
   "bryson tiller|||t r a p s o u l": [
-    "2015",
-    "hip hop",
-    "rnb"
+    "hip-hop",
+    "rnb",
+    "trap"
   ],
   "bryson tiller|||the vices": [],
   "camila cabello|||c,xoxo": [
-    "2024",
     "pop rap",
-    "aoty"
+    "dance",
+    "contemporary rnb"
   ],
   "candy claws|||ceres & calypso in the deep time": [
     "shoegaze",
     "dream pop",
-    "neo-psychedelia"
+    "psychedelic pop"
   ],
   "cardi b|||am i the drama?": [
-    "2025",
     "pop",
-    "rap"
+    "rap",
+    "hip-hop"
   ],
   "cardi b|||invasion of privacy": [
     "rap",
-    "2018",
-    "hip hop"
+    "hip-hop",
+    "trap"
   ],
   "carly rae jepsen|||e•mo•tion": [
-    "2015",
     "pop",
-    "synthpop"
+    "synthpop",
+    "dance-pop"
   ],
   "carly rae jepsen|||e•mo•tion: side b": [
     "synthpop",
-    "2016",
-    "80s"
+    "pop",
+    "dance-pop"
   ],
   "carly rae jepsen|||the loneliest time": [
-    "2022",
     "pop",
-    "dance-pop"
+    "dance-pop",
+    "disco"
   ],
   "carly rae jepsen|||the loveliest time": [
-    "2023",
-    "aoty",
-    "dance-pop"
+    "dance-pop",
+    "pop",
+    "contemporary rnb"
   ],
   "caroline polachek|||desire, i want to turn into you": [
-    "2023",
     "art pop",
-    "electronic"
-  ],
-  "catherine wheel|||chrome": [
-    "1993",
-    "shoegaze",
-    "grunge"
-  ],
-  "central cee|||can't rush greatness": [
-    "2025",
-    "rap",
-    "peter"
-  ],
-  "chappell roan|||the rise and fall of a midwest princess": [
-    "2023",
-    "pop",
-    "synthpop"
-  ],
-  "charli xcx|||brat": [
-    "2024",
-    "electropop",
+    "electronic",
     "pop"
   ],
-  "charli xcx|||brat and it's completely different but also still brat": [
-    "2024",
-    "brat and it’s completely different but also still brat",
-    "scrobble terrorist"
+  "catherine wheel|||chrome": [
+    "shoegaze",
+    "grunge",
+    "alternative rock"
   ],
-  "charli xcx|||crash": [
-    "2022",
+  "central cee|||can't rush greatness": [
+    "rap"
+  ],
+  "chappell roan|||the rise and fall of a midwest princess": [
     "pop",
-    "synthpop"
+    "synthpop",
+    "electropop"
+  ],
+  "charli xcx|||brat": [
+    "electropop",
+    "pop",
+    "dance-pop"
+  ],
+  "charli xcx|||brat and it's completely different but also still brat": [],
+  "charli xcx|||crash": [
+    "pop",
+    "synthpop",
+    "electropop"
   ],
   "charli xcx|||charli": [
-    "2019",
     "electropop",
-    "bubblegum bass"
+    "hyperpop",
+    "pop"
   ],
   "charli xcx|||number 1 angel": [
     "electropop",
-    "2017",
-    "bubblegum bass"
+    "pop",
+    "dance-pop"
   ],
   "charli xcx|||pop 2": [
-    "bubblegum bass",
     "electropop",
-    "2017"
+    "hyperpop",
+    "synthpop"
   ],
   "charli xcx|||wuthering heights": [
-    "2026",
     "synthpop",
-    "classical crossover"
+    "art pop",
+    "neoclassical darkwave"
   ],
   "charli xcx|||how i'm feeling now": [
-    "2020",
     "hyperpop",
-    "bubblegum bass"
+    "electropop",
+    "pop"
   ],
   "che ecru|||pain pack 5": [],
   "chief keef|||4nem": [
-    "drill",
     "gangsta rap",
-    "trap"
+    "trap",
+    "hardcore hip-hop"
   ],
   "chief keef|||almighty so": [
-    "drill",
-    "bop",
-    "cloud rap"
+    "cloud rap",
+    "gangsta rap",
+    "experimental hip hop"
   ],
   "chief keef|||almighty so 2": [
-    "chicago drill",
-    "hardcore hip hop",
-    "trap"
+    "hardcore hip-hop",
+    "trap",
+    "gangsta rap"
   ],
   "chief keef|||finally rich": [
-    "drill",
     "gangsta rap",
     "pop rap"
   ],
   "chief keef & mike will made-it|||dirty nachos": [],
   "childish gambino|||bando stone and the new world": [
-    "2024",
-    "neo-psychedelia",
-    "art pop"
+    "art pop",
+    "hip-hop",
+    "alternative rnb"
   ],
   "childish gambino|||camp": [
-    "2011",
     "hip-hop",
-    "best of 2011"
+    "rap",
+    "alternative rap"
   ],
   "chxrry|||siren": [],
   "chxrry|||the other side": [],
@@ -738,22 +657,22 @@
   "cigarettes after sex|||cigarettes after sex": [
     "dream pop",
     "slowcore",
-    "2017"
+    "ambient pop"
   ],
   "clairo|||charm": [
-    "2024",
     "soft rock",
-    "sophisti-pop"
+    "sophisti-pop",
+    "pop soul"
   ],
   "clairo|||immunity": [
     "bedroom pop",
-    "2019",
-    "dream pop"
+    "dream pop",
+    "indie pop"
   ],
   "clairo|||sling": [
-    "2021",
     "chamber folk",
-    "2020s"
+    "baroque pop",
+    "singer-songwriter"
   ],
   "clara la san|||good mourning": [],
   "clara la san|||made mistakes": [],
@@ -763,87 +682,70 @@
     "east coast rap"
   ],
   "clipse|||let god sort em out": [
-    "2025",
-    "hip hop",
-    "gangsta rap"
+    "hip-hop",
+    "gangsta rap",
+    "southern hip-hop"
   ],
   "clipse|||lord willin'": [
     "rap",
-    "chillout",
-    "hip hop"
+    "hip-hop",
+    "east coast rap"
   ],
   "cocteau twins|||heaven or las vegas": [
     "dream pop",
-    "1990",
-    "shoegaze"
+    "shoegaze",
+    "ethereal wave"
   ],
   "cocteau twins|||treasure": [
     "dream pop",
-    "1984",
-    "ethereal"
+    "ethereal wave",
+    "post-punk"
   ],
   "coi leray|||trendsetter": [],
   "common|||be": [
-    "2005",
     "hip-hop",
-    "common"
+    "rap",
+    "alternative rap"
   ],
   "conway the machine|||from king to a god": [
-    "2020",
     "east coast hip-hop"
   ],
   "conway the machine|||god don't make mistakes": [
-    "2022",
     "hip-hop",
-    "rap"
+    "rap",
+    "gangsta rap"
   ],
   "conway the machine|||greetings earthlings": [],
   "conway the machine|||slant face killah": [],
-  "conway the machine|||won't he do it": [
-    "2023"
-  ],
-  "conway the machine|||you can't kill god with bullets": [
-    "2025"
-  ],
-  "conway the machine & wun two|||palermo": [
-    "2023",
-    "lo-fi beat"
-  ],
+  "conway the machine|||won't he do it": [],
+  "conway the machine|||you can't kill god with bullets": [],
+  "conway the machine & wun two|||palermo": [],
   "cordae|||from a birds eye view": [
-    "2022",
-    "hip-hop",
-    "2020s"
+    "hip-hop"
   ],
-  "cordae|||the crossroads": [
-    "2024"
-  ],
+  "cordae|||the crossroads": [],
   "crystal castles|||crystal castles": [
     "electronic",
-    "8-bit",
-    "2008"
+    "bitpop",
+    "synthpop"
   ],
   "crystal castles|||crystal castles (ii)": [
-    "2010",
     "electronic",
-    "experimental"
+    "experimental",
+    "synthpop"
   ],
   "d12|||d12 world": [
-    "hip hop",
+    "hip-hop",
     "rap",
-    "hip-hop"
+    "hardcore hip-hop"
   ],
   "d12|||devil's night": [
     "rap",
-    "eminem",
     "hip-hop"
   ],
   "ddg|||maybe it's me...": [],
-  "dj drama|||i'm really like that": [
-    "2023"
-  ],
-  "dj drama & lil wayne|||dedication 2": [
-    "2006"
-  ],
+  "dj drama|||i'm really like that": [],
+  "dj drama & lil wayne|||dedication 2": [],
   "dj drama & lil wayne|||dedication 3": [],
   "dj drama & lil wayne|||dedication 4": [],
   "dj drama & lil wayne|||dedication 5": [],
@@ -851,166 +753,155 @@
   "dj drama & lil wayne|||dedication 6 reloaded: gangsta grillz": [],
   "dj drama & lil wayne|||the dedication": [],
   "dj esco & future|||56 nights": [],
-  "dj khaled|||god did": [
-    "2022",
-    "goooood diiiiid",
-    "grammy 23 nom"
-  ],
+  "dj khaled|||god did": [],
   "dj khaled|||khaled khaled": [
-    "2021",
     "hip-hop",
     "rnb"
   ],
   "dj khaled|||major key": [
     "rap",
-    "hip hop",
-    "dj khaled"
+    "hip-hop"
   ],
   "dj khaled & lil wayne|||the suffix": [],
-  "dj premier|||hip hop 50, vol. 1": [
-    "2022"
-  ],
+  "dj premier|||hip hop 50, vol. 1": [],
   "dababy & youngboy never broke again|||better than you": [],
   "daft punk|||discovery": [
     "electronic",
     "house",
-    "2001"
+    "dance"
   ],
   "daft punk|||random access memories": [
-    "2013",
     "electronic",
-    "disco"
+    "disco",
+    "funk"
   ],
   "daniel caesar|||never enough": [
-    "2023",
-    "canadian",
-    "rnb"
+    "rnb",
+    "neo-soul",
+    "contemporary rnb"
   ],
-  "daniel caesar|||pilgrim's paradise": [
-    "2015"
-  ],
+  "daniel caesar|||pilgrim's paradise": [],
   "daniel caesar|||son of spergy": [
     "rnb",
-    "2025",
     "neo-soul"
   ],
   "danny brown|||atrocity exhibition": [
-    "2016",
     "experimental hip hop",
-    "hip hop"
+    "hip-hop",
+    "hardcore hip-hop"
   ],
   "danny brown|||quaranta": [
-    "2023",
-    "hardcore hip hop",
-    "conscious hip hop"
+    "hardcore hip-hop",
+    "conscious hip hop",
+    "rap"
   ],
   "danny brown|||stardust": [
     "hyperpop",
-    "2025",
-    "hip hop"
+    "hip-hop",
+    "pop rap"
   ],
   "danny brown|||xxx": [
-    "2011",
-    "hip hop",
-    "hardcore hip hop"
+    "hip-hop",
+    "hardcore hip-hop",
+    "experimental hip hop"
   ],
   "dave & central cee|||split decision": [],
   "david bowie|||the man who sold the world": [
-    "1970",
     "glam rock",
-    "70s"
+    "rock",
+    "hard rock"
   ],
   "deafheaven|||lonely people with power": [
-    "2025",
     "blackgaze",
-    "black metal"
+    "black metal",
+    "post-metal"
   ],
   "deafheaven|||sunbather": [
-    "2013",
     "blackgaze",
-    "post-black metal"
+    "post-black metal",
+    "black metal"
   ],
   "deftones|||adrenaline": [
     "nu metal",
     "alternative metal",
-    "1995"
+    "metal"
   ],
   "deftones|||around the fur": [
     "alternative metal",
     "nu metal",
-    "1997"
+    "metal"
   ],
   "deftones|||b-sides & rarities": [
     "alternative metal",
     "alternative rock",
-    "2005"
+    "rock"
   ],
   "deftones|||covers": [
-    "2011",
-    "cover",
-    "alternative rock"
+    "alternative rock",
+    "hard rock",
+    "alternative metal"
   ],
   "deftones|||deftones": [
     "alternative metal",
-    "2003",
-    "nu metal"
+    "nu metal",
+    "rock"
   ],
   "deftones|||diamond eyes": [
     "alternative metal",
-    "2010",
-    "alternative rock"
+    "alternative rock",
+    "metal"
   ],
   "deftones|||gore": [
-    "randomvalue",
     "rock",
-    "alternative metal"
+    "alternative metal",
+    "post-metal"
   ],
   "deftones|||koi no yokan": [
     "alternative metal",
-    "2012",
-    "shoegaze"
+    "shoegaze",
+    "alternative rock"
   ],
   "deftones|||ohms": [
-    "2020",
     "alternative metal",
-    "shoegaze"
+    "shoegaze",
+    "post-metal"
   ],
   "deftones|||saturday night wrist": [
     "alternative metal",
     "alternative rock",
-    "2006"
+    "metal"
   ],
   "deftones|||white pony": [
     "alternative metal",
     "nu metal",
-    "2000"
+    "metal"
   ],
   "deftones|||private music": [
-    "2025",
     "alternative metal",
-    "best of 2025"
+    "shoegaze",
+    "post-metal"
   ],
   "denison marrs|||world renown for romance": [],
   "denzel curry|||13": [
-    "southern hip hop",
-    "hardcore hip hop",
-    "2017"
+    "southern hip-hop",
+    "hardcore hip-hop",
+    "hip-hop"
   ],
   "denzel curry|||13lood 1n + 13lood out mixx": [],
   "denzel curry|||32 zel / planet shrooms": [
-    "southern hip hop",
-    "hardcore hip hop",
+    "southern hip-hop",
+    "hardcore hip-hop",
     "cloud rap"
   ],
   "denzel curry|||imperial": [
     "cloud rap",
     "trap",
-    "2016"
+    "rap"
   ],
   "denzel curry|||king of the mischievous south vol. 2": [
-    "2024",
     "memphis rap",
-    "trap"
+    "trap",
+    "hardcore hip-hop"
   ],
   "denzel curry|||melt my eyez see your future": [
     "conscious hip hop",
@@ -1020,111 +911,104 @@
   "denzel curry|||melt my eyez see your future (the extended edition)": [
     "soul",
     "rap",
-    "hip hop"
+    "hip-hop"
   ],
   "denzel curry|||ta13oo": [
-    "2018",
     "rap",
-    "trap"
+    "trap",
+    "trap metal"
   ],
   "denzel curry|||zuu": [
-    "2019",
     "rap",
-    "trap"
+    "trap",
+    "hip-hop"
   ],
   "depeche mode|||violator": [
     "synthpop",
-    "1990",
-    "favourite albums"
+    "electronic",
+    "new wave"
   ],
   "destroy lonely|||if looks could kill": [
     "trap",
-    "opium",
-    "dream pop"
+    "dream pop",
+    "southern hip-hop"
   ],
   "destroy lonely|||no stylist": [
-    "rage",
-    "southern hip hop",
-    "trap"
+    "southern hip-hop",
+    "trap",
+    "pop rap"
   ],
   "devon hendryx|||the ghost~pop tape": [
     "ambient pop",
-    "alternative",
-    "cloud rap"
+    "cloud rap",
+    "experimental"
   ],
-  "dijon|||absolutely": [
-    "2021"
-  ],
+  "dijon|||absolutely": [],
   "doe boy|||beezy": [],
   "doechii|||alligator bites never heal": [
-    "2024",
     "hip-hop",
-    "boom bap"
+    "boom bap",
+    "soul"
   ],
   "doja cat|||amala": [
-    "ai",
-    "2018",
-    "amala"
+    "rap",
+    "rnb",
+    "indie pop"
   ],
   "doja cat|||hot pink": [
-    "2019",
     "pop",
-    "rnb"
-  ],
-  "doja cat|||planet her": [
-    "planet her (deluxe)",
-    "2021",
-    "rnb"
-  ],
-  "doja cat|||purrr!": [
-    "2014",
-    "downtempo",
-    "cloud rap"
-  ],
-  "doja cat|||scarlet": [
-    "2023",
-    "hip-hop",
+    "rnb",
     "rap"
   ],
+  "doja cat|||planet her": [
+    "rnb",
+    "pop",
+    "trap"
+  ],
+  "doja cat|||purrr!": [
+    "cloud rap",
+    "pop rap",
+    "alternative rnb"
+  ],
+  "doja cat|||scarlet": [
+    "hip-hop",
+    "rap",
+    "rnb"
+  ],
   "doja cat|||scarlet 2 claude": [
-    "2024",
-    "acheimagra",
-    "acheimagra m"
+    "pop",
+    "neo-soul",
+    "rap"
   ],
   "doja cat|||vie": [
-    "2025",
     "pop",
-    "synth"
+    "synth",
+    "hip-hop"
   ],
   "dominic fike|||sunburn": [
-    "2023",
-    "indie",
     "rap"
   ],
   "don toliver|||hardstone psycho": [
     "trap",
-    "2024",
-    "new jazz"
+    "new jazz",
+    "hip-hop"
   ],
   "don toliver|||heaven or hell": [
-    "2020",
-    "psychedelic",
-    "hip-hop"
+    "hip-hop",
+    "rnb",
+    "alternative rnb"
   ],
   "don toliver|||life of a don": [
     "alternative rnb",
-    "psychedelic",
-    "chill"
+    "soul",
+    "alternative hip-hop"
   ],
-  "don toliver|||love sick": [
-    "2023",
-    "don toliver"
-  ],
+  "don toliver|||love sick": [],
   "don toliver|||love sick (deluxe)": [],
   "don toliver|||octane": [
-    "2026",
-    "don toliver",
-    "rap"
+    "rap",
+    "hip-hop",
+    "rnb"
   ],
   "dr. dre|||2001": [
     "hip-hop",
@@ -1132,27 +1016,25 @@
     "rap"
   ],
   "dr. dre|||compton": [
-    "2015",
     "rap",
-    "compton"
+    "hip-hop",
+    "pop"
   ],
   "dr. dre|||the chronic": [
     "gangsta rap",
     "g-funk",
     "hip-hop"
   ],
-  "drake|||care package": [
-    "drake"
-  ],
+  "drake|||care package": [],
   "drake|||certified lover boy": [
-    "2021",
     "rap",
-    "cum music"
+    "hip-hop",
+    "rnb"
   ],
   "drake|||dark lane demo tapes": [
-    "2020",
     "rap",
-    "grime"
+    "hip-hop",
+    "trap"
   ],
   "drake|||for all the dogs": [
     "hip-hop",
@@ -1160,19 +1042,15 @@
     "rap"
   ],
   "drake|||for all the dogs scary hours edition": [
-    "website",
-    "rap",
-    "drake"
+    "rap"
   ],
   "drake|||habibti": [
-    "drake",
-    "trap",
-    "2016"
+    "trap"
   ],
   "drake|||honestly, nevermind": [
     "house",
-    "2022",
-    "dance"
+    "dance",
+    "deep house"
   ],
   "drake|||iceman": [
     "trap",
@@ -1180,118 +1058,111 @@
     "alternative rnb"
   ],
   "drake|||if you're reading this it's too late": [
-    "2015",
-    "hip hop",
-    "hip-hop"
+    "hip-hop",
+    "rap",
+    "trap"
   ],
-  "drake|||maid of honour": [
-    "drake",
-    "utter shit",
-    "2016"
-  ],
+  "drake|||maid of honour": [],
   "drake|||more life": [
     "hip-hop",
     "rap",
     "rnb"
   ],
   "drake|||nothing was the same": [
-    "2013",
-    "hip hop",
-    "rap"
+    "hip-hop",
+    "rap",
+    "rnb"
   ],
   "drake|||scary hours": [
-    "2018",
     "rap",
-    "hip hop"
-  ],
-  "drake|||scary hours 2": [
-    "rage",
     "hip-hop",
     "trap"
   ],
+  "drake|||scary hours 2": [
+    "hip-hop",
+    "trap",
+    "pop rap"
+  ],
   "drake|||scorpion": [
-    "2018",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "rnb"
   ],
   "drake|||so far gone": [
-    "hip hop",
+    "hip-hop",
     "rnb",
     "rap"
   ],
   "drake|||take care": [
-    "2011",
     "hip-hop",
-    "rap"
+    "rap",
+    "rnb"
   ],
   "drake|||thank me later": [
-    "2010",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "rnb"
   ],
   "drake|||views": [
     "hip-hop",
     "rap",
-    "2016"
+    "rnb"
   ],
   "drake & 21 savage|||her loss": [
     "hip-hop"
   ],
-  "dreamville|||d-day: a gangsta grillz mixtape": [
-    "2022"
-  ],
+  "dreamville|||d-day: a gangsta grillz mixtape": [],
   "dreamville|||revenge of the dreamers iii": [
-    "2019",
     "rap",
-    "pop rap"
+    "pop rap",
+    "hip-hop"
   ],
   "dreezy & hit-boy|||hitgirl": [],
   "dua lipa|||future nostalgia": [
-    "2020",
     "pop",
-    "disco"
+    "disco",
+    "dance-pop"
   ],
   "dua lipa|||radical optimism": [
-    "2024",
     "pop",
-    "dance-pop"
+    "dance-pop",
+    "disco"
   ],
   "e-40|||my ghetto report card": [
     "rap",
     "hip-hop",
-    "westside"
+    "west coast rap"
   ],
   "e-40|||rule of thumb: rule 1": [],
   "earthgang|||ghetto gods": [
-    "2022",
     "soul",
-    "funk"
+    "funk",
+    "hip-hop"
   ],
   "earthgang|||mirrorland": [
-    "southern hip-hop",
-    "2019"
+    "southern hip-hop"
   ],
   "eden|||dark": [],
   "est gee|||mad": [],
   "earl sweatshirt|||live laugh love": [
-    "2025",
-    "abstract hip hop",
-    "rap"
+    "abstract hip-hop",
+    "rap",
+    "dub"
   ],
   "earl sweatshirt|||sick!": [
-    "2022",
     "rap",
-    "cloud rap"
+    "cloud rap",
+    "trap"
   ],
   "earl sweatshirt|||some rap songs": [
-    "2018",
     "jazz rap",
-    "experimental hip hop"
+    "experimental hip hop",
+    "glitch hop"
   ],
   "earl sweatshirt & the alchemist|||voir dire": [
-    "abstract hip hop",
+    "abstract hip-hop",
     "jazz rap",
-    "west coast hip hop"
+    "west coast hip-hop"
   ],
   "ella mai|||do you still love me?": [],
   "ellie goulding|||higher than heaven": [
@@ -1302,137 +1173,127 @@
   "eminem|||encore": [
     "rap",
     "hip-hop",
-    "2004"
+    "comedy rap"
   ],
   "eminem|||infinite": [
     "rap",
-    "1996",
-    "90s"
+    "hip-hop"
   ],
   "eminem|||kamikaze": [
     "rap",
-    "hip hop",
-    "2018"
+    "hip-hop",
+    "pop"
   ],
   "eminem|||music to be murdered by": [
-    "2020",
     "rap",
-    "2020s"
+    "hip-hop",
+    "horrorcore"
   ],
   "eminem|||music to be murdered by - side b": [],
   "eminem|||recovery": [
     "hip-hop",
-    "2010",
     "rap"
   ],
   "eminem|||relapse": [
     "rap",
     "hip-hop",
-    "2009"
+    "horrorcore"
   ],
   "eminem|||relapse: refill": [
     "rap",
-    "hip hop",
-    "2009"
+    "hip-hop"
   ],
   "eminem|||revival": [
-    "2017",
     "rap",
-    "eminem"
+    "hip-hop",
+    "rock"
   ],
-  "eminem|||slim shady ep": [
-    "genius",
-    "music for broke white guys"
-  ],
+  "eminem|||slim shady ep": [],
   "eminem|||the death of slim shady (coup de grâce)": [
-    "2024",
     "horrorcore",
-    "hip hop"
+    "hip-hop",
+    "comedy rap"
   ],
   "eminem|||the eminem show": [
     "rap",
-    "2002",
-    "hip-hop"
+    "hip-hop",
+    "midwest rap"
   ],
   "eminem|||the eminem show (expanded edition)": [
     "rap",
-    "classic",
-    "boom bap"
+    "boom bap",
+    "hip-hop"
   ],
   "eminem|||the marshall mathers lp": [
     "rap",
-    "2000",
-    "hip-hop"
+    "hip-hop",
+    "horrorcore"
   ],
   "eminem|||the marshall mathers lp2": [
-    "2013",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "rap god"
   ],
   "eminem|||the slim shady lp": [
     "rap",
     "hip-hop",
-    "1999"
+    "horrorcore"
   ],
   "esdeekid|||rebel": [
     "trap",
-    "hardcore hip hop",
-    "jerk"
+    "hardcore hip-hop",
+    "cloud rap"
   ],
   "ethel cain|||perverts": [
     "dark ambient",
-    "2025",
-    "drone"
+    "drone",
+    "ambient"
   ],
   "ethel cain|||preacher's daughter": [
     "rock",
-    "epic",
-    "slowcore"
+    "slowcore",
+    "ethereal wave"
   ],
   "ethel cain|||willoughby tucker, i'll always love you": [
-    "2025",
     "slowcore",
-    "ambient"
+    "ambient",
+    "singer-songwriter"
   ],
   "evanescence|||fallen": [
     "rock",
-    "gothic",
-    "female vocalists"
+    "alternative metal",
+    "alternative rock"
   ],
   "evanescence|||the open door": [
     "rock",
     "gothic rock",
-    "2006"
+    "gothic metal"
   ],
-  "ex:re|||ex:re": [
-    "2018",
-    "reflection",
-    "cd collection"
-  ],
+  "ex:re|||ex:re": [],
   "fka twigs|||caprisongs": [
-    "2022",
     "alternative rnb",
-    "art pop"
+    "art pop",
+    "trap"
   ],
   "fka twigs|||eusexua": [
-    "2025",
     "art pop",
-    "trance"
+    "glitch pop",
+    "dance-pop"
   ],
   "fka twigs|||eusexua afterglow": [
     "alternative rnb",
     "uk garage",
-    "uk bass"
+    "electronic"
   ],
   "fka twigs|||lp1": [
-    "2014",
     "alternative rnb",
-    "art pop"
+    "art pop",
+    "electronic"
   ],
   "fka twigs|||magdalene": [
-    "2019",
     "art pop",
-    "alternative rnb"
+    "alternative rnb",
+    "glitch pop"
   ],
   "falling in reverse|||the drug in me is you": [
     "post-hardcore",
@@ -1441,19 +1302,19 @@
   ],
   "fetty wap|||the butterfly effect": [],
   "fiona apple|||fetch the bolt cutters": [
-    "2020",
     "art pop",
-    "progressive pop"
-  ],
-  "fiona apple|||when the pawn...": [
-    "1999",
-    "piano rock",
+    "progressive pop",
     "singer-songwriter"
   ],
+  "fiona apple|||when the pawn...": [
+    "piano rock",
+    "singer-songwriter",
+    "art pop"
+  ],
   "fivio foreign|||b.i.b.l.e.": [
-    "2022",
-    "kanye west",
-    "drill"
+    "hip-hop",
+    "alternative hip-hop",
+    "trap"
   ],
   "fleshwater|||2000: in search of the endless sky": [
     "alternative metal",
@@ -1466,28 +1327,25 @@
     "rock"
   ],
   "fleshwater|||we're not here to be loved": [
-    "2022",
     "shoegaze",
-    "post-hardcore"
+    "post-hardcore",
+    "alternative metal"
   ],
-  "flume & jpegmafia|||we live in a society": [
-    "2025 releases"
-  ],
+  "flume & jpegmafia|||we live in a society": [],
   "flyleaf|||flyleaf": [
     "rock",
     "alternative rock",
-    "female vocalists"
+    "christian rock"
   ],
   "flyleaf|||memento mori": [
     "alternative rock",
     "rock",
-    "female vocalist"
+    "christian rock"
   ],
   "fousheé|||pointy heights": [],
   "fousheé|||softcore": [
-    "alt pop",
     "alt-pop",
-    "2022"
+    "synth punk"
   ],
   "fousheé|||time machine": [],
   "frank ocean|||blonde": [
@@ -1496,95 +1354,78 @@
     "neo-soul"
   ],
   "frank ocean|||channel orange": [
-    "2012",
     "neo-soul",
-    "rnb"
+    "rnb",
+    "soul"
   ],
   "freddie gibbs|||$oul $old $eparately": [
-    "2022",
     "gangsta rap",
-    "jazz rap"
+    "jazz rap",
+    "boom bap"
   ],
   "freddie gibbs|||rbt": [],
   "freddie gibbs|||you only die 1nce": [
-    "2024",
     "hip-hop",
-    "gangsta rap"
+    "gangsta rap",
+    "pick up the mothafuckin phone"
   ],
   "freddie gibbs & the alchemist|||alfredo 2": [],
   "french montana|||mac & cheese 5": [],
   "french montana & dj drama|||coke boys 6": [],
   "french montana & harry fraud|||montega": [],
   "fugit|||dream shelter": [],
-  "future|||beastmode 2": [
-    "future"
-  ],
+  "future|||beastmode 2": [],
   "future|||ds2": [
     "trap",
-    "southern hip hop",
-    "best albums of the 2010s"
+    "southern hip-hop",
+    "mumble rap"
   ],
-  "future|||evol": [
-    "2016",
-    "future",
-    "freebandz entertainment"
-  ],
+  "future|||evol": [],
   "future|||future": [
-    "2017",
     "trap",
-    "future"
+    "trap rap"
   ],
   "future|||future hndrxx presents: the wizrd": [
-    "american",
+    "hip-hop",
+    "trap",
+    "rap"
+  ],
+  "future|||hndrxx": [
+    "rap",
     "hip-hop",
     "trap"
   ],
-  "future|||hndrxx": [
-    "2017",
-    "rap",
-    "atlanta"
-  ],
-  "future|||high off life": [
-    "2020",
-    "party",
-    "rhythmic"
-  ],
+  "future|||high off life": [],
   "future|||honest": [
-    "2014",
-    "hip hop",
-    "rap"
+    "hip-hop",
+    "rap",
+    "southern rap"
   ],
   "future|||honest (deluxe)": [],
   "future|||i never liked you": [
-    "2022",
     "hip-hop",
-    "trap"
+    "trap",
+    "rap"
   ],
   "future|||i never liked you [deluxe]": [],
   "future|||mixtape pluto": [
-    "2024",
     "hip-hop",
-    "future"
+    "gangsta rap",
+    "trap"
   ],
   "future|||monster": [
-    "2014",
     "gangsta rap",
-    "future"
+    "southern hip-hop",
+    "trap"
   ],
   "future|||pluto": [
     "rap",
-    "2012",
-    "hostile"
+    "hip-hop"
   ],
-  "future|||purple reign": [
-    "future",
-    "favourite albums",
-    "dj esco"
-  ],
+  "future|||purple reign": [],
   "future|||save me": [
-    "2019",
-    "goth",
-    "gothic"
+    "hip-hop",
+    "trap"
   ],
   "future & drake|||what a time to be alive": [],
   "future & metro boomin|||we don't trust you": [],
@@ -1596,13 +1437,13 @@
   "givēon|||give or take": [],
   "geese|||getting killed": [
     "indie rock",
-    "2025",
-    "art rock"
+    "art rock",
+    "psychedelic rock"
   ],
   "george clanton|||slide": [
-    "2018",
     "synthpop",
-    "chillwave"
+    "chillwave",
+    "shoegaze"
   ],
   "girlfriend|||honey water": [],
   "girlfriends|||girlfriends": [
@@ -1619,130 +1460,112 @@
   "goodie mob|||soul food": [
     "southern rap",
     "rap",
-    "dirty south"
+    "hip-hop"
   ],
   "gorillaz|||plastic beach": [
-    "2010",
-    "alternative",
-    "electronic"
+    "electronic",
+    "pop",
+    "hip-hop"
   ],
   "gumshoes|||happy new year": [],
   "gunna|||ds4ever": [
-    "2022",
-    "hip-hop",
-    "2020s"
+    "hip-hop"
   ],
   "gunna|||one of wun": [
-    "2024",
-    "hip-hop",
-    "2020s"
+    "hip-hop"
   ],
   "gunna|||the last wun": [],
-  "gunna|||wunna": [
-    "gunna",
-    "2020"
-  ],
+  "gunna|||wunna": [],
   "gunna|||a gift & a curse": [
-    "2023",
     "hip-hop",
-    "rap"
+    "rap",
+    "trap"
   ],
   "hxg|||homixide lifestyle": [],
   "hxg|||snot or not": [],
   "halsey|||badlands": [
-    "2015",
     "pop",
-    "indie pop"
+    "indie pop",
+    "alternative pop"
   ],
   "halsey|||if i can't have love, i want power": [
-    "2021",
     "post-industrial",
-    "synthpop"
-  ],
-  "halsey|||manic": [
-    "2020",
-    "pop",
-    "2020s"
-  ],
-  "halsey|||the great impersonator": [
-    "2024",
-    "rock",
-    "pop rock"
-  ],
-  "halsey|||the great impersonator (deluxe)": [],
-  "halsey|||hopeless fountain kingdom": [
-    "alternative",
-    "pop",
-    "electropop"
-  ],
-  "hanumankind|||monsoon season": [],
-  "harry styles|||harry's house": [
-    "2022",
-    "pop",
-    "pop rock"
-  ],
-  "harry styles|||kiss all the time. disco, occasionally.": [
-    "2026",
     "synthpop",
     "pop"
   ],
+  "halsey|||manic": [
+    "pop",
+    "electropop",
+    "alternative rock"
+  ],
+  "halsey|||the great impersonator": [
+    "rock",
+    "pop rock",
+    "pop"
+  ],
+  "halsey|||the great impersonator (deluxe)": [],
+  "halsey|||hopeless fountain kingdom": [
+    "pop",
+    "electropop",
+    "rnb"
+  ],
+  "hanumankind|||monsoon season": [],
+  "harry styles|||harry's house": [
+    "pop",
+    "pop rock",
+    "synthpop"
+  ],
+  "harry styles|||kiss all the time. disco, occasionally.": [
+    "synthpop",
+    "pop",
+    "dance pop"
+  ],
   "hayley williams|||ego death at a bachelorette party": [
-    "2025",
     "indie rock",
-    "pop rock"
+    "pop rock",
+    "bedroom pop"
   ],
   "hayley williams|||flowers for vases / descansos": [
-    "2021",
     "indie folk",
-    "rock"
+    "rock",
+    "ambient"
   ],
   "hayley williams|||petals for armor": [
-    "2020",
     "art pop",
-    "indie pop"
+    "indie pop",
+    "synthpop"
   ],
   "highway|||monochrome": [
-    "hiphop",
     "hip-hop",
-    "underground"
+    "cloud rap"
   ],
   "hit-boy & big sean|||what you expect": [],
   "holywatr|||deo gratias": [],
   "home is where|||the whaler": [
-    "2023",
     "emo",
-    "post-hardcore"
+    "post-hardcore",
+    "midwest emo"
   ],
   "honey revenge|||retrovision": [
-    "2023",
     "pop rock",
     "pop punk"
   ],
   "i promised the world|||i promised the world": [],
   "ice spice|||like..?": [
-    "2023",
-    "drill",
-    "east coast hip hop"
+    "east coast hip-hop",
+    "hip-hop"
   ],
-  "ice spice|||like..? (deluxe)": [
-    "drill",
-    "deluxe",
-    "thicc"
-  ],
-  "ice spice|||y2k!": [
-    "2024",
-    "drill",
-    "ass"
-  ],
+  "ice spice|||like..? (deluxe)": [],
+  "ice spice|||y2k!": [],
   "imagine dragons|||night visions": [
-    "2012",
     "indie rock",
-    "alternative"
+    "alternative rock",
+    "rock"
   ],
   "imogen heap|||speak for yourself": [
-    "female vocalists",
-    "2005",
-    "electronica"
+    "electronica",
+    "electronic",
+    "singer-songwriter"
   ],
   "injury reserve|||by the time i get to phoenix": [
     "experimental",
@@ -1750,82 +1573,76 @@
     "experimental hip hop"
   ],
   "isaiah rashad|||it's been awful": [
-    "2026",
     "alternative rap",
-    "southern hip hop"
+    "southern hip-hop"
   ],
   "j dilla|||donuts": [
     "instrumental hip-hop",
     "hip-hop",
-    "2006"
+    "soul"
   ],
   "j. cole|||2014 forest hills drive": [
-    "2014",
-    "hip hop",
-    "rap"
+    "hip-hop",
+    "rap",
+    "boom bap"
   ],
   "j. cole|||4 your eyez only": [
     "hip-hop",
     "rap",
-    "2016"
+    "jazz rap"
   ],
   "j. cole|||birthday blizzard '26": [],
   "j. cole|||born sinner": [
-    "2013",
-    "hip hop",
-    "best of 2013"
+    "hip-hop",
+    "rap",
+    "dance"
   ],
   "j. cole|||cole world: the sideline story": [
-    "introspective",
-    "2011",
-    "rap"
+    "rap",
+    "hip-hop",
+    "jazz-rap"
   ],
   "j. cole|||kod": [
-    "j cole",
     "rap",
-    "2018"
+    "hip-hop",
+    "trap"
   ],
   "j. cole|||might delete later": [
     "rap",
-    "hip hop",
-    "2024"
+    "hip-hop"
   ],
   "j. cole|||the fall-off": [
     "rap",
-    "hip-hop",
-    "2026"
+    "hip-hop"
   ],
   "j. cole|||the off-season": [
-    "2021",
     "rap",
-    "pop rap"
+    "pop rap",
+    "hip-hop"
   ],
   "jackboys & travis scott|||jackboys": [],
   "jackboys & travis scott|||jackboys 2": [],
   "jay-z|||4:44": [
-    "2017",
-    "hip hop",
-    "rap"
+    "hip-hop",
+    "rap",
+    "jazz rap"
   ],
   "jay-z|||american gangster": [
-    "2007",
+    "rap",
+    "hip-hop",
+    "east coast rap"
+  ],
+  "jay-z|||in my lifetime, vol. 1": [
     "rap",
     "hip-hop"
   ],
-  "jay-z|||in my lifetime, vol. 1": [
-    "1997",
-    "rap",
-    "hip hop"
-  ],
   "jay-z|||kingdom come": [
     "rap",
-    "2006",
-    "hip hop"
+    "hip-hop"
   ],
   "jay-z|||magna carta... holy grail": [
-    "2013",
-    "hip hop",
-    "2010s"
+    "hip-hop",
+    "rap"
   ],
   "jay-z|||reasonable doubt": [
     "hip-hop",
@@ -1835,73 +1652,68 @@
   "jay-z|||the black album": [
     "rap",
     "hip-hop",
-    "2003"
+    "east coast rap"
   ],
   "jay-z|||the blueprint": [
-    "2001",
     "hip-hop",
-    "rap"
+    "rap",
+    "east coast rap"
   ],
   "jay-z|||the blueprint 2: the gift & the curse": [],
   "jay-z|||the blueprint 3": [
-    "2009",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "pop"
   ],
   "jay-z|||the dynasty: roc la familia": [
-    "rap",
-    "2000s"
+    "rap"
   ],
   "jay-z|||vol. 2... hard knock life": [
     "rap",
     "hip-hop",
-    "90s"
+    "commercial rap"
   ],
   "jay-z|||vol. 3... life and times of s. carter": [
     "rap",
-    "90s",
-    "american"
+    "hip-hop",
+    "american hip-hop"
   ],
   "jay-z & kanye west|||watch the throne": [
-    "2011",
     "rap",
-    "10s"
+    "hip-hop"
   ],
   "jay-z & kanye west|||watch the throne (deluxe)": [],
-  "jid|||gdlu (preluxe)": [
-    "god does like ugly",
-    "2025"
-  ],
+  "jid|||gdlu (preluxe)": [],
   "jid|||god does like ugly": [
-    "2025",
-    "2020s",
-    "hip hop"
+    "hip-hop",
+    "conscious hip hop",
+    "southern hip-hop"
   ],
   "jid|||the forever story": [
-    "2022",
     "hip-hop",
-    "neo-soul"
+    "neo-soul",
+    "southern hip-hop"
   ],
   "jpegmafia|||i lay down my life for you": [
-    "2024",
-    "hardcore hip hop",
-    "experimental hip hop"
+    "hardcore hip-hop",
+    "experimental hip hop",
+    "rap rock"
   ],
   "jpegmafia|||lp!": [
     "experimental hip hop",
-    "hardcore hip hop",
+    "hardcore hip-hop",
     "glitch hop"
   ],
   "jpegmafia|||lp! (offline version)": [],
   "jpegmafia & danny brown|||scaring the hoes": [
     "experimental hip hop",
-    "hardcore hip hop",
-    "quirky"
+    "hardcore hip-hop",
+    "hip-hop"
   ],
   "jack harlow|||come home the kids miss you": [
-    "2022",
     "hip-hop",
-    "rap"
+    "rap",
+    "southern hip-hop"
   ],
   "jack harlow|||jackman.": [
     "chipmunk soul",
@@ -1913,62 +1725,57 @@
   ],
   "jack harlow|||thats what they all say": [],
   "jae stephens|||total sellout": [
-    "rhythm and blues",
+    "rnb",
     "pop",
-    "aoty"
+    "dance-pop"
   ],
   "jalisa rey|||ilysfm": [],
   "jalisa rey|||mixy": [],
   "jane remover|||revengeseekerz": [
-    "rage",
     "digicore",
-    "2025"
+    "experimental hip hop",
+    "hyperpop"
   ],
   "jane remover|||♡": [
     "glitch pop",
     "alternative rock",
-    "2025"
+    "alternative rnb"
   ],
   "jay electronica|||a written testimony": [
     "hip-hop",
-    "2020",
     "rap"
   ],
   "jeff buckley|||grace": [
-    "1994",
     "singer-songwriter",
-    "90s"
+    "alternative rock",
+    "rock"
   ],
   "jessie ware|||that! feels good!": [
-    "2023",
     "disco",
-    "dance-pop"
+    "dance-pop",
+    "pop"
   ],
   "joey bada$$|||2000": [
     "boom bap",
     "jazz rap",
-    "finished"
+    "east coast hip-hop"
   ],
   "joni mitchell|||blue": [
     "folk",
-    "1971",
-    "singer-songwriter"
+    "singer-songwriter",
+    "contemporary folk"
   ],
   "jordi|||jordi": [],
   "jorja smith|||lost & found": [
-    "2018",
     "rnb",
-    "soul"
+    "soul",
+    "neo-soul"
   ],
-  "jorja smith|||falling or flying": [
-    "2023",
-    "3-5"
-  ],
+  "jorja smith|||falling or flying": [],
   "joyner lucas|||508-507-2209": [],
   "joyner lucas|||adhd": [
-    "adhd",
     "hip-hop",
-    "10"
+    "cringe rap"
   ],
   "joyner lucas|||adhd 2": [],
   "joyner lucas|||along came joyner": [],
@@ -1977,22 +1784,22 @@
   "juice wrld|||death race for love": [
     "hip-hop",
     "rap",
-    "juice wrld"
+    "emo"
   ],
   "juice wrld|||fighting demons": [
     "hip-hop",
-    "2021",
-    "2020s"
+    "rock",
+    "emo rap"
   ],
   "juice wrld|||goodbye & good riddance": [
-    "2018",
     "hip-hop",
-    "rap"
+    "rap",
+    "emo rap"
   ],
   "juice wrld|||legends never die": [
     "emo rap",
-    "2020",
-    "juice wrld"
+    "hip-hop",
+    "cloud rap"
   ],
   "juice wrld|||the party never ends": [
     "pop",
@@ -2006,214 +1813,204 @@
     "hyperpop"
   ],
   "justice|||hyperdrama": [
-    "2024",
     "electro",
-    "french"
+    "electronic",
+    "disco"
   ],
   "justice|||†": [
     "electronic",
     "house",
-    "2007"
+    "electro house"
   ],
   "justin bieber|||swag": [
-    "neo-psychedelia",
-    "2025",
-    "rnb"
+    "rnb",
+    "pop",
+    "neo-soul"
   ],
   "kaytraminé|||kaytraminé": [
-    "2023",
     "pop rap",
-    "hip hop"
+    "hip-hop",
+    "neo-soul"
   ],
   "kids see ghosts|||kids see ghosts": [
-    "2018",
-    "neo-psychedelia",
-    "pop rap"
+    "pop rap",
+    "hip-hop",
+    "experimental hip hop"
   ],
   "kacey musgraves|||golden hour": [
-    "2018",
     "country",
-    "country pop"
+    "country pop",
+    "soft rock"
   ],
   "kaelin ellis & lupe fiasco|||house": [],
   "kali uchis|||isolation": [
     "neo-soul",
-    "2018",
-    "rnb"
+    "rnb",
+    "contemporary rnb"
   ],
   "kali uchis|||orquídeas": [
-    "2024",
     "latin pop",
-    "reggaeton"
-  ],
-  "kali uchis|||red moon in venus": [
-    "2023",
     "rnb",
     "neo-soul"
   ],
+  "kali uchis|||red moon in venus": [
+    "rnb",
+    "neo-soul",
+    "psychedelic soul"
+  ],
   "kali uchis|||sincerely,": [
-    "2025",
     "psychedelic soul",
-    "dream pop"
+    "dream pop",
+    "smooth soul"
   ],
   "kamggarn|||kamggarn": [],
   "kanye west|||808s & heartbreak": [
     "hip-hop",
     "pop",
-    "2008"
+    "synthpop"
   ],
   "kanye west|||bully": [
-    "drumless",
-    "ai",
-    "industrial hip hop"
+    "industrial hip hop",
+    "pop rap",
+    "chipmunk soul"
   ],
   "kanye west|||donda": [
-    "gospel",
-    "2021",
-    "hip-hop"
+    "hip-hop",
+    "rap",
+    "trap"
   ],
   "kanye west|||donda (deluxe)": [
-    "gospel",
     "trap",
-    "alternative rnb"
+    "alternative rnb",
+    "pop rap"
   ],
   "kanye west|||graduation": [
     "hip-hop",
-    "2007",
-    "rap"
+    "rap",
+    "pop rap"
   ],
   "kanye west|||jesus is king": [
-    "2019",
-    "gospel",
-    "hip hop"
+    "hip-hop",
+    "christian hip hop",
+    "rap"
   ],
   "kanye west|||late registration": [
-    "2005",
     "hip-hop",
-    "hip hop"
+    "pop rap",
+    "rap"
   ],
   "kanye west|||my beautiful dark twisted fantasy": [
     "hip-hop",
-    "2010",
-    "rap"
+    "rap",
+    "pop rap"
   ],
   "kanye west|||the college dropout": [
-    "hip hop",
+    "hip-hop",
     "pop rap",
-    "2004"
+    "chipmunk soul"
   ],
   "kanye west|||the life of pablo": [
-    "2016",
     "hip-hop",
-    "hip hop"
+    "pop rap",
+    "rap"
   ],
   "kanye west|||yeezus": [
-    "2013",
     "hip-hop",
-    "experimental"
+    "experimental",
+    "experimental hip-hop"
   ],
   "kanye west|||ye": [
-    "2018",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "pop rap"
   ],
   "kate bush|||hounds of love": [
-    "1985",
-    "80s",
-    "art pop"
+    "art pop",
+    "progressive pop",
+    "art rock"
   ],
   "kate bush|||never for ever": [
-    "1980",
-    "80s",
-    "art pop"
+    "art pop",
+    "progressive pop",
+    "baroque pop"
   ],
   "katy perry|||teenage dream": [
     "pop",
-    "2010",
-    "katy perry"
+    "dance",
+    "pop rock"
   ],
   "kaycyy|||tw20 50": [
     "cloud rap",
     "progressive electronic",
     "experimental hip hop"
   ],
-  "kaycyy|||tw2052": [
-    "futurism",
-    "afrofuturism",
-    "2023"
-  ],
-  "kehlani|||kehlani": [
-    "2026"
-  ],
+  "kaycyy|||tw2052": [],
+  "kehlani|||kehlani": [],
   "kehlani|||blue water road": [
-    "contemporary randb",
-    "2022",
-    "rnb"
+    "contemporary rnb",
+    "rnb",
+    "soul"
   ],
   "ken carson|||a great chaos": [
-    "rage",
     "trap",
-    "southern hip hop"
-  ],
-  "ken carson|||x": [
-    "rage",
-    "southern hip hop",
+    "southern hip-hop",
     "cloud rap"
   ],
+  "ken carson|||x": [
+    "southern hip-hop",
+    "cloud rap",
+    "pop rap"
+  ],
   "kendrick lamar|||damn.": [
-    "2017",
     "rap",
-    "conscious hip hop"
+    "conscious hip hop",
+    "hip-hop"
   ],
   "kendrick lamar|||gnx": [
-    "2024",
-    "west coast hip hop",
-    "ratchet music"
+    "west coast hip-hop",
+    "conscious hip hop",
+    "trap"
   ],
   "kendrick lamar|||mr. morale & the big steppers": [
-    "2022",
     "jazz rap",
-    "conscious hip hop"
+    "conscious hip hop",
+    "west coast hip-hop"
   ],
   "kendrick lamar|||section.80": [
-    "2011",
     "hip-hop",
-    "hip hop"
+    "jazz rap",
+    "conscious hip hop"
   ],
   "kendrick lamar|||to pimp a butterfly": [
     "jazz rap",
-    "2015",
-    "funk"
+    "funk",
+    "funky"
   ],
   "kendrick lamar|||good kid, m.a.a.d city": [
-    "2012",
-    "hip hop",
-    "best of 2012"
+    "hip-hop",
+    "rap",
+    "conscious hip hop"
   ],
   "kendrick lamar|||untitled unmastered.": [
-    "2016",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "jazz rap"
   ],
   "kenneth blume & denzel curry|||unlocked": [],
   "kenneth blume & rico nasty|||anger management": [],
-  "kenny mason|||3": [
-    "2023"
-  ],
+  "kenny mason|||3": [],
   "kenny mason|||6": [
     "punk rap",
-    "rap",
-    "2023"
+    "rap"
   ],
   "kenny mason|||9": [
     "rap",
-    "hip-hop",
-    "2024"
+    "hip-hop"
   ],
   "kenny mason|||angelic hoodrat": [
     "lo-fi hip hop",
-    "southern hip hop",
-    "angry"
+    "southern hip-hop",
+    "southern rap"
   ],
   "kenny mason|||angelic hoodrat: supercut": [],
   "kenny mason|||bulldawg": [
@@ -2222,9 +2019,7 @@
     "hardcore hip-hop"
   ],
   "kenny mason|||highway 9": [],
-  "kenny mason|||ruffs": [
-    "2022"
-  ],
+  "kenny mason|||ruffs": [],
   "kevin gates|||islah": [
     "rap",
     "hip-hop",
@@ -2232,159 +2027,140 @@
   ],
   "kiana ledé|||cut ties": [],
   "kiana ledé|||grudges": [
-    "r&b",
-    "aoty"
+    "rnb"
   ],
-  "kid cudi|||entergalactic": [
-    "2022",
-    "mid",
-    "kid cudi"
-  ],
+  "kid cudi|||entergalactic": [],
   "kid cudi|||insano": [
-    "2024",
     "hip-hop",
-    "rage"
+    "trap"
   ],
   "kid cudi|||man on the moon ii: the legend of mr. rager": [
     "hip-hop",
-    "2010",
-    "psychedelic"
+    "rap",
+    "experimental"
   ],
   "kid cudi|||man on the moon iii: the chosen": [
-    "psychedelic",
     "hip-hop",
-    "2020"
+    "emo",
+    "alternative rap"
   ],
   "kid cudi|||man on the moon: the end of day": [
     "hip-hop",
-    "2009",
-    "rap"
+    "rap",
+    "alternative rap"
   ],
   "kid cudi|||man on the moon: the end of day (deluxe)": [
     "synthpop",
-    "hip hop",
-    "neo-psychedelia"
+    "hip-hop",
+    "art pop"
   ],
   "killer mike|||michael": [
-    "2023",
-    "hip-hop",
-    "finished"
+    "hip-hop"
   ],
   "kim petras|||pretour": [
-    "2026",
     "pop",
-    "electropop"
+    "electropop",
+    "electronic"
   ],
-  "king von|||grandson": [
-    "2023"
-  ],
-  "king von|||what it means to be king": [
-    "2022"
-  ],
+  "king von|||grandson": [],
+  "king von|||what it means to be king": [],
   "knocked loose|||you won't go before you're supposed to": [
     "metalcore",
     "beatdown hardcore",
-    "2024"
+    "hardcore"
   ],
   "latin mafia|||todos los días todo el día": [],
   "lisa|||alter ego": [
-    "2025",
     "pop",
-    "rap"
+    "rap",
+    "dance"
   ],
   "lucki|||alternative trap": [
     "cloud rap",
     "gangsta rap",
-    "abstract hip hop"
+    "abstract hip-hop"
   ],
   "lucki|||days b4 iii": [
     "cloud rap",
-    "depressive",
     "trap"
   ],
   "lucki|||daysb4bad*": [],
   "lucki|||dr*gs r bad": [],
   "lucki|||freewave 3": [
     "cloud rap",
-    "trap",
-    "plugg"
+    "trap"
   ],
   "lucki|||gemini!": [],
   "lucki|||s*x m*ney dr*gs": [
-    "trap",
-    "2023"
+    "trap"
   ],
   "lady gaga|||mayhem": [
-    "2025",
     "electropop",
-    "dance-pop"
+    "dance-pop",
+    "pop"
   ],
   "lady gaga|||the fame monster": [
     "pop",
-    "lady gaga",
-    "2009"
+    "dance",
+    "electropop"
   ],
   "lakeyah|||my time": [],
   "lana del rey|||blue banisters": [
-    "2021",
     "folk",
-    "alternative"
+    "soft rock",
+    "jazz"
   ],
   "lana del rey|||born to die": [
-    "2012",
     "pop",
-    "best of 2012"
+    "indie pop",
+    "trip hop"
   ],
   "lana del rey|||chemtrails over the country club": [
-    "2021",
     "soft rock",
-    "folk"
+    "folk",
+    "contemporary folk"
   ],
   "lana del rey|||did you know that there's a tunnel under ocean blvd": [
-    "2023",
     "singer-songwriter",
-    "neo-psychedelia"
+    "pop",
+    "art pop"
   ],
   "lana del rey|||honeymoon": [
     "dream pop",
-    "best of 2015",
-    "trap"
+    "trap",
+    "trip-hop"
   ],
   "lana del rey|||lust for life": [
-    "2017",
     "pop",
-    "dream pop"
+    "dream pop",
+    "trap"
   ],
   "lana del rey|||norman fucking rockwell!": [
-    "2019",
     "art pop",
-    "soft rock"
+    "soft rock",
+    "dream pop"
   ],
   "lana del rey|||paradise": [
-    "2012",
-    "best of 2012",
-    "pop"
+    "pop",
+    "indie pop",
+    "alternative rock"
   ],
   "lana del rey|||ultraviolence": [
-    "2014",
     "dream pop",
-    "best of 2014"
+    "psychedelic rock",
+    "chamber pop"
   ],
   "lancey foux|||life in hell": [
-    "neo-psychedelia",
     "uk hip hop",
-    "cloud rap"
+    "cloud rap",
+    "experimental hip hop"
   ],
-  "larry june, 2 chainz & the alchemist|||life is beautiful": [
-    "best of 2025"
-  ],
+  "larry june, 2 chainz & the alchemist|||life is beautiful": [],
   "latto|||777": [
-    "2022",
     "rap",
-    "bad bitch"
+    "hip-hop"
   ],
   "latto|||sugar honey iced tea": [
-    "2024",
     "rap"
   ],
   "laufey|||a matter of time": [
@@ -2398,25 +2174,14 @@
     "hip-hop"
   ],
   "leon thomas|||mutt": [
-    "rnb",
-    "red",
-    "animals"
+    "rnb"
   ],
   "lil baby|||it's only me": [
-    "hip-hop",
-    "2022",
-    "2020s"
+    "hip-hop"
   ],
-  "lil baby|||my turn": [
-    "2020",
-    "lil baby"
-  ],
+  "lil baby|||my turn": [],
   "lil baby|||the leaks": [],
-  "lil baby|||wham": [
-    "lil baby",
-    "2025",
-    "boy slow down"
-  ],
+  "lil baby|||wham": [],
   "lil durk|||7220": [
     "hip-hop",
     "rap",
@@ -2424,12 +2189,11 @@
   ],
   "lil durk|||almost healed": [],
   "lil nas x|||montero": [
-    "2021",
     "hip-hop",
-    "rap"
+    "rap",
+    "pop"
   ],
   "lil pump|||lil pump 2": [
-    "hip hop",
     "hip-hop",
     "trap"
   ],
@@ -2439,29 +2203,25 @@
     "synthpop"
   ],
   "lil tecca|||plan a": [
-    "rap",
-    "plan a"
+    "rap"
   ],
   "lil tecca|||tec": [],
   "lil tjay|||222": [
-    "2020s album",
-    "2023 album",
     "hip-hop album"
   ],
   "lil uzi vert|||eternal atake": [
-    "2020",
     "trap",
-    "hip-hop"
-  ],
-  "lil uzi vert|||eternal atake (deluxe) - luv vs. the world 2": [
-    "2020",
-    "trap",
+    "hip-hop",
     "rap"
   ],
-  "lil uzi vert|||eternal atake 2": [
-    "nitrous",
+  "lil uzi vert|||eternal atake (deluxe) - luv vs. the world 2": [
+    "trap",
     "rap",
-    "aoty"
+    "emo rap"
+  ],
+  "lil uzi vert|||eternal atake 2": [
+    "rap",
+    "nitrous rap"
   ],
   "lil uzi vert|||lil uzi vert vs. the world": [
     "emo rap",
@@ -2470,18 +2230,18 @@
   ],
   "lil uzi vert|||luv is rage": [
     "cloud rap",
-    "hip hop",
+    "hip-hop",
     "alternative trap"
   ],
   "lil uzi vert|||luv is rage 2": [
-    "2017",
     "trap",
-    "cloud rap"
+    "cloud rap",
+    "rap"
   ],
   "lil uzi vert|||pink tape": [
-    "2023",
-    "rage",
-    "trap"
+    "trap",
+    "trap metal",
+    "rap rock"
   ],
   "lil uzi vert|||red & white 🔴 ⚪": [],
   "lil uzi vert|||the perfect luv tape ®": [],
@@ -2492,19 +2252,14 @@
   "lil wayne|||da drought 3": [],
   "lil wayne|||fwa": [],
   "lil wayne|||funeral": [
-    "hip hop",
-    "lil wayne",
-    "2020"
+    "hip-hop"
   ],
-  "lil wayne|||funeral (deluxe)": [
-    "lil wayne"
-  ],
+  "lil wayne|||funeral (deluxe)": [],
   "lil wayne|||i am not a human being": [],
   "lil wayne|||i am not a human being ii": [],
   "lil wayne|||in tune we trust": [
     "rap",
-    "hip hop",
-    "title is declarative"
+    "hip-hop"
   ],
   "lil wayne|||lights out": [],
   "lil wayne|||lil weezy ana": [],
@@ -2522,24 +2277,21 @@
   "lil wayne|||tha carter iii": [],
   "lil wayne|||tha carter iv": [],
   "lil wayne|||tha carter iv (complete edition)": [
-    "lil wayne",
     "rap",
     "hip-hop"
   ],
   "lil wayne|||tha carter v": [],
   "lil wayne|||tha carter v (deluxe)": [
-    "hollygrove",
-    "hip hop",
-    "gangsta rap"
+    "hip-hop",
+    "gangsta rap",
+    "southern hip-hop"
   ],
   "lil wayne|||tha carter vi": [
     "pop",
     "electronic",
     "dance"
   ],
-  "lil wayne|||tha fix before tha vi": [
-    "lil wayne"
-  ],
+  "lil wayne|||tha fix before tha vi": [],
   "lil wayne|||the carter files": [],
   "lil wayne|||the drought is over 2: the carter 3 sessions": [],
   "lil wayne|||the leak": [],
@@ -2547,13 +2299,11 @@
   "lil wayne|||the w. carter collection": [],
   "lil wayne & 2 chainz|||welcome 2 collegrove": [],
   "lil wayne & mick boogie|||the w. carter collection 2": [],
-  "lil yachty|||let's start here.": [
-    "neo-psychedelia"
-  ],
+  "lil yachty|||let's start here.": [],
   "linkin park|||from zero": [
-    "2024",
     "nu metal",
-    "alternative rock"
+    "alternative rock",
+    "rap rock"
   ],
   "linkin park|||hybrid theory": [
     "nu metal",
@@ -2571,54 +2321,50 @@
     "nu metal"
   ],
   "little simz|||drop 7": [
-    "2024",
     "soul",
     "rnb"
   ],
   "little simz|||grey area": [
-    "2019",
+    "rap",
+    "hip-hop",
+    "jazz rap"
+  ],
+  "little simz|||lotus": [
+    "jazz rap",
+    "neo-soul",
+    "rap"
+  ],
+  "little simz|||no thank you": [
+    "hip-hop",
+    "neo-soul",
+    "jazz rap"
+  ],
+  "little simz|||sometimes i might be introvert": [
+    "conscious hip hop",
+    "hip-hop",
+    "rap"
+  ],
+  "lizzo|||my face hurts from smiling": [
     "rap",
     "hip-hop"
   ],
-  "little simz|||lotus": [
-    "2025",
-    "jazz rap",
-    "neo-soul"
-  ],
-  "little simz|||no thank you": [
-    "2022",
-    "hip hop",
-    "neo-soul"
-  ],
-  "little simz|||sometimes i might be introvert": [
-    "2021",
-    "conscious hip hop",
-    "hip hop"
-  ],
-  "lizzo|||my face hurts from smiling": [
-    "2025",
-    "rap",
-    "hip hop"
-  ],
   "lloyd banks|||the course of the inevitable": [],
   "lloyd banks|||the course of the inevitable 2": [],
-  "lloyd banks|||the course of the inevitable 3: pieces of my pain": [
-    "2023"
-  ],
+  "lloyd banks|||the course of the inevitable 3: pieces of my pain": [],
   "loathe|||i let it in and it took everything": [
     "metalcore",
-    "2020",
-    "alternative metal"
+    "alternative metal",
+    "shoegaze"
   ],
   "loathe|||the cold sun": [
-    "2017",
     "metalcore",
-    "deathcore"
+    "deathcore",
+    "experimental"
   ],
   "loathe|||the things they believe": [
-    "aprils taste",
     "ambient",
-    "soundscape"
+    "shoegaze",
+    "drone"
   ],
   "logic|||aquarius iii": [],
   "logic|||college park": [
@@ -2627,23 +2373,17 @@
     "east coast hip-hop"
   ],
   "logic|||no pressure": [
-    "2020",
-    "2020s",
-    "soul"
-  ],
-  "logic|||the incredible true story": [
-    "logic",
-    "2010s",
-    "the incredible true story"
-  ],
-  "logic|||ultra 85": [
-    "2024",
+    "soul",
     "hip-hop",
-    "abstract hip-hop"
+    "rnb"
   ],
-  "logic|||under pressure": [
-    "best of 2014"
+  "logic|||the incredible true story": [],
+  "logic|||ultra 85": [
+    "hip-hop",
+    "abstract hip-hop",
+    "jazz rap"
   ],
+  "logic|||under pressure": [],
   "logic|||vinyl days": [
     "boom bap",
     "hip-hop",
@@ -2651,206 +2391,189 @@
   ],
   "lola brooke|||dennis daughter": [],
   "lorde|||melodrama": [
-    "2017",
     "pop",
-    "synthpop"
+    "synthpop",
+    "art pop"
   ],
   "lorde|||pure heroine": [
-    "2013",
     "indie pop",
-    "pop"
+    "pop",
+    "electronic"
   ],
   "lorde|||solar power": [
-    "2021",
     "pop",
-    "2020s"
+    "indie folk",
+    "folk pop"
   ],
   "lorde|||virgin": [
-    "2025",
     "electronic",
-    "indietronica"
+    "pop",
+    "art pop"
   ],
   "loving|||if i am only my thoughts": [
-    "mellow",
-    "spring",
-    "warm"
+    "psychedelic pop",
+    "bedroom pop",
+    "hypnagogic pop"
   ],
   "lupe fiasco|||drill music in zion": [
-    "2022",
     "hip-hop",
-    "abstract hip hop"
+    "abstract hip-hop",
+    "jazz rap"
   ],
   "lupe fiasco|||drogas light": [
     "hip-hop",
-    "hip hop",
     "trap"
   ],
   "lupe fiasco|||drogas wave": [
-    "2018",
     "rap",
-    "abstract hip-hop"
+    "abstract hip-hop",
+    "jazz rap"
   ],
   "lupe fiasco|||enemy of the state: a love story": [],
   "lupe fiasco|||food & liquor ii: the great american rap album pt. 1": [],
   "lupe fiasco|||friend of the people: i fight evil": [
-    "title is declarative",
     "dubstep rap"
   ],
   "lupe fiasco|||ghotiing": [],
   "lupe fiasco|||lasers": [
-    "2011",
     "hip-hop",
-    "hip hop"
+    "rap",
+    "alternative rap"
   ],
   "lupe fiasco|||lupe fiasco's food & liquor": [
-    "2006",
     "conscious hip hop",
-    "hip hop"
+    "hip-hop",
+    "pop rap"
   ],
   "lupe fiasco|||lupe fiasco's the cool": [
-    "hip hop",
     "hip-hop",
-    "lupe fiasco"
+    "rap"
   ],
   "lupe fiasco|||pharaoh height 2/30": [
     "rap",
-    "hip hop",
     "hip-hop"
   ],
   "lupe fiasco|||samurai": [
     "neo-soul",
     "jazz rap",
-    "abstract hip hop"
+    "abstract hip-hop"
   ],
   "lupe fiasco|||samurai dx": [],
   "lupe fiasco|||tetsuo & youth": [
-    "2015",
-    "hip hop",
-    "rap"
+    "hip-hop",
+    "rap",
+    "jazz rap"
   ],
   "lyrical lemonade|||all is yellow": [
     "rap",
     "hip-hop",
-    "mid"
+    "trap"
   ],
   "m83|||dead cities, red seas & lost ghosts": [
     "shoegaze",
-    "2003",
-    "electronic"
+    "electronic",
+    "ambient"
   ],
   "marina|||electra heart": [
     "electropop",
-    "2012",
-    "dance-pop"
+    "dance-pop",
+    "pop"
   ],
   "marina|||froot": [
-    "2015",
-    "alternative",
-    "indie pop"
-  ],
-  "marina|||princess of power": [
-    "2025",
+    "indie pop",
     "pop",
     "synthpop"
+  ],
+  "marina|||princess of power": [
+    "pop",
+    "synthpop",
+    "new wave"
   ],
   "mass of the fermenting dregs|||no new world": [
     "alternative rock",
     "metal",
-    "japanese"
+    "japanese rock"
   ],
   "mavi|||laughing so hard, it hurts": [
-    "male vocals",
-    "hip-hop",
-    "auto-tagged"
+    "hip-hop"
   ],
   "mavi|||let the sun talk": [
-    "2019",
     "abstract hip-hop",
-    "rap"
+    "rap",
+    "jazz rap"
   ],
-  "mavi|||the pilot": [
-    "2025"
-  ],
-  "mavi|||shadowbox": [
-    "2024",
-    "comfort album"
-  ],
+  "mavi|||the pilot": [],
+  "mavi|||shadowbox": [],
   "mf doom|||born like this": [
-    "2009",
     "underground hip-hop",
-    "rap"
+    "rap",
+    "hip-hop"
   ],
   "mf doom|||mm..food": [
-    "2004",
-    "abstract hip hop",
-    "east coast hip hop"
+    "abstract hip-hop",
+    "east coast hip-hop",
+    "experimental hip hop"
   ],
   "mgmt|||little dark age": [
-    "2018",
     "synthpop",
-    "new wave"
+    "new wave",
+    "psychedelic pop"
   ],
   "mike dean|||4:23": [
-    "instrumental",
-    "synth",
-    "the weeknd"
+    "synth"
   ],
   "mac miller|||balloonerism": [
     "neo-soul",
-    "neo-psychedelia",
-    "abstract hip hop"
+    "abstract hip-hop",
+    "jazz rap"
   ],
   "mac miller|||circles": [
-    "2020",
     "neo-soul",
-    "vinyl"
+    "rnb",
+    "rap"
   ],
   "mac miller|||swimming": [
-    "2018",
     "pop rap",
-    "alternative rnb"
+    "alternative rnb",
+    "rap"
   ],
   "mach-hommy|||#richaxxhaitian": [
-    "east coast hip hop",
-    "abstract hip hop",
-    "2024"
+    "east coast hip-hop",
+    "abstract hip-hop",
+    "jazz rap"
   ],
   "madison beer|||locket": [
-    "2026",
     "pop",
-    "synthpop"
+    "synthpop",
+    "electropop"
   ],
   "madlib & freddie gibbs|||bandana": [],
   "madlib & freddie gibbs|||piñata": [],
   "madvillain|||madvillainy": [
-    "2004",
-    "abstract hip hop",
-    "hip-hop"
+    "abstract hip-hop",
+    "hip-hop",
+    "jazz rap"
   ],
   "magdalena bay|||imaginal disk": [
     "synthpop",
-    "2024",
-    "neo-psychedelia"
+    "progressive pop",
+    "pop rock"
   ],
   "magdalena bay|||mercurial world": [
-    "2021",
     "synthpop",
-    "electropop"
+    "electropop",
+    "dance-pop"
   ],
   "major lazer|||peace is the mission": [
-    "2015",
-    "best of 2015",
     "electronica"
   ],
   "malcolm todd|||malcolm todd": [
-    "2025",
-    "indie",
-    "alternative rnb"
+    "alternative rnb",
+    "indie rock"
   ],
   "malcolm todd|||sweet boy": [
     "pop",
-    "indie",
-    "alternative"
+    "indie rock"
   ],
   "manderley|||you come in seasons and depart through windy gusts and blowing leaves": [
     "midwest emo",
@@ -2858,19 +2581,19 @@
     "emo"
   ],
   "mannequin pussy|||i got heaven": [
-    "2024",
     "indie rock",
-    "hardcore punk"
-  ],
-  "mannequin pussy|||patience": [
-    "2019",
-    "indie",
+    "hardcore punk",
     "punk rock"
   ],
-  "mannequin pussy|||romantic": [
-    "2016",
-    "punk",
+  "mannequin pussy|||patience": [
+    "punk rock",
+    "indie rock",
     "rock"
+  ],
+  "mannequin pussy|||romantic": [
+    "punk",
+    "rock",
+    "garage rock"
   ],
   "mariah the scientist|||hearts sold separately": [
     "soul",
@@ -2879,133 +2602,126 @@
   ],
   "maroon 5|||songs about jane": [
     "pop rock",
-    "maroon 5",
-    "rock"
+    "rock",
+    "pop"
   ],
   "maximum love|||apollo": [],
-  "maxo kream|||weight of the world": [
-    "2021"
-  ],
+  "maxo kream|||weight of the world": [],
   "mckinley dixon|||beloved! paradise! jazz​!​?": [],
   "mckinley dixon|||magic, alive!": [
-    "2025",
     "jazz rap",
-    "conscious hip hop"
+    "conscious hip hop",
+    "hip-hop"
   ],
   "meek mill|||championships": [
-    "trap",
-    "2018",
-    "meek mill"
+    "trap"
   ],
   "meek mill|||flamerz 5": [],
   "megan thee stallion|||megan": [
-    "2024",
     "rap",
-    "dirty south"
+    "hip-hop",
+    "trap"
   ],
   "megan thee stallion|||traumazine": [
-    "2022",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "southern rap"
   ],
   "melanie martinez|||hades": [
-    "aoty",
-    "alternative",
-    "alt-pop"
+    "alt-pop",
+    "chamber pop",
+    "experimental"
   ],
   "meshuggah|||chaosphere": [
     "progressive metal",
-    "1998",
-    "math metal"
+    "math metal",
+    "technical metal"
   ],
   "meshuggah|||obzen": [
     "progressive metal",
     "math metal",
-    "2008"
+    "death metal"
   ],
   "metallica|||master of puppets": [
     "thrash metal",
     "heavy metal",
-    "metal"
+    "speed metal"
   ],
   "metallica|||metallica": [
     "heavy metal",
-    "metal",
-    "thrash metal"
+    "thrash metal",
+    "hard rock"
   ],
   "metallica|||ride the lightning": [
     "thrash metal",
     "heavy metal",
-    "1984"
+    "speed metal"
   ],
   "metro boomin|||heroes & villains": [
-    "2022",
     "trap",
     "hip-hop"
   ],
   "metro boomin|||metro boomin presents spider-man: across the spider-verse (soundtrack from and inspired by the motion picture)": [
-    "2023",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "rnb"
   ],
   "metro boomin|||metro boomin presents: a futuristic summa": [],
   "metro boomin|||not all heroes wear capes": [
-    "2018",
     "rap",
-    "pop rap"
+    "pop rap",
+    "hip-hop"
   ],
   "metro boomin & 21 savage|||savage mode ii": [],
   "metro boomin & 21 savage|||savage mode": [],
   "michael jackson|||thriller": [
     "pop",
-    "80s",
-    "michael jackson"
+    "dance",
+    "funk"
   ],
   "migos|||culture": [
     "trap",
-    "2017",
-    "rap"
+    "rap",
+    "hip-hop"
   ],
   "migos|||culture iii": [
-    "2021",
     "rap",
-    "trap"
+    "trap",
+    "southern hip-hop"
   ],
   "mike will made-it|||r3set": [],
   "miley cyrus|||endless summer vacation": [
-    "2023",
-    "pop",
-    "better than ariana grande"
+    "pop"
   ],
   "miley cyrus|||plastic hearts": [
-    "2020",
     "rock",
-    "pop rock"
+    "pop rock",
+    "pop"
   ],
   "miley cyrus|||something beautiful": [
-    "2025",
     "pop rock",
-    "neo-psychedelia"
+    "pop",
+    "art rock"
   ],
   "mitski|||laurel hell": [
-    "2022",
     "synthpop",
-    "new wave"
+    "new wave",
+    "art pop"
   ],
   "mitski|||nothing's about to happen to me": [
-    "2026",
-    "americana",
-    "indie rock"
+    "indie rock",
+    "rock",
+    "chamber pop"
   ],
   "mitski|||the land is inhospitable and so are we": [
-    "2023",
     "indie folk",
-    "americana"
+    "chamber pop",
+    "singer-songwriter"
   ],
   "mk.gee|||two star & the dream police": [
-    "2024",
-    "indietronica",
-    "dream pop"
+    "dream pop",
+    "ambient pop",
+    "sophisti-pop"
   ],
   "momo boyd|||miss michigan": [
     "pop"
@@ -3013,17 +2729,13 @@
   "montell fish|||charlotte": [],
   "mount westmore|||snoop cube 40 $hort": [
     "rap",
-    "hip hop",
-    "2022"
+    "hip-hop"
   ],
   "mustard|||faith of a mustard seed": [
-    "rap",
-    "2024"
+    "rap"
   ],
   "mustard|||perfect ten": [
-    "2019",
-    "west coast",
-    "2010s"
+    "hip-hop"
   ],
   "my chemical romance|||the black parade": [
     "rock",
@@ -3037,29 +2749,25 @@
     "hip-hop",
     "alternative rnb"
   ],
-  "nav|||omw2 rexdale": [
-    "4 out of 5"
-  ],
+  "nav|||omw2 rexdale": [],
   "naomi sharon|||obsidian": [],
   "nas|||god's son": [
     "rap",
-    "hip hop",
-    "2002"
+    "hip-hop",
+    "east coast rap"
   ],
   "nas|||hip hop is dead": [
-    "rap",
-    "hip-hop",
-    "2006"
+    "rap"
   ],
   "nas|||i am...": [
     "rap",
     "east coast rap",
-    "nas"
+    "hip-hop"
   ],
   "nas|||illmatic": [
     "hip-hop",
-    "1994",
-    "rap"
+    "rap",
+    "east coast hip-hop"
   ],
   "nas|||it was written": [
     "rap",
@@ -3067,347 +2775,321 @@
     "east coast rap"
   ],
   "nas|||king's disease": [
-    "2020",
-    "rap",
-    "hip hop"
-  ],
-  "nas|||king's disease iii": [
-    "2022",
-    "nas",
-    "rap"
-  ],
-  "nas|||king’s disease ii": [],
-  "nas|||life is good": [
-    "2012",
-    "rap",
-    "hip hop"
-  ],
-  "nas|||magic": [
-    "2021",
-    "rap",
-    "hip hop"
-  ],
-  "nas|||magic 2": [
-    "2023",
-    "rap",
-    "bleak"
-  ],
-  "nas|||magic 3": [
-    "2023",
-    "rap",
-    "hip hop"
-  ],
-  "nas|||nasir": [
-    "2018",
     "rap",
     "hip-hop"
   ],
+  "nas|||king's disease iii": [
+    "rap",
+    "hip-hop",
+    "jazz rap"
+  ],
+  "nas|||king’s disease ii": [],
+  "nas|||life is good": [
+    "rap",
+    "hip-hop",
+    "east coast rap"
+  ],
+  "nas|||magic": [
+    "rap",
+    "hip-hop",
+    "boom bap"
+  ],
+  "nas|||magic 2": [
+    "rap",
+    "hip-hop",
+    "east coast rap"
+  ],
+  "nas|||magic 3": [
+    "rap",
+    "hip-hop",
+    "boom bap"
+  ],
+  "nas|||nasir": [
+    "rap",
+    "hip-hop",
+    "trap"
+  ],
   "nas|||nastradamus": [
     "rap",
-    "nas",
-    "90s"
+    "hip-hop"
   ],
   "nas|||stillmatic": [
     "rap",
     "hip-hop",
-    "nas"
+    "east coast hip-hop"
   ],
   "nas|||street's disciple": [
-    "2004",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "east coast rap"
   ],
   "nas|||untitled": [
     "rap",
-    "nas",
-    "hip-hop"
+    "hip-hop",
+    "best rapper alive"
   ],
   "nas & dj premier|||light-years": [
-    "2025",
     "rap",
-    "hip hop"
+    "hip-hop"
   ],
   "navy blue|||ways of knowing": [
-    "2023",
-    "mellow",
-    "sampling"
+    "jazz rap"
   ],
   "nelly furtado|||loose": [
     "pop",
     "rnb",
-    "2006"
+    "dance"
   ],
   "nicki minaj|||beam me up scotty": [
-    "2009",
-    "aggressive",
-    "rap"
-  ],
-  "nicki minaj|||pink friday": [
-    "2010",
     "rap",
-    "hip-hop"
-  ],
-  "nicki minaj|||pink friday 2": [
-    "2023",
-    "female rap",
-    "queen of rap"
-  ],
-  "nicki minaj|||pink friday: roman reloaded": [
-    "2012",
     "pop",
     "hip-hop"
   ],
+  "nicki minaj|||pink friday": [
+    "rap",
+    "hip-hop",
+    "rnb"
+  ],
+  "nicki minaj|||pink friday 2": [
+    "female rap",
+    "queen of rap",
+    "rap"
+  ],
+  "nicki minaj|||pink friday: roman reloaded": [
+    "pop",
+    "hip-hop",
+    "dance"
+  ],
   "nicki minaj|||pink friday: roman reloaded – the re-up": [],
   "nicki minaj|||queen": [
-    "2018",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "trap"
   ],
   "nicki minaj|||the pinkprint": [
-    "2014",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "rnb"
   ],
   "night tapes|||portals//polarities": [
-    "2025",
-    "dream pop",
-    "skipless albums"
+    "dream pop"
   ],
   "nigo|||i know nigo!": [
-    "2022",
     "hip-hop"
   ],
   "nine vicious|||tumblr music": [],
   "nipsey hussle|||victory lap": [
     "hip-hop",
     "rap",
-    "2018"
+    "g-funk"
   ],
   "nirvana|||in utero": [
     "grunge",
-    "90s",
-    "1993"
+    "rock",
+    "alternative rock"
   ],
   "nirvana|||nevermind": [
     "grunge",
     "rock",
-    "90s"
+    "alternative rock"
   ],
   "normani|||dopamine": [
-    "2024",
-    "aoty",
-    "soul"
+    "soul",
+    "pop",
+    "rnb"
   ],
   "north west|||n0rth4evr": [
-    "hardstyle",
     "rap metal",
-    "rage"
+    "pop rap",
+    "jersey club rap"
   ],
   "not for radio|||bloom": [
-    "2026",
     "singer-songwriter",
-    "dream pop"
+    "dream pop",
+    "chamber pop"
   ],
   "not for radio|||melt": [
-    "2025",
-    "downtempo",
-    "dream pop"
+    "dream pop",
+    "shoegaze",
+    "bedroom pop"
   ],
   "nothing but thieves|||broken machine": [
-    "lp",
-    "alternative rock",
-    "best of 2017"
+    "alternative rock"
   ],
   "nourished by time|||the passionate ones": [
-    "2025",
     "pop",
-    "powerful"
+    "synthpop",
+    "rnb"
   ],
   "nova twins|||parasites & butterflies": [
-    "2025",
     "rock",
     "nu metal"
   ],
   "nxworries|||why lawd?": [
-    "2024",
     "neo-soul",
-    "soul"
+    "soul",
+    "hip-hop"
   ],
   "nxworries|||yes lawd!": [
-    "2016",
     "soul",
-    "rnb"
+    "rnb",
+    "hip-hop"
   ],
   "obongjayar|||some nights i dream of doors": [
-    "2022",
     "soul",
-    "short"
+    "pop",
+    "neo-soul"
   ],
   "offset|||haunted by fame": [],
   "oklou|||galore": [
     "alternative rnb",
     "ambient pop",
-    "2020"
+    "progressive electronic"
   ],
   "oklou|||choke enough": [
-    "2025",
     "electronic",
-    "indietronica"
+    "alt-pop",
+    "alternative rnb"
   ],
   "olivia dean|||the art of loving": [
-    "2025",
     "pop",
-    "uk"
+    "rnb",
+    "neo-soul"
   ],
   "olivia rodrigo|||guts": [
-    "2023",
     "pop rock",
-    "indie rock"
+    "indie rock",
+    "pop"
   ],
   "olivia rodrigo|||sour": [
-    "2021",
     "pop rock",
-    "pop"
+    "pop",
+    "indie pop"
   ],
   "olivia rodrigo|||you seem pretty sad for a girl so in love": [
     "power pop",
-    "alternative",
-    "indie pop"
+    "indie pop",
+    "synthpop"
   ],
   "outkast|||atliens": [
     "rap",
     "hip-hop",
-    "1996"
+    "southern hip-hop"
   ],
   "outkast|||aquemini": [
     "hip-hop",
-    "1998",
-    "funk"
+    "funk",
+    "neo-soul"
   ],
   "outkast|||idlewild": [
-    "hip hop",
     "hip-hop",
-    "2006"
+    "southern rap",
+    "funk"
   ],
   "outkast|||southernplayalisticadillacmuzik": [
-    "90s",
-    "hip hop",
-    "1994"
+    "hip-hop",
+    "gangsta rap",
+    "rap"
   ],
   "outkast|||speakerboxxx/the love below": [
     "rap",
     "funk",
-    "2003"
+    "soul"
   ],
   "outkast|||stankonia": [
-    "2000",
     "hip-hop",
-    "00s"
+    "funk",
+    "rap"
   ],
   "ovrkast.|||while the iron is hot": [],
-  "partynextdoor|||colours": [
-    "2021",
-    "partynextdoor"
-  ],
+  "partynextdoor|||colours": [],
   "partynextdoor|||colours 2": [
     "rnb"
   ],
-  "partynextdoor|||partymobile": [
-    "partynextdoor",
-    "2020"
-  ],
+  "partynextdoor|||partymobile": [],
   "partynextdoor|||partynextdoor": [
     "rnb",
-    "favourite albums",
-    "partynextdoor"
+    "soul"
   ],
   "partynextdoor|||partynextdoor 3 (p3)": [
-    "rnb",
-    "best",
-    "drake"
+    "rnb"
   ],
   "partynextdoor|||partynextdoor 4 (p4)": [
     "rnb",
-    "alternative rnb",
-    "partynextdoor"
+    "alternative rnb"
   ],
   "partynextdoor|||partynextdoor two": [
-    "2014",
     "rap",
-    "rnb"
+    "rnb",
+    "hip-hop"
   ],
-  "partynextdoor|||partypack": [
-    "partynextdoor"
-  ],
+  "partynextdoor|||partypack": [],
   "partynextdoor|||seven days": [
-    "partynextdoor",
-    "hip hop",
-    "ovo"
+    "hip-hop"
   ],
   "partynextdoor & drake|||$ome $exy $ongs 4 u": [],
   "prhyme|||prhyme": [
-    "2014",
     "hip-hop"
   ],
   "prhyme|||prhyme 2": [
-    "2018",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "hardcore hip-hop"
   ],
   "palms|||palms": [
     "post-rock",
     "post-metal",
-    "2013"
+    "experimental"
   ],
   "panchiko|||d>e>a>t>h>m>e>t>a>l": [
     "dream pop",
     "indie rock",
-    "indietronica"
+    "trip hop"
   ],
   "pantera|||cowboys from hell": [
     "thrash metal",
     "groove metal",
-    "1990"
+    "heavy metal"
   ],
   "pantera|||vulgar display of power": [
     "groove metal",
     "thrash metal",
-    "1992"
+    "heavy metal"
   ],
   "paramore|||after laughter": [
     "new wave",
-    "2017",
-    "pop rock"
+    "pop rock",
+    "synthpop"
   ],
   "paramore|||all we know is falling": [
     "pop punk",
     "rock",
-    "2005"
+    "alternative rock"
   ],
   "paramore|||paramore": [
-    "2013",
     "alternative rock",
-    "rock"
+    "rock",
+    "pop rock"
   ],
   "paramore|||re: this is why": [
-    "2023",
     "dance-punk",
-    "post-punk revival"
+    "post-punk revival",
+    "synthpop"
   ],
   "paramore|||riot!": [
     "pop punk",
     "rock",
-    "2007"
+    "alternative rock"
   ],
   "paramore|||this is why": [
-    "2023",
     "post-punk revival",
-    "dance-punk"
+    "dance-punk",
+    "new wave"
   ],
   "paramore|||brand new eyes": [
-    "2009",
     "pop punk",
-    "rock"
+    "rock",
+    "alternative rock"
   ],
   "periphery|||a pale white dot": [
     "deathcore",
@@ -3416,76 +3098,76 @@
   ],
   "periphery|||juggernaut: alpha": [
     "progressive metal",
-    "2015",
-    "math metal"
+    "math metal",
+    "metal"
   ],
   "periphery|||juggernaut: omega": [
     "progressive metal",
-    "2015",
-    "math metal"
+    "math metal",
+    "metal"
   ],
   "periphery|||periphery ii: this time it's personal": [
     "progressive metal",
-    "djent",
-    "metal"
+    "metal",
+    "math metal"
   ],
   "periphery|||periphery v: djent is not a genre": [
     "progressive metal",
-    "not djent",
-    "djent"
+    "metalcore",
+    "deathcore"
   ],
   "phoebe bridgers|||punisher": [
-    "2020",
     "indie rock",
-    "indie folk"
-  ],
-  "phoebe bridgers|||stranger in the alps": [
-    "2017",
     "indie folk",
     "singer-songwriter"
+  ],
+  "phoebe bridgers|||stranger in the alps": [
+    "indie folk",
+    "singer-songwriter",
+    "indie rock"
   ],
   "pimmie|||don't come home": [],
   "pink floyd|||the dark side of the moon": [
     "progressive rock",
-    "1973",
-    "70s"
+    "psychedelic rock",
+    "classic rock"
   ],
   "pink floyd|||wish you were here": [
     "progressive rock",
-    "1975",
-    "classic rock"
+    "classic rock",
+    "rock"
   ],
   "pinkpantheress|||fancy some more?": [
-    "2025",
     "house",
-    "breakbeat"
+    "dance-pop",
+    "speed garage"
   ],
   "pinkpantheress|||fancy that": [
-    "2025",
-    "2-step",
-    "uk garage"
+    "uk garage",
+    "electronic",
+    "rnb"
   ],
   "pinkpantheress|||heaven knows": [
-    "2023",
     "pop",
-    "alt-pop"
+    "alt-pop",
+    "uk garage"
   ],
   "pinkpantheress|||to hell with it": [
-    "2021",
     "bedroom pop",
-    "drum and bass"
+    "alt-pop",
+    "contemporary rnb"
   ],
   "plaqueboymax|||crash dummy": [],
   "plaqueboymax|||five forever": [],
   "playboi carti|||die lit": [
     "cloud rap",
     "trap",
-    "southern hip hop"
+    "southern hip-hop"
   ],
   "playboi carti|||music": [
     "trap",
-    "2025",
-    "rage"
+    "southern hip-hop",
+    "cloud rap"
   ],
   "playboi carti|||playboi carti": [
     "trap",
@@ -3498,93 +3180,82 @@
     "experimental hip hop"
   ],
   "polo g|||die a legend": [
-    "2019",
     "rap",
-    "trap"
+    "trap",
+    "trap rap"
   ],
   "polo g|||hood poet": [
-    "hip-hop",
-    "2020s",
-    "2024"
+    "hip-hop"
   ],
-  "polo g|||hall of fame": [
-    "2021",
-    "king billionheir",
-    "polo g"
-  ],
-  "polo g|||hall of fame 2.0": [
-    "2021",
-    "polo g"
-  ],
+  "polo g|||hall of fame": [],
+  "polo g|||hall of fame 2.0": [],
   "polo g|||the goat": [
-    "2020",
     "hip-hop",
-    "melodic rap album"
+    "melodic rap album",
+    "hip-hop album"
   ],
   "pop smoke|||shoot for the stars, aim for the moon": [],
   "porcupine tree|||in absentia": [
     "progressive rock",
     "progressive metal",
-    "2002"
+    "rock"
   ],
   "portishead|||dummy": [
     "trip-hop",
-    "1994",
-    "electronic"
+    "electronic",
+    "trip hop"
   ],
   "post malone|||austin": [
-    "2023",
     "pop rock",
-    "singer-songwriter"
+    "singer-songwriter",
+    "pop"
   ],
   "post malone|||twelve carat toothache": [
-    "2022",
     "hip-hop",
-    "rnb"
+    "rnb",
+    "rap"
   ],
   "pusha t|||daytona": [
-    "2018",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "hardcore hip-hop"
   ],
   "pusha t|||it's almost dry": [
-    "2022",
-    "hip hop",
-    "gangsta rap"
+    "hip-hop",
+    "gangsta rap",
+    "rap"
   ],
   "pusha t|||my name is my name": [
-    "2013",
     "rap",
-    "gangsta rap"
+    "gangsta rap",
+    "pop rap"
   ],
   "quadeca|||vanisher, horizon scraper": [
-    "vinyl",
-    "2025",
-    "art pop"
+    "art pop",
+    "baroque pop",
+    "folktronica"
   ],
   "quasimoto|||the unseen": [
-    "2000",
-    "hip hop",
-    "hip-hop"
+    "hip-hop",
+    "rap",
+    "experimental"
   ],
-  "quavo|||rocket power": [
-    "2023"
-  ],
+  "quavo|||rocket power": [],
   "quavo & takeoff|||only built for infinity links": [],
   "queens of the stone age|||songs for the deaf": [
     "stoner rock",
     "alternative rock",
-    "2002"
+    "rock"
   ],
   "raye|||my 21st century blues": [
-    "2023",
     "pop",
-    "pop rap"
+    "pop rap",
+    "rnb"
   ],
   "raye|||this music may contain hope.": [
-    "2026",
     "pop",
-    "pablobiel"
+    "jazz",
+    "soul"
   ],
   "role model|||kansas anymore": [
     "indie pop",
@@ -3592,308 +3263,293 @@
     "folk pop"
   ],
   "rosalía|||lux": [
-    "2025",
     "art pop",
-    "classical"
+    "flamenco pop",
+    "pop"
   ],
   "rosalía|||motomami": [
-    "2022",
-    "neoperreo",
-    "reggaeton"
+    "pop",
+    "experimental",
+    "art pop"
   ],
   "radiohead|||a moon shaped pool": [
-    "radiohead",
     "art rock",
-    "2016"
+    "art pop",
+    "chamber pop"
   ],
   "radiohead|||amnesiac": [
-    "2001",
     "electronic",
-    "alternative"
+    "experimental",
+    "experimental rock"
   ],
   "radiohead|||hail to the thief": [
-    "2003",
     "alternative rock",
-    "alternative"
+    "rock",
+    "electronic"
   ],
   "radiohead|||in rainbows": [
     "alternative rock",
-    "alternative",
-    "2007"
+    "art rock",
+    "rock"
   ],
   "radiohead|||kid a": [
     "electronic",
     "experimental",
-    "2000"
+    "art rock"
   ],
   "radiohead|||ok computer": [
     "alternative rock",
-    "alternative",
-    "1997"
+    "rock",
+    "art rock"
   ],
   "radiohead|||pablo honey": [
     "alternative rock",
-    "1993",
-    "alternative"
+    "rock",
+    "grunge"
   ],
   "radiohead|||the bends": [
     "alternative rock",
-    "1995",
-    "rock"
+    "rock",
+    "britpop"
   ],
   "radiohead|||the king of limbs": [
-    "2011",
     "electronic",
-    "experimental"
+    "experimental",
+    "experimental rock"
   ],
   "rainbow kitten surprise|||how to: friend, love, freefall": [],
   "ransom, v don & conway the machine|||chaos is my ladder 2": [],
   "ravyn lenae|||bird's eye": [
-    "2024",
     "neo-soul",
-    "reggae"
+    "indie rock",
+    "rnb"
   ],
   "ravyn lenae|||hypnos": [
     "neo-soul",
-    "2022",
-    "contemporary rnb"
+    "contemporary rnb",
+    "rnb"
   ],
   "reneé rapp|||bite me": [
     "alt-pop",
     "pop rock",
-    "julia mofada"
+    "singer-songwriter"
   ],
   "rich the kid & lil wayne|||trust fund babies": [],
   "rick ross|||deeper than rap": [
-    "2009",
     "rap",
-    "rick ross"
+    "hip-hop",
+    "mafiaso rap"
   ],
   "rick ross|||god forgives, i don't": [
     "rap",
-    "hip hop",
+    "hip-hop",
     "southern rap"
   ],
   "rick ross|||mastermind": [
-    "hip hop",
-    "2014",
+    "hip-hop",
     "rap"
   ],
   "rick ross|||rather you than me": [
-    "rick ross",
     "rap",
-    "2017"
+    "hip-hop"
   ],
   "rick ross|||rich forever": [
-    "2012",
     "rap"
   ],
   "rick ross|||teflon don": [
-    "2010",
-    "best of 2010",
-    "rap"
+    "rap",
+    "hip-hop"
   ],
   "rick ross|||trilla": [
-    "dirty south",
     "rap",
-    "2008"
+    "hip-hop"
   ],
   "rick ross & meek mill|||too good to be true": [],
   "rihanna|||a girl like me": [
     "pop",
-    "2006",
-    "rnb"
+    "rnb",
+    "dance"
   ],
   "rihanna|||anti": [
-    "2016",
     "pop",
-    "rnb"
+    "rnb",
+    "soul"
   ],
   "rihanna|||anti (deluxe)": [
-    "2016",
     "pop",
-    "rnb"
+    "rnb",
+    "hip-hop"
   ],
   "rihanna|||good girl gone bad": [
     "pop",
-    "rihanna",
-    "rnb"
+    "rnb",
+    "dance"
   ],
   "rihanna|||good girl gone bad: reloaded": [
     "pop",
-    "2008",
-    "rnb"
+    "rnb",
+    "dance"
   ],
   "rihanna|||loud": [
     "pop",
-    "2010",
-    "dance"
+    "dance",
+    "rnb"
   ],
   "rihanna|||music of the sun": [
-    "2005",
-    "reggae",
-    "rnb"
+    "rnb",
+    "pop",
+    "dancehall"
   ],
   "rihanna|||rated r": [
-    "2009",
     "pop",
-    "rnb"
-  ],
-  "rihanna|||talk that talk": [
-    "2011",
-    "pop",
+    "rnb",
     "dance"
   ],
-  "rihanna|||unapologetic": [
-    "2012",
+  "rihanna|||talk that talk": [
     "pop",
+    "dance",
     "rnb"
+  ],
+  "rihanna|||unapologetic": [
+    "pop",
+    "rnb",
+    "dance"
   ],
   "rina sawayama|||hold the girl": [
-    "2022",
     "pop",
-    "pop rock"
+    "pop rock",
+    "country pop"
   ],
   "rina sawayama|||sawayama": [
-    "2020",
     "pop",
-    "rnb"
+    "rnb",
+    "pop rock"
   ],
   "rob carroll|||rob carroll radio vol. 1": [],
   "robyn|||sexistential": [
-    "2026",
     "electropop",
-    "synthpop"
+    "synthpop",
+    "dance-pop"
   ],
-  "roddy ricch|||feed tha streets iii": [
-    "2022"
-  ],
-  "roddy ricch|||live life fast": [
-    "roddy ricch",
-    "2021"
-  ],
+  "roddy ricch|||feed tha streets iii": [],
+  "roddy ricch|||live life fast": [],
   "roddy ricch|||please excuse me for being antisocial": [
     "rap",
     "hip-hop",
-    "2019"
+    "pop rap"
   ],
   "roddy ricch|||the big 3": [],
   "rome streetz|||kiss the ring": [
-    "east coast hip-hop",
-    "dbdbdbdbdbdbdbdbdbdbdb"
+    "east coast hip-hop"
   ],
   "royce da 5'9''|||book of ryan": [],
   "royce da 5'9''|||layers": [],
   "royce da 5'9''|||the allegory": [],
   "royce da 5'9''|||the bar exam 4": [],
   "run the jewels|||rtj4": [
-    "2020",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "hardcore hip-hop"
   ],
   "run the jewels|||run the jewels": [
-    "2013",
-    "hip hop",
-    "hip-hop"
+    "hip-hop",
+    "hardcore hip-hop",
+    "rap"
   ],
   "run the jewels|||run the jewels 2": [
-    "2014",
-    "hardcore hip hop",
-    "hip hop"
+    "hardcore hip-hop",
+    "hip-hop",
+    "rap"
   ],
   "run the jewels|||run the jewels 3": [
-    "2016",
     "rap",
-    "hip-hop"
+    "hip-hop",
+    "hardcore hip-hop"
   ],
   "sza|||ctrl": [
-    "2017",
+    "rnb",
+    "alternative rnb",
+    "neo-soul"
+  ],
+  "sza|||ctrl (deluxe)": [
+    "alternative rnb",
+    "rnb",
+    "neo-soul"
+  ],
+  "sza|||sos": [
+    "trap",
+    "rnb",
+    "pop"
+  ],
+  "sza|||sos deluxe: lana": [
+    "neo-soul",
     "rnb",
     "alternative rnb"
   ],
-  "sza|||ctrl (deluxe)": [
-    "sza",
-    "alternative rnb",
-    "ctrl"
-  ],
-  "sza|||sos": [
-    "2022",
-    "trap",
-    "rnb"
-  ],
-  "sza|||sos deluxe: lana": [
-    "2024",
-    "neo-soul",
-    "rnb"
-  ],
   "sza|||z": [
-    "downtempo",
     "alternative rnb",
-    "wonky"
+    "cloud rap",
+    "chillwave"
   ],
-  "saba|||c0ffee!": [
-    "2025"
-  ],
+  "saba|||c0ffee!": [],
   "saba|||care for me": [
-    "2018",
     "jazz rap",
-    "neo-soul"
+    "neo-soul",
+    "rap"
   ],
   "saba|||few good things": [
-    "2022",
     "pop rap",
-    "rap"
+    "rap",
+    "hip-hop"
   ],
   "saba & no i.d.|||from the private collection of saba and no i.d.": [],
   "sabrina carpenter|||man's best friend": [
-    "2025",
-    "deposito",
-    "rnb"
+    "rnb",
+    "disco",
+    "dance pop"
   ],
   "sabrina carpenter|||short n' sweet": [
-    "2024",
     "pop",
-    "aoty"
+    "dance-pop",
+    "synthpop"
   ],
   "sam o|||strange power": [],
   "sam smith|||gloria": [
-    "2023",
     "pop",
-    "rnb"
+    "rnb",
+    "dance"
   ],
   "sampha|||lahai": [
-    "2023",
     "alternative rnb",
-    "neo-soul"
+    "neo-soul",
+    "art pop"
   ],
   "saya gray|||saya": [
-    "2025",
     "art pop",
-    "indietronica"
+    "indie pop",
+    "singer-songwriter"
   ],
   "schoolboy q|||blue lips": [
-    "2024",
     "jazz rap",
-    "rap"
+    "rap",
+    "hip-hop"
   ],
   "schoolboy q|||blank face lp": [
-    "2016",
     "rap",
-    "gangsta rap"
+    "gangsta rap",
+    "hip-hop"
   ],
   "schoolboy q|||crash talk": [
-    "2019",
     "rap",
-    "trap"
+    "trap",
+    "jazz"
   ],
   "scurra & totojira|||doghouse": [],
-  "sexyy red|||in sexyy we trust": [
-    "2024"
-  ],
+  "sexyy red|||in sexyy we trust": [],
   "shenseea|||alpha": [
-    "2022",
     "dancehall",
-    "rnb"
+    "rnb",
+    "pop"
   ],
   "shy glizzy|||flowers": [],
   "silk sonic|||an evening with silk sonic": [
@@ -3902,34 +3558,29 @@
     "philly soul"
   ],
   "ski mask the slump god|||11th dimension": [
-    "2024",
-    "hip hop",
     "hip-hop"
   ],
-  "ski mask the slump god|||sin city the mixtape": [
-    "2021",
-    "ski mask the slump god"
-  ],
+  "ski mask the slump god|||sin city the mixtape": [],
   "sky ferreira|||night time, my time": [
-    "2013",
     "synthpop",
-    "noise pop"
+    "noise pop",
+    "indie rock"
   ],
   "slayyyter|||starfucker": [
-    "2023",
     "electropop",
-    "dance-pop"
+    "dance-pop",
+    "pop"
   ],
   "slayyyter|||wor$t girl in america": [
-    "2026",
     "electropop",
-    "electroclash"
+    "electroclash",
+    "french electro"
   ],
   "sleep token|||even in arcadia (instrumental)": [],
   "sleep token|||even in arcadia": [
     "alternative metal",
     "progressive metal",
-    "2025"
+    "pop"
   ],
   "sleep token|||sundowning": [
     "progressive metal",
@@ -3937,14 +3588,14 @@
     "rock"
   ],
   "sleep token|||take me back to eden": [
-    "2023",
     "progressive metal",
-    "djent"
+    "alternative metal",
+    "post-metal"
   ],
   "sleep token|||this place will become your tomb": [
     "progressive metal",
     "alternative metal",
-    "djent"
+    "indie pop"
   ],
   "slipknot|||all hope is gone": [
     "alternative metal",
@@ -3969,18 +3620,18 @@
   "slowdive|||souvlaki": [
     "shoegaze",
     "dream pop",
-    "1993"
+    "dreamy"
   ],
   "snoop dogg & dr. dre|||missionary": [],
   "snow strippers|||april mixtape 3": [
-    "trance",
     "electropop",
-    "electroclash"
+    "electroclash",
+    "witch house"
   ],
   "spiritbox|||eternal blue": [
-    "2021",
     "metalcore",
-    "djent"
+    "progressive metal",
+    "post-metal"
   ],
   "spiritbox|||rotoscope": [
     "progressive metal",
@@ -3990,64 +3641,63 @@
   "spiritbox|||spiritbox": [
     "progressive metal",
     "progressive metalcore",
-    "djent"
+    "experimental"
   ],
   "spiritbox|||the fear of fear": [
-    "djent",
     "metalcore",
-    "2023"
+    "alternative metal",
+    "industrial metal"
   ],
   "spiritbox|||tsunami sea": [
-    "2025",
     "alternative metal",
-    "djent"
+    "metalcore",
+    "metal"
   ],
   "spiritualized|||ladies and gentlemen we are floating in space": [
-    "1997",
     "space rock",
-    "neo-psychedelia"
+    "shoegaze",
+    "art rock"
   ],
   "split chain|||motionblur": [],
   "steve lacy|||gemini rights": [
-    "2022",
-    "worst album ever",
-    "neo-soul"
+    "neo-soul",
+    "bedroom pop",
+    "psychedelic soul"
   ],
   "suki waterhouse|||i can't let go": [
-    "neo-psychedelia",
     "indie rock",
-    "queen"
+    "dream pop"
   ],
   "suki waterhouse|||memoir of a sparklemuffin": [
-    "2024",
     "indie pop",
-    "pop rock"
+    "pop rock",
+    "indie rock"
   ],
   "sweet trip|||velocity : design : comfort.": [
     "shoegaze",
-    "idm",
-    "glitch"
+    "dream pop",
+    "glitch pop"
   ],
   "swizz beatz|||hip hop 50, vol. 2": [],
   "system of a down|||hypnotize": [
     "alternative metal",
     "metal",
-    "2005"
+    "rock"
   ],
   "system of a down|||mezmerize": [
     "alternative metal",
     "metal",
-    "2005"
+    "nu metal"
   ],
   "system of a down|||steal this album!": [
     "alternative metal",
     "metal",
-    "2002"
+    "rock"
   ],
   "system of a down|||system of a down": [
     "alternative metal",
     "metal",
-    "1998"
+    "nu metal"
   ],
   "system of a down|||toxicity": [
     "alternative metal",
@@ -4056,14 +3706,13 @@
   ],
   "t-pain & lil wayne|||t-wayne": [],
   "t.i.|||king": [
-    "hip hop",
     "hip-hop",
-    "chill"
+    "hip hop/rap"
   ],
   "t.i.|||paper trail": [
     "rap",
     "hip-hop",
-    "ti"
+    "pop"
   ],
   "t.i.|||trap muzik": [
     "southern rap",
@@ -4074,110 +3723,109 @@
     "hip-hop"
   ],
   "t.i.|||urban legend": [
-    "2004",
     "rap",
     "southern rap"
   ],
   "tool|||10,000 days": [
     "progressive metal",
     "progressive rock",
-    "2006"
+    "metal"
   ],
   "tool|||fear inoculum": [
-    "2019",
     "progressive metal",
-    "progressive rock"
+    "progressive rock",
+    "metal"
   ],
   "tool|||lateralus": [
     "progressive metal",
     "progressive rock",
-    "2001"
+    "alternative metal"
   ],
   "tool|||opiate": [
     "alternative metal",
-    "1992",
-    "progressive metal"
+    "progressive metal",
+    "progressive rock"
   ],
   "tool|||undertow": [
     "progressive metal",
     "alternative metal",
-    "1993"
+    "progressive rock"
   ],
   "tool|||ænima": [
     "progressive metal",
-    "1996",
-    "alternative metal"
+    "alternative metal",
+    "progressive rock"
   ],
   "tame impala|||currents": [
-    "2015",
     "psychedelic pop",
-    "synthpop"
+    "synthpop",
+    "dream pop"
   ],
   "tame impala|||deadbeat": [
-    "2025",
     "electronic",
-    "house"
+    "house",
+    "dance"
   ],
   "tame impala|||the slow rush": [
-    "2020",
     "psychedelic pop",
-    "synthpop"
+    "synthpop",
+    "disco"
   ],
   "tanna leone|||sleepy soldier": [],
   "tate mcrae|||so close to what": [
-    "2025",
     "pop",
-    "contemporary rnb"
+    "contemporary rnb",
+    "hip-hop"
   ],
   "tate mcrae|||think later": [
-    "2023",
     "pop",
-    "alt-pop"
+    "alt-pop",
+    "electropop"
   ],
   "taylor swift|||1989": [
-    "2014",
     "pop",
-    "best of 2014"
+    "synthpop",
+    "dance-pop"
   ],
   "taylor swift|||midnights": [
     "rock",
-    "alternative",
-    "masterpiece"
+    "synthpop",
+    "pop"
   ],
   "taylor swift|||red": [
-    "2012",
     "pop",
-    "country"
+    "country",
+    "country pop"
   ],
   "taylor swift|||speak now": [
     "country",
     "pop",
-    "2010"
+    "country pop"
   ],
   "taylor swift|||the tortured poets department": [
     "pop",
-    "aoty",
-    "best of 2024"
+    "singer-songwriter",
+    "synthpop"
   ],
   "taylor swift|||the tortured poets department: the anthology": [
-    "aoty",
     "pop",
-    "2024"
+    "folk",
+    "synthpop"
   ],
   "taylor swift|||the life of a showgirl": [
     "pop",
-    "2025",
-    "aoty"
+    "pop rock",
+    "synthpop"
   ],
   "taylor swift|||evermore": [
-    "evermore (deluxe version)",
     "folk pop",
-    "2020"
+    "indie folk",
+    "chamber pop"
   ],
   "taylor swift|||folklore": [
-    "2020",
     "folk",
-    "folklore (deluxe version)"
+    "folklore (deluxe version)",
+    "folk pop"
   ],
   "team sleep|||team sleep": [
     "alternative rock",
@@ -4186,20 +3834,19 @@
   ],
   "tech n9ne|||asin9ne": [],
   "teezo touchdown|||how do you sleep at night?": [
-    "rock and boom",
-    "2023"
+    "rock and boom"
   ],
   "teyana taylor|||k.t.s.e.": [
-    "2018",
     "rnb",
-    "neo soul"
+    "neo-soul",
+    "soul"
   ],
   "the alchemist & curren$y|||continuance": [],
   "the alchemist & freddie gibbs|||alfredo": [],
   "the beatles|||abbey road": [
     "rock",
-    "1969",
-    "60s"
+    "classic rock",
+    "pop"
   ],
   "the brave little abacus|||just got back from the discomfort—we're alright": [
     "midwest emo",
@@ -4207,127 +3854,127 @@
     "experimental rock"
   ],
   "the cure|||songs of a lost world": [
-    "2024",
     "gothic rock",
-    "alternative rock"
+    "alternative rock",
+    "dream pop"
   ],
   "the dare|||what's wrong with new york?": [
-    "horny",
     "electroclash",
-    "new rave"
+    "dance-punk",
+    "electropop"
   ],
   "the game|||drillmatic: heart vs. mind": [],
   "the game|||the documentary": [
     "hip-hop",
-    "2005",
-    "rap"
+    "rap",
+    "gangsta rap"
   ],
   "the game & big hit|||paisley dreams": [],
   "the japanese house|||good at falling": [
-    "2019",
     "dream pop",
-    "indie pop"
+    "indie pop",
+    "art pop"
   ],
   "the japanese house|||in the end it always does": [
-    "2023",
-    "indietronica",
-    "indie folk"
+    "indie folk",
+    "indie pop",
+    "sophisti-pop"
   ],
   "the lemon twigs|||look for your mind!": [
     "pop rock",
     "power pop",
-    "2026"
+    "psychedelic pop"
   ],
   "the mars volta|||frances the mute": [
     "progressive rock",
     "experimental",
-    "2005"
+    "experimental rock"
   ],
   "the marías|||submarine": [
-    "2024",
     "dream pop",
-    "bedroom pop"
+    "bedroom pop",
+    "pop"
   ],
   "the notorious b.i.g.|||ready to die": [
-    "1994",
     "rap",
-    "gangsta rap"
+    "gangsta rap",
+    "hip-hop"
   ],
   "the roots|||undun": [
-    "2011",
-    "hip hop",
-    "rap"
+    "hip-hop",
+    "rap",
+    "soul"
   ],
   "the scythe|||strictly 4 the scythe": [],
   "the smashing pumpkins|||siamese dream": [
     "alternative rock",
-    "1993",
-    "90s"
+    "rock",
+    "grunge"
   ],
   "the strokes|||is this it": [
     "indie rock",
-    "2001",
-    "rock"
+    "rock",
+    "garage rock"
   ],
   "the strokes|||the new abnormal": [
-    "2020",
     "indie rock",
-    "new wave"
+    "new wave",
+    "synthpop"
   ],
   "the weeknd|||after hours": [
-    "2020",
     "synthpop",
-    "synthwave"
-  ],
-  "the weeknd|||beauty behind the madness": [
-    "2015",
-    "rnb",
-    "pop"
-  ],
-  "the weeknd|||dawn fm": [
-    "2022",
-    "synthpop",
-    "synthwave"
-  ],
-  "the weeknd|||echoes of silence": [
-    "2011",
-    "soul",
-    "r&b"
-  ],
-  "the weeknd|||house of balloons": [
-    "2011",
-    "r&b",
-    "soul"
-  ],
-  "the weeknd|||hurry up tomorrow": [
-    "2025",
     "synthwave",
     "alternative rnb"
   ],
-  "the weeknd|||kiss land": [
-    "2013",
-    "r&b",
+  "the weeknd|||beauty behind the madness": [
+    "rnb",
+    "pop",
     "alternative rnb"
+  ],
+  "the weeknd|||dawn fm": [
+    "synthpop",
+    "synthwave",
+    "pop"
+  ],
+  "the weeknd|||echoes of silence": [
+    "soul",
+    "rnb",
+    "experimental"
+  ],
+  "the weeknd|||house of balloons": [
+    "rnb",
+    "soul",
+    "electronic"
+  ],
+  "the weeknd|||hurry up tomorrow": [
+    "synthwave",
+    "alternative rnb",
+    "synthpop"
+  ],
+  "the weeknd|||kiss land": [
+    "rnb",
+    "alternative rnb",
+    "electronic"
   ],
   "the weeknd|||my dear melancholy,": [
-    "2018",
     "rnb",
-    "alternative rnb"
+    "alternative rnb",
+    "soul"
   ],
   "the weeknd|||starboy": [
-    "2016",
     "pop",
-    "rnb"
+    "rnb",
+    "electropop"
   ],
   "the weeknd|||thursday": [
-    "2011",
-    "r&b",
-    "rnb"
+    "rnb",
+    "alternative rnb",
+    "soul"
   ],
   "the weeknd|||trilogy": [
-    "2012",
-    "r&b",
-    "rnb"
+    "rnb",
+    "alternative rnb",
+    "dreamy"
   ],
   "the weeknd & moses sumney|||the idol episode 3 (music from the hbo original series)": [],
   "the weeknd, jennie & lily-rose depp|||the idol episode 4 (music from the hbo original series)": [],
@@ -4349,46 +3996,41 @@
   "tiacorine|||almost there": [],
   "tiacorine|||i can't wait": [],
   "tierra whack|||world wide whack": [
-    "2024",
     "alternative rap",
     "female art rap"
   ],
   "tinashe|||bb/ang3l": [
-    "2023",
     "alternative rnb",
-    "uk garage"
+    "uk garage",
+    "electronic"
   ],
   "tinashe|||quantum baby": [
-    "2024",
     "alternative rnb",
-    "uk bass"
+    "pop rap",
+    "trap soul"
   ],
-  "tommy richman|||coyote": [
-    "2024"
-  ],
+  "tommy richman|||coyote": [],
   "tory lanez|||alone at prom": [
     "synthwave",
-    "80s",
-    "synthpop"
+    "synthpop",
+    "pop"
   ],
-  "tory lanez|||alone at prom (deluxe)": [
-    "tory lamez"
-  ],
+  "tory lanez|||alone at prom (deluxe)": [],
   "tory lanez|||i told you": [
     "rap",
-    "canadian",
-    "rnb"
+    "rnb",
+    "hip-hop"
   ],
   "tory lanez|||sorry 4 what": [],
   "travis scott|||astroworld": [
-    "2018",
     "trap",
-    "pop rap"
+    "pop rap",
+    "southern hip-hop"
   ],
   "travis scott|||birds in the trap sing mcknight": [
     "hip-hop",
     "trap",
-    "2016"
+    "rap"
   ],
   "travis scott|||days before rodeo": [],
   "travis scott|||owl pharaoh": [],
@@ -4399,144 +4041,136 @@
     "alternative rnb"
   ],
   "trippie redd|||mansion musik": [
-    "rage",
     "pop rap",
     "trap"
   ],
   "turnstile|||never enough": [
-    "2025",
     "shoegaze",
-    "post-hardcore"
+    "post-hardcore",
+    "alternative rock"
   ],
   "ty dolla $ign|||tycoon": [],
   "tyla|||tyla": [
-    "2024",
     "rnb",
-    "amapiano"
+    "pop",
+    "contemporary rnb"
   ],
   "tyler, the creator|||bastard": [
     "horrorcore",
-    "ofwgkta",
-    "rap"
-  ],
-  "tyler, the creator|||call me if you get lost": [
-    "2021",
-    "neo-soul",
-    "synth funk"
-  ],
-  "tyler, the creator|||call me if you get lost: the estate sale": [
-    "2023",
-    "hip hop",
-    "neo-soul"
-  ],
-  "tyler, the creator|||chromakopia": [
-    "2024",
-    "experimental hip hop",
-    "west coast hip hop"
-  ],
-  "tyler, the creator|||cherry bomb": [
-    "2015",
-    "neo-soul",
-    "experimental hip hop"
-  ],
-  "tyler, the creator|||don't tap the glass": [
-    "2025",
-    "hardcore hip hop",
-    "pop rap"
-  ],
-  "tyler, the creator|||flower boy": [
-    "2017",
-    "neo-soul",
-    "alternative rnb"
-  ],
-  "tyler, the creator|||goblin": [
-    "2011",
     "rap",
     "hip-hop"
+  ],
+  "tyler, the creator|||call me if you get lost": [
+    "neo-soul",
+    "synth funk",
+    "jazz rap"
+  ],
+  "tyler, the creator|||call me if you get lost: the estate sale": [
+    "hip-hop",
+    "neo-soul",
+    "jazz rap"
+  ],
+  "tyler, the creator|||chromakopia": [
+    "experimental hip hop",
+    "west coast hip-hop",
+    "synth funk"
+  ],
+  "tyler, the creator|||cherry bomb": [
+    "neo-soul",
+    "experimental hip hop",
+    "jazz rap"
+  ],
+  "tyler, the creator|||don't tap the glass": [
+    "hardcore hip-hop",
+    "pop rap",
+    "hip house"
+  ],
+  "tyler, the creator|||flower boy": [
+    "neo-soul",
+    "alternative rnb",
+    "hip-hop"
+  ],
+  "tyler, the creator|||goblin": [
+    "rap",
+    "hip-hop",
+    "horrorcore"
   ],
   "tyler, the creator|||igor": [
     "neo-soul",
-    "2019",
-    "rap"
-  ],
-  "tyler, the creator|||wolf": [
-    "2013",
     "rap",
     "hip-hop"
   ],
+  "tyler, the creator|||wolf": [
+    "rap",
+    "hip-hop",
+    "neo-soul"
+  ],
   "various artists|||8 mile (music from and inspired by the motion picture)": [
     "rap",
-    "hip hop",
-    "2002"
+    "hip-hop"
   ],
   "various artists|||barbie the album": [
-    "2023",
-    "soundtrack",
-    "pop"
+    "pop",
+    "disco",
+    "bubblegum pop"
   ],
   "various artists|||eminem presents: the re-up": [],
   "various artists|||kanye west presents: good music - cruel summer": [],
   "various artists|||shadyxv": [
-    "eminem",
-    "hip-hop",
-    "2010s"
+    "hip-hop"
   ],
   "victoria monét|||jaguar ii": [
-    "2023",
     "rnb",
-    "pop"
+    "pop",
+    "soul"
   ],
   "viktor vaughn|||vaudeville villain": [
-    "abstract hip hop",
-    "2003",
-    "east coast hip hop"
+    "abstract hip-hop",
+    "east coast hip-hop",
+    "glitch hop"
   ],
   "vince staples|||big fish theory": [
-    "2017",
     "rap",
-    "experimental hip hop"
+    "experimental hip hop",
+    "electronic"
   ],
-  "vince staples|||cry baby": [
-    "2026"
-  ],
+  "vince staples|||cry baby": [],
   "vince staples|||dark times": [
-    "2024",
-    "west coast hip hop",
-    "neo-soul"
+    "west coast hip-hop",
+    "neo-soul",
+    "jazz rap"
   ],
   "vince staples|||fm!": [
-    "2018",
     "rap",
-    "vinyl"
+    "hip-hop",
+    "trap"
   ],
   "vince staples|||ramona park broke my heart": [
-    "2022",
     "rap",
-    "gangsta rap"
+    "gangsta rap",
+    "west coast hip-hop"
   ],
   "vince staples|||summertime '06": [
-    "2015",
     "gangsta rap",
-    "hardcore hip hop"
+    "hardcore hip-hop",
+    "rap"
   ],
   "vince staples|||vince staples": [
-    "2021",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "alternative hip-hop"
   ],
   "vory|||lost souls": [],
-  "westside boogie|||more black superheroes": [
-    "2022"
-  ],
+  "westside boogie|||more black superheroes": [],
   "waka flocka flame|||flockaveli": [
     "gangsta rap",
-    "hip hop",
+    "hip-hop",
     "southern rap"
   ],
   "wallows|||model": [
-    "2024",
     "indie pop",
-    "post punk revival"
+    "post punk revival",
+    "new wave"
   ],
   "weiland|||vices": [
     "synthpop",
@@ -4544,57 +4178,51 @@
     "coldwave"
   ],
   "weiland|||you can't climb the mountain in n.y.": [
-    "hypnagogic pop",
-    "2025"
+    "hypnagogic pop"
   ],
   "westside gunn|||and then you pray for me": [
-    "2023",
-    "aggressive",
-    "sampling"
-  ],
-  "westside gunn|||pray for paris": [
-    "2020",
-    "boom bap",
     "gangsta rap"
   ],
+  "westside gunn|||pray for paris": [
+    "boom bap",
+    "gangsta rap",
+    "east coast hip-hop"
+  ],
   "wet leg|||moisturizer": [
-    "2025",
     "indie rock",
-    "indie pop"
+    "indie pop",
+    "garage rock revival"
   ],
   "weyes blood|||titanic rising": [
     "baroque pop",
-    "2019",
-    "art pop"
+    "art pop",
+    "psychedelic pop"
   ],
   "whirr|||pipe dreams": [
     "shoegaze",
     "dream pop",
-    "lo-fi"
+    "noise pop"
   ],
   "wisp|||if not winter": [
     "shoegaze",
-    "new classic",
-    "the most beautiful music in the world"
+    "the most beautiful music in the world",
+    "modern shoegaze"
   ],
   "wiz khalifa|||burn after rolling": [
     "rap",
-    "hip hop",
+    "hip-hop",
     "underground rap"
   ],
-  "wiz khalifa|||kush & orange juice": [
-    "best of 2010",
-    "2010"
-  ],
+  "wiz khalifa|||kush & orange juice": [],
   "wiz khalifa|||rolling papers": [
-    "2011",
     "rap",
-    "hip hop"
+    "hip-hop",
+    "underground hip-hop"
   ],
   "wolf alice|||visions of a life": [
-    "2017",
     "shoegaze",
-    "dream pop"
+    "dream pop",
+    "indie rock"
   ],
   "wunderhorse|||cub": [
     "grunge",
@@ -4602,150 +4230,122 @@
     "alternative rock"
   ],
   "wunderhorse|||midas": [
-    "2024",
     "grunge",
-    "alt-rock"
+    "alt-rock",
+    "britpop"
   ],
   "yg|||my krazy life": [
-    "la",
-    "hip hop",
-    "yg"
+    "hip-hop",
+    "post g-funk",
+    "rap"
   ],
-  "yt|||oi!": [
-    "jerk",
-    "oi",
-    "2025"
-  ],
+  "yt|||oi!": [],
   "yeat|||2 alivë": [
-    "rage",
     "pop rap",
-    "trap"
+    "trap",
+    "electronic"
   ],
   "yeat|||2093": [
-    "ebm",
     "trap",
-    "industrial hip hop"
+    "industrial hip hop",
+    "experimental hip hop"
   ],
-  "yeat|||adl": [
-    "2026",
-    "mid"
-  ],
+  "yeat|||adl": [],
   "yeat|||aftërlyfe": [
-    "2023",
     "cloud rap",
-    "rage"
+    "experimental hip hop",
+    "trap"
   ],
   "yeat|||dangerous summer": [
-    "2025",
     "trap"
   ],
   "yeat|||lyfë": [
     "trap",
-    "rage",
-    "pop rap"
+    "pop rap",
+    "rap"
   ],
-  "young money|||rise of an empire": [
-    "yancy tate",
-    "weezy f aka yancy tate",
-    "yancy"
-  ],
+  "young money|||rise of an empire": [],
   "young nudy|||ea monster": [
-    "2022",
-    "rap",
-    "banger"
+    "rap"
   ],
   "young nudy|||gumbo": [
-    "21 savage cousin",
-    "trap",
-    "2023"
+    "trap"
   ],
-  "young nudy|||paradise": [
-    "2025"
-  ],
+  "young nudy|||paradise": [],
   "young thug|||business is business": [
-    "young thug",
-    "hip hop",
-    "best of 2023"
+    "hip-hop"
   ],
   "young thug|||barter 6": [
     "pop rap",
-    "2015",
-    "sheeesh"
+    "trap"
   ],
   "young thug|||punk": [
-    "2021",
     "trap",
-    "folk"
+    "folk",
+    "rap"
   ],
   "young thug|||slime season": [
-    "hip hop",
+    "hip-hop",
     "trap",
     "alternative trap"
   ],
   "young thug|||so much fun": [
     "trap",
     "rap",
-    "southern hip hop"
+    "southern hip-hop"
   ],
-  "young thug|||uy scuti": [
-    "2025",
-    "young thug"
-  ],
+  "young thug|||uy scuti": [],
   "young thug & future|||super slimey": [],
   "youngboy never broke again|||3800 degrees": [],
   "youngboy never broke again|||colors": [
-    "hip hop",
+    "hip-hop",
     "pop",
     "pop rap"
   ],
   "youngboy never broke again|||decided 2": [],
   "youngboy never broke again|||don't try this at home": [],
   "youngboy never broke again|||i rest my case": [
-    "rage",
     "trap"
   ],
   "youngboy never broke again|||ma' i got a family": [],
   "youngboy never broke again|||richest opp": [],
   "youngboy never broke again|||still flexin, still steppin": [],
-  "youngboy never broke again|||top": [
-    "pain"
-  ],
+  "youngboy never broke again|||top": [],
   "zara larsson|||midnight sun": [
-    "2025",
     "dance-pop",
-    "baltimore club"
+    "pop",
+    "eurodance"
   ],
   "[prcy®]|||rbxrr v (rbvrr) presents: act ii - continuance": [],
   "beabadoobee|||beatopia": [
-    "2022",
     "indie pop",
-    "indie rock"
+    "indie rock",
+    "rock"
   ],
   "beabadoobee|||this is how tomorrow moves": [
-    "2024",
     "alternative rock",
-    "indie pop"
+    "indie pop",
+    "indie rock"
   ],
   "beastboi.|||loud and fear": [],
   "billy woods|||aethiopes": [
     "conscious hip hop",
-    "abstract hip hop",
+    "abstract hip-hop",
     "experimental hip hop"
   ],
   "billy woods|||golliwog": [
-    "abstract hip hop",
+    "abstract hip-hop",
     "experimental hip hop",
-    "2025"
+    "horrorcore"
   ],
   "d4vd|||withered": [
-    "alternative",
     "pop",
     "rnb"
   ],
   "foxtails|||iii": [
-    "screamo",
     "punk",
-    "midwest emo"
+    "midwest emo",
+    "emo"
   ],
   "mgk|||mainstream sellout": [
     "punk",
@@ -4756,70 +4356,65 @@
   "my bloody valentine|||loveless": [
     "shoegaze",
     "dream pop",
-    "1991"
+    "noise pop"
   ],
   "redveil|||learn 2 swim": [],
   "redveil|||playing w/ fire": [],
   "slayr|||half blood": [
-    "rage",
     "pop rap",
-    "digicore"
+    "digicore",
+    "trap"
   ],
   "sombr|||i barely know her": [
-    "2025",
-    "indie rock",
-    "perfection"
+    "indie rock"
   ],
   "t.a.t.u.|||200 km/h in the wrong lane": [
     "pop",
-    "russian",
-    "2002"
+    "rock",
+    "electronic"
   ],
   "twenty one pilots|||breach": [
-    "2025",
     "alternative rock",
-    "rock"
+    "rock",
+    "pop"
   ],
   "twenty one pilots|||clancy": [
-    "2024",
     "rock",
-    "trip-hop"
+    "trip-hop",
+    "alt-pop"
   ],
   "twenty one pilots|||trench": [
-    "2018",
     "indie pop",
-    "indietronica"
+    "alternative rock",
+    "synthpop"
   ],
   "underscores|||u": [
     "electropop",
     "dance-pop",
-    "2026"
+    "hyperpop"
   ],
   "underscores|||wallsocket": [
-    "2023",
-    "indietronica",
-    "electropop"
+    "electropop",
+    "indie rock",
+    "rock"
   ],
   "untiljapan|||trompe l'oeil": [],
   "¥$|||vultures 1": [
     "pop rap",
-    "hip hop",
+    "hip-hop",
     "trap"
   ],
   "¥$|||vultures 2": [
-    "worst album ever",
-    "2024",
-    "trap"
+    "trap",
+    "hip-hop",
+    "experimental"
   ],
-  "†††|||goodnight, god bless, i love u, delete.": [
-    "2023",
-    "2020s"
-  ],
+  "†††|||goodnight, god bless, i love u, delete.": [],
   "†††|||permanent.radiant": [],
   "†††|||†††": [
-    "2014",
-    "alternative",
-    "electronic rock"
+    "electronic rock",
+    "electronic",
+    "ambient"
   ],
   "파란노을 [parannoul]|||after the magic": []
 }
