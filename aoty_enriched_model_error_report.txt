@@ -4,14 +4,14 @@ AOTY ENRICHED MODEL ERROR REPORT
 Dataset
 -------
 Test rows: 238
-Features used: Artist, format, Genre 1, Genre 2, Genre 3, Year, release_decade, Number of tracks, Runtime
+Features used: Artist, format, Year, release_decade, Number of tracks, Runtime, genre__and_country, genre__abstract, genre__acoustic, genre__african, genre__altpop, genre__alternative_metal, genre__alternative_rock, genre__ambient, genre__arena_rock, genre__art_rock, genre__avantgarde, genre__bachata, genre__ballad, genre__ballroom, genre__baltimore_club, genre__baroque_pop, genre__bass_music, genre__bassline, genre__berlinschool, genre__black_metal, genre__blackgaze, genre__blues, genre__boogie, genre__boom_bap, genre__bossa_nova, genre__bounce, genre__breakbeat, genre__breaks, genre__britpop, genre__chillwave, genre__chiptune, genre__city_pop, genre__classic_rock, genre__classical, genre__cloud_rap, genre__conscious, genre__contemporary_jazz, genre__contemporary_randb, genre__country, genre__country_rock, genre__crunk, genre__cutup_dj, genre__dancepop, genre__dancehall, genre__dark_ambient, genre__dark_electro, genre__dark_jazz, genre__death_metal, genre__deathcore, genre__deconstructed_club, genre__deep_house, genre__disco, genre__downtempo, genre__dream_pop, genre__drill, genre__drone, genre__drum_n_bass, genre__dubstep, genre__electro, genre__electro_house, genre__electroacoustic, genre__electroclash, genre__electronic, genre__emo, genre__ethereal, genre__euro_house, genre__europop, genre__experimental, genre__flamenco, genre__folk, genre__folk_rock, genre__freestyle, genre__french_house, genre__funk, genre__funk___soul, genre__fusion, genre__future_bass, genre__future_pop, genre__gfunk, genre__gangsta, genre__garage_rock, genre__glam, genre__glitch, genre__glitch_hop, genre__gospel, genre__goth_rock, genre__grime, genre__groove_metal, genre__grunge, genre__hard_rock, genre__hardcore, genre__hardcore_hiphop, genre__heavy_metal, genre__hip_hop, genre__hiphouse, genre__hiplife, genre__horrorcore, genre__house, genre__hyperpop, genre__hyphy, genre__hypnagogic_pop, genre__idm, genre__indie_pop, genre__indie_rock, genre__industrial, genre__instrumental, genre__interview, genre__jangle_pop, genre__jazz, genre__jazzy_hiphop, genre__jersey_club, genre__latin, genre__latin_pop, genre__leftfield, genre__lofi, genre__math_rock, genre__metalcore, genre__midwest_emo, genre__neo_soul, genre__new_age, genre__new_jack_swing, genre__new_wave, genre__noise, genre__noise_rock, genre__nonmusic, genre__nu_metal, genre__nudisco, genre__pfunk, genre__piano_blues, genre__pop, genre__pop_punk, genre__pop_rap, genre__pop_rock, genre__post_rock, genre__posthardcore, genre__postmetal, genre__postpunk, genre__power_pop, genre__prog_rock, genre__progressive_house, genre__progressive_metal, genre__progressive_trance, genre__psychedelic, genre__psychedelic_rock, genre__punk, genre__ragga, genre__ragga_hiphop, genre__reggae, genre__reggaepop, genre__reggaeton, genre__rhythm_and_blues, genre__rnb_swing, genre__rock, genre__shoegaze, genre__slowcore, genre__soft_rock, genre__soul, genre__souljazz, genre__soundtrack, genre__space_rock, genre__spoken_word, genre__stage_and_screen, genre__stoner_rock, genre__symphonic_rock, genre__synthpop, genre__synthwave, genre__tech_house, genre__techno, genre__thrash, genre__thug_rap, genre__trap, genre__trip_hop, genre__turntablism, genre__uk_garage, genre__vaporwave, genre__vocal, genre__witch_house, genre__world, genre__unknown
 Target: Score
 
 Model Performance
 -----------------
-Model MAE: 10.97
-Model RMSE: 14.55
-Model R2: 0.084
+Model MAE: 11.96
+Model RMSE: 15.50
+Model R2: -0.040
 
 Dummy Baseline Performance
 --------------------------
@@ -21,127 +21,127 @@ Dummy R2: -0.014
 
 Error Tier Counts
 -----------------
-Close predictions: 78
-Moderate predictions: 55
-Large misses: 105
+Close predictions: 61
+Moderate predictions: 65
+Large misses: 112
 
 Score Range Summary
 -------------------
 score_range  count  average_actual_score  average_predicted_score  average_absolute_error
-       0-49     27             36.740741                62.481577               25.740836
-      50-59     21             53.952381                68.224418               14.272037
-      60-69     48             64.854167                64.769506                6.813445
-      70-79     98             74.132653                69.891395                6.524269
-      80-89     30             82.133333                73.500261                9.926010
-     90-100     14             95.214286                70.092868               25.121418
+       0-49     27             36.740741                60.818634               24.077894
+      50-59     21             53.952381                69.391180               15.438799
+      60-69     48             64.854167                64.461403                7.492624
+      70-79     98             74.132653                70.668419                9.114699
+      80-89     30             82.133333                71.890335               10.855866
+     90-100     14             95.214286                74.245831               20.968455
 
 Format Summary
 --------------
       format  count  average_actual_score  average_predicted_score  average_absolute_error
-          LP    185             69.340541                68.600540               10.459394
-     Mixtape     23             66.260870                69.037274               13.876166
-          EP     19             64.263158                64.770675               11.630144
-     Reissue      6             62.666667                67.857813               12.232577
-       Remix      2             69.500000                80.798824               12.989295
-Instrumental      1             60.000000                53.844784                6.155216
-  Soundtrack      1             63.000000                68.052242                5.052242
-  Unofficial      1             89.000000                64.074746               24.925254
+          LP    185             69.340541                69.073479               11.945038
+     Mixtape     23             66.260870                70.234562               13.467537
+          EP     19             64.263158                63.180063               11.050829
+     Reissue      6             62.666667                64.812042               12.186057
+       Remix      2             69.500000                67.462954               11.681252
+Instrumental      1             60.000000                62.661414                2.661414
+  Soundtrack      1             63.000000                57.165481                5.834519
+  Unofficial      1             89.000000                77.087185               11.912815
 
 Primary Genre Summary
 ---------------------
-           Genre 1  count  average_actual_score  average_predicted_score  average_absolute_error
-           unknown     69             64.956522                64.627600                9.762702
-               rap     26             72.884615                67.204277               13.950574
-               pop     21             72.904762                73.549407                6.166690
-           hip-hop     20             69.950000                65.843444               17.620313
- alternative metal      7             71.571429                75.425996                8.909666
-              trap      7             61.285714                75.864459               20.301851
- progressive metal      6             71.166667                75.363555                5.278208
-               rnb      5             72.200000                75.283770                7.217067
-       gangsta rap      5             66.200000                66.310639               14.985600
-              rock      4             62.250000                76.366997               17.318809
-              soul      3             70.666667                69.968093                2.954505
-          shoegaze      3             77.000000                75.739127                3.684115
-        indie rock      3             64.000000                70.838525                6.838525
-          nu metal      3             75.000000                73.145483                7.198233
-          synthpop      3             83.000000                68.496565               14.503435
-        indie folk      2             74.500000                75.466232                0.967520
-         dream pop      2             72.500000                70.327040                2.172960
-       electronica      2             72.500000                66.956197                5.934851
-          pop rock      2             75.500000                71.424605                6.390627
-west coast hip-hop      2             78.500000                74.585333                9.550528
-           art pop      2             76.500000                66.196063               10.303937
-          neo-soul      2             48.500000                60.069746               11.569746
-         indie pop      2             53.500000                64.606905               14.655491
-   alternative rnb      2             58.500000                73.761397               16.567978
-          jazz rap      2             70.500000                69.293716               19.832191
+            Genre  count  average_actual_score  average_predicted_score  average_absolute_error
+          Hip Hop    140             68.307143                67.202930               12.834181
+              Pop     53             68.867925                71.382013               12.212946
+             Rock     52             70.500000                71.846033               10.564584
+             Trap     48             64.229167                64.404333               14.596811
+      Funk / Soul     41             72.853659                73.837834               10.695163
+ Contemporary R&B     40             73.600000                73.842634               10.912078
+       Electronic     32             68.062500                68.360465               11.193775
+          Pop Rap     23             76.304348                74.270178               16.509492
+          Gangsta     20             68.200000                70.568530               12.233463
+          unknown     18             61.222222                64.918728               10.861482
+ Hardcore Hip-Hop     18             69.388889                67.201872               16.347537
+        Conscious     16             75.625000                74.932373               13.518476
+        Synth-pop     15             69.666667                75.817869               10.010665
+ Alternative Rock     14             74.500000                75.370145                8.488716
+        Dance-pop     12             68.750000                69.470650               13.494331
+         Pop Rock     10             74.800000                72.466141                9.246404
+          Alt-Pop     10             72.000000                63.476131               14.849200
+           Ballad      9             68.000000                75.263154               15.271438
+       Indie Rock      8             70.375000                72.233809                7.166039
+        Indie Pop      8             66.500000                67.767314               11.068649
+        Downtempo      7             64.428571                71.361252               14.662232
+    Jazzy Hip-Hop      6             77.000000                74.301295                5.786874
+Progressive Metal      6             69.666667                64.964338                7.365048
+Alternative Metal      6             73.666667                77.455683                8.497418
+         Nu Metal      6             70.500000                72.074958               11.334571
 
 Year Summary
 ------------
  Year  count  average_actual_score  average_predicted_score  average_absolute_error
- 1969      1             45.000000                85.163433               40.163433
- 1971      1             72.000000                77.387823                5.387823
- 1985      1             77.000000                69.298682                7.701318
- 1988      1             75.000000                70.971204                4.028796
- 1991      1             77.000000                77.480640                0.480640
- 1993      4             74.000000                71.970889                5.422047
- 1996      1             62.000000                63.057553                1.057553
- 1997      1             69.000000                66.315737                2.684263
- 1998      4             70.750000                71.292436                8.286320
- 1999      2             72.500000                66.712937               13.802637
- 2000      2             88.500000                67.227828               21.272172
- 2001      1             78.000000                72.226228                5.773772
- 2002      2             69.000000                69.688209               12.938429
- 2003      2             80.000000                78.694032                7.689255
- 2004      2             80.000000                72.035501                7.964499
- 2005      3             76.333333                67.993617                8.339716
- 2006      6             74.333333                73.846130                8.763524
- 2007      2             86.500000                72.004434               14.495566
- 2008      3             70.666667                75.517540               16.394814
- 2009      3             65.000000                81.881171               16.881171
- 2010      4             82.500000                70.309920               13.647898
- 2011      6             78.666667                72.000525               10.459857
- 2012      6             69.666667                70.598225                4.935557
- 2013      8             67.750000                68.658957               14.570581
- 2014      9             76.888889                71.973903                7.713239
- 2015      8             82.000000                71.168568               13.294258
- 2016      5             72.400000                70.298957                7.684753
- 2017      6             77.166667                69.675026                8.897582
- 2018      8             73.250000                69.606363               12.912857
- 2019      6             76.166667                69.243386               10.300175
- 2020     13             71.307692                69.119681               10.409800
- 2021      9             65.666667                69.220391               11.133724
- 2022     24             61.583333                65.088644               10.525207
- 2023     26             61.653846                65.351133               10.201516
- 2024     16             63.687500                66.340711               15.100881
- 2025     28             63.142857                65.889308               10.683355
- 2026     13             59.000000                61.781545               12.647420
+ 1969      1             45.000000                74.794291               29.794291
+ 1971      1             72.000000                65.217400                6.782600
+ 1985      1             77.000000                81.768437                4.768437
+ 1988      1             75.000000                73.454711                1.545289
+ 1991      1             77.000000                81.415787                4.415787
+ 1993      4             74.000000                81.315595                8.476709
+ 1996      1             62.000000                76.546774               14.546774
+ 1997      1             69.000000                52.680248               16.319752
+ 1998      4             70.750000                80.272352               16.320502
+ 1999      2             72.500000                59.903632               16.167306
+ 2000      2             88.500000                58.231600               30.268400
+ 2001      1             78.000000                71.311603                6.688397
+ 2002      2             69.000000                77.866785               10.842940
+ 2003      2             80.000000                62.724926               17.275074
+ 2004      2             80.000000                69.977093               10.022907
+ 2005      3             76.333333                71.733308                4.600026
+ 2006      6             74.333333                77.925786                8.515040
+ 2007      2             86.500000                75.466529               11.033471
+ 2008      3             70.666667                79.959864               18.400874
+ 2009      3             65.000000                80.044306               15.044306
+ 2010      4             82.500000                85.261058               18.193329
+ 2011      6             78.666667                70.029577               11.864008
+ 2012      6             69.666667                67.530179                8.042948
+ 2013      8             67.750000                72.467777               12.801865
+ 2014      9             76.888889                65.871647               11.017242
+ 2015      8             82.000000                69.514260               16.856830
+ 2016      5             72.400000                69.370547               10.745514
+ 2017      6             77.166667                70.230138               10.107102
+ 2018      8             73.250000                66.612290               13.177820
+ 2019      6             76.166667                70.770164                8.147414
+ 2020     13             71.307692                67.230482               10.410469
+ 2021      9             65.666667                69.364391                9.653466
+ 2022     24             61.583333                66.681963               10.849740
+ 2023     26             61.653846                65.354155               12.717624
+ 2024     16             63.687500                68.409415               13.173712
+ 2025     28             63.142857                64.883075               10.243155
+ 2026     13             59.000000                60.806791               15.212956
 
 Worst 25 Misses
 ---------------
-              Artist                                   Album  Year  Number of tracks  Runtime          Genre 1              Genre 2             Genre 3  actual_score  predicted_score      error  absolute_error error_tier
-         The Beatles                              Abbey Road  1969              17.0    52.03             rock         classic rock                 pop            45        85.163433  40.163433       40.163433 large_miss
-              Eminem                                Recovery  2010              17.0    67.12          hip-hop                  rap             unknown           100        60.243119 -39.756881       39.756881 large_miss
-       Westside Gunn                And Then You Pray For Me  2023              21.0    75.28      gangsta rap              unknown             unknown            24        61.740596  37.740596       37.740596 large_miss
-              Eminem                 The Marshall Mathers LP  2000              18.0    71.60              rap              hip-hop          horrorcore            97        59.528665 -37.471335       37.471335 large_miss
-               Drake                             So Far Gone  2009              18.0    73.82          hip-hop                  rnb                 rap            40        77.456838  37.456838       37.456838 large_miss
-              Eminem                 Music to Be Murdered By  2020              20.0    57.97              rap              hip-hop          horrorcore            91        53.814133 -37.185867       37.185867 large_miss
-              Eminem The Death of Slim Shady (Coup de Grâce)  2024              19.0    62.45       horrorcore              hip-hop          comedy rap            68        32.572977 -35.427023       35.427023 large_miss
-          Kanye West                          Donda (Deluxe)  2021              32.0   131.68             trap      alternative rnb             pop rap            44        78.264144  34.264144       34.264144 large_miss
-            Lil Pump                              Lil Pump 2  2023              16.0    39.07          hip-hop                 trap             unknown            20        53.242318  33.242318       33.242318 large_miss
-           JPEGMAFIA              I LAY DOWN MY LIFE FOR YOU  2024              14.0    41.65 hardcore hip-hop experimental hip hop            rap rock            34        67.095078  33.095078       33.095078 large_miss
-        Armani White                     ROAD TO CASABLANCO.  2023               9.0    24.07          unknown              unknown             unknown            29        62.030007  33.030007       33.030007 large_miss
-            The Game              Drillmatic: Heart vs. Mind  2022              13.0    44.90          unknown              unknown             unknown            27        59.870983  32.870983       32.870983 large_miss
-        Lil Uzi Vert                         Eternal Atake 2  2024              16.0    44.90              rap          nitrous rap             unknown            30        62.590206  32.590206       32.590206 large_miss
-         Don Toliver                           Life of a DON  2021              16.0    51.48  alternative rnb                 soul alternative hip-hop            43        74.829375  31.829375       31.829375 large_miss
-         billy woods                                GOLLIWOG  2025              18.0     4.42 abstract hip-hop experimental hip hop          horrorcore            69        38.049085 -30.950915       30.950915 large_miss
-                  ¥$                              VULTURES 2  2024              16.0    49.03             trap              hip-hop        experimental            50        79.120853  29.120853       29.120853 large_miss
-           Lil Wayne                                     FWA  2015              13.0    55.92          unknown              unknown             unknown           100        71.008820 -28.991180       28.991180 large_miss
-           Lady Gaga                                  MAYHEM  2025              14.0    55.93       electropop            dance-pop                 pop            48        76.590537  28.590537       28.590537 large_miss
-               Lizzo              MY FACE HURTS FROM SMILING  2025              13.0    33.85              rap              hip-hop             unknown            30        58.070183  28.070183       28.070183 large_miss
-               JAY-Z               Magna Carta... Holy Grail  2013              16.0    54.95          hip-hop                  rap             unknown            28        55.739931  27.739931       27.739931 large_miss
-          ROLE MODEL                          Kansas Anymore  2024              13.0    41.38        indie pop    singer-songwriter            folk pop            29        54.762396  25.762396       25.762396 large_miss
-          Juice WRLD                 Goodbye & Good Riddance  2018              15.0    44.18          hip-hop                  rap             emo rap            78        52.382399 -25.617601       25.617601 large_miss
-              Future                                 Monster  2014              13.0    44.15      gangsta rap     southern hip-hop                trap            94        68.461012 -25.538988       25.538988 large_miss
-         Roddy Ricch                               The Big 3  2022               3.0     8.62          unknown              unknown             unknown            41        66.254293  25.254293       25.254293 large_miss
-DJ Drama & Lil Wayne                            Dedication 3  2008              13.0    44.90          unknown              unknown             unknown            52        77.179382  25.179382       25.179382 large_miss
+              Artist                      Album  Year  Number of tracks  Runtime                                                                           Genres  actual_score  predicted_score      error  absolute_error error_tier
+              Eminem    The Marshall Mathers LP  2000              18.0    71.60                                            Hip Hop, Hardcore Hip-Hop, Horrorcore            97        50.759903 -46.240097       46.240097 large_miss
+        Lil Uzi Vert            Eternal Atake 2  2024              16.0    44.90                                                           Hip Hop, Trap, Pop Rap            30        73.065883  43.065883       43.065883 large_miss
+         underscores                          U  2026               9.0    29.00 Electronic, Pop, Electro, Future Bass, Alt-Pop, Dance-pop, Glitch, Electro House            78        35.544273 -42.455727       42.455727 large_miss
+              Eminem    Music to Be Murdered By  2020              20.0    57.97                                   Hip Hop, Hardcore Hip-Hop, Horrorcore, Pop Rap            91        48.974986 -42.025014       42.025014 large_miss
+          Bruno Mars       Doo-Wops & Hooligans  2010              10.0    35.43        Rock, Reggae, Funk / Soul, Pop, Soft Rock, Soul, Contemporary R&B, Ballad            74       115.367110  41.367110       41.367110 large_miss
+               Drake                So Far Gone  2009              18.0    73.82                                  Hip Hop, Funk / Soul, Contemporary R&B, Pop Rap            40        80.757872  40.757872       40.757872 large_miss
+            Lil Pump                 Lil Pump 2  2023              16.0    39.07                               Hip Hop, Rock, Trap, Hardcore Hip-Hop, Heavy Metal            20        60.218935  40.218935       40.218935 large_miss
+       Westside Gunn   And Then You Pray For Me  2023              21.0    75.28                                                                          Hip Hop            24        62.834136  38.834136       38.834136 large_miss
+             OutKast                   Aquemini  1998              16.0    71.02                                        Hip Hop, Reggae, Gangsta, Soul, Conscious            76       112.237786  36.237786       36.237786 large_miss
+          ROLE MODEL             Kansas Anymore  2024              13.0    41.38                                                                   Pop, Indie Pop            29        64.470865  35.470865       35.470865 large_miss
+            The Game Drillmatic: Heart vs. Mind  2022              13.0    44.90                                                Hip Hop, Gangsta, Trap, Conscious            27        62.227427  35.227427       35.227427 large_miss
+               Drake                    HABIBTI  2026              11.0    34.28                                                      Hip Hop, RnB/Swing, Pop Rap            50        84.292709  34.292709       34.292709 large_miss
+DJ Drama & Lil Wayne               Dedication 3  2008              13.0    44.90                                                                Hip Hop, Abstract            52        86.265243  34.265243       34.265243 large_miss
+        Armani White        ROAD TO CASABLANCO.  2023               9.0    24.07                                                                          unknown            29        63.232415  34.232415       34.232415 large_miss
+               JAY-Z  Magna Carta... Holy Grail  2013              16.0    54.95                                                                     Hip Hop, Pop            28        59.654196  31.654196       31.654196 large_miss
+              Future                        DS2  2015              13.0    42.48                                                                    Hip Hop, Trap           100        68.675886 -31.324114       31.324114 large_miss
+          Kanye West                         ye  2018               7.0    29.37                Hip Hop, Funk / Soul, Pop, Contemporary R&B, Spoken Word, Pop Rap            82        50.703418 -31.296582       31.296582 large_miss
+         The Beatles                 Abbey Road  1969              17.0    52.03                                                                   Rock, Pop Rock            45        74.794291  29.794291       29.794291 large_miss
+           Lil Wayne                        FWA  2015              13.0    55.92                                                                          Hip Hop           100        70.215832 -29.784168       29.784168 large_miss
+      Bad Meets Evil           Hell: The Sequel  2011              11.0    42.82                                                                          Hip Hop            93        63.570550 -29.429450       29.429450 large_miss
+        Taylor Swift     The Life of a Showgirl  2025              12.0    41.67              Electronic, Pop, Synth-pop, Ballad, Downtempo, Soft Rock, Dance-pop            45        73.769220  28.769220       28.769220 large_miss
+              Eminem          The Slim Shady LP  1999              20.0    59.35                                            Hip Hop, Hardcore Hip-Hop, Horrorcore            80        51.236326 -28.763674       28.763674 large_miss
+         Ravyn Lenae                     Hypnos  2022              16.0    53.43      Electronic, Funk / Soul, Contemporary R&B, Neo Soul, Psychedelic, Downtempo            60        87.979182  27.979182       27.979182 large_miss
+              Eminem                   Recovery  2010              17.0    67.12                                                      Hip Hop, Pop Rap, Conscious           100        72.483556 -27.516444       27.516444 large_miss
+               Lizzo MY FACE HURTS FROM SMILING  2025              13.0    33.85                                                                    Hip Hop, Trap            30        57.307416  27.307416       27.307416 large_miss

@@ -363,30 +363,106 @@
   "bigbabygucci|||and when i'm alone": [],
   "bnyx®|||genesis fm": [],
   "bnyx®|||loading...": [],
-  "baby keem|||ca$ino": [],
-  "baby keem|||the melodic blue": [],
+  "baby keem|||ca$ino": [
+    "Hip Hop",
+    "Trap",
+    "Contemporary R&B"
+  ],
+  "baby keem|||the melodic blue": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
   "baby keem|||the melodic blue (deluxe)": [],
-  "babytron|||bin reaper 3: new testament": [],
-  "babytron|||bin reaper 3: old testament": [],
-  "babytron|||megatron": [],
-  "babyface ray|||face": [],
-  "babyface ray|||mob": [],
-  "babyface ray|||summer's mine": [],
+  "babytron|||bin reaper 3: new testament": [
+    "Hip Hop"
+  ],
+  "babytron|||bin reaper 3: old testament": [
+    "Hip Hop"
+  ],
+  "babytron|||megatron": [
+    "Hip Hop"
+  ],
+  "babyface ray|||face": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "babyface ray|||mob": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "babyface ray|||summer's mine": [
+    "Hip Hop",
+    "Trap"
+  ],
   "bad bunny|||debí tirar más fotos": [],
-  "bad meets evil|||hell: the sequel": [],
-  "bakar|||badkid": [],
-  "bakar|||halo": [],
-  "bakar|||nobody's home": [],
-  "beach house|||bloom": [],
-  "beach house|||once twice melody": [],
-  "beach house|||teen dream": [],
-  "benny the butcher|||everybody can't go": [],
-  "benny the butcher|||excelsior": [],
-  "benny the butcher|||summertime butch 2": [],
-  "benny the butcher|||tana talk 3": [],
-  "benny the butcher|||tana talk 4": [],
-  "benny the butcher|||the plugs i met": [],
-  "benson boone|||american heart": [],
+  "bad meets evil|||hell: the sequel": [
+    "Hip Hop"
+  ],
+  "bakar|||badkid": [
+    "Electronic",
+    "Hip Hop",
+    "Rock",
+    "Indie Rock"
+  ],
+  "bakar|||halo": [
+    "Electronic",
+    "Hip Hop",
+    "Pop",
+    "Downtempo",
+    "Indie Pop"
+  ],
+  "bakar|||nobody's home": [
+    "Pop",
+    "Indie Pop"
+  ],
+  "beach house|||bloom": [
+    "Rock",
+    "Ethereal",
+    "Indie Rock",
+    "Dream Pop"
+  ],
+  "beach house|||once twice melody": [
+    "Rock",
+    "Pop",
+    "Indie Rock",
+    "Dream Pop"
+  ],
+  "beach house|||teen dream": [
+    "Rock",
+    "Pop",
+    "Indie Pop",
+    "Dream Pop"
+  ],
+  "benny the butcher|||everybody can't go": [
+    "Hip Hop"
+  ],
+  "benny the butcher|||excelsior": [
+    "Hip Hop"
+  ],
+  "benny the butcher|||summertime butch 2": [
+    "Hip Hop"
+  ],
+  "benny the butcher|||tana talk 3": [
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Boom Bap",
+    "Gangsta"
+  ],
+  "benny the butcher|||tana talk 4": [
+    "Hip Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "benny the butcher|||the plugs i met": [
+    "Hip Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "benson boone|||american heart": [
+    "Rock",
+    "Pop",
+    "Indie Pop",
+    "Alt-Pop"
+  ],
   "between the buried and me|||colors": [
     "Rock",
     "Progressive Metal",
@@ -409,7 +485,10 @@
     "Contemporary R&B"
   ],
   "beyoncé|||beyoncé [platinum edition]": [],
-  "beyoncé|||cowboy carter": [],
+  "beyoncé|||cowboy carter": [
+    "Folk, World, & Country",
+    "Country"
+  ],
   "beyoncé|||dangerously in love": [
     "Funk / Soul",
     "Contemporary R&B"
@@ -450,7 +529,9 @@
     "Hip Hop"
   ],
   "big k.r.i.t.|||dedicated to cadalee biarritz vol. 1": [],
-  "big k.r.i.t., wiz khalifa, girl talk & smoke dza|||full court press": [],
+  "big k.r.i.t., wiz khalifa, girl talk & smoke dza|||full court press": [
+    "Hip Hop"
+  ],
   "big sean|||better me than you": [
     "Hip Hop"
   ],
@@ -487,7 +568,15 @@
     "Experimental",
     "Deep House"
   ],
-  "björk|||post": [],
+  "björk|||post": [
+    "Electronic",
+    "Pop",
+    "Progressive House",
+    "IDM",
+    "Trip Hop",
+    "Synth-pop",
+    "Industrial"
+  ],
   "black country, new road|||ants from up there": [
     "Rock",
     "Art Rock",
@@ -663,7 +752,18 @@
     "Electro",
     "Electroclash"
   ],
-  "charli xcx|||brat and it's completely different but also still brat": [],
+  "charli xcx|||brat and it's completely different but also still brat": [
+    "Electronic",
+    "Pop",
+    "Experimental",
+    "Electro House",
+    "Hyperpop",
+    "Dance-pop",
+    "Bass Music",
+    "Deconstructed Club",
+    "Leftfield",
+    "Techno"
+  ],
   "charli xcx|||crash": [
     "Electronic",
     "Pop",
@@ -692,7 +792,13 @@
     "Electro",
     "Hyperpop"
   ],
-  "charli xcx|||wuthering heights": [],
+  "charli xcx|||wuthering heights": [
+    "Electronic",
+    "Pop",
+    "Stage & Screen",
+    "Alt-Pop",
+    "Soundtrack"
+  ],
   "charli xcx|||how i'm feeling now": [
     "Electronic",
     "Pop",
@@ -1287,7 +1393,11 @@
     "Bass Music",
     "Gangsta"
   ],
-  "dr. dre|||the chronic": [],
+  "dr. dre|||the chronic": [
+    "Hip Hop",
+    "Gangsta",
+    "G-Funk"
+  ],
   "drake|||care package": [
     "Hip Hop",
     "Funk / Soul",
@@ -1405,7 +1515,11 @@
     "Trap",
     "Dancehall"
   ],
-  "drake & 21 savage|||her loss": [],
+  "drake & 21 savage|||her loss": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
   "dreamville|||d-day: a gangsta grillz mixtape": [
     "Hip Hop"
   ],
@@ -1487,7 +1601,12 @@
     "Conscious",
     "Pop Rap"
   ],
-  "eminem|||infinite": [],
+  "eminem|||infinite": [
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Boom Bap",
+    "Conscious"
+  ],
   "eminem|||kamikaze": [
     "Hip Hop"
   ],
@@ -1497,10 +1616,25 @@
     "Horrorcore",
     "Pop Rap"
   ],
-  "eminem|||music to be murdered by - side b": [],
-  "eminem|||recovery": [],
-  "eminem|||relapse": [],
-  "eminem|||relapse: refill": [],
+  "eminem|||music to be murdered by - side b": [
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Horrorcore",
+    "Pop Rap"
+  ],
+  "eminem|||recovery": [
+    "Hip Hop",
+    "Pop Rap",
+    "Conscious"
+  ],
+  "eminem|||relapse": [
+    "Hip Hop",
+    "Horrorcore"
+  ],
+  "eminem|||relapse: refill": [
+    "Hip Hop",
+    "Horrorcore"
+  ],
   "eminem|||revival": [
     "Hip Hop",
     "Pop Rap",
@@ -2306,5 +2440,3410 @@
     "Electro",
     "Synth-pop",
     "Nu-Disco"
-  ]
+  ],
+  "justice|||†": [
+    "Electronic",
+    "Electro House",
+    "French House"
+  ],
+  "justin bieber|||swag": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "kaytraminé|||kaytraminé": [
+    "Electronic",
+    "Hip Hop",
+    "Pop Rap",
+    "Hip-House"
+  ],
+  "kids see ghosts|||kids see ghosts": [
+    "Hip Hop",
+    "Pop Rap",
+    "Experimental"
+  ],
+  "kacey musgraves|||golden hour": [
+    "Pop",
+    "Folk, World, & Country",
+    "Country"
+  ],
+  "kaelin ellis & lupe fiasco|||house": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "kali uchis|||isolation": [
+    "Hip Hop",
+    "Latin",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Neo Soul",
+    "Reggaeton",
+    "Trip Hop",
+    "Bossa Nova"
+  ],
+  "kali uchis|||orquídeas": [
+    "Latin",
+    "Funk / Soul",
+    "Pop",
+    "Indie Pop",
+    "Psychedelic",
+    "Neo Soul",
+    "Contemporary R&B"
+  ],
+  "kali uchis|||red moon in venus": [
+    "Electronic",
+    "Latin",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Neo Soul",
+    "Psychedelic",
+    "Funk"
+  ],
+  "kali uchis|||sincerely,": [
+    "Pop",
+    "Ballad",
+    "Vocal"
+  ],
+  "kamggarn|||kamggarn": [
+    "Rock",
+    "Psychedelic Rock",
+    "Stoner Rock"
+  ],
+  "kanye west|||808s & heartbreak": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Experimental",
+    "Synth-pop",
+    "Pop Rap"
+  ],
+  "kanye west|||bully": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Pop Rap"
+  ],
+  "kanye west|||donda": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop Rap",
+    "Contemporary R&B",
+    "Trap"
+  ],
+  "kanye west|||donda (deluxe)": [],
+  "kanye west|||graduation": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Pop Rap"
+  ],
+  "kanye west|||jesus is king": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Gospel"
+  ],
+  "kanye west|||late registration": [
+    "Hip Hop",
+    "Conscious",
+    "Pop Rap",
+    "Contemporary R&B"
+  ],
+  "kanye west|||my beautiful dark twisted fantasy": [
+    "Hip Hop",
+    "Pop Rap",
+    "Contemporary R&B"
+  ],
+  "kanye west|||the college dropout": [
+    "Hip Hop",
+    "Pop Rap",
+    "Conscious",
+    "Contemporary R&B"
+  ],
+  "kanye west|||the life of pablo": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Experimental",
+    "Pop Rap",
+    "Gospel",
+    "Trap"
+  ],
+  "kanye west|||yeezus": [
+    "Electronic",
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Pop Rap",
+    "Electro",
+    "Industrial",
+    "Experimental"
+  ],
+  "kanye west|||ye": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Spoken Word",
+    "Pop Rap"
+  ],
+  "kate bush|||hounds of love": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Pop Rock",
+    "Synth-pop"
+  ],
+  "kate bush|||never for ever": [
+    "Rock",
+    "Pop",
+    "Pop Rock",
+    "Art Rock"
+  ],
+  "katy perry|||teenage dream": [
+    "Electronic",
+    "Pop",
+    "Synth-pop"
+  ],
+  "kaycyy|||tw20 50": [
+    "Hip Hop"
+  ],
+  "kaycyy|||tw2052": [
+    "Hip Hop"
+  ],
+  "kehlani|||kehlani": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "kehlani|||blue water road": [
+    "Funk / Soul",
+    "Soul",
+    "Contemporary R&B"
+  ],
+  "ken carson|||a great chaos": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "ken carson|||x": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap",
+    "Cloud Rap"
+  ],
+  "kendrick lamar|||damn.": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Conscious",
+    "Contemporary R&B",
+    "Jazzy Hip-Hop",
+    "Trap",
+    "Boom Bap"
+  ],
+  "kendrick lamar|||gnx": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Conscious",
+    "Contemporary R&B",
+    "Hardcore Hip-Hop"
+  ],
+  "kendrick lamar|||mr. morale & the big steppers": [
+    "Hip Hop",
+    "Jazz",
+    "Funk / Soul",
+    "Conscious",
+    "Trap",
+    "Jazzy Hip-Hop",
+    "Neo Soul",
+    "Contemporary R&B",
+    "Experimental"
+  ],
+  "kendrick lamar|||section.80": [
+    "Hip Hop",
+    "Conscious",
+    "Jazzy Hip-Hop"
+  ],
+  "kendrick lamar|||to pimp a butterfly": [
+    "Hip Hop",
+    "Jazz",
+    "Funk / Soul",
+    "Conscious",
+    "Jazzy Hip-Hop",
+    "G-Funk",
+    "Neo Soul"
+  ],
+  "kendrick lamar|||good kid, m.a.a.d city": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "kendrick lamar|||untitled unmastered.": [
+    "Hip Hop",
+    "Jazz",
+    "Funk / Soul",
+    "Conscious",
+    "Experimental",
+    "Jazzy Hip-Hop",
+    "Funk"
+  ],
+  "kenneth blume & denzel curry|||unlocked": [],
+  "kenneth blume & rico nasty|||anger management": [],
+  "kenny mason|||3": [
+    "Hip Hop"
+  ],
+  "kenny mason|||6": [
+    "Hip Hop"
+  ],
+  "kenny mason|||9": [
+    "Hip Hop"
+  ],
+  "kenny mason|||angelic hoodrat": [
+    "Hip Hop"
+  ],
+  "kenny mason|||angelic hoodrat: supercut": [
+    "Hip Hop"
+  ],
+  "kenny mason|||bulldawg": [
+    "Hip Hop"
+  ],
+  "kenny mason|||highway 9": [
+    "Hip Hop",
+    "Rock",
+    "Trap",
+    "Alternative Rock"
+  ],
+  "kenny mason|||ruffs": [
+    "Hip Hop"
+  ],
+  "kevin gates|||islah": [
+    "Hip Hop"
+  ],
+  "kiana ledé|||cut ties": [
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Rhythm & Blues"
+  ],
+  "kiana ledé|||grudges": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Rhythm & Blues"
+  ],
+  "kid cudi|||entergalactic": [
+    "Hip Hop"
+  ],
+  "kid cudi|||insano": [
+    "Hip Hop"
+  ],
+  "kid cudi|||man on the moon ii: the legend of mr. rager": [
+    "Hip Hop",
+    "Rock",
+    "Psychedelic Rock",
+    "Experimental"
+  ],
+  "kid cudi|||man on the moon iii: the chosen": [
+    "Hip Hop"
+  ],
+  "kid cudi|||man on the moon: the end of day": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Pop Rap",
+    "Soul",
+    "House"
+  ],
+  "kid cudi|||man on the moon: the end of day (deluxe)": [],
+  "killer mike|||michael": [
+    "Hip Hop"
+  ],
+  "kim petras|||pretour": [
+    "Electronic",
+    "Pop",
+    "Electro House",
+    "Hyperpop",
+    "Synth-pop",
+    "Pop Rap"
+  ],
+  "king von|||grandson": [
+    "Hip Hop",
+    "Trap",
+    "Drill",
+    "Gangsta"
+  ],
+  "king von|||what it means to be king": [
+    "Hip Hop",
+    "Drill",
+    "Trap",
+    "Gangsta"
+  ],
+  "knocked loose|||you won't go before you're supposed to": [
+    "Rock",
+    "Hardcore",
+    "Metalcore"
+  ],
+  "latin mafia|||todos los días todo el día": [],
+  "lisa|||alter ego": [
+    "Electronic",
+    "Hip Hop",
+    "Pop",
+    "Pop Rap",
+    "Electro",
+    "Trap",
+    "Dance-pop"
+  ],
+  "lucki|||alternative trap": [
+    "Hip Hop",
+    "Cloud Rap"
+  ],
+  "lucki|||days b4 iii": [
+    "Hip Hop",
+    "Trap",
+    "Cloud Rap"
+  ],
+  "lucki|||daysb4bad*": [],
+  "lucki|||dr*gs r bad": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lucki|||freewave 3": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lucki|||gemini!": [
+    "Hip Hop",
+    "Trap",
+    "Cloud Rap"
+  ],
+  "lucki|||s*x m*ney dr*gs": [
+    "Hip Hop"
+  ],
+  "lady gaga|||mayhem": [
+    "Electronic",
+    "Rock",
+    "Funk / Soul",
+    "Pop",
+    "Dance-pop",
+    "Electro",
+    "Synth-pop",
+    "Art Rock",
+    "Nu-Disco",
+    "Ballad"
+  ],
+  "lady gaga|||the fame monster": [
+    "Electronic",
+    "Hip Hop",
+    "Pop",
+    "RnB/Swing",
+    "Electro",
+    "Synth-pop",
+    "Ballad",
+    "Euro House"
+  ],
+  "lakeyah|||my time": [
+    "Hip Hop"
+  ],
+  "lana del rey|||blue banisters": [
+    "Pop",
+    "Folk, World, & Country",
+    "Alternative Rock",
+    "Indie Pop",
+    "Folk",
+    "Ballad"
+  ],
+  "lana del rey|||born to die": [
+    "Pop",
+    "Indie Pop",
+    "Pop Rock",
+    "Ballad"
+  ],
+  "lana del rey|||chemtrails over the country club": [
+    "Pop",
+    "Indie Pop"
+  ],
+  "lana del rey|||did you know that there's a tunnel under ocean blvd": [
+    "Rock",
+    "Pop",
+    "Baroque Pop",
+    "Indie Pop",
+    "Alt-Pop",
+    "Ballad"
+  ],
+  "lana del rey|||honeymoon": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Downtempo",
+    "Indie Pop",
+    "Ballad",
+    "Trip Hop",
+    "Soft Rock"
+  ],
+  "lana del rey|||lust for life": [
+    "Hip Hop",
+    "Rock",
+    "Pop",
+    "Indie Pop",
+    "Indie Rock",
+    "Alt-Pop",
+    "Dream Pop"
+  ],
+  "lana del rey|||norman fucking rockwell!": [
+    "Pop",
+    "Alt-Pop",
+    "Indie Pop"
+  ],
+  "lana del rey|||paradise": [
+    "Rock",
+    "Pop",
+    "Alternative Rock",
+    "Baroque Pop",
+    "Dream Pop",
+    "Indie Pop",
+    "Trip Hop"
+  ],
+  "lana del rey|||ultraviolence": [
+    "Rock",
+    "Pop",
+    "Psychedelic Rock",
+    "Dream Pop",
+    "Indie Rock",
+    "Indie Pop",
+    "Ballad"
+  ],
+  "lancey foux|||life in hell": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "larry june, 2 chainz & the alchemist|||life is beautiful": [],
+  "latto|||777": [
+    "Hip Hop",
+    "Pop Rap"
+  ],
+  "latto|||sugar honey iced tea": [
+    "Hip Hop"
+  ],
+  "laufey|||a matter of time": [
+    "Jazz",
+    "Contemporary Jazz",
+    "Vocal"
+  ],
+  "lauryn hill|||the miseducation of lauryn hill": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Conscious",
+    "Contemporary R&B"
+  ],
+  "leon thomas|||mutt": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "lil baby|||it's only me": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lil baby|||my turn": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lil baby|||the leaks": [],
+  "lil baby|||wham": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lil durk|||7220": [
+    "Hip Hop",
+    "Trap",
+    "Drill"
+  ],
+  "lil durk|||almost healed": [
+    "Hip Hop",
+    "Trap",
+    "Drill",
+    "Gangsta",
+    "Pop Rap"
+  ],
+  "lil nas x|||montero": [
+    "Hip Hop",
+    "Rock",
+    "Pop",
+    "Contemporary R&B",
+    "Alternative Rock",
+    "Pop Rock",
+    "Pop Rap",
+    "Trap"
+  ],
+  "lil pump|||lil pump 2": [
+    "Hip Hop",
+    "Rock",
+    "Trap",
+    "Hardcore Hip-Hop",
+    "Heavy Metal"
+  ],
+  "lil tecca|||dopamine": [
+    "Hip Hop"
+  ],
+  "lil tecca|||plan a": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lil tecca|||tec": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "lil tjay|||222": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lil uzi vert|||eternal atake": [
+    "Hip Hop",
+    "Cloud Rap",
+    "Pop Rap",
+    "Trap"
+  ],
+  "lil uzi vert|||eternal atake (deluxe) - luv vs. the world 2": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap",
+    "Cloud Rap"
+  ],
+  "lil uzi vert|||eternal atake 2": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "lil uzi vert|||lil uzi vert vs. the world": [
+    "Hip Hop",
+    "Trap",
+    "Cloud Rap",
+    "Pop Rap"
+  ],
+  "lil uzi vert|||luv is rage": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lil uzi vert|||luv is rage 2": [
+    "Hip Hop",
+    "Trap",
+    "Cloud Rap",
+    "Pop Rap"
+  ],
+  "lil uzi vert|||pink tape": [
+    "Hip Hop",
+    "Rock",
+    "Pop",
+    "Trap",
+    "Pop Rap",
+    "Alternative Metal",
+    "Cloud Rap"
+  ],
+  "lil uzi vert|||red & white 🔴 ⚪": [],
+  "lil uzi vert|||the perfect luv tape ®": [],
+  "lil uzi vert & future|||pluto x baby pluto": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lil wayne|||500 degreez": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||da drought": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||da drought 2": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||da drought 3": [
+    "Hip Hop",
+    "Abstract",
+    "Gangsta"
+  ],
+  "lil wayne|||fwa": [
+    "Hip Hop"
+  ],
+  "lil wayne|||funeral": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "lil wayne|||funeral (deluxe)": [],
+  "lil wayne|||i am not a human being": [
+    "Hip Hop"
+  ],
+  "lil wayne|||i am not a human being ii": [
+    "Hip Hop"
+  ],
+  "lil wayne|||in tune we trust": [
+    "Hip Hop"
+  ],
+  "lil wayne|||lights out": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||lil weezy ana": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||no ceilings": [
+    "Hip Hop"
+  ],
+  "lil wayne|||no ceilings 2": [
+    "Hip Hop"
+  ],
+  "lil wayne|||no ceilings 3: b side": [],
+  "lil wayne|||no ceilings 3: side a": [],
+  "lil wayne|||rebirth": [
+    "Hip Hop",
+    "Rock"
+  ],
+  "lil wayne|||sorry 4 the wait": [
+    "Hip Hop"
+  ],
+  "lil wayne|||sorry 4 the wait (reissue)": [],
+  "lil wayne|||sorry 4 the wait 2": [
+    "Hip Hop"
+  ],
+  "lil wayne|||tha block is hot": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||tha carter": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||tha carter ii": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||tha carter iii": [
+    "Hip Hop",
+    "Pop Rap"
+  ],
+  "lil wayne|||tha carter iv": [
+    "Hip Hop",
+    "Pop Rap",
+    "Gangsta"
+  ],
+  "lil wayne|||tha carter iv (complete edition)": [
+    "Hip Hop",
+    "Pop Rap",
+    "Gangsta"
+  ],
+  "lil wayne|||tha carter v": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "lil wayne|||tha carter v (deluxe)": [],
+  "lil wayne|||tha carter vi": [
+    "Hip Hop",
+    "Pop Rap"
+  ],
+  "lil wayne|||tha fix before tha vi": [
+    "Hip Hop"
+  ],
+  "lil wayne|||the carter files": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "lil wayne|||the drought is over 2: the carter 3 sessions": [
+    "Hip Hop",
+    "Abstract",
+    "Gangsta",
+    "Conscious",
+    "Pop Rap"
+  ],
+  "lil wayne|||the leak": [
+    "Hip Hop"
+  ],
+  "lil wayne|||the prefix": [],
+  "lil wayne|||the w. carter collection": [
+    "Hip Hop"
+  ],
+  "lil wayne & 2 chainz|||welcome 2 collegrove": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lil wayne & mick boogie|||the w. carter collection 2": [
+    "Hip Hop",
+    "Gangsta",
+    "Pop Rap"
+  ],
+  "lil yachty|||let's start here.": [
+    "Rock",
+    "Funk / Soul",
+    "Pop",
+    "Psychedelic Rock",
+    "Space Rock",
+    "Psychedelic",
+    "Neo Soul"
+  ],
+  "linkin park|||from zero": [
+    "Rock",
+    "Alternative Rock",
+    "Alternative Metal",
+    "Nu Metal"
+  ],
+  "linkin park|||hybrid theory": [
+    "Rock",
+    "Nu Metal"
+  ],
+  "linkin park|||meteora": [
+    "Rock",
+    "Nu Metal",
+    "Alternative Rock"
+  ],
+  "linkin park|||minutes to midnight": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "little simz|||drop 7": [
+    "Electronic",
+    "Hip Hop",
+    "House"
+  ],
+  "little simz|||grey area": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Conscious",
+    "Soul"
+  ],
+  "little simz|||lotus": [
+    "Hip Hop",
+    "Funk / Soul"
+  ],
+  "little simz|||no thank you": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "little simz|||sometimes i might be introvert": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "lizzo|||my face hurts from smiling": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "lloyd banks|||the course of the inevitable": [
+    "Hip Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "lloyd banks|||the course of the inevitable 2": [
+    "Hip Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "lloyd banks|||the course of the inevitable 3: pieces of my pain": [],
+  "loathe|||i let it in and it took everything": [
+    "Rock",
+    "Metalcore",
+    "Alternative Rock"
+  ],
+  "loathe|||the cold sun": [
+    "Rock",
+    "Metalcore"
+  ],
+  "loathe|||the things they believe": [
+    "Electronic",
+    "Ambient",
+    "New Age"
+  ],
+  "logic|||aquarius iii": [
+    "Hip Hop"
+  ],
+  "logic|||college park": [
+    "Hip Hop"
+  ],
+  "logic|||no pressure": [
+    "Hip Hop"
+  ],
+  "logic|||the incredible true story": [
+    "Hip Hop"
+  ],
+  "logic|||ultra 85": [
+    "Hip Hop"
+  ],
+  "logic|||under pressure": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "logic|||vinyl days": [
+    "Hip Hop"
+  ],
+  "lola brooke|||dennis daughter": [
+    "Hip Hop"
+  ],
+  "lorde|||melodrama": [
+    "Pop",
+    "Indie Pop",
+    "Synth-pop",
+    "Alt-Pop"
+  ],
+  "lorde|||pure heroine": [
+    "Pop",
+    "Synth-pop",
+    "Indie Pop",
+    "Alt-Pop"
+  ],
+  "lorde|||solar power": [
+    "Pop",
+    "Indie Pop"
+  ],
+  "lorde|||virgin": [
+    "Electronic",
+    "Pop",
+    "Indie Pop",
+    "Alt-Pop",
+    "Synth-pop"
+  ],
+  "loving|||if i am only my thoughts": [
+    "Pop",
+    "Folk, World, & Country",
+    "Indie Pop",
+    "Folk"
+  ],
+  "lupe fiasco|||drill music in zion": [
+    "Hip Hop",
+    "Jazzy Hip-Hop",
+    "Conscious"
+  ],
+  "lupe fiasco|||drogas light": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Conscious",
+    "Trap",
+    "Contemporary R&B",
+    "Neo Soul"
+  ],
+  "lupe fiasco|||drogas wave": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "lupe fiasco|||enemy of the state: a love story": [
+    "Hip Hop"
+  ],
+  "lupe fiasco|||food & liquor ii: the great american rap album pt. 1": [
+    "Hip Hop"
+  ],
+  "lupe fiasco|||friend of the people: i fight evil": [
+    "Electronic",
+    "Hip Hop",
+    "Bass Music",
+    "Bounce"
+  ],
+  "lupe fiasco|||ghotiing": [],
+  "lupe fiasco|||lasers": [
+    "Hip Hop",
+    "Gangsta",
+    "Pop Rap"
+  ],
+  "lupe fiasco|||lupe fiasco's food & liquor": [
+    "Hip Hop"
+  ],
+  "lupe fiasco|||lupe fiasco's the cool": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "lupe fiasco|||pharaoh height 2/30": [],
+  "lupe fiasco|||samurai": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "lupe fiasco|||samurai dx": [
+    "Hip Hop"
+  ],
+  "lupe fiasco|||tetsuo & youth": [
+    "Hip Hop",
+    "Conscious",
+    "Jazzy Hip-Hop",
+    "Pop Rap"
+  ],
+  "lyrical lemonade|||all is yellow": [
+    "Hip Hop"
+  ],
+  "m83|||dead cities, red seas & lost ghosts": [
+    "Electronic",
+    "Rock",
+    "Leftfield",
+    "Noise",
+    "Shoegaze"
+  ],
+  "marina|||electra heart": [
+    "Electronic",
+    "Pop",
+    "House",
+    "Synth-pop"
+  ],
+  "marina|||froot": [
+    "Electronic",
+    "Pop",
+    "Indie Pop"
+  ],
+  "marina|||princess of power": [
+    "Electronic",
+    "Pop",
+    "Dance-pop",
+    "Synth-pop",
+    "Electro"
+  ],
+  "mass of the fermenting dregs|||no new world": [
+    "Rock",
+    "Pop",
+    "Alternative Rock",
+    "Post Rock"
+  ],
+  "mavi|||laughing so hard, it hurts": [
+    "Hip Hop"
+  ],
+  "mavi|||let the sun talk": [
+    "Hip Hop"
+  ],
+  "mavi|||the pilot": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "mavi|||shadowbox": [
+    "Hip Hop"
+  ],
+  "mf doom|||born like this": [
+    "Hip Hop",
+    "Conscious",
+    "Boom Bap"
+  ],
+  "mf doom|||mm..food": [
+    "Hip Hop",
+    "Conscious",
+    "Jazzy Hip-Hop",
+    "Boom Bap"
+  ],
+  "mgmt|||little dark age": [
+    "Electronic",
+    "Rock",
+    "Electro",
+    "Psychedelic Rock",
+    "Indie Rock"
+  ],
+  "mike dean|||4:23": [
+    "Electronic",
+    "Synthwave",
+    "Ambient",
+    "Experimental"
+  ],
+  "mac miller|||balloonerism": [
+    "Hip Hop",
+    "Jazz",
+    "Funk / Soul",
+    "Jazzy Hip-Hop",
+    "Rhythm & Blues",
+    "Neo Soul",
+    "Abstract"
+  ],
+  "mac miller|||circles": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Blues",
+    "Conscious"
+  ],
+  "mac miller|||swimming": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Jazzy Hip-Hop",
+    "Disco",
+    "Trap"
+  ],
+  "mach-hommy|||#richaxxhaitian": [
+    "Hip Hop"
+  ],
+  "madison beer|||locket": [
+    "Pop"
+  ],
+  "madlib & freddie gibbs|||bandana": [
+    "Hip Hop",
+    "Gangsta",
+    "Jazzy Hip-Hop",
+    "Boom Bap",
+    "Conscious"
+  ],
+  "madlib & freddie gibbs|||piñata": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "madvillain|||madvillainy": [
+    "Hip Hop",
+    "Boom Bap"
+  ],
+  "magdalena bay|||imaginal disk": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Dance-pop",
+    "Synth-pop",
+    "Disco",
+    "Europop",
+    "Pop Rock"
+  ],
+  "magdalena bay|||mercurial world": [
+    "Electronic",
+    "Pop",
+    "Indie Pop",
+    "Synth-pop",
+    "Dance-pop",
+    "Pop Rock"
+  ],
+  "major lazer|||peace is the mission": [
+    "Electronic",
+    "Hip Hop",
+    "Reggae",
+    "Ragga",
+    "Dancehall",
+    "Dubstep",
+    "Bass Music",
+    "Bounce"
+  ],
+  "malcolm todd|||malcolm todd": [
+    "Rock",
+    "Pop",
+    "Alternative Rock",
+    "Indie Rock"
+  ],
+  "malcolm todd|||sweet boy": [
+    "Funk / Soul",
+    "Pop"
+  ],
+  "manderley|||you come in seasons and depart through windy gusts and blowing leaves": [
+    "Rock",
+    "Emo",
+    "Indie Rock",
+    "Power Pop",
+    "Midwest Emo"
+  ],
+  "mannequin pussy|||i got heaven": [
+    "Rock",
+    "Punk",
+    "Pop Punk",
+    "Noise Rock"
+  ],
+  "mannequin pussy|||patience": [
+    "Rock",
+    "Post-Punk",
+    "Indie Rock"
+  ],
+  "mannequin pussy|||romantic": [
+    "Rock",
+    "Punk",
+    "Hardcore",
+    "Pop Punk"
+  ],
+  "mariah the scientist|||hearts sold separately": [
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Soul"
+  ],
+  "maroon 5|||songs about jane": [
+    "Rock",
+    "Pop Rock"
+  ],
+  "maximum love|||apollo": [
+    "Electronic",
+    "Synth-pop",
+    "Synthwave"
+  ],
+  "maxo kream|||weight of the world": [
+    "Hip Hop"
+  ],
+  "mckinley dixon|||beloved! paradise! jazz​!​?": [],
+  "mckinley dixon|||magic, alive!": [
+    "Hip Hop",
+    "Conscious",
+    "Jazzy Hip-Hop"
+  ],
+  "meek mill|||championships": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "meek mill|||flamerz 5": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "megan thee stallion|||megan": [
+    "Hip Hop",
+    "Pop",
+    "Pop Rap"
+  ],
+  "megan thee stallion|||traumazine": [
+    "Hip Hop"
+  ],
+  "melanie martinez|||hades": [
+    "Pop",
+    "Alt-Pop"
+  ],
+  "meshuggah|||chaosphere": [
+    "Rock",
+    "Thrash",
+    "Math Rock",
+    "Groove Metal"
+  ],
+  "meshuggah|||obzen": [
+    "Rock",
+    "Progressive Metal",
+    "Groove Metal",
+    "Death Metal",
+    "Experimental"
+  ],
+  "metallica|||master of puppets": [
+    "Rock",
+    "Heavy Metal"
+  ],
+  "metallica|||metallica": [
+    "Rock",
+    "Non-Music",
+    "Hard Rock",
+    "Heavy Metal"
+  ],
+  "metallica|||ride the lightning": [
+    "Rock",
+    "Thrash",
+    "Heavy Metal"
+  ],
+  "metro boomin|||heroes & villains": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "metro boomin|||metro boomin presents spider-man: across the spider-verse (soundtrack from and inspired by the motion picture)": [
+    "Hip Hop",
+    "Stage & Screen",
+    "Soundtrack",
+    "Pop Rap",
+    "Trap"
+  ],
+  "metro boomin|||metro boomin presents: a futuristic summa": [],
+  "metro boomin|||not all heroes wear capes": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "metro boomin & 21 savage|||savage mode ii": [
+    "Hip Hop",
+    "Trap",
+    "Gangsta"
+  ],
+  "metro boomin & 21 savage|||savage mode": [
+    "Hip Hop",
+    "Trap",
+    "Gangsta"
+  ],
+  "michael jackson|||thriller": [
+    "Rock",
+    "Pop",
+    "Disco"
+  ],
+  "migos|||culture": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "migos|||culture iii": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "mike will made-it|||r3set": [],
+  "miley cyrus|||endless summer vacation": [
+    "Rock",
+    "Pop",
+    "Alt-Pop",
+    "Pop Rock",
+    "Dance-pop",
+    "Psychedelic"
+  ],
+  "miley cyrus|||plastic hearts": [
+    "Rock",
+    "Pop",
+    "Arena Rock",
+    "Power Pop",
+    "New Wave",
+    "Soft Rock",
+    "Pop Rock",
+    "Ballad",
+    "Glam"
+  ],
+  "miley cyrus|||something beautiful": [
+    "Rock",
+    "Pop",
+    "Art Rock",
+    "Dance-pop"
+  ],
+  "mitski|||laurel hell": [
+    "Rock",
+    "Indie Rock"
+  ],
+  "mitski|||nothing's about to happen to me": [
+    "Rock",
+    "Indie Rock"
+  ],
+  "mitski|||the land is inhospitable and so are we": [
+    "Pop",
+    "Folk, World, & Country",
+    "Indie Pop"
+  ],
+  "mk.gee|||two star & the dream police": [
+    "Rock",
+    "Pop"
+  ],
+  "momo boyd|||miss michigan": [],
+  "montell fish|||charlotte": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "mount westmore|||snoop cube 40 $hort": [],
+  "mustard|||faith of a mustard seed": [
+    "Hip Hop"
+  ],
+  "mustard|||perfect ten": [
+    "Hip Hop"
+  ],
+  "my chemical romance|||the black parade": [
+    "Rock",
+    "Emo",
+    "Alternative Rock",
+    "Pop Punk"
+  ],
+  "n.w.a.|||straight outta compton": [
+    "Hip Hop",
+    "Gangsta",
+    "Hardcore Hip-Hop"
+  ],
+  "nav|||demons protected by angels": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "nav|||nav": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "nav|||omw2 rexdale": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "naomi sharon|||obsidian": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "nas|||god's son": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "nas|||hip hop is dead": [
+    "Hip Hop",
+    "Thug Rap"
+  ],
+  "nas|||i am...": [
+    "Hip Hop",
+    "Boom Bap",
+    "Conscious"
+  ],
+  "nas|||illmatic": [
+    "Hip Hop",
+    "Conscious",
+    "Boom Bap",
+    "Jazzy Hip-Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "nas|||it was written": [
+    "Hip Hop",
+    "Boom Bap",
+    "Conscious"
+  ],
+  "nas|||king's disease": [
+    "Hip Hop"
+  ],
+  "nas|||king's disease iii": [
+    "Hip Hop"
+  ],
+  "nas|||king’s disease ii": [
+    "Hip Hop"
+  ],
+  "nas|||life is good": [
+    "Hip Hop"
+  ],
+  "nas|||magic": [
+    "Hip Hop"
+  ],
+  "nas|||magic 2": [
+    "Hip Hop"
+  ],
+  "nas|||magic 3": [
+    "Hip Hop"
+  ],
+  "nas|||nasir": [
+    "Hip Hop"
+  ],
+  "nas|||nastradamus": [
+    "Hip Hop"
+  ],
+  "nas|||stillmatic": [
+    "Hip Hop",
+    "Conscious",
+    "Hardcore Hip-Hop"
+  ],
+  "nas|||street's disciple": [
+    "Hip Hop"
+  ],
+  "nas|||untitled": [
+    "Hip Hop"
+  ],
+  "nas & dj premier|||light-years": [
+    "Hip Hop",
+    "Boom Bap",
+    "Turntablism",
+    "Conscious",
+    "Hardcore Hip-Hop"
+  ],
+  "navy blue|||ways of knowing": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "nelly furtado|||loose": [
+    "Hip Hop",
+    "Latin",
+    "Funk / Soul",
+    "Pop",
+    "Pop Rap",
+    "Contemporary R&B",
+    "Latin Pop"
+  ],
+  "nicki minaj|||beam me up scotty": [
+    "Hip Hop",
+    "Pop Rap",
+    "Contemporary R&B"
+  ],
+  "nicki minaj|||pink friday": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Pop Rap"
+  ],
+  "nicki minaj|||pink friday 2": [
+    "Hip Hop",
+    "Pop",
+    "Pop Rap",
+    "Contemporary R&B"
+  ],
+  "nicki minaj|||pink friday: roman reloaded": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Pop Rap",
+    "Contemporary R&B",
+    "Dance-pop"
+  ],
+  "nicki minaj|||pink friday: roman reloaded – the re-up": [],
+  "nicki minaj|||queen": [
+    "Hip Hop",
+    "Pop",
+    "Pop Rap",
+    "Trap"
+  ],
+  "nicki minaj|||the pinkprint": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Trap",
+    "Synth-pop",
+    "Pop Rap",
+    "Contemporary R&B"
+  ],
+  "night tapes|||portals//polarities": [
+    "Electronic",
+    "Dance-pop",
+    "Progressive Trance"
+  ],
+  "nigo|||i know nigo!": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "nine vicious|||tumblr music": [],
+  "nipsey hussle|||victory lap": [
+    "Hip Hop"
+  ],
+  "nirvana|||in utero": [
+    "Rock",
+    "Alternative Rock",
+    "Grunge"
+  ],
+  "nirvana|||nevermind": [
+    "Rock",
+    "Non-Music",
+    "Interview",
+    "Grunge"
+  ],
+  "normani|||dopamine": [
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "north west|||n0rth4evr": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "not for radio|||bloom": [
+    "Pop",
+    "Alt-Pop",
+    "Indie Pop"
+  ],
+  "not for radio|||melt": [
+    "Pop",
+    "Indie Pop",
+    "Alt-Pop"
+  ],
+  "nothing but thieves|||broken machine": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "nourished by time|||the passionate ones": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop"
+  ],
+  "nova twins|||parasites & butterflies": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "nxworries|||why lawd?": [
+    "Hip Hop",
+    "Soul"
+  ],
+  "nxworries|||yes lawd!": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Soul"
+  ],
+  "obongjayar|||some nights i dream of doors": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Folk, World, & Country"
+  ],
+  "offset|||haunted by fame": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "oklou|||galore": [
+    "Electronic",
+    "Synth-pop"
+  ],
+  "oklou|||choke enough": [
+    "Electronic",
+    "Pop",
+    "Ambient",
+    "Experimental",
+    "Indie Pop"
+  ],
+  "olivia dean|||the art of loving": [
+    "Funk / Soul",
+    "Pop",
+    "Indie Pop",
+    "Neo Soul"
+  ],
+  "olivia rodrigo|||guts": [
+    "Rock",
+    "Pop",
+    "Alt-Pop",
+    "Ballad",
+    "Indie Pop",
+    "Pop Rock",
+    "Power Pop"
+  ],
+  "olivia rodrigo|||sour": [
+    "Rock",
+    "Pop",
+    "Power Pop",
+    "Pop Punk",
+    "Acoustic",
+    "Ballad",
+    "Pop Rock"
+  ],
+  "olivia rodrigo|||you seem pretty sad for a girl so in love": [
+    "Pop"
+  ],
+  "outkast|||atliens": [
+    "Hip Hop"
+  ],
+  "outkast|||aquemini": [
+    "Hip Hop",
+    "Reggae",
+    "Gangsta",
+    "Soul",
+    "Conscious"
+  ],
+  "outkast|||idlewild": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Stage & Screen",
+    "Soundtrack",
+    "P.Funk",
+    "Pop Rap"
+  ],
+  "outkast|||southernplayalisticadillacmuzik": [
+    "Hip Hop"
+  ],
+  "outkast|||speakerboxxx/the love below": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Conscious",
+    "Funk",
+    "Pop Rap",
+    "Gangsta",
+    "Electro"
+  ],
+  "outkast|||stankonia": [
+    "Hip Hop"
+  ],
+  "ovrkast.|||while the iron is hot": [
+    "Hip Hop",
+    "Hyphy",
+    "Jazzy Hip-Hop"
+  ],
+  "partynextdoor|||colours": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "partynextdoor|||colours 2": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "partynextdoor|||partymobile": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "partynextdoor|||partynextdoor": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "partynextdoor|||partynextdoor 3 (p3)": [],
+  "partynextdoor|||partynextdoor 4 (p4)": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "partynextdoor|||partynextdoor two": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "partynextdoor|||partypack": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "partynextdoor|||seven days": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "partynextdoor & drake|||$ome $exy $ongs 4 u": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Pop Rap",
+    "Trap"
+  ],
+  "prhyme|||prhyme": [
+    "Hip Hop"
+  ],
+  "prhyme|||prhyme 2": [
+    "Hip Hop"
+  ],
+  "palms|||palms": [
+    "Rock",
+    "Heavy Metal",
+    "Post Rock",
+    "Alternative Rock",
+    "Prog Rock",
+    "Psychedelic Rock",
+    "Shoegaze",
+    "Ethereal"
+  ],
+  "panchiko|||d>e>a>t>h>m>e>t>a>l": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Indie Pop",
+    "Indie Rock"
+  ],
+  "pantera|||cowboys from hell": [
+    "Rock",
+    "Heavy Metal",
+    "Thrash"
+  ],
+  "pantera|||vulgar display of power": [
+    "Rock",
+    "Thrash",
+    "Heavy Metal",
+    "Groove Metal"
+  ],
+  "paramore|||after laughter": [
+    "Rock",
+    "Pop",
+    "New Wave"
+  ],
+  "paramore|||all we know is falling": [
+    "Rock",
+    "Emo",
+    "Pop Rock",
+    "Alternative Rock",
+    "Pop Punk"
+  ],
+  "paramore|||paramore": [
+    "Rock",
+    "Pop Rock",
+    "Power Pop"
+  ],
+  "paramore|||re: this is why": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "paramore|||riot!": [
+    "Rock",
+    "Emo",
+    "Pop Rock"
+  ],
+  "paramore|||this is why": [
+    "Rock",
+    "Post-Punk",
+    "Alternative Rock",
+    "New Wave"
+  ],
+  "paramore|||brand new eyes": [
+    "Rock",
+    "Pop Rock",
+    "Alternative Rock"
+  ],
+  "periphery|||a pale white dot": [
+    "Rock",
+    "Progressive Metal",
+    "Metalcore"
+  ],
+  "periphery|||juggernaut: alpha": [
+    "Rock",
+    "Heavy Metal",
+    "Prog Rock"
+  ],
+  "periphery|||juggernaut: omega": [
+    "Rock",
+    "Heavy Metal",
+    "Prog Rock"
+  ],
+  "periphery|||periphery ii: this time it's personal": [
+    "Rock",
+    "Progressive Metal"
+  ],
+  "periphery|||periphery v: djent is not a genre": [
+    "Rock",
+    "Progressive Metal",
+    "Alternative Metal",
+    "Metalcore"
+  ],
+  "phoebe bridgers|||punisher": [
+    "Rock",
+    "Folk, World, & Country",
+    "Indie Rock",
+    "Folk"
+  ],
+  "phoebe bridgers|||stranger in the alps": [
+    "Rock",
+    "Folk, World, & Country",
+    "Indie Rock",
+    "Folk"
+  ],
+  "pimmie|||don't come home": [],
+  "pink floyd|||the dark side of the moon": [
+    "Rock",
+    "Prog Rock",
+    "Classic Rock"
+  ],
+  "pink floyd|||wish you were here": [
+    "Rock",
+    "Prog Rock"
+  ],
+  "pinkpantheress|||fancy some more?": [
+    "Electronic",
+    "Pop",
+    "Dance-pop",
+    "UK Garage",
+    "Bassline",
+    "Breaks",
+    "House",
+    "Electro"
+  ],
+  "pinkpantheress|||fancy that": [
+    "Electronic",
+    "Pop",
+    "Dance-pop",
+    "UK Garage",
+    "Bassline",
+    "Breaks"
+  ],
+  "pinkpantheress|||heaven knows": [
+    "Electronic",
+    "Pop",
+    "Breakbeat",
+    "Drum n Bass",
+    "UK Garage",
+    "Alt-Pop",
+    "Dance-pop"
+  ],
+  "pinkpantheress|||to hell with it": [
+    "Electronic",
+    "Pop",
+    "Alt-Pop",
+    "UK Garage",
+    "Drum n Bass"
+  ],
+  "plaqueboymax|||crash dummy": [],
+  "plaqueboymax|||five forever": [
+    "Hip Hop"
+  ],
+  "playboi carti|||die lit": [
+    "Hip Hop",
+    "Trap",
+    "Cloud Rap"
+  ],
+  "playboi carti|||music": [
+    "Hip Hop",
+    "Trap",
+    "Cloud Rap",
+    "Pop Rap",
+    "Hardcore Hip-Hop",
+    "Experimental"
+  ],
+  "playboi carti|||playboi carti": [
+    "Hip Hop",
+    "Trap",
+    "Cloud Rap"
+  ],
+  "playboi carti|||whole lotta red": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "polo g|||die a legend": [
+    "Hip Hop",
+    "Trap",
+    "Drill"
+  ],
+  "polo g|||hood poet": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "polo g|||hall of fame": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "polo g|||hall of fame 2.0": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "polo g|||the goat": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "pop smoke|||shoot for the stars, aim for the moon": [
+    "Hip Hop",
+    "Drill",
+    "Trap",
+    "Gangsta"
+  ],
+  "porcupine tree|||in absentia": [
+    "Rock",
+    "Alternative Rock",
+    "Symphonic Rock",
+    "Prog Rock",
+    "Progressive Metal"
+  ],
+  "portishead|||dummy": [
+    "Electronic",
+    "Downtempo",
+    "Trip Hop"
+  ],
+  "post malone|||austin": [
+    "Rock",
+    "Pop",
+    "Alt-Pop",
+    "Indie Pop",
+    "Indie Rock",
+    "Pop Rock",
+    "Folk Rock"
+  ],
+  "post malone|||twelve carat toothache": [
+    "Hip Hop",
+    "Pop",
+    "Pop Rap"
+  ],
+  "pusha t|||daytona": [
+    "Hip Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "pusha t|||it's almost dry": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "pusha t|||my name is my name": [
+    "Hip Hop"
+  ],
+  "quadeca|||vanisher, horizon scraper": [
+    "Electronic",
+    "Pop",
+    "Experimental"
+  ],
+  "quasimoto|||the unseen": [
+    "Hip Hop",
+    "Instrumental"
+  ],
+  "quavo|||rocket power": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "quavo & takeoff|||only built for infinity links": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "queens of the stone age|||songs for the deaf": [
+    "Rock",
+    "Stoner Rock",
+    "Hard Rock"
+  ],
+  "raye|||my 21st century blues": [
+    "Electronic",
+    "Hip Hop",
+    "Pop",
+    "Dance-pop",
+    "House",
+    "Contemporary R&B",
+    "Contemporary Jazz"
+  ],
+  "raye|||this music may contain hope.": [
+    "Jazz",
+    "Funk / Soul",
+    "Pop"
+  ],
+  "role model|||kansas anymore": [
+    "Pop",
+    "Indie Pop"
+  ],
+  "rosalía|||lux": [
+    "Electronic",
+    "Latin",
+    "Pop",
+    "Classical",
+    "Folk, World, & Country",
+    "Latin Pop",
+    "Alt-Pop"
+  ],
+  "rosalía|||motomami": [
+    "Electronic",
+    "Hip Hop",
+    "Latin",
+    "Pop",
+    "Trap",
+    "Flamenco",
+    "Bachata",
+    "Reggaeton",
+    "Alt-Pop"
+  ],
+  "radiohead|||a moon shaped pool": [
+    "Electronic",
+    "Rock",
+    "Art Rock",
+    "Indie Rock"
+  ],
+  "radiohead|||amnesiac": [
+    "Electronic",
+    "Rock",
+    "Alternative Rock",
+    "Experimental"
+  ],
+  "radiohead|||hail to the thief": [
+    "Electronic",
+    "Rock",
+    "Alternative Rock",
+    "Experimental"
+  ],
+  "radiohead|||in rainbows": [
+    "Electronic",
+    "Rock",
+    "Alternative Rock",
+    "Art Rock",
+    "Experimental",
+    "Indie Rock"
+  ],
+  "radiohead|||kid a": [
+    "Electronic",
+    "Rock",
+    "Alternative Rock",
+    "IDM",
+    "Experimental"
+  ],
+  "radiohead|||ok computer": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "radiohead|||pablo honey": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "radiohead|||the bends": [
+    "Rock",
+    "Alternative Rock",
+    "Indie Rock"
+  ],
+  "radiohead|||the king of limbs": [
+    "Electronic",
+    "Rock",
+    "Abstract",
+    "Downtempo",
+    "Experimental"
+  ],
+  "rainbow kitten surprise|||how to: friend, love, freefall": [
+    "Rock",
+    "Indie Rock"
+  ],
+  "ransom, v don & conway the machine|||chaos is my ladder 2": [
+    "Hip Hop"
+  ],
+  "ravyn lenae|||bird's eye": [
+    "Funk / Soul",
+    "Blues",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "ravyn lenae|||hypnos": [
+    "Electronic",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Neo Soul",
+    "Psychedelic",
+    "Downtempo"
+  ],
+  "reneé rapp|||bite me": [
+    "Pop"
+  ],
+  "rich the kid & lil wayne|||trust fund babies": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "rick ross|||deeper than rap": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "rick ross|||god forgives, i don't": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "rick ross|||mastermind": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "rick ross|||rather you than me": [
+    "Hip Hop",
+    "Gangsta",
+    "Hardcore Hip-Hop",
+    "Jazzy Hip-Hop",
+    "Trap"
+  ],
+  "rick ross|||rich forever": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "rick ross|||teflon don": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "rick ross|||trilla": [
+    "Hip Hop"
+  ],
+  "rick ross & meek mill|||too good to be true": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "rihanna|||a girl like me": [
+    "Hip Hop",
+    "Reggae",
+    "Pop",
+    "Contemporary R&B",
+    "Reggae-Pop"
+  ],
+  "rihanna|||anti": [
+    "Hip Hop",
+    "Pop",
+    "Contemporary R&B",
+    "Soul"
+  ],
+  "rihanna|||anti (deluxe)": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Classical",
+    "Contemporary R&B",
+    "Synth-pop",
+    "Soul",
+    "Trap"
+  ],
+  "rihanna|||good girl gone bad": [
+    "Electronic",
+    "Hip Hop",
+    "Rock",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Europop",
+    "Dance-pop",
+    "Pop Rock",
+    "Ballad"
+  ],
+  "rihanna|||good girl gone bad: reloaded": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Pop Rap",
+    "Synth-pop",
+    "Contemporary R&B"
+  ],
+  "rihanna|||loud": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "rihanna|||music of the sun": [
+    "Hip Hop",
+    "Reggae",
+    "Funk / Soul",
+    "Pop",
+    "Ragga HipHop",
+    "Reggae-Pop",
+    "Contemporary R&B"
+  ],
+  "rihanna|||rated r": [
+    "Hip Hop",
+    "Pop",
+    "Contemporary R&B",
+    "Pop Rap"
+  ],
+  "rihanna|||talk that talk": [
+    "Pop"
+  ],
+  "rihanna|||unapologetic": [
+    "Electronic",
+    "Hip Hop",
+    "Pop",
+    "Synth-pop",
+    "Contemporary R&B"
+  ],
+  "rina sawayama|||hold the girl": [
+    "Rock",
+    "Pop",
+    "Pop Rock",
+    "Alternative Rock",
+    "Dance-pop"
+  ],
+  "rina sawayama|||sawayama": [
+    "Rock",
+    "Pop"
+  ],
+  "rob carroll|||rob carroll radio vol. 1": [],
+  "robyn|||sexistential": [
+    "Electronic",
+    "Pop",
+    "Synth-pop",
+    "Electro"
+  ],
+  "roddy ricch|||feed tha streets iii": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "roddy ricch|||live life fast": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "roddy ricch|||please excuse me for being antisocial": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "roddy ricch|||the big 3": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "rome streetz|||kiss the ring": [
+    "Hip Hop",
+    "Boom Bap"
+  ],
+  "royce da 5'9''|||book of ryan": [
+    "Hip Hop"
+  ],
+  "royce da 5'9''|||layers": [
+    "Hip Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "royce da 5'9''|||the allegory": [
+    "Hip Hop"
+  ],
+  "royce da 5'9''|||the bar exam 4": [
+    "Hip Hop"
+  ],
+  "run the jewels|||rtj4": [
+    "Hip Hop",
+    "Latin"
+  ],
+  "run the jewels|||run the jewels": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "run the jewels|||run the jewels 2": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "run the jewels|||run the jewels 3": [
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Conscious"
+  ],
+  "sza|||ctrl": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "sza|||ctrl (deluxe)": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "sza|||sos": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "sza|||sos deluxe: lana": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "sza|||z": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Downtempo",
+    "Contemporary R&B"
+  ],
+  "saba|||c0ffee!": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "saba|||care for me": [
+    "Hip Hop"
+  ],
+  "saba|||few good things": [
+    "Hip Hop"
+  ],
+  "saba & no i.d.|||from the private collection of saba and no i.d.": [],
+  "sabrina carpenter|||man's best friend": [
+    "Pop"
+  ],
+  "sabrina carpenter|||short n' sweet": [
+    "Electronic",
+    "Pop",
+    "Folk, World, & Country",
+    "Country",
+    "Dance-pop"
+  ],
+  "sam o|||strange power": [],
+  "sam smith|||gloria": [
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "sampha|||lahai": [
+    "Electronic",
+    "Funk / Soul",
+    "Soul",
+    "Contemporary R&B"
+  ],
+  "saya gray|||saya": [
+    "Pop",
+    "Alt-Pop"
+  ],
+  "schoolboy q|||blue lips": [
+    "Hip Hop"
+  ],
+  "schoolboy q|||blank face lp": [
+    "Hip Hop",
+    "Gangsta",
+    "Cloud Rap"
+  ],
+  "schoolboy q|||crash talk": [],
+  "scurra & totojira|||doghouse": [],
+  "sexyy red|||in sexyy we trust": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "shenseea|||alpha": [
+    "Reggae",
+    "Funk / Soul",
+    "Pop",
+    "Rhythm & Blues",
+    "Dancehall"
+  ],
+  "shy glizzy|||flowers": [],
+  "silk sonic|||an evening with silk sonic": [
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Soul",
+    "Funk",
+    "Disco"
+  ],
+  "ski mask the slump god|||11th dimension": [
+    "Hip Hop",
+    "Trap",
+    "Hardcore Hip-Hop"
+  ],
+  "ski mask the slump god|||sin city the mixtape": [
+    "Hip Hop",
+    "Trap",
+    "Hardcore Hip-Hop"
+  ],
+  "sky ferreira|||night time, my time": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Pop Rock",
+    "Synth-pop",
+    "Downtempo"
+  ],
+  "slayyyter|||starfucker": [
+    "Electronic",
+    "Pop",
+    "Dance-pop",
+    "Synthwave",
+    "Electro House",
+    "Electroclash",
+    "Synth-pop"
+  ],
+  "slayyyter|||wor$t girl in america": [],
+  "sleep token|||even in arcadia (instrumental)": [],
+  "sleep token|||even in arcadia": [
+    "Electronic",
+    "Hip Hop",
+    "Rock",
+    "Alternative Metal",
+    "Alt-Pop",
+    "Progressive Metal",
+    "Trip Hop",
+    "Deathcore",
+    "Britpop"
+  ],
+  "sleep token|||sundowning": [
+    "Rock",
+    "Progressive Metal",
+    "Experimental"
+  ],
+  "sleep token|||take me back to eden": [
+    "Rock",
+    "Post-Metal",
+    "Alternative Metal",
+    "Progressive Metal",
+    "Indie Rock"
+  ],
+  "sleep token|||this place will become your tomb": [
+    "Rock",
+    "Post-Metal",
+    "Alternative Rock"
+  ],
+  "slipknot|||all hope is gone": [
+    "Rock",
+    "Heavy Metal",
+    "Hard Rock"
+  ],
+  "slipknot|||iowa": [
+    "Rock",
+    "Nu Metal"
+  ],
+  "slipknot|||slipknot": [
+    "Rock",
+    "Nu Metal"
+  ],
+  "slipknot|||vol. 3: (the subliminal verses)": [
+    "Rock",
+    "Nu Metal"
+  ],
+  "slowdive|||souvlaki": [
+    "Rock",
+    "Indie Rock",
+    "Shoegaze",
+    "Dream Pop"
+  ],
+  "snoop dogg & dr. dre|||missionary": [],
+  "snow strippers|||april mixtape 3": [
+    "Electronic",
+    "Witch House",
+    "Electroclash"
+  ],
+  "spiritbox|||eternal blue": [
+    "Rock",
+    "Metalcore"
+  ],
+  "spiritbox|||rotoscope": [
+    "Rock",
+    "Metalcore"
+  ],
+  "spiritbox|||spiritbox": [
+    "Rock",
+    "Metalcore"
+  ],
+  "spiritbox|||the fear of fear": [
+    "Rock",
+    "Metalcore",
+    "Alternative Metal"
+  ],
+  "spiritbox|||tsunami sea": [
+    "Rock",
+    "Metalcore",
+    "Progressive Metal",
+    "Alternative Metal"
+  ],
+  "spiritualized|||ladies and gentlemen we are floating in space": [
+    "Rock",
+    "Space Rock",
+    "Psychedelic Rock",
+    "Indie Rock"
+  ],
+  "split chain|||motionblur": [
+    "Rock",
+    "Nu Metal"
+  ],
+  "steve lacy|||gemini rights": [
+    "Funk / Soul",
+    "Pop",
+    "Neo Soul",
+    "Psychedelic",
+    "Indie Pop"
+  ],
+  "suki waterhouse|||i can't let go": [
+    "Rock",
+    "Indie Rock"
+  ],
+  "suki waterhouse|||memoir of a sparklemuffin": [
+    "Rock",
+    "Pop",
+    "Alt-Pop",
+    "Pop Rock"
+  ],
+  "sweet trip|||velocity : design : comfort.": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Leftfield",
+    "Abstract",
+    "IDM",
+    "Glitch",
+    "Shoegaze"
+  ],
+  "swizz beatz|||hip hop 50, vol. 2": [
+    "Hip Hop"
+  ],
+  "system of a down|||hypnotize": [
+    "Rock",
+    "Nu Metal",
+    "Heavy Metal",
+    "Alternative Metal"
+  ],
+  "system of a down|||mezmerize": [
+    "Rock",
+    "Thrash",
+    "Post Rock",
+    "Experimental"
+  ],
+  "system of a down|||steal this album!": [
+    "Rock",
+    "Alternative Metal",
+    "Nu Metal",
+    "Thrash",
+    "Alternative Rock"
+  ],
+  "system of a down|||system of a down": [
+    "Rock",
+    "Alternative Rock",
+    "Nu Metal",
+    "Hard Rock",
+    "Heavy Metal"
+  ],
+  "system of a down|||toxicity": [
+    "Rock",
+    "Alternative Rock",
+    "Art Rock",
+    "Heavy Metal",
+    "Prog Rock"
+  ],
+  "t-pain & lil wayne|||t-wayne": [
+    "Hip Hop"
+  ],
+  "t.i.|||king": [
+    "Hip Hop",
+    "Gangsta",
+    "Crunk",
+    "Pop Rap",
+    "Conscious"
+  ],
+  "t.i.|||paper trail": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "t.i.|||trap muzik": [
+    "Hip Hop",
+    "Trap",
+    "Gangsta"
+  ],
+  "t.i.|||trouble man: heavy is the head": [
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Thug Rap"
+  ],
+  "t.i.|||urban legend": [
+    "Hip Hop",
+    "Trap",
+    "Crunk",
+    "Pop Rap"
+  ],
+  "tool|||10,000 days": [
+    "Rock",
+    "Prog Rock",
+    "Hard Rock"
+  ],
+  "tool|||fear inoculum": [
+    "Rock",
+    "Progressive Metal",
+    "Prog Rock",
+    "Post-Metal"
+  ],
+  "tool|||lateralus": [
+    "Rock",
+    "Progressive Metal",
+    "Prog Rock",
+    "Heavy Metal"
+  ],
+  "tool|||opiate": [
+    "Rock",
+    "Progressive Metal"
+  ],
+  "tool|||undertow": [
+    "Rock",
+    "Alternative Rock",
+    "Prog Rock"
+  ],
+  "tool|||ænima": [
+    "Rock",
+    "Prog Rock",
+    "Alternative Metal"
+  ],
+  "tame impala|||currents": [
+    "Electronic",
+    "Rock",
+    "Psychedelic Rock",
+    "Synth-pop",
+    "Dream Pop"
+  ],
+  "tame impala|||deadbeat": [
+    "Electronic",
+    "Pop",
+    "House",
+    "Dance-pop",
+    "Tech House",
+    "Alt-Pop"
+  ],
+  "tame impala|||the slow rush": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Alternative Rock",
+    "Psychedelic Rock",
+    "Dance-pop",
+    "Leftfield",
+    "Soft Rock"
+  ],
+  "tanna leone|||sleepy soldier": [
+    "Hip Hop"
+  ],
+  "tate mcrae|||so close to what": [
+    "Electronic",
+    "Pop",
+    "City Pop",
+    "Future Pop",
+    "Hyperpop"
+  ],
+  "tate mcrae|||think later": [
+    "Pop",
+    "Alt-Pop"
+  ],
+  "taylor swift|||1989": [
+    "Pop",
+    "Dance-pop",
+    "Synth-pop",
+    "Ballad"
+  ],
+  "taylor swift|||midnights": [
+    "Electronic",
+    "Pop",
+    "Synth-pop",
+    "Vocal",
+    "Downtempo",
+    "Electro"
+  ],
+  "taylor swift|||red": [
+    "Rock",
+    "Pop",
+    "Folk, World, & Country",
+    "Pop Rock",
+    "Country Rock"
+  ],
+  "taylor swift|||speak now": [
+    "Pop",
+    "Folk, World, & Country",
+    "Country"
+  ],
+  "taylor swift|||the tortured poets department": [
+    "Pop",
+    "Ballad",
+    "Alt-Pop"
+  ],
+  "taylor swift|||the tortured poets department: the anthology": [
+    "Electronic",
+    "Pop",
+    "Synth-pop",
+    "Indie Pop"
+  ],
+  "taylor swift|||the life of a showgirl": [
+    "Electronic",
+    "Pop",
+    "Synth-pop",
+    "Ballad",
+    "Downtempo",
+    "Soft Rock",
+    "Dance-pop"
+  ],
+  "taylor swift|||evermore": [
+    "Rock",
+    "Pop",
+    "Folk, World, & Country",
+    "Folk"
+  ],
+  "taylor swift|||folklore": [
+    "Rock",
+    "Pop",
+    "Folk, World, & Country",
+    "Vocal",
+    "Ballad",
+    "Folk"
+  ],
+  "team sleep|||team sleep": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Alternative Rock",
+    "Experimental",
+    "Trip Hop",
+    "Psychedelic Rock",
+    "Shoegaze",
+    "Post Rock"
+  ],
+  "tech n9ne|||asin9ne": [
+    "Hip Hop"
+  ],
+  "teezo touchdown|||how do you sleep at night?": [
+    "Hip Hop"
+  ],
+  "teyana taylor|||k.t.s.e.": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "House",
+    "Contemporary R&B"
+  ],
+  "the alchemist & curren$y|||continuance": [],
+  "the alchemist & freddie gibbs|||alfredo": [],
+  "the beatles|||abbey road": [
+    "Rock",
+    "Pop Rock"
+  ],
+  "the brave little abacus|||just got back from the discomfort—we're alright": [
+    "Rock",
+    "Math Rock",
+    "Emo"
+  ],
+  "the cure|||songs of a lost world": [
+    "Rock",
+    "Alternative Rock",
+    "Goth Rock"
+  ],
+  "the dare|||what's wrong with new york?": [
+    "Electronic",
+    "Electroclash",
+    "House",
+    "Techno"
+  ],
+  "the game|||drillmatic: heart vs. mind": [
+    "Hip Hop",
+    "Gangsta",
+    "Trap",
+    "Conscious"
+  ],
+  "the game|||the documentary": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "the game & big hit|||paisley dreams": [
+    "Hip Hop",
+    "Gangsta"
+  ],
+  "the japanese house|||good at falling": [
+    "Pop"
+  ],
+  "the japanese house|||in the end it always does": [
+    "Pop",
+    "Indie Pop"
+  ],
+  "the lemon twigs|||look for your mind!": [
+    "Rock",
+    "Pop",
+    "Folk, World, & Country",
+    "Pop Rock",
+    "Psychedelic Rock",
+    "Garage Rock",
+    "Power Pop"
+  ],
+  "the mars volta|||frances the mute": [
+    "Electronic",
+    "Rock",
+    "Alternative Rock",
+    "Psychedelic Rock",
+    "Avantgarde",
+    "Experimental",
+    "Art Rock",
+    "Prog Rock",
+    "Progressive Metal"
+  ],
+  "the marías|||submarine": [
+    "Rock",
+    "Pop",
+    "Indie Pop",
+    "Alt-Pop"
+  ],
+  "the notorious b.i.g.|||ready to die": [],
+  "the roots|||undun": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "the scythe|||strictly 4 the scythe": [],
+  "the smashing pumpkins|||siamese dream": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "the strokes|||is this it": [
+    "Rock",
+    "Indie Rock"
+  ],
+  "the strokes|||the new abnormal": [
+    "Electronic",
+    "Rock",
+    "Pop Rock",
+    "Indie Rock",
+    "Alternative Rock"
+  ],
+  "the weeknd|||after hours": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Synthwave",
+    "New Wave",
+    "Pop Rap",
+    "Disco",
+    "Contemporary R&B",
+    "Synth-pop"
+  ],
+  "the weeknd|||beauty behind the madness": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Trap",
+    "Downtempo"
+  ],
+  "the weeknd|||dawn fm": [
+    "Electronic",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Spoken Word",
+    "Synthwave",
+    "New Wave",
+    "Disco",
+    "Dance-pop",
+    "Synth-pop"
+  ],
+  "the weeknd|||echoes of silence": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "the weeknd|||house of balloons": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "the weeknd|||hurry up tomorrow": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Synth-pop",
+    "Synthwave"
+  ],
+  "the weeknd|||kiss land": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "the weeknd|||my dear melancholy,": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Synth-pop",
+    "Pop Rap"
+  ],
+  "the weeknd|||starboy": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Dance-pop",
+    "Synth-pop",
+    "Pop Rap"
+  ],
+  "the weeknd|||thursday": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "the weeknd|||trilogy": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B"
+  ],
+  "the weeknd & moses sumney|||the idol episode 3 (music from the hbo original series)": [
+    "Electronic",
+    "Funk / Soul",
+    "Pop",
+    "Stage & Screen",
+    "Soundtrack",
+    "Contemporary R&B",
+    "Synth-pop"
+  ],
+  "the weeknd, jennie & lily-rose depp|||the idol episode 4 (music from the hbo original series)": [
+    "Electronic",
+    "Funk / Soul",
+    "Pop",
+    "Stage & Screen",
+    "Soundtrack",
+    "Synth-pop",
+    "Contemporary R&B",
+    "Alt-Pop"
+  ],
+  "the weeknd, lil baby & suzanna son|||the idol episode 5 part 1 (music from the hbo original series)": [],
+  "the weeknd, lily-rose depp & suzanna son|||the idol episode 5 part 2 (music from the hbo original series)": [],
+  "the weeknd, mike dean & lily-rose depp|||the idol episode 1 (music from the hbo original series)": [
+    "Electronic",
+    "Pop",
+    "Stage & Screen",
+    "Soundtrack",
+    "Synth-pop",
+    "Dance-pop"
+  ],
+  "the weeknd, mike dean & suzanna son|||the idol episode 2 (music from the hbo original series)": [
+    "Electronic",
+    "Jazz",
+    "Funk / Soul",
+    "Pop",
+    "Stage & Screen",
+    "Soundtrack",
+    "Contemporary R&B",
+    "Synth-pop",
+    "Dark Jazz"
+  ],
+  "thirty seconds to mars|||a beautiful lie": [],
+  "thornhill|||bodies": [
+    "Rock",
+    "Metalcore",
+    "Progressive Metal",
+    "Alternative Metal"
+  ],
+  "throbbing gristle|||20 jazz funk greats": [
+    "Electronic",
+    "Industrial",
+    "Avantgarde"
+  ],
+  "tiacorine|||almost there": [
+    "Hip Hop"
+  ],
+  "tiacorine|||i can't wait": [],
+  "tierra whack|||world wide whack": [
+    "Hip Hop"
+  ],
+  "tinashe|||bb/ang3l": [
+    "Electronic",
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Trap",
+    "UK Garage",
+    "Bass Music"
+  ],
+  "tinashe|||quantum baby": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Bass Music"
+  ],
+  "tommy richman|||coyote": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Contemporary R&B",
+    "Funk"
+  ],
+  "tory lanez|||alone at prom": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "tory lanez|||alone at prom (deluxe)": [],
+  "tory lanez|||i told you": [
+    "Hip Hop",
+    "Contemporary R&B"
+  ],
+  "tory lanez|||sorry 4 what": [
+    "Funk / Soul",
+    "Contemporary R&B"
+  ],
+  "travis scott|||astroworld": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap",
+    "Psychedelic"
+  ],
+  "travis scott|||birds in the trap sing mcknight": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "travis scott|||days before rodeo": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "travis scott|||owl pharaoh": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "travis scott|||rodeo": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "travis scott|||utopia": [
+    "Electronic",
+    "Hip Hop",
+    "Trap",
+    "Cloud Rap",
+    "Pop Rap",
+    "Psychedelic",
+    "Experimental"
+  ],
+  "trippie redd|||mansion musik": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "turnstile|||never enough": [
+    "Electronic",
+    "Rock",
+    "Hardcore",
+    "Pop Punk",
+    "New Wave",
+    "Ambient",
+    "Baltimore Club"
+  ],
+  "ty dolla $ign|||tycoon": [],
+  "tyla|||tyla": [
+    "Funk / Soul",
+    "Pop",
+    "African",
+    "Contemporary R&B"
+  ],
+  "tyler, the creator|||bastard": [
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Horrorcore",
+    "Conscious"
+  ],
+  "tyler, the creator|||call me if you get lost": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Trap",
+    "Contemporary R&B",
+    "Jazzy Hip-Hop",
+    "Neo Soul",
+    "Hardcore Hip-Hop"
+  ],
+  "tyler, the creator|||call me if you get lost: the estate sale": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Trap",
+    "Contemporary R&B",
+    "Jazzy Hip-Hop",
+    "Neo Soul",
+    "Hardcore Hip-Hop"
+  ],
+  "tyler, the creator|||chromakopia": [
+    "Hip Hop"
+  ],
+  "tyler, the creator|||cherry bomb": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Hardcore Hip-Hop",
+    "Neo Soul"
+  ],
+  "tyler, the creator|||don't tap the glass": [
+    "Electronic",
+    "Hip Hop",
+    "Funk / Soul",
+    "Pop",
+    "Dance-pop",
+    "Pop Rap",
+    "Contemporary R&B",
+    "Freestyle"
+  ],
+  "tyler, the creator|||flower boy": [
+    "Hip Hop",
+    "Funk / Soul",
+    "Jazzy Hip-Hop",
+    "Pop Rap",
+    "Neo Soul"
+  ],
+  "tyler, the creator|||goblin": [
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Horrorcore"
+  ],
+  "tyler, the creator|||igor": [
+    "Hip Hop"
+  ],
+  "tyler, the creator|||wolf": [
+    "Hip Hop",
+    "Jazzy Hip-Hop",
+    "Hardcore Hip-Hop",
+    "Horrorcore",
+    "Pop Rap"
+  ],
+  "various artists|||8 mile (music from and inspired by the motion picture)": [],
+  "various artists|||barbie the album": [],
+  "various artists|||eminem presents: the re-up": [],
+  "various artists|||kanye west presents: good music - cruel summer": [],
+  "various artists|||shadyxv": [],
+  "victoria monét|||jaguar ii": [
+    "Funk / Soul",
+    "Pop",
+    "Contemporary R&B",
+    "Neo Soul",
+    "Funk",
+    "Psychedelic"
+  ],
+  "viktor vaughn|||vaudeville villain": [
+    "Hip Hop",
+    "Hardcore Hip-Hop",
+    "Boom Bap"
+  ],
+  "vince staples|||big fish theory": [
+    "Hip Hop"
+  ],
+  "vince staples|||cry baby": [
+    "Hip Hop",
+    "Rock"
+  ],
+  "vince staples|||dark times": [
+    "Hip Hop",
+    "Jazzy Hip-Hop"
+  ],
+  "vince staples|||fm!": [
+    "Hip Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "vince staples|||ramona park broke my heart": [
+    "Hip Hop"
+  ],
+  "vince staples|||summertime '06": [
+    "Hip Hop",
+    "Gangsta",
+    "Conscious"
+  ],
+  "vince staples|||vince staples": [
+    "Hip Hop"
+  ],
+  "vory|||lost souls": [],
+  "westside boogie|||more black superheroes": [],
+  "waka flocka flame|||flockaveli": [
+    "Hip Hop",
+    "Crunk",
+    "Gangsta",
+    "Trap"
+  ],
+  "wallows|||model": [
+    "Rock",
+    "Pop",
+    "Alternative Rock",
+    "Indie Rock",
+    "Indie Pop"
+  ],
+  "weiland|||vices": [
+    "Electronic",
+    "Pop",
+    "Dance-pop",
+    "Synthwave",
+    "Synth-pop",
+    "Indie Pop"
+  ],
+  "weiland|||you can't climb the mountain in n.y.": [
+    "Rock",
+    "Pop",
+    "Indie Rock",
+    "Indie Pop",
+    "Jangle Pop"
+  ],
+  "westside gunn|||and then you pray for me": [
+    "Hip Hop"
+  ],
+  "westside gunn|||pray for paris": [
+    "Hip Hop",
+    "Hardcore Hip-Hop"
+  ],
+  "wet leg|||moisturizer": [
+    "Rock",
+    "Indie Rock",
+    "Post-Punk"
+  ],
+  "weyes blood|||titanic rising": [
+    "Rock",
+    "Dream Pop",
+    "Indie Rock",
+    "Indie Pop",
+    "Soft Rock",
+    "Art Rock",
+    "Baroque Pop"
+  ],
+  "whirr|||pipe dreams": [
+    "Rock",
+    "Shoegaze"
+  ],
+  "wisp|||if not winter": [
+    "Rock",
+    "Shoegaze",
+    "Dream Pop"
+  ],
+  "wiz khalifa|||burn after rolling": [
+    "Hip Hop"
+  ],
+  "wiz khalifa|||kush & orange juice": [],
+  "wiz khalifa|||rolling papers": [
+    "Hip Hop",
+    "Pop Rap"
+  ],
+  "wolf alice|||visions of a life": [
+    "Rock",
+    "Alternative Rock",
+    "Indie Rock"
+  ],
+  "wunderhorse|||cub": [
+    "Rock",
+    "Alternative Rock"
+  ],
+  "wunderhorse|||midas": [
+    "Rock",
+    "Indie Rock"
+  ],
+  "yg|||my krazy life": [
+    "Hip Hop"
+  ],
+  "yt|||oi!": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "yeat|||2 alivë": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "yeat|||2093": [
+    "Electronic",
+    "Hip Hop",
+    "Experimental"
+  ],
+  "yeat|||adl": [
+    "Electronic",
+    "Hip Hop",
+    "Experimental",
+    "Trap"
+  ],
+  "yeat|||aftërlyfe": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "yeat|||dangerous summer": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "yeat|||lyfë": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "young money|||rise of an empire": [
+    "Hip Hop"
+  ],
+  "young nudy|||ea monster": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "young nudy|||gumbo": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "young nudy|||paradise": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "young thug|||business is business": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "young thug|||barter 6": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "young thug|||punk": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "young thug|||slime season": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "young thug|||so much fun": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "young thug|||uy scuti": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "young thug & future|||super slimey": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "youngboy never broke again|||3800 degrees": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "youngboy never broke again|||colors": [
+    "Hip Hop",
+    "Trap",
+    "Gangsta",
+    "Pop Rap"
+  ],
+  "youngboy never broke again|||decided 2": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "youngboy never broke again|||don't try this at home": [
+    "Hip Hop",
+    "Pop Rap",
+    "Trap",
+    "Gangsta"
+  ],
+  "youngboy never broke again|||i rest my case": [
+    "Hip Hop",
+    "Trap",
+    "Pop Rap"
+  ],
+  "youngboy never broke again|||ma' i got a family": [
+    "Hip Hop",
+    "Trap"
+  ],
+  "youngboy never broke again|||richest opp": [
+    "Hip Hop",
+    "Gangsta",
+    "Trap"
+  ],
+  "youngboy never broke again|||still flexin, still steppin": [
+    "Hip Hop",
+    "Gangsta",
+    "Trap"
+  ],
+  "youngboy never broke again|||top": [
+    "Hip Hop",
+    "Trap",
+    "Gangsta"
+  ],
+  "zara larsson|||midnight sun": [
+    "Electronic",
+    "Pop",
+    "Dance-pop",
+    "Europop",
+    "Baltimore Club"
+  ],
+  "[prcy®]|||rbxrr v (rbvrr) presents: act ii - continuance": [],
+  "beabadoobee|||beatopia": [
+    "Rock",
+    "Pop",
+    "Indie Pop",
+    "Alternative Rock",
+    "Indie Rock",
+    "Dream Pop",
+    "Folk"
+  ],
+  "beabadoobee|||this is how tomorrow moves": [
+    "Rock",
+    "Pop",
+    "Alternative Rock",
+    "Indie Pop",
+    "Indie Rock",
+    "Pop Rock"
+  ],
+  "beastboi.|||loud and fear": [],
+  "billy woods|||aethiopes": [
+    "Hip Hop",
+    "Conscious",
+    "Jazzy Hip-Hop",
+    "Abstract"
+  ],
+  "billy woods|||golliwog": [
+    "Hip Hop",
+    "Conscious"
+  ],
+  "d4vd|||withered": [
+    "Rock",
+    "Funk / Soul",
+    "Pop",
+    "Indie Pop",
+    "Indie Rock",
+    "Contemporary R&B"
+  ],
+  "foxtails|||iii": [
+    "Rock",
+    "Emo",
+    "Hardcore"
+  ],
+  "mgk|||mainstream sellout": [],
+  "mgk & trippie redd|||genre : sadboy": [],
+  "my bloody valentine|||loveless": [
+    "Rock",
+    "Shoegaze",
+    "Alternative Rock",
+    "Noise Rock"
+  ],
+  "redveil|||learn 2 swim": [
+    "Hip Hop",
+    "Jazzy Hip-Hop"
+  ],
+  "redveil|||playing w/ fire": [
+    "Hip Hop",
+    "Jazzy Hip-Hop"
+  ],
+  "slayr|||half blood": [
+    "Hip Hop",
+    "Pop",
+    "Trap"
+  ],
+  "sombr|||i barely know her": [
+    "Rock",
+    "Pop",
+    "Indie Pop"
+  ],
+  "t.a.t.u.|||200 km/h in the wrong lane": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Europop",
+    "Pop Rock",
+    "Synth-pop",
+    "Ballad"
+  ],
+  "twenty one pilots|||breach": [
+    "Rock",
+    "Pop",
+    "Alternative Rock",
+    "Alt-Pop",
+    "Indie Rock"
+  ],
+  "twenty one pilots|||clancy": [
+    "Rock",
+    "Pop",
+    "Alternative Rock"
+  ],
+  "twenty one pilots|||trench": [
+    "Hip Hop",
+    "Rock",
+    "Pop"
+  ],
+  "underscores|||u": [
+    "Electronic",
+    "Pop",
+    "Electro",
+    "Future Bass",
+    "Alt-Pop",
+    "Dance-pop",
+    "Glitch",
+    "Electro House"
+  ],
+  "underscores|||wallsocket": [
+    "Electronic",
+    "Rock",
+    "Pop",
+    "Experimental",
+    "Leftfield",
+    "Indie Pop",
+    "Alternative Rock",
+    "Synth-pop",
+    "Hyperpop"
+  ],
+  "untiljapan|||trompe l'oeil": [],
+  "¥$|||vultures 1": [],
+  "¥$|||vultures 2": [],
+  "†††|||goodnight, god bless, i love u, delete.": [],
+  "†††|||permanent.radiant": [],
+  "†††|||†††": [],
+  "파란노을 [parannoul]|||after the magic": []
 }

@@ -22,10 +22,10 @@ TEST_SIZE = 0.2
 CATEGORICAL_FEATURES = [
     "Artist",
     "format",
-    "Genre 1",
-    "Genre 2",
-    "Genre 3",
 ]
+
+GENRE_COLUMN = "Genres"
+GENRE_FEATURE_PREFIX = "genre__"
 
 NUMERIC_FEATURES = [
     "Year",
@@ -34,7 +34,7 @@ NUMERIC_FEATURES = [
     "Runtime",
 ]
 
-FEATURE_COLUMNS = CATEGORICAL_FEATURES + NUMERIC_FEATURES
+BASE_FEATURE_COLUMNS = CATEGORICAL_FEATURES + NUMERIC_FEATURES
 
 IDENTIFIER_COLUMNS = [
     "Artist",
@@ -42,9 +42,7 @@ IDENTIFIER_COLUMNS = [
     "Year",
     "Number of tracks",
     "Runtime",
-    "Genre 1",
-    "Genre 2",
-    "Genre 3",
+    "Genres",
     "format",
 ]
 
@@ -80,7 +78,7 @@ def load_data(path: Path) -> pd.DataFrame:
 
 
 def validate_data(df: pd.DataFrame) -> None:
-    required_columns = set(IDENTIFIER_COLUMNS + FEATURE_COLUMNS + [TARGET_COLUMN])
+    required_columns = set(IDENTIFIER_COLUMNS + BASE_FEATURE_COLUMNS + [GENRE_COLUMN, TARGET_COLUMN])
     missing_columns = required_columns - set(df.columns)
 
     if missing_columns:
@@ -101,13 +99,70 @@ def fill_missing_numeric_column(df: pd.DataFrame, column: str) -> None:
     df[column] = df[column].fillna(median_value)
 
 
-def prepare_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame]:
+def split_genres(value: object) -> list[str]:
+    if value is None:
+        return ["unknown"]
+
+    genre_text = str(value).strip()
+
+    if not genre_text or genre_text.lower() in {"nan", "none", "<na>"}:
+        return ["unknown"]
+
+    genres = [genre.strip() for genre in genre_text.split(",")]
+    genres = [genre for genre in genres if genre]
+
+    return genres if genres else ["unknown"]
+
+
+def make_genre_feature_column_name(genre: str) -> str:
+    cleaned_genre = genre.strip().lower()
+    cleaned_genre = cleaned_genre.replace("/", "_")
+    cleaned_genre = cleaned_genre.replace("&", "and")
+    cleaned_genre = cleaned_genre.replace(" ", "_")
+    cleaned_genre = "".join(
+        character for character in cleaned_genre if character.isalnum() or character == "_"
+    )
+
+    return f"{GENRE_FEATURE_PREFIX}{cleaned_genre}"
+
+
+def build_genre_feature_dataframe(
+    df: pd.DataFrame,
+) -> tuple[list[str], pd.DataFrame]:
+    genre_lists = df[GENRE_COLUMN].apply(split_genres)
+    unique_genres = sorted(
+        {genre for album_genres in genre_lists for genre in album_genres}
+    )
+    genre_feature_columns = [
+        make_genre_feature_column_name(genre) for genre in unique_genres
+    ]
+
+    genre_feature_data = {
+        column_name: genre_lists.apply(
+            lambda album_genres, current_genre=genre: int(current_genre in album_genres)
+        )
+        for genre, column_name in zip(unique_genres, genre_feature_columns)
+    }
+
+    genre_feature_df = pd.DataFrame(genre_feature_data, index=df.index)
+
+    return genre_feature_columns, genre_feature_df
+
+
+def prepare_data(
+    df: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.Series, pd.DataFrame, list[str], list[str]]:
     model_df = df.copy()
 
     model_df = model_df.dropna(subset=[TARGET_COLUMN])
 
     for column in CATEGORICAL_FEATURES:
         model_df[column] = model_df[column].fillna("unknown").astype(str)
+
+    model_df[GENRE_COLUMN] = model_df[GENRE_COLUMN].fillna("unknown").astype(str)
+    genre_feature_columns, genre_feature_df = build_genre_feature_dataframe(model_df)
+    model_df = pd.concat([model_df, genre_feature_df], axis=1).copy()
+    feature_columns = BASE_FEATURE_COLUMNS + genre_feature_columns
 
     for column in NUMERIC_FEATURES:
         fill_missing_numeric_column(model_df, column)
@@ -119,20 +174,20 @@ def prepare_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series, pd.DataFram
 
     model_df = model_df.dropna(subset=[TARGET_COLUMN])
 
-    x = model_df[FEATURE_COLUMNS]
+    x = model_df[feature_columns]
     y = model_df[TARGET_COLUMN]
     identifiers = model_df[IDENTIFIER_COLUMNS].copy()
 
-    for column in ["Genre 1", "Genre 2", "Genre 3"]:
-        identifiers[column] = identifiers[column].fillna("unknown").astype(str)
-
+    identifiers[GENRE_COLUMN] = identifiers[GENRE_COLUMN].fillna("unknown").astype(str)
     identifiers["Number of tracks"] = model_df["Number of tracks"]
     identifiers["Runtime"] = model_df["Runtime"]
 
-    return x, y, identifiers
+    return x, y, identifiers, feature_columns, genre_feature_columns
 
 
-def build_model() -> Pipeline:
+def build_model(genre_feature_columns: list[str]) -> Pipeline:
+    numeric_and_genre_features = NUMERIC_FEATURES + genre_feature_columns
+
     preprocessor = ColumnTransformer(
         transformers=[
             (
@@ -143,7 +198,7 @@ def build_model() -> Pipeline:
             (
                 "numeric",
                 StandardScaler(),
-                NUMERIC_FEATURES,
+                numeric_and_genre_features,
             ),
         ]
     )
@@ -237,8 +292,13 @@ def format_summary(results_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def genre_summary(results_df: pd.DataFrame) -> pd.DataFrame:
+    summary_df = results_df.copy()
+    summary_df[GENRE_COLUMN] = summary_df[GENRE_COLUMN].fillna("unknown").astype(str)
+    summary_df["genre"] = summary_df[GENRE_COLUMN].apply(split_genres)
+    summary_df = summary_df.explode("genre")
+
     return (
-        results_df.groupby("Genre 1")
+        summary_df.groupby("genre")
         .agg(
             count=("actual_score", "count"),
             average_actual_score=("actual_score", "mean"),
@@ -247,6 +307,7 @@ def genre_summary(results_df: pd.DataFrame) -> pd.DataFrame:
         )
         .sort_values(by=["count", "average_absolute_error"], ascending=[False, True])
         .reset_index()
+        .rename(columns={"genre": "Genre"})
         .head(25)
     )
 
@@ -269,6 +330,7 @@ def write_report(
     model_metrics: dict[str, float],
     dummy_metrics: dict[str, float],
     results_df: pd.DataFrame,
+    feature_columns: list[str],
 ) -> None:
     close_count = (results_df["error_tier"] == "close").sum()
     moderate_count = (results_df["error_tier"] == "moderate").sum()
@@ -281,7 +343,7 @@ def write_report(
         report.write("Dataset\n")
         report.write("-------\n")
         report.write(f"Test rows: {len(results_df)}\n")
-        report.write(f"Features used: {', '.join(FEATURE_COLUMNS)}\n")
+        report.write(f"Features used: {', '.join(feature_columns)}\n")
         report.write(f"Target: {TARGET_COLUMN}\n\n")
 
         report.write("Model Performance\n")
@@ -332,9 +394,7 @@ def write_report(
                     "Year",
                     "Number of tracks",
                     "Runtime",
-                    "Genre 1",
-                    "Genre 2",
-                    "Genre 3",
+                    "Genres",
                     "actual_score",
                     "predicted_score",
                     "error",
@@ -350,7 +410,7 @@ def main() -> None:
     df = load_data(DATA_PATH)
     validate_data(df)
 
-    x, y, identifiers = prepare_data(df)
+    x, y, identifiers, feature_columns, genre_feature_columns = prepare_data(df)
 
     x_train, x_test, y_train, y_test, _identifiers_train, identifiers_test = train_test_split(
         x,
@@ -360,7 +420,7 @@ def main() -> None:
         random_state=RANDOM_STATE,
     )
 
-    model = build_model()
+    model = build_model(genre_feature_columns)
     model.fit(x_train, y_train)
 
     predictions = pd.Series(model.predict(x_test), index=y_test.index)
@@ -373,7 +433,7 @@ def main() -> None:
 
     results_df = build_results_df(identifiers_test, y_test, predictions)
 
-    write_report(model_metrics, dummy_metrics, results_df)
+    write_report(model_metrics, dummy_metrics, results_df, feature_columns)
 
     print("AOTY enriched model training complete")
     print("------------------------------------")
