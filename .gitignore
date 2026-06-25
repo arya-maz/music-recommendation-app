@@ -4,6 +4,7 @@ __pycache__/
 .DS_Store
 models/
 data/processed/
+data/raw/spotify/
 *.cbm
 *.pkl
 *.joblib
