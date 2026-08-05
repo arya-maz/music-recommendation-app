@@ -2,6 +2,7 @@ from music_taste.spotify.client import get_spotify_client
 from music_taste.spotify.fetch_data import fetch_and_save_spotify_data
 from music_taste.spotify.build_profile import build_taste_profile
 from music_taste.spotify.find_candidates import find_candidate_albums
+from music_taste.spotify.rank_recommendations import select_final_recommendations
 
 
 def main() -> None:
@@ -9,6 +10,10 @@ def main() -> None:
     taste_profile = build_taste_profile(spotify_data)
     sp = get_spotify_client()
     candidate_albums = find_candidate_albums(sp, taste_profile)
+    final_recommendations = select_final_recommendations(
+        candidate_albums,
+        taste_profile,
+    )
 
     print("Top Artists")
     print("-----------")
@@ -36,13 +41,23 @@ def main() -> None:
     print(f"Saved-track albums: {len(taste_profile['saved_track_album_ids'])}")
 
     print()
-    print("Candidate Albums")
-    print("----------------")
-    print(f"Candidate albums found: {len(candidate_albums)}")
+    print("Final 5 Album Recommendations")
+    print("-----------------------------")
+    print(f"Eligible candidate albums evaluated: {len(candidate_albums)}")
 
-    for index, album in enumerate(candidate_albums, start=1):
+    for index, album in enumerate(final_recommendations, start=1):
         artist_names = ", ".join(artist["name"] for artist in album["artists"])
+        recommendation = album["recommendation"]
+        familiarity = album["familiarity"]
+
         print(f"{index}. {artist_names} - {album['name']}")
+        print(f"   Recommendation score: {recommendation['score']:.2f}")
+        print(f"   Artist affinity: {recommendation['artist_affinity']:.2f}")
+        print(
+            "   Familiarity: "
+            f"{familiarity['score']} ({familiarity['level']})"
+        )
+        print(f"   Why: {recommendation['explanation']}")
 
 
 if __name__ == "__main__":

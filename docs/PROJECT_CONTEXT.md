@@ -267,7 +267,8 @@ Remaining albums receive labels such as:
 * partially familiar;
 * mostly familiar.
 
-The candidate data contains familiarity details, but the current command-line output does not display all of them.
+The final command-line output displays the familiarity score and label for each
+selected recommendation.
 
 ### Rate limiting
 
@@ -283,22 +284,31 @@ The current implementation:
 
 External API calls should remain cache-aware and deliberate.
 
-### Current limitation
+### Final recommendation ranking
 
-The current output is a filtered candidate list rather than a complete recommendation-ranking system.
+Candidate collection, caching, and filtering still produce and retain the full
+eligible pool. A separate offline stage scores every eligible candidate before
+selecting the final results.
 
-It does not yet combine:
+The deterministic score combines:
 
-* artist affinity;
-* unfamiliarity;
-* candidate quality;
-* genre compatibility;
-* release relevance;
-* other recommendation signals
+* 60% normalized artist relevance, using a saturating transformation of the
+  existing artist-affinity value;
+* 40% discovery value, calculated as `100 - familiarity score`.
 
-into one final recommendation score.
+The saturation prevents very large raw affinity values from dominating, while
+the relevance component prevents the least familiar album from automatically
+becoming the strongest recommendation. The selector follows the ranked list
+and keeps the highest-ranked album for each case-insensitively normalized
+primary artist until five unique artists are selected or the pool is exhausted.
 
-This is the next major recommendation-engine design problem.
+Ties are resolved by raw artist affinity descending, familiarity ascending,
+case-normalized artist name, case-normalized album name, and Spotify album ID.
+This makes results independent of candidate input order.
+
+The current score remains limited to implicit artist-affinity and coarse album-
+familiarity evidence. It does not measure true expected enjoyment, album
+quality, genre compatibility, lifetime play counts, or release relevance.
 
 ---
 
@@ -308,13 +318,10 @@ A recent run of the Spotify pipeline produced a strong candidate set. The
 albums appeared sufficiently unfamiliar while still matching the user's
 preferred tastes.
 
-The immediate problem is not candidate relevance but output volume. The
-application currently returns a very long list.
+The application addresses output volume in a separate final selection stage:
 
-The desired initial output behavior is:
-
-- return five recommendations;
-- allow no more than one album per artist;
+- return up to five ranked recommendations;
+- allow no more than one album per case-insensitively normalized artist;
 - preserve the broader candidate pool and existing cache;
 - apply the limit only during final recommendation selection or presentation.
 
@@ -363,21 +370,15 @@ Priority areas:
 * genre parsing;
 * AOTY schema validation.
 
-### 2. Improve candidate ranking
+### 2. Tune and extend candidate ranking
 
-Create an explainable recommendation score that balances:
-
-* taste fit;
-* artist familiarity;
-* album familiarity;
-* evidence of prior interest;
-* discovery value.
-
-The system should not simply return the least familiar albums without considering whether they are likely to be relevant.
+Evaluate and tune the current artist-relevance and discovery-value weights.
+Add only verified signals that improve recommendation strength without changing
+or truncating the full candidate pool.
 
 ### 3. Improve output transparency
 
-Candidate output should eventually display:
+Final recommendation output displays:
 
 * artist;
 * album;
