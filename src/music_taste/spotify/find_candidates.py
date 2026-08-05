@@ -4,6 +4,8 @@ import string
 import time
 from pathlib import Path
 
+from spotipy.exceptions import SpotifyException
+
 from music_taste.spotify.score_familiarity import calculate_album_familiarity
 
 
@@ -42,6 +44,8 @@ EXCLUDED_ALBUM_TITLE_TERMS = [
 
 SAVED_TRACK_ALBUM_KNOWN_THRESHOLD = 1
 SPOTIFY_ARTIST_ALBUMS_MAX_LIMIT = 10
+MAX_RATE_LIMIT_RETRIES = 3
+MAX_RATE_LIMIT_RETRY_SECONDS = 60
 
 
 def _load_candidate_album_cache() -> list[dict] | None:
@@ -57,6 +61,60 @@ def _save_candidate_album_cache(albums: list[dict]) -> None:
 
     with CANDIDATE_ALBUMS_CACHE_PATH.open("w", encoding="utf-8") as file:
         json.dump(albums, file, indent=2)
+
+
+# --- Rate limit helper functions ---
+def _retry_after_seconds(error: SpotifyException) -> int:
+    headers = getattr(error, "headers", {}) or {}
+    retry_after = headers.get("Retry-After") or headers.get("retry-after")
+
+    if retry_after is None:
+        return MAX_RATE_LIMIT_RETRY_SECONDS
+
+    try:
+        return int(retry_after)
+    except ValueError:
+        return MAX_RATE_LIMIT_RETRY_SECONDS
+
+
+def _fetch_artist_album_page(
+    sp,
+    artist_id: str,
+    request_limit: int,
+    offset: int,
+) -> dict | None:
+    for retry_number in range(1, MAX_RATE_LIMIT_RETRIES + 1):
+        try:
+            return sp.artist_albums(
+                artist_id,
+                album_type="album",
+                country="US",
+                limit=request_limit,
+                offset=offset,
+            )
+        except SpotifyException as error:
+            if getattr(error, "http_status", None) != 429:
+                raise
+
+            retry_after = _retry_after_seconds(error)
+
+            if retry_after > MAX_RATE_LIMIT_RETRY_SECONDS:
+                print(
+                    "Spotify rate limit reached. "
+                    f"Retry-After is {retry_after} seconds, so stopping this run "
+                    "and saving the candidates found so far."
+                )
+                return None
+
+            print(
+                "Spotify rate limit reached. "
+                f"Waiting {retry_after} seconds before retry "
+                f"{retry_number}/{MAX_RATE_LIMIT_RETRIES}."
+            )
+            time.sleep(retry_after + 1)
+
+    print("Spotify rate limit retries exhausted. Saving candidates found so far.")
+    return None
 
 
 # --- New helper functions ---
@@ -229,13 +287,16 @@ def find_candidate_albums(
         pages_fetched = 0
 
         while pages_fetched < max_pages_per_artist:
-            response = sp.artist_albums(
-                artist_id,
-                album_type="album",
-                country="US",
-                limit=request_limit,
+            response = _fetch_artist_album_page(
+                sp=sp,
+                artist_id=artist_id,
+                request_limit=request_limit,
                 offset=offset,
             )
+
+            if response is None:
+                _save_candidate_album_cache(raw_candidate_albums)
+                return _attach_familiarity(raw_candidate_albums, taste_profile)
 
             items = response["items"]
 
