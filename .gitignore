@@ -11,3 +11,5 @@ data/raw/spotify/
 .env
 # Spotify OAuth token cache
 .cache
+# Pytest
+.pytest_cache/
