@@ -146,10 +146,12 @@ The current Spotify pipeline includes:
 - Fetching recently played tracks
 - Saving Spotify responses locally as JSON files
 - Building an artist-affinity taste profile from Spotify behavior
-- Fetching candidate albums from the user's strongest artists
+- Fetching a full candidate pool from lower-affinity eligible artists after excluding the top 10 artists
 - Estimating album familiarity from saved/top/recent listening signals
 - Filtering out albums that appear highly familiar
-- Printing candidate albums with familiarity scores for inspection
+- Ranking the full eligible pool by artist relevance and album discovery value
+- Selecting up to five recommendations from unique artists
+- Printing recommendation, affinity, and familiarity scores with explanations
 - Adding local caching and safer API-call controls to reduce the risk of Spotify rate limits
 
 This marks an important shift in the project direction. The earlier AOTY model remains useful as a research and modeling experiment, while the Spotify component is becoming the foundation for a more practical album recommendation app.
@@ -184,13 +186,14 @@ Completed so far:
 - Fetched Spotify top artists, top tracks, saved albums, saved tracks, and recently played tracks
 - Saved Spotify API responses locally for repeatable development
 - Built an initial Spotify taste profile from listening behavior
-- Built an initial candidate-album finder based on the user's strongest artists
+- Built an initial candidate-album finder based on lower-affinity eligible artists
 - Added album familiarity scoring to distinguish unheard, lightly familiar, partially familiar, mostly familiar, and highly familiar albums
 - Added caching and API-call safeguards after encountering Spotify rate limits
+- Added deterministic final ranking and one-album-per-artist selection
 
 The current finding from the rating-model side is that enriched metadata does not automatically improve score prediction, especially when genre and metadata fields are noisy or sparse. The current finding from the Spotify side is that a practical recommender can start by identifying underexplored albums from artists the user already likes, then filtering/ranking those albums by estimated familiarity.
 
-The next step for the Spotify component is to improve candidate quality by cleaning duplicates, deluxe editions, live albums, compilations, and remasters, then ranking albums by a combination of artist affinity and album familiarity.
+The Spotify component now preserves the complete filtered candidate pool and cache, evaluates every eligible candidate, and selects five final recommendations from unique artists. The score balances a saturating artist-affinity signal with album discovery value derived from familiarity; future work should tune those weights and add recommendation signals that are not currently available.
 
 ## Current Tech Stack
 
@@ -235,8 +238,9 @@ The next step for the Spotify component is to improve candidate quality by clean
 - [x] Add album familiarity scoring
 - [x] Add caching and API-call safeguards for Spotify requests
 - [ ] Clean Spotify candidate albums by removing duplicates, deluxe editions, live albums, compilations, and remasters
-- [ ] Rank Spotify candidate albums by artist affinity and familiarity score
-- [ ] Add recommendation explanations
+- [x] Rank the full Spotify candidate pool by artist affinity and familiarity score
+- [x] Select five final recommendations with no more than one album per artist
+- [x] Add recommendation explanations
 - [ ] Run feature ablation tests on AOTY feature groups
 - [ ] Perform deeper exploratory data analysis
 - [ ] Engineer additional taste-profile features
@@ -251,8 +255,8 @@ The next step for the Spotify component is to improve candidate quality by clean
 Future improvements may include:
 
 - Cleaning Spotify candidate albums by filtering duplicate releases, deluxe editions, live albums, compilations, and remasters
-- Ranking Spotify recommendations using artist affinity, familiarity score, saved-track overlap, and discovery value
-- Adding readable recommendation explanations for each album
+- Tuning the final ranking weights and recommendation count
+- Adding new verified recommendation signals beyond the current artist-affinity and familiarity data
 - Exploring adjacent-artist discovery using playlist co-occurrence, Last.fm tags, Discogs genres/styles, or another similarity source
 - Broadening the analysis of taste by implementing new attributes such as decade, genre combinations, and artist history
 - Using existing score-trend analysis to engineer stronger taste-profile and recommendation features
