@@ -14,12 +14,12 @@ Keep these pipelines conceptually separate unless a task explicitly requires int
 
 * Run commands from the repository root.
 
-* Use `python3`, never `python`.
+* Use `python`, never `python3`.
 
 * For modules under `src/music_taste/`, use:
 
   ```bash
-  PYTHONPATH=src python3 -m <module>
+  PYTHONPATH=src python -m <module>
   ```
 
 * Inspect all relevant files before editing.
@@ -80,19 +80,19 @@ Keep these pipelines conceptually separate unless a task explicitly requires int
 ### Original 365-album pipeline
 
 ```bash
-PYTHONPATH=src python3 -m music_taste.inspect_data
-PYTHONPATH=src python3 -m music_taste.build_features
-PYTHONPATH=src python3 -m music_taste.summarize_features
-PYTHONPATH=src python3 -m music_taste.train_model
-PYTHONPATH=src python3 -m music_taste.analyze_model_errors
+PYTHONPATH=src python -m music_taste.inspect_data
+PYTHONPATH=src python -m music_taste.build_features
+PYTHONPATH=src python -m music_taste.summarize_features
+PYTHONPATH=src python -m music_taste.train_model
+PYTHONPATH=src python -m music_taste.analyze_model_errors
 ```
 
 ### AOTY pipeline
 
 ```bash
-python3 src/import_aoty.py
-python3 src/enrich_aoty_tags.py
-python3 src/train_aoty_model.py
+python src/import_aoty.py
+python src/enrich_aoty_tags.py
+python src/train_aoty_model.py
 ```
 
 `src/enrich_aoty_tags.py` performs external Last.fm and Discogs requests. Do not run it without explicit authorization.
@@ -100,7 +100,7 @@ python3 src/train_aoty_model.py
 ### Spotify pipeline
 
 ```bash
-PYTHONPATH=src python3 -m music_taste.spotify.run
+PYTHONPATH=src python -m music_taste.spotify.run
 ```
 
 This command may initiate Spotify OAuth and make API requests. Do not run it without explicit authorization.
