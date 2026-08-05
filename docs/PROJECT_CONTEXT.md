@@ -302,6 +302,27 @@ This is the next major recommendation-engine design problem.
 
 ---
 
+### Current recommendation-quality observation
+
+A recent run of the Spotify pipeline produced a strong candidate set. The
+albums appeared sufficiently unfamiliar while still matching the user's
+preferred tastes.
+
+The immediate problem is not candidate relevance but output volume. The
+application currently returns a very long list.
+
+The desired initial output behavior is:
+
+- return five recommendations;
+- allow no more than one album per artist;
+- preserve the broader candidate pool and existing cache;
+- apply the limit only during final recommendation selection or presentation.
+
+A customizable recommendation count may be added later, but the initial
+default and current requirement is five.
+
+---
+
 ## Current repository state
 
 The active development branch at the time Codex was introduced was:
