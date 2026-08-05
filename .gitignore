@@ -9,3 +9,5 @@ data/raw/spotify/
 *.pkl
 *.joblib
 .env
+# Spotify OAuth token cache
+.cache
