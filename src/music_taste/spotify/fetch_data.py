@@ -1,9 +1,6 @@
 import json
 from pathlib import Path
 
-from music_taste.spotify.client import get_spotify_client
-
-
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 RAW_SPOTIFY_DIR = PROJECT_ROOT / "data" / "raw" / "spotify"
 
@@ -75,9 +72,7 @@ def fetch_saved_tracks(sp, limit: int = 50):
     return tracks
 
 
-def fetch_and_save_spotify_data() -> dict:
-    sp = get_spotify_client()
-
+def fetch_and_save_spotify_data(sp) -> dict:
     spotify_data = {
         "top_artists": fetch_top_artists(sp),
         "top_tracks": fetch_top_tracks(sp),
