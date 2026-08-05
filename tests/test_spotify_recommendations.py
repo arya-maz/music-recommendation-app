@@ -13,6 +13,10 @@ from music_taste.spotify.rank_recommendations import (
     rank_candidates,
     select_final_recommendations,
 )
+from music_taste.spotify.recommendations import (
+    Recommendation,
+    generate_recommendations,
+)
 
 
 def make_candidate(
@@ -173,6 +177,122 @@ class RecommendationSelectionTests(unittest.TestCase):
 
         self.assertEqual(final_cache, original_cache)
         self.assertEqual(len(final_cache), 10)
+
+
+def test_generate_recommendations_returns_structured_results(monkeypatch):
+    spotify_client = object()
+    spotify_data = {"top_artists": []}
+    taste_profile = {"artist_scores": {"artist-1": 50}}
+    selected_album = {
+        "id": "album-1",
+        "name": "Album One",
+        "artists": [{"id": "artist-1", "name": "Artist One"}],
+        "external_urls": {"spotify": "https://open.spotify.test/album/1"},
+        "images": [{"url": "https://images.test/album-1.jpg"}],
+        "familiarity": {"score": 15, "level": "lightly familiar"},
+        "recommendation": {
+            "score": 64.0,
+            "artist_affinity": 50.0,
+            "explanation": "meaningful prior artist interest; low album familiarity",
+        },
+    }
+    calls = {}
+
+    def fake_fetch(client):
+        calls["fetch_client"] = client
+        return spotify_data
+
+    def fake_build_profile(data):
+        calls["profile_data"] = data
+        return taste_profile
+
+    def fake_find_candidates(client, profile):
+        calls["candidate_client"] = client
+        calls["candidate_profile"] = profile
+        return [{"id": "candidate"}]
+
+    def fake_select(candidates, profile, recommendation_count):
+        calls["selection_candidates"] = candidates
+        calls["selection_profile"] = profile
+        calls["selection_limit"] = recommendation_count
+        return [selected_album]
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.fetch_and_save_spotify_data",
+        fake_fetch,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.build_taste_profile",
+        fake_build_profile,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.find_candidate_albums",
+        fake_find_candidates,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.select_final_recommendations",
+        fake_select,
+    )
+
+    recommendations = generate_recommendations(spotify_client, limit=3)
+
+    assert recommendations == [
+        Recommendation(
+            artist_name="Artist One",
+            album_name="Album One",
+            spotify_url="https://open.spotify.test/album/1",
+            album_image_url="https://images.test/album-1.jpg",
+            recommendation_score=64.0,
+            reason="meaningful prior artist interest; low album familiarity",
+            artist_affinity=50.0,
+            familiarity_score=15.0,
+            familiarity_label="lightly familiar",
+        )
+    ]
+    assert calls == {
+        "fetch_client": spotify_client,
+        "profile_data": spotify_data,
+        "candidate_client": spotify_client,
+        "candidate_profile": taste_profile,
+        "selection_candidates": [{"id": "candidate"}],
+        "selection_profile": taste_profile,
+        "selection_limit": 3,
+    }
+
+
+def test_generate_recommendations_handles_missing_optional_album_media(monkeypatch):
+    selected_album = {
+        "name": "Album Without Media",
+        "artists": [{"id": "artist-1", "name": "Artist One"}],
+        "familiarity": {"score": 0, "level": "unheard"},
+        "recommendation": {
+            "score": 50.0,
+            "artist_affinity": 10.0,
+            "explanation": "some prior artist interest; no album-familiarity signals",
+        },
+    }
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.fetch_and_save_spotify_data",
+        lambda client: {},
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.build_taste_profile",
+        lambda data: {},
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.find_candidate_albums",
+        lambda client, profile: [],
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.select_final_recommendations",
+        lambda candidates, profile, recommendation_count: [selected_album],
+    )
+
+    recommendation = generate_recommendations(object())[0]
+
+    assert recommendation.spotify_url is None
+    assert recommendation.album_image_url is None
 
 
 if __name__ == "__main__":
