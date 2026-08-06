@@ -16,6 +16,8 @@ from music_taste.spotify.rank_recommendations import (
 from music_taste.spotify.recommendations import (
     Recommendation,
     generate_recommendations,
+    generate_recommendations_from_profile,
+    prepare_user_profile,
 )
 
 
@@ -177,6 +179,103 @@ class RecommendationSelectionTests(unittest.TestCase):
 
         self.assertEqual(final_cache, original_cache)
         self.assertEqual(len(final_cache), 10)
+
+
+def test_prepare_user_profile_collects_data_and_builds_profile(monkeypatch):
+    spotify_client = object()
+    spotify_data = {"top_artists": [], "saved_albums": []}
+    taste_profile = {"artist_scores": {}, "known_album_ids": []}
+    calls = {}
+
+    def fake_fetch(client):
+        calls["fetch_client"] = client
+        return spotify_data
+
+    def fake_build_profile(data):
+        calls["profile_data"] = data
+        return taste_profile
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.fetch_and_save_spotify_data",
+        fake_fetch,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.build_taste_profile",
+        fake_build_profile,
+    )
+
+    result = prepare_user_profile(spotify_client)
+
+    assert result is taste_profile
+    assert calls == {
+        "fetch_client": spotify_client,
+        "profile_data": spotify_data,
+    }
+
+
+def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch):
+    spotify_client = object()
+    taste_profile = {"artist_scores": {"artist-1": 50}}
+    selected_album = {
+        "id": "album-1",
+        "name": "Album One",
+        "artists": [{"id": "artist-1", "name": "Artist One"}],
+        "external_urls": {"spotify": "https://open.spotify.test/album/1"},
+        "images": [{"url": "https://images.test/album-1.jpg"}],
+        "familiarity": {"score": 15, "level": "lightly familiar"},
+        "recommendation": {
+            "score": 64.0,
+            "artist_affinity": 50.0,
+            "explanation": "meaningful prior artist interest; low album familiarity",
+        },
+    }
+    calls = {}
+
+    def fail_if_called(*args, **kwargs):
+        raise AssertionError("profile-based generation must not prepare the profile")
+
+    def fake_find_candidates(client, profile):
+        calls["candidate_client"] = client
+        calls["candidate_profile"] = profile
+        return [{"id": "candidate"}]
+
+    def fake_select(candidates, profile, recommendation_count):
+        calls["selection_candidates"] = candidates
+        calls["selection_profile"] = profile
+        calls["selection_limit"] = recommendation_count
+        return [selected_album]
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.fetch_and_save_spotify_data",
+        fail_if_called,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.build_taste_profile",
+        fail_if_called,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.find_candidate_albums",
+        fake_find_candidates,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.select_final_recommendations",
+        fake_select,
+    )
+
+    recommendations = generate_recommendations_from_profile(
+        spotify_client,
+        taste_profile,
+        limit=3,
+    )
+
+    assert recommendations[0].album_name == "Album One"
+    assert calls == {
+        "candidate_client": spotify_client,
+        "candidate_profile": taste_profile,
+        "selection_candidates": [{"id": "candidate"}],
+        "selection_profile": taste_profile,
+        "selection_limit": 3,
+    }
 
 
 def test_generate_recommendations_returns_structured_results(monkeypatch):

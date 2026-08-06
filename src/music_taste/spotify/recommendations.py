@@ -59,14 +59,20 @@ def _recommendation_from_album(album: dict) -> Recommendation:
     )
 
 
-def generate_recommendations(
-    spotify_client,
-    limit: int = FINAL_RECOMMENDATION_COUNT,
-) -> list[Recommendation]:
-    """Collect, filter, rank, and return structured album recommendations."""
+def prepare_user_profile(spotify_client) -> dict:
+    """Collect Spotify data and build the complete taste profile."""
 
     spotify_data = fetch_and_save_spotify_data(spotify_client)
-    taste_profile = build_taste_profile(spotify_data)
+    return build_taste_profile(spotify_data)
+
+
+def generate_recommendations_from_profile(
+    spotify_client,
+    taste_profile: dict,
+    limit: int = FINAL_RECOMMENDATION_COUNT,
+) -> list[Recommendation]:
+    """Generate structured recommendations from an already-prepared profile."""
+
     candidate_albums = find_candidate_albums(spotify_client, taste_profile)
     selected_albums = select_final_recommendations(
         candidate_albums,
@@ -75,3 +81,17 @@ def generate_recommendations(
     )
 
     return [_recommendation_from_album(album) for album in selected_albums]
+
+
+def generate_recommendations(
+    spotify_client,
+    limit: int = FINAL_RECOMMENDATION_COUNT,
+) -> list[Recommendation]:
+    """Prepare a profile and generate recommendations in one convenience call."""
+
+    taste_profile = prepare_user_profile(spotify_client)
+    return generate_recommendations_from_profile(
+        spotify_client,
+        taste_profile,
+        limit=limit,
+    )

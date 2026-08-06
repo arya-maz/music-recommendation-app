@@ -207,6 +207,22 @@ Current affinity signals include:
 
 The resulting profile includes both artist affinity and albums considered known.
 
+### Profile preparation boundary
+
+Spotify recommendation orchestration is separated into two stages so a future
+cache can store prepared profiles without changing recommendation logic:
+
+* `prepare_user_profile(spotify_client)` performs Spotify data collection and
+  builds the complete taste profile;
+* `generate_recommendations_from_profile(spotify_client, taste_profile, limit)`
+  performs candidate discovery, final ranking, and result formatting without
+  fetching Spotify listening data or rebuilding the profile.
+
+The API and CLI currently run both stages for each invocation. No profile cache,
+expiration policy, or invalidation behavior is implemented yet. The original
+`generate_recommendations()` function remains as a convenience wrapper that
+composes both stages.
+
 ### Known-album behavior
 
 An album may be considered known when it is:

@@ -2,7 +2,8 @@ from music_taste.spotify.client import get_spotify_client
 from music_taste.spotify.recommendations import (
     FINAL_RECOMMENDATION_COUNT,
     Recommendation,
-    generate_recommendations,
+    generate_recommendations_from_profile,
+    prepare_user_profile,
 )
 
 
@@ -29,7 +30,11 @@ def print_recommendations(recommendations: list[Recommendation]) -> None:
 
 def main() -> None:
     spotify_client = get_spotify_client()
-    recommendations = generate_recommendations(spotify_client)
+    taste_profile = prepare_user_profile(spotify_client)
+    recommendations = generate_recommendations_from_profile(
+        spotify_client,
+        taste_profile,
+    )
     print_recommendations(recommendations)
 
 
