@@ -346,36 +346,123 @@ default and current requirement is five.
 
 ---
 
-## Current repository state
+## Phase 4: FastAPI application foundation
 
-The active development branch at the time Codex was introduced was:
+The repository now includes a FastAPI backend under `src/api/`. This is the
+first application-facing layer over the Spotify recommendation pipeline; it is
+not yet a deployed or multi-user production service.
+
+The current application exposes:
+
+* `GET /health`, which returns `{"status": "ok"}`;
+* `POST /api/recommendations`, which returns up to five structured album
+  recommendations;
+* `GET /docs`, which is provided automatically by FastAPI for interactive API
+  documentation.
+
+Each recommendation contains the artist and album names, Spotify and artwork
+URLs when available, recommendation score, explanation, artist affinity,
+familiarity score, and familiarity label.
+
+### Recommendation orchestration refactor
+
+The original `generate_recommendations()` entry point remains available as a
+backward-compatible convenience wrapper. The API and CLI now call the two
+orchestration stages explicitly:
 
 ```text
-spotify-recommender
+get_spotify_client()
+        │
+        ▼
+prepare_user_profile(client)
+        │
+        ▼
+generate_recommendations_from_profile(client, profile, limit=5)
 ```
 
-The repository contains working data-processing and recommendation scripts but does not yet contain:
+This refactor did not change candidate collection, familiarity scoring,
+ranking weights, deterministic tie-breaking, or unique-artist selection. Its
+purpose was to create a boundary around the expensive data-collection and
+profile-building stage so a future cache can replace that invocation without
+changing recommendation behavior.
+
+No prepared-profile cache, expiration policy, invalidation strategy, refresh
+endpoint, database, or multi-user session model has been implemented yet. The
+API and CLI still prepare a profile on every run.
+
+### Dependency and test foundation
+
+The prior development environment was replaced with focused runtime and
+development requirement files. Django and unrelated notebook-environment
+packages are no longer carried as application dependencies.
+
+The current offline suite contains 15 tests across `tests/test_api.py` and
+`tests/test_spotify_recommendations.py`. The tests cover API health and response
+shape, profile preparation, profile-based generation, preservation of the
+selection limit, structured recommendation conversion, and the orchestration
+boundary that prevents profile-based generation from fetching or rebuilding
+Spotify data.
+
+The suite uses mocks and can validate the recommendation endpoint without
+initiating Spotify OAuth or making external requests.
+
+---
+
+## Current repository state
+
+The current application-foundation work is being developed on:
+
+```text
+web-app-foundation
+```
+
+The repository currently contains:
+
+* the original 365-album CatBoost research pipeline;
+* the AOTY import, enrichment, and Ridge evaluation pipeline;
+* a working Spotify taste-profile and album-recommendation pipeline;
+* a command-line recommendation entry point;
+* a FastAPI development backend with structured responses and Swagger docs;
+* focused runtime and development dependency files;
+* 15 offline automated tests.
+
+The repository does not yet contain:
 
 * a production backend;
 * a database schema;
 * a React frontend;
 * a deployed web application;
-* a formal command-line interface;
-* a complete automated test suite.
+* multi-user Spotify OAuth and session handling;
+* a prepared-profile cache with expiration and refresh behavior;
+* a comprehensive test suite for all modeling, normalization, filtering, and
+  data-pipeline behavior.
 
-Some Django and related dependencies exist in `requirements.txt`, but no Django application is currently implemented.
-
-Frontend, backend, database, authentication, and deployment choices should therefore be treated as planned architecture rather than completed functionality.
+FastAPI is now the implemented backend foundation. The database, React
+frontend, arbitrary-user authentication, caching, and deployment architecture
+remain planned work.
 
 ---
 
 ## Current engineering priorities
 
-### 1. Add offline automated tests
+### 1. Add prepared-profile caching
 
-Initial tests should target pure functions that do not make network requests.
+Cache the output of `prepare_user_profile()` so repeated recommendation
+requests do not recollect the same Spotify data and rebuild the same profile.
+The first implementation should define:
 
-Priority areas:
+* the cache key and serialization format;
+* expiration behavior;
+* explicit refresh or invalidation behavior;
+* failure and corruption handling;
+* a boundary that can later be replaced by persistent multi-user storage.
+
+Candidate discovery and final ranking should remain outside this initial cache.
+
+### 2. Expand offline automated tests
+
+The existing 15-test suite protects the API and recommendation-orchestration
+boundary. Additional pure-function coverage should target:
 
 * album-title normalization;
 * known-album matching;
@@ -386,39 +473,22 @@ Priority areas:
 * genre parsing;
 * AOTY schema validation.
 
-### 2. Tune and extend candidate ranking
+### 3. Tune and extend candidate ranking
 
 Evaluate and tune the current artist-relevance and discovery-value weights.
 Add only verified signals that improve recommendation strength without changing
 or truncating the full candidate pool.
 
-### 3. Improve output transparency
+### 4. Add arbitrary-user Spotify authentication
 
-Final recommendation output displays:
+Replace the repository owner's development credentials with a user-facing OAuth
+flow, secure token handling, and user-scoped profile/cache behavior.
 
-* artist;
-* album;
-* familiarity score;
-* familiarity label;
-* artist-affinity score;
-* recommendation score;
-* recommendation explanation.
+### 5. Build the frontend and deployment path
 
-### 4. Align documentation with implementation
-
-The README should be corrected where it still describes:
-
-* Last.fm as the genre source;
-* candidates as coming from the strongest artists;
-* familiarity details as already printed;
-* candidate filtering as unfinished;
-* planned application components as implemented components.
-
-### 5. Prototype the user interface
-
-A lightweight Python interface may be used before committing to a full frontend architecture.
-
-A later production-oriented design may use a separate frontend, API backend, database, and Spotify OAuth flow.
+Build a React interface over the FastAPI contract, introduce persistent storage
+when the multi-user design requires it, and deploy the frontend and backend with
+credentials and personal data kept out of source control.
 
 ---
 
