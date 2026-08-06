@@ -1,7 +1,6 @@
 # Music Recommendation App
 
-A personal music recommendation project that began as a machine learning album-score prediction pipeline and is now expanding into a Spotify-connected album discovery app. The project uses explicit album ratings, metadata enrichment, Spotify listening behavior, and rule-based recommendation logic to identify albums a user is likely to enjoy but may not have fully explored yet.
-
+A Spotify-powered album recommendation platform backed by a personalized taste model. The project combines explicit album ratings, metadata enrichment, Spotify listening behavior, explainable ranking, and a FastAPI backend to recommend albums a user is likely to enjoy but may not have fully explored.
 
 ## Background
 
@@ -9,263 +8,300 @@ As a long-time avid music fanatic, I've always been eager to chase new experienc
 
 The goal of this project is to recommend albums to a user based on their personal taste. The project originally approached this through explicit album ratings and score prediction, using my own rated albums as the foundation for a personal taste model. After evaluating the limits of exact score prediction, I began expanding the project toward a more usable Spotify-based recommendation system where a user can connect their Spotify account and receive album recommendations from their listening behavior.
 
-## Project Progress
+## What the Project Does Today
 
-### 1. Dataset Creation
+The current application can:
 
-The project started with a CSV file containing albums I listened to for the first time throughout 2025. Each entry included basic album information as well as my personal score.
+- authenticate with Spotify through Spotipy;
+- collect a user's top artists, top tracks, saved albums, saved tracks, and recently played tracks;
+- build an implicit taste profile from those listening signals;
+- identify underexplored albums from eligible artists already represented in the profile;
+- remove known albums, duplicate releases, and undesirable editions;
+- estimate album familiarity from saved, top-track, and recent-listening evidence;
+- rank the full eligible pool using artist relevance and discovery value;
+- return up to five explainable recommendations from unique artists;
+- expose recommendations as structured JSON through FastAPI; and
+- print the same recommendations through a command-line entry point.
 
-The dataset includes:
-
-- Artist
-- Album title
-- Release year
-- Number of tracks
-- Runtime in minutes
-- Three genre tags
-- Personal score out of 100
-
-This step turned a casual listening challenge into a usable dataset for taste analysis, score prediction, and future album recommendation.
-
-### 2. Data Cleaning and Project Setup
-
-After creating the dataset, I cleaned the album data and organized the Python project structure. This created a foundation for loading the dataset, preparing features, training models, and generating repeatable outputs.
-
-At this stage, the project moved from a spreadsheet-based idea into an actual machine learning workflow.
-
-### 3. Baseline Taste Model Training
-
-Once the data was prepared, I trained an initial machine learning model to predict album scores. The current baseline model uses CatBoost because it works well with categorical features such as artist names and genre tags.
-
-The model predicts a numeric score out of 100 for each album. Since the dataset represents my personal taste, the model is designed to learn patterns in my own ratings rather than make general claims about music quality. These predicted scores are not the final product by themselves; they are intended to act as a recommendation signal that can help vet and rank albums the user has not listened to yet.
-
-### 4. Model Error Reporting
-
-After training the baseline model, I added a text-based error reporting system. Instead of only looking at a single score such as mean absolute error, the report shows where the model performs well and where it struggles.
-
-The error report helps identify:
-
-- Albums with the most accurate predictions
-- Albums with the largest prediction errors
-- Cases where the model overpredicts or underpredicts scores
-- Differences in performance across low, mid, and high score ranges
-- Whether specific tuning changes actually significantly improve the model or not
-
-This made the project more practical because it gave me a clearer way to inspect model behavior instead of relying only on summary metrics. Since predicted scores will eventually be used to rank recommendation candidates, understanding when the model is reliable is an important part of the recommendation pipeline.
-
-### 5. Score Tier Threshold Experiment
-
-After reviewing the model reports, I adjusted the score thresholds used to group albums into low, mid, and high rating tiers. The original thresholds did not fully reflect the way my ratings were distributed across the dataset.
-
-Changing the thresholds made the reports more meaningful because the model could be evaluated against score ranges that better matched my actual listening data.
-
-### 6. Sample Weighting Experiment
-
-I also tested sample weighting to see whether the model could better learn from albums in less common score ranges. The idea was to give certain albums more influence during training, especially ratings that were farther away from the most common score range.
-
-After comparing the new error reports, I reverted the model back to the original unweighted baseline. The weighted version changed the model's behavior, but it did not clearly improve the predictions enough to justify keeping it.
-
-This experiment was still useful because it showed that model tuning should be evaluated carefully. A more complex training setup is not automatically better if the resulting predictions are less stable or less useful.
-
-### 7. AOTY Dataset Expansion
-
-After building the original model around the 2025 listening dataset, I expanded the project by exporting my all-time Album of the Year ratings (albumoftheyear.org, aoty.org). This gave the project a much larger dataset that better represents my long-term music taste across more albums, artists, eras, and rating ranges. I did this with the objective of using the specific, detailed, and precise data collection from my smaller, 365-column dataset, with my extensive all-time data of nearly 1200 albums for a sharper prediction algorithm.
-
-The AOTY export included:
-
-- Artist
-- Album title
-- Release year
-- Format
-- Personal score
-- Date rated
-
-I decided to neglect the date rated column as it has virtually zero impact on this experiment, removing it from the cleaned modeling dataset. I also kept the original artist field intact instead of adding complicated multi-artist parsing, since there were only a small number of multi-artist cases and overengineering that step could create unnecessary errors. I was originally considering splitting artist names at '&' or ',' but this would have resuted in names of singular artists such as "Tyler, The Creator" to become split, causing errors.
-
-This created a larger AOTY-based ratings dataset that could be compared against the smaller but cleaner 2025 dataset.
-
-### 8. Last.fm Metadata Enrichment
-
-The AOTY export was useful because it provided many more ratings, but it lacked the album-level descriptive features that made the original 2025 dataset valuable. Since AOTY does not have an API, I used Last.fm as a source for certain album attributes.
-
-The enrichment script uses the Last.fm API to add:
-
-- Genre 1
-- Genre 2
-- Genre 3
-- Number of tracks
-- Runtime
-
-The genre tags required additional filtering because Last.fm tags can include non-genre labels such as years, artist names, list tags, or other user-uploaded filler, such as "2006" or "mid". To address this, I added a controlled filtering system that removes obvious junk tags while allowing specific genre names such as "hip-hop" or "alternative pop". To catch other genres that may slip through the cracks, I also implemented a list of common prefix/suffixes that appear in more niche genre names -- "gaze", "core", or "wave" to catch a genre such as "Darkwave" that may be missing from the original list.
-
-The enriched AOTY CSV is formatted to mimic the same column order as the original 2025 dataset:
-
-- Artist
-- Album
-- Year
-- Number of tracks
-- Runtime
-- Genre 1
-- Genre 2
-- Genre 3
-- Score
-
-Additional tracking columns are kept after those main modeling columns so the dataset remains readable while still preserving metadata about where the enriched values came from.
-
-The most recent enrichment pass produced strong metadata coverage, with most albums receiving track count and runtime information and a majority of albums receiving usable genre tags.
-
-### 9. Enriched AOTY Model Experiment
-
-After creating the enriched AOTY dataset, I trained a new model using the expanded feature set. This model used artist, format, release year, release decade, genre tags, number of tracks, and runtime to predict album scores.
-
-The enriched model beat the dummy baseline, but it did not outperform the earlier basic AOTY model. This suggests that the additional Last.fm-derived features may introduce noise, sparse categories, or inconsistent metadata that the current model does not yet handle well.
-
-This result is still useful because it shows that adding more features is not automatically an improvement. The next step is to run feature ablation experiments to identify which parts of the enriched dataset help prediction and which parts may hurt it.
-
-### 10. Discogs Genre/Style Enrichment
-
-After the Last.fm enrichment experiment, I tested Discogs as an alternative metadata source for album genre and style information. The goal was to see whether Discogs could provide cleaner or more structured genre/style labels than Last.fm's user-generated tag system.
-
-Instead of forcing Discogs metadata into the original three-column genre format, I moved toward a more flexible single-column genre representation. Discogs genre and style values are combined into a single `Genres` field, which better preserves the range of labels attached to each album without requiring a fixed number of genre slots.
-
-This experiment helped move the project away from overly rigid manual genre columns and toward a more flexible metadata format that can support future recommendation logic.
-
-### 11. Spotify Recommendation Component
-
-After evaluating the rating-prediction approach, I began adding a new Spotify-connected recommendation component on a separate development branch. The purpose of this component is to make the project more usable for real users by allowing them to connect a Spotify account instead of manually uploading or maintaining a ratings CSV.
-
-The Spotify component currently focuses on a rule-based album discovery pipeline rather than a full machine learning recommender. Spotify listening data is used to build an implicit taste profile, identify candidate albums from artists the user already likes, and estimate whether the user is unfamiliar, lightly familiar, partially familiar, or highly familiar with each candidate album.
-
-The current Spotify pipeline includes:
-
-- Spotify OAuth authentication
-- Fetching top artists
-- Fetching top tracks
-- Fetching saved albums
-- Fetching saved tracks
-- Fetching recently played tracks
-- Saving Spotify responses locally as JSON files
-- Building an artist-affinity taste profile from Spotify behavior
-- Fetching a full candidate pool from lower-affinity eligible artists after excluding the top 10 artists
-- Estimating album familiarity from saved/top/recent listening signals
-- Filtering out albums that appear highly familiar
-- Ranking the full eligible pool by artist relevance and album discovery value
-- Selecting up to five recommendations from unique artists
-- Printing recommendation, affinity, and familiarity scores with explanations
-- Adding local caching and safer API-call controls to reduce the risk of Spotify rate limits
-
-This marks an important shift in the project direction. The earlier AOTY model remains useful as a research and modeling experiment, while the Spotify component is becoming the foundation for a more practical album recommendation app.
+The rating-modeling pipelines remain in the repository as related research. They document how the project evolved from predicting personal scores toward a practical album-discovery product.
 
 ## Current Status
 
-The project is currently transitioning from a personal rating-prediction model into a Spotify-connected album discovery app.
+The project has a working recommendation engine, CLI, and API foundation.
 
-Completed so far:
+### Completed
 
-- Created the 2025 album listening dataset
-- Cleaned and structured the original dataset
-- Set up the Python project workflow
-- Trained an initial CatBoost taste prediction model
-- Added text-based model error reports
-- Evaluated prediction behavior across score tiers
-- Adjusted score tier thresholds
-- Tested sample weighting
-- Reverted back to the original unweighted baseline model
-- Exported all-time AOTY ratings into a larger CSV dataset
-- Built an AOTY cleaning script
-- Removed non-album-level date-rated features from the AOTY data
-- Used Last.fm to enrich the AOTY dataset with genre tags, runtime, and track count metadata
-- Added filtering logic to reduce noisy Last.fm tags
-- Reformatted the enriched AOTY CSV to match the original 2025 dataset's column order
-- Trained a model on the enriched AOTY dataset
-- Compared the enriched AOTY model against the dummy baseline and earlier AOTY model
-- Tested Discogs API enrichment for genre/style metadata
-- Shifted from fixed three-genre columns toward a flexible combined `Genres` representation
-- Created a new Spotify recommender component inside the project
-- Added Spotify OAuth authentication using Spotipy
-- Fetched Spotify top artists, top tracks, saved albums, saved tracks, and recently played tracks
-- Saved Spotify API responses locally for repeatable development
-- Built an initial Spotify taste profile from listening behavior
-- Built an initial candidate-album finder based on lower-affinity eligible artists
-- Added album familiarity scoring to distinguish unheard, lightly familiar, partially familiar, mostly familiar, and highly familiar albums
-- Added caching and API-call safeguards after encountering Spotify rate limits
-- Added deterministic final ranking and one-album-per-artist selection
+- Original 365-album dataset and CatBoost taste-model experiment
+- Model evaluation and error-reporting workflow
+- Larger Album of the Year ratings pipeline
+- Last.fm and Discogs metadata-enrichment experiments
+- Spotify data collection and taste-profile construction
+- Candidate discovery, normalization, filtering, and familiarity scoring
+- Deterministic recommendation ranking and one-album-per-artist selection
+- Structured recommendation objects with album artwork and Spotify links
+- FastAPI backend with health, recommendation, and interactive documentation routes
+- Separation of profile preparation from recommendation generation
+- Reproducible runtime and development dependency files
+- Offline automated tests for the API and recommendation orchestration
 
-The current finding from the rating-model side is that enriched metadata does not automatically improve score prediction, especially when genre and metadata fields are noisy or sparse. The current finding from the Spotify side is that a practical recommender can start by identifying underexplored albums from artists the user already likes, then filtering/ranking those albums by estimated familiarity.
+### Next Milestone
 
-The Spotify component now preserves the complete filtered candidate pool and cache, evaluates every eligible candidate, and selects five final recommendations from unique artists. The score balances a saturating artist-affinity signal with album discovery value derived from familiarity; future work should tune those weights and add recommendation signals that are not currently available.
+- Prepared user-profile caching to avoid rebuilding the same profile on every request
 
-## Current Tech Stack
+### Planned
+
+- User-facing Spotify OAuth flow
+- Persistent user and profile storage
+- React frontend
+- Deployment and production configuration
+
+The API currently uses the repository owner's configured Spotify credentials. It is a development backend, not yet a deployed multi-user service.
+
+## System Architecture
+
+```text
+Spotify OAuth / Web API
+          │
+          ▼
+Spotify Data Collection
+          │
+          ▼
+Taste Profile Preparation  ◄── future profile cache
+          │
+          ▼
+Candidate Album Discovery
+          │
+          ▼
+Filtering + Familiarity Scoring
+          │
+          ▼
+Deterministic Ranking
+          │
+          ▼
+Structured Recommendations
+          │
+          ├── FastAPI JSON response
+          └── Command-line output
+```
+
+Profile preparation and recommendation generation are intentionally separate. The expensive Spotify collection and profile-building stage can therefore be cached later without changing candidate discovery or ranking behavior.
+
+## Recommendation Strategy
+
+The Spotify pipeline is currently rule-based and explainable rather than a machine-learning recommender.
+
+### Taste profile
+
+The profile combines evidence from:
+
+- ranked top artists;
+- artists represented in top tracks;
+- artists represented in saved albums;
+- artists represented in saved tracks; and
+- artists represented in recent listening.
+
+It also tracks albums the user is likely to know using Spotify album IDs and normalized artist-and-album keys.
+
+### Candidate discovery
+
+By default, the candidate finder excludes the user's top 10 artists, orders the remaining eligible artists from lower to higher affinity, and searches up to 25 of them. It removes:
+
+- known albums;
+- duplicate Spotify album IDs;
+- normalized matches for albums already represented in the user's profile; and
+- deluxe, remastered, live, remix, soundtrack, expanded, instrumental, bonus, and similar editions.
+
+This currently supports deeper exploration of artists already present in the user's Spotify activity. Discovery of entirely new, adjacent artists is planned.
+
+### Familiarity and ranking
+
+Each eligible album receives a familiarity score based on saved-album, top-track, saved-track, and recent-listening signals. Highly familiar albums are excluded.
+
+The final recommendation score combines:
+
+```text
+60% normalized artist relevance
+40% discovery value (100 - familiarity score)
+```
+
+Artist relevance uses a saturating transformation so very large raw affinity scores do not dominate the ranking. Deterministic tie-breaking makes results independent of candidate input order. The selector returns up to five albums, with no more than one album per primary artist.
+
+## API
+
+The FastAPI application currently exposes:
+
+| Method | Route | Description |
+| --- | --- | --- |
+| `GET` | `/health` | Returns `{"status": "ok"}` |
+| `POST` | `/api/recommendations` | Builds a profile and returns five structured album recommendations |
+| `GET` | `/docs` | Opens FastAPI's interactive Swagger documentation |
+
+A recommendation response includes:
+
+```json
+{
+  "artist_name": "Example Artist",
+  "album_name": "Example Album",
+  "spotify_url": "https://open.spotify.com/album/...",
+  "album_image_url": "https://i.scdn.co/image/...",
+  "recommendation_score": 78.4,
+  "reason": "strong artist-fit evidence; low album familiarity",
+  "artist_affinity": 64.0,
+  "familiarity_score": 20.0,
+  "familiarity_label": "lightly familiar"
+}
+```
+
+## Technology Stack
 
 - Python
-- pandas
+- FastAPI and Uvicorn
+- Spotipy and the Spotify Web API
+- pandas and NumPy
 - scikit-learn
 - CatBoost
-- Spotipy
-- Spotify Web API
 - Last.fm API
 - Discogs API
+- pytest
 
-## Planned App Stack
+React and persistent database storage are planned but not yet implemented.
 
-- FastAPI
-- PostgreSQL
-- React
+## Repository Structure
+
+```text
+music-recommendation-app/
+├── data/
+│   ├── cache/                  # External metadata caches
+│   ├── processed/              # Generated cleaned/enriched datasets
+│   └── raw/                    # Personal source data and Spotify responses
+├── docs/
+│   └── PROJECT_CONTEXT.md      # Detailed history and engineering decisions
+├── models/                     # Generated model artifacts
+├── notebooks/                  # Exploratory analysis
+├── src/
+│   ├── api/
+│   │   └── main.py             # FastAPI application
+│   ├── music_taste/
+│   │   ├── spotify/            # Spotify profile and recommendation pipeline
+│   │   └── ...                 # Original 365-album model workflow
+│   ├── enrich_aoty_tags.py     # Metadata enrichment
+│   ├── import_aoty.py          # AOTY cleaning/import
+│   └── train_aoty_model.py     # AOTY Ridge evaluation
+├── tests/                      # Offline API and recommendation tests
+├── requirements.txt            # Runtime dependencies
+└── requirements-dev.txt        # Development/test dependencies
+```
+
+Personal datasets, Spotify responses, OAuth caches, trained models, and environment variables are excluded from version control.
+
+## Local Setup
+
+### Prerequisites
+
+- Python with virtual-environment support
+- A Spotify developer application
+- Spotify client ID, client secret, and redirect URI
+
+### Installation
+
+```bash
+git clone <repository-url>
+cd music-recommendation-app
+
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements-dev.txt
+```
+
+Create a local `.env` file with your Spotify application credentials:
+
+```text
+SPOTIPY_CLIENT_ID=your_client_id
+SPOTIPY_CLIENT_SECRET=your_client_secret
+SPOTIPY_REDIRECT_URI=http://127.0.0.1:8888/callback
+```
+
+Do not commit `.env`, Spotify token caches, or personal listening data.
+
+## Running the Project
+
+### FastAPI backend
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=src python -m uvicorn api.main:app --reload
+```
+
+Then open:
+
+- API documentation: `http://127.0.0.1:8000/docs`
+- Health check: `http://127.0.0.1:8000/health`
+
+The recommendation endpoint performs Spotify authentication and external API work. Use it deliberately during development.
+
+### Spotify CLI
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=src python -m music_taste.spotify.run
+```
+
+The CLI prints each album's artist, title, recommendation score, artist affinity, familiarity, explanation, and Spotify URL when available.
+
+### Tests
+
+```bash
+source .venv/bin/activate
+PYTHONPATH=src python -m pytest -q
+```
+
+The current suite uses mocks and does not need to contact Spotify.
+
+## Research Pipelines
+
+### Original 365-album model
+
+The original CatBoost pipeline uses album metadata to predict a personal score out of 100. Error reports, tier analysis, and a reverted sample-weighting experiment document both the model's capabilities and the limits of a small, centrally distributed ratings dataset.
+
+### Album of the Year expansion
+
+The AOTY pipeline expands the ratings history to approximately 1,189 albums. Its current enrichment design uses Discogs for genres/styles and Last.fm for track count and runtime. The model-training script evaluates a Ridge regression pipeline against a mean baseline; it does not currently persist a reusable model.
+
+The enrichment experiments showed that additional metadata does not automatically improve prediction quality. Noisy tags, sparse categories, and inconsistent coverage can offset the value of a larger feature set.
+
+Detailed experiment history and architectural decisions are preserved in [`docs/PROJECT_CONTEXT.md`](docs/PROJECT_CONTEXT.md).
 
 ## Roadmap
 
-- [x] Create album listening dataset
-- [x] Clean dataset
-- [x] Set up Python project structure
-- [x] Train baseline taste prediction model
-- [x] Generate model error report files
-- [x] Analyze prediction errors by score range
-- [x] Adjust score tier thresholds
-- [x] Experiment with sample weighting
-- [x] Revert to stable unweighted baseline
-- [x] Export all-time AOTY ratings
-- [x] Clean AOTY export into a modeling dataset
-- [x] Enrich AOTY data with Last.fm genre tags
-- [x] Enrich AOTY data with runtime and track count metadata
-- [x] Train enriched AOTY model
-- [x] Experiment with Discogs API genre/style enrichment
-- [x] Compare Last.fm genre tags against Discogs genre/style data
-- [x] Add Spotify OAuth authentication
-- [x] Fetch Spotify top artists, top tracks, saved albums, saved tracks, and recently played tracks
-- [x] Save Spotify listening data locally for development
-- [x] Build an initial Spotify taste profile
-- [x] Build an initial candidate-album finder from top artists
-- [x] Add album familiarity scoring
-- [x] Add caching and API-call safeguards for Spotify requests
-- [ ] Clean Spotify candidate albums by removing duplicates, deluxe editions, live albums, compilations, and remasters
-- [x] Rank the full Spotify candidate pool by artist affinity and familiarity score
-- [x] Select five final recommendations with no more than one album per artist
-- [x] Add recommendation explanations
-- [ ] Run feature ablation tests on AOTY feature groups
-- [ ] Perform deeper exploratory data analysis
-- [ ] Engineer additional taste-profile features
-- [ ] Compare multiple model types
-- [ ] Improve prediction consistency across score ranges
-- [ ] Add adjacent-artist discovery using playlist co-occurrence, external tags, or another similarity source
-- [ ] Create an interactive prototype
-- [ ] Expand into a full web application
+### Backend and product
 
-## Future Improvements
+- [x] Build Spotify taste profile and candidate-discovery pipeline
+- [x] Add familiarity scoring, filtering, ranking, and explanations
+- [x] Return five unique-artist recommendations through a CLI
+- [x] Add a FastAPI backend and structured JSON response schema
+- [x] Separate profile preparation from recommendation generation
+- [x] Add offline API and orchestration tests
+- [ ] Cache prepared taste profiles with expiration and refresh behavior
+- [ ] Add Spotify OAuth for arbitrary users
+- [ ] Add persistent storage
+- [ ] Build a React frontend
+- [ ] Deploy the full application
 
-Future improvements may include:
+### Recommendation quality
 
-- Cleaning Spotify candidate albums by filtering duplicate releases, deluxe editions, live albums, compilations, and remasters
-- Tuning the final ranking weights and recommendation count
-- Adding new verified recommendation signals beyond the current artist-affinity and familiarity data
-- Exploring adjacent-artist discovery using playlist co-occurrence, Last.fm tags, Discogs genres/styles, or another similarity source
-- Broadening the analysis of taste by implementing new attributes such as decade, genre combinations, and artist history
-- Using existing score-trend analysis to engineer stronger taste-profile and recommendation features
-- Comparing CatBoost against other regression models
-- Continuing to refine the expanded AOTY dataset beyond the original 365 albums
-- Running ablation tests to compare basic AOTY features, genre features, metadata features, and combined features
-- Investigating whether Last.fm-derived genre tags, Discogs-derived genres/styles, and album metadata improve or hurt model performance
-- Creating a web interface where users can connect Spotify and receive personalized album recommendations
+- [ ] Tune ranking weights against reviewed recommendation sets
+- [ ] Add adjacent-artist discovery
+- [ ] Evaluate additional verified recommendation signals
+- [ ] Add configurable recommendation counts
+
+### Modeling research
+
+- [ ] Run AOTY feature-group ablation experiments
+- [ ] Compare additional regression models
+- [ ] Improve performance analysis across score ranges
+- [ ] Investigate which Last.fm, Discogs, and album-level features add useful signal
 
 ## Purpose
 
-This project combines my interest in music and analytics with practical machine learning, API integration, and software development. It has progressed from a personal listening spreadsheet into a working taste-modeling pipeline with documented experiments, evaluation reports, Spotify account integration, and a clear path toward a personalized album discovery application.
+This project explores how explicit album ratings and implicit Spotify listening behavior can be combined to build a personalized album-discovery platform. It brings together machine learning, recommendation systems, metadata enrichment, REST API development, testing, and an evolving full-stack architecture in one portfolio project.
