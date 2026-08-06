@@ -21,6 +21,12 @@ Keep these pipelines conceptually separate unless a task explicitly requires int
   ```bash
   PYTHONPATH=src python -m <module>
   ```
+## Virtual Environment
+
+Always activate the project virtual environment before running commands:
+
+```bash
+source .venv/bin/activate
 
 * Inspect all relevant files before editing.
 
