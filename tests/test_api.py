@@ -48,10 +48,10 @@ def test_recommendations_endpoint_uses_existing_pipeline(monkeypatch):
         fake_generate_recommendations,
     )
 
-    response = client.post("/api/recommendations?limit=3")
+    response = client.post("/api/recommendations")
 
     assert response.status_code == 200
-    assert calls == {"spotify_client": spotify_client, "limit": 3}
+    assert calls == {"spotify_client": spotify_client, "limit": 5}
     assert response.json() == [
         {
             "artist_name": "Artist One",
