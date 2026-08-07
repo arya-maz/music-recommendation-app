@@ -1,11 +1,18 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 
+from music_taste.cache.profile_cache import (
+    USER_PROFILE_CACHE_ROOT,
+    load_cached_profile,
+    save_cached_profile,
+)
 from music_taste.spotify.build_profile import build_taste_profile
 from music_taste.spotify.fetch_data import fetch_and_save_spotify_data
 from music_taste.spotify.find_candidates import find_candidate_albums
 from music_taste.spotify.rank_recommendations import (
+    DEFAULT_RECOMMENDATION_STRATEGY,
     FINAL_RECOMMENDATION_COUNT,
     select_final_recommendations,
 )
@@ -66,19 +73,57 @@ def prepare_user_profile(spotify_client) -> dict:
     return build_taste_profile(spotify_data)
 
 
+def get_or_prepare_user_profile(
+    spotify_client,
+    cache_root: Path = USER_PROFILE_CACHE_ROOT,
+) -> dict:
+    """Load the authenticated user's profile or prepare and cache a fresh one."""
+
+    spotify_user = spotify_client.current_user()
+    spotify_user_id = spotify_user.get("id") if isinstance(spotify_user, dict) else None
+
+    if not isinstance(spotify_user_id, str) or not spotify_user_id:
+        raise ValueError("Spotify current-user response is missing the user ID.")
+
+    cached_profile = load_cached_profile(
+        spotify_user_id,
+        cache_root=cache_root,
+    )
+
+    if cached_profile is not None:
+        return cached_profile
+
+    taste_profile = prepare_user_profile(spotify_client)
+    save_cached_profile(
+        spotify_user_id,
+        taste_profile,
+        cache_root=cache_root,
+    )
+    return taste_profile
+
+
 def generate_recommendations_from_profile(
     spotify_client,
     taste_profile: dict,
     limit: int = FINAL_RECOMMENDATION_COUNT,
+    strategy: str = DEFAULT_RECOMMENDATION_STRATEGY,
 ) -> list[Recommendation]:
     """Generate structured recommendations from an already-prepared profile."""
 
     candidate_albums = find_candidate_albums(spotify_client, taste_profile)
-    selected_albums = select_final_recommendations(
-        candidate_albums,
-        taste_profile,
-        recommendation_count=limit,
-    )
+    if strategy == DEFAULT_RECOMMENDATION_STRATEGY:
+        selected_albums = select_final_recommendations(
+            candidate_albums,
+            taste_profile,
+            recommendation_count=limit,
+        )
+    else:
+        selected_albums = select_final_recommendations(
+            candidate_albums,
+            taste_profile,
+            recommendation_count=limit,
+            strategy=strategy,
+        )
 
     return [_recommendation_from_album(album) for album in selected_albums]
 
@@ -86,12 +131,21 @@ def generate_recommendations_from_profile(
 def generate_recommendations(
     spotify_client,
     limit: int = FINAL_RECOMMENDATION_COUNT,
+    strategy: str = DEFAULT_RECOMMENDATION_STRATEGY,
 ) -> list[Recommendation]:
-    """Prepare a profile and generate recommendations in one convenience call."""
+    """Load or prepare a profile and generate recommendations in one call."""
 
-    taste_profile = prepare_user_profile(spotify_client)
+    taste_profile = get_or_prepare_user_profile(spotify_client)
+    if strategy == DEFAULT_RECOMMENDATION_STRATEGY:
+        return generate_recommendations_from_profile(
+            spotify_client,
+            taste_profile,
+            limit=limit,
+        )
+
     return generate_recommendations_from_profile(
         spotify_client,
         taste_profile,
         limit=limit,
+        strategy=strategy,
     )

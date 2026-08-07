@@ -209,8 +209,8 @@ The resulting profile includes both artist affinity and albums considered known.
 
 ### Profile preparation boundary
 
-Spotify recommendation orchestration is separated into two stages so a future
-cache can store prepared profiles without changing recommendation logic:
+Spotify recommendation orchestration is separated into two stages so prepared
+profiles can be cached without changing recommendation logic:
 
 * `prepare_user_profile(spotify_client)` performs Spotify data collection and
   builds the complete taste profile;
@@ -218,10 +218,11 @@ cache can store prepared profiles without changing recommendation logic:
   performs candidate discovery, final ranking, and result formatting without
   fetching Spotify listening data or rebuilding the profile.
 
-The API and CLI currently run both stages for each invocation. No profile cache,
-expiration policy, or invalidation behavior is implemented yet. The original
-`generate_recommendations()` function remains as a convenience wrapper that
-composes both stages.
+The cache is keyed by the authenticated Spotify user ID. A valid prepared
+profile is reused for 24 hours. Missing, expired, corrupted, or incompatible
+entries are invalidated and rebuilt automatically. The original
+`generate_recommendations()` function remains as a convenience wrapper around
+cached profile resolution and profile-based recommendation generation.
 
 ### Known-album behavior
 
@@ -320,11 +321,39 @@ primary artist until five unique artists are selected or the pool is exhausted.
 
 Ties are resolved by raw artist affinity descending, familiarity ascending,
 case-normalized artist name, case-normalized album name, and Spotify album ID.
-This makes results independent of candidate input order.
+This makes results independent of candidate input order. The name fields are
+late tie-breakers, not primary ranking signals, and neither the API nor CLI
+sorts the selected recommendations again.
 
 The current score remains limited to implicit artist-affinity and coarse album-
 familiarity evidence. It does not measure true expected enjoyment, album
 quality, genre compatibility, lifetime play counts, or release relevance.
+
+### Experimental balanced-affinity selection
+
+The original `lowest_affinity` selector remains the default and retains its
+deterministic behavior. The opt-in `balanced_affinity` selector is a final-stage
+experiment over the same fully generated, filtered, and scored candidate pool;
+it does not alter collection, filtering, familiarity, or scoring.
+
+Candidate-album affinity values receive tie-aware empirical percentile ranks.
+The experiment targets three unique artists at or below the 30th percentile and
+two between the 50th and 90th percentiles. The latter range is intended to model
+expansion among artists with meaningful evidence while normally excluding the
+highest 10%, which is most likely to contain heavily familiar artists. Named
+constants keep all bounds and allocations adjustable.
+
+Within each band, recommendation score descends and familiarity ascends.
+Randomness is used only for exact score-and-familiarity ties, and an injectable
+random generator supports repeatable offline comparisons. If either band lacks
+enough unique artists, the selector fills from the best remaining candidates.
+The one-album-per-case-normalized-artist rule still applies.
+
+The cached development pool currently has only one affinity value, so every
+candidate receives the same tie-aware 50th percentile. In that snapshot the
+discovery band is empty, the expansion/fallback path supplies all five, and the
+strategy changes exact-tie variety but not affinity or score diversity. This is
+a limitation of the existing candidate pool, not a percentile-calculation bug.
 
 ---
 
@@ -374,7 +403,10 @@ orchestration stages explicitly:
 get_spotify_client()
         │
         ▼
-prepare_user_profile(client)
+get_or_prepare_user_profile(client)
+        │
+        ├── valid cache → load profile
+        └── cache miss/stale → prepare_user_profile(client) → save profile
         │
         ▼
 generate_recommendations_from_profile(client, profile, limit=5)
@@ -383,12 +415,21 @@ generate_recommendations_from_profile(client, profile, limit=5)
 This refactor did not change candidate collection, familiarity scoring,
 ranking weights, deterministic tie-breaking, or unique-artist selection. Its
 purpose was to create a boundary around the expensive data-collection and
-profile-building stage so a future cache can replace that invocation without
+profile-building stage. The local cache now resolves that boundary without
 changing recommendation behavior.
 
-No prepared-profile cache, expiration policy, invalidation strategy, refresh
-endpoint, database, or multi-user session model has been implemented yet. The
-API and CLI still prepare a profile on every run.
+Cached profiles are stored under `cache/users/<spotify_user_id>/` as
+`profile.pkl` plus `metadata.json`. Metadata records the Spotify user ID, UTC
+profile-update time, and profile schema version. The initial profile version is
+1 and the lifetime is 24 hours. There is no refresh endpoint, database, or
+multi-user session model; stale profiles refresh automatically on demand.
+
+Cache resolution emits concise development logs for misses, hits and profile
+age, expiration, schema-version mismatch, and corrupt entries. The read-only
+`scripts/inspect_profile.py` utility can inspect all cached user directories or
+one selected with `--user-id`. It reports metadata, top-level type and keys,
+file size, and aggregate profile counts without modifying cache files or
+printing the profile's detailed listening data.
 
 ### Dependency and test foundation
 
@@ -396,12 +437,13 @@ The prior development environment was replaced with focused runtime and
 development requirement files. Django and unrelated notebook-environment
 packages are no longer carried as application dependencies.
 
-The current offline suite contains 15 tests across `tests/test_api.py` and
-`tests/test_spotify_recommendations.py`. The tests cover API health and response
-shape, profile preparation, profile-based generation, preservation of the
-selection limit, structured recommendation conversion, and the orchestration
-boundary that prevents profile-based generation from fetching or rebuilding
-Spotify data.
+The current offline suite contains 22 tests across `tests/test_api.py`,
+`tests/test_profile_cache.py`, and `tests/test_spotify_recommendations.py`.
+The tests cover API health and response shape, profile preparation, cache miss
+and hit behavior, expiration, version mismatch, corruption recovery,
+profile-based generation, preservation of the selection limit, structured
+recommendation conversion, and the orchestration boundary that prevents
+profile-based generation from fetching or rebuilding Spotify data.
 
 The suite uses mocks and can validate the recommendation endpoint without
 initiating Spotify OAuth or making external requests.
@@ -433,36 +475,21 @@ The repository does not yet contain:
 * a React frontend;
 * a deployed web application;
 * multi-user Spotify OAuth and session handling;
-* a prepared-profile cache with expiration and refresh behavior;
 * a comprehensive test suite for all modeling, normalization, filtering, and
   data-pipeline behavior.
 
 FastAPI is now the implemented backend foundation. The database, React
-frontend, arbitrary-user authentication, caching, and deployment architecture
-remain planned work.
+frontend, arbitrary-user authentication, and deployment architecture remain
+planned work.
 
 ---
 
 ## Current engineering priorities
 
-### 1. Add prepared-profile caching
+### 1. Expand offline automated tests
 
-Cache the output of `prepare_user_profile()` so repeated recommendation
-requests do not recollect the same Spotify data and rebuild the same profile.
-The first implementation should define:
-
-* the cache key and serialization format;
-* expiration behavior;
-* explicit refresh or invalidation behavior;
-* failure and corruption handling;
-* a boundary that can later be replaced by persistent multi-user storage.
-
-Candidate discovery and final ranking should remain outside this initial cache.
-
-### 2. Expand offline automated tests
-
-The existing 15-test suite protects the API and recommendation-orchestration
-boundary. Additional pure-function coverage should target:
+The existing 22-test suite protects the API, profile cache, and recommendation-
+orchestration boundary. Additional pure-function coverage should target:
 
 * album-title normalization;
 * known-album matching;

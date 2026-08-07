@@ -4,7 +4,7 @@ from music_taste.spotify.client import get_spotify_client
 from music_taste.spotify.recommendations import (
     Recommendation,
     generate_recommendations_from_profile,
-    prepare_user_profile,
+    get_or_prepare_user_profile,
 )
 
 
@@ -22,7 +22,7 @@ def health_check() -> dict[str, str]:
 @app.post("/api/recommendations")
 def create_recommendations() -> list[Recommendation]:
     spotify_client = get_spotify_client()
-    taste_profile = prepare_user_profile(spotify_client)
+    taste_profile = get_or_prepare_user_profile(spotify_client)
     return generate_recommendations_from_profile(
         spotify_client,
         taste_profile,

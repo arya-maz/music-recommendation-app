@@ -1,4 +1,5 @@
 import json
+import random
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,14 +10,19 @@ from music_taste.spotify.find_candidates import (
     _save_candidate_album_cache,
 )
 from music_taste.spotify.rank_recommendations import (
+    BALANCED_AFFINITY_STRATEGY,
     FINAL_RECOMMENDATION_COUNT,
+    LOWEST_AFFINITY_STRATEGY,
+    _rank_with_random_exact_ties,
     rank_candidates,
+    score_candidate,
     select_final_recommendations,
 )
 from music_taste.spotify.recommendations import (
     Recommendation,
     generate_recommendations,
     generate_recommendations_from_profile,
+    get_or_prepare_user_profile,
     prepare_user_profile,
 )
 
@@ -51,6 +57,139 @@ def make_candidate(
 
 
 class RecommendationSelectionTests(unittest.TestCase):
+    def test_explicit_baseline_strategy_matches_existing_default(self):
+        candidates = [
+            make_candidate(
+                f"album-{index}",
+                f"artist-{index}",
+                f"Artist {index}",
+                f"Album {index}",
+            )
+            for index in range(8)
+        ]
+        profile = {
+            "artist_scores": {f"artist-{index}": index + 1 for index in range(8)}
+        }
+
+        default = select_final_recommendations(candidates, profile)
+        explicit = select_final_recommendations(
+            candidates,
+            profile,
+            strategy=LOWEST_AFFINITY_STRATEGY,
+        )
+
+        self.assertEqual(default, explicit)
+
+    def test_balanced_strategy_allocates_discovery_and_expansion_bands(self):
+        candidates = [
+            make_candidate(
+                f"album-{index}",
+                f"artist-{index}",
+                f"Artist {index}",
+                f"Album {index}",
+            )
+            for index in range(1, 11)
+        ]
+        profile = {
+            "artist_scores": {
+                f"artist-{index}": index * 10 for index in range(1, 11)
+            }
+        }
+
+        recommendations = select_final_recommendations(
+            candidates,
+            profile,
+            strategy=BALANCED_AFFINITY_STRATEGY,
+            random_generator=random.Random(7),
+        )
+        selected_affinities = {
+            album["recommendation"]["artist_affinity"]
+            for album in recommendations
+        }
+
+        self.assertEqual(selected_affinities, {10.0, 20.0, 30.0, 80.0, 90.0})
+        self.assertEqual(len(recommendations), 5)
+
+    def test_balanced_strategy_falls_back_when_one_band_is_empty(self):
+        candidates = [
+            make_candidate(
+                f"album-{index}",
+                f"artist-{index}",
+                f"Artist {index}",
+                f"Album {index}",
+            )
+            for index in range(6)
+        ]
+        profile = {"artist_scores": {f"artist-{index}": 10 for index in range(6)}}
+
+        recommendations = select_final_recommendations(
+            candidates,
+            profile,
+            strategy=BALANCED_AFFINITY_STRATEGY,
+            random_generator=random.Random(3),
+        )
+
+        self.assertEqual(len(recommendations), 5)
+        self.assertEqual(
+            len({album["artists"][0]["name"] for album in recommendations}),
+            5,
+        )
+
+    def test_balanced_strategy_randomizes_only_exact_numeric_ties(self):
+        class ReverseRandom:
+            @staticmethod
+            def shuffle(values):
+                values.reverse()
+
+        tied_candidates = [
+            make_candidate("a", "artist-a", "Alpha", "First"),
+            make_candidate("b", "artist-b", "Beta", "Second"),
+        ]
+        profile = {"artist_scores": {"artist-a": 10, "artist-b": 10}}
+
+        scored_candidates = [
+            score_candidate(album, profile) for album in tied_candidates
+        ]
+        recommendations = _rank_with_random_exact_ties(
+            scored_candidates,
+            ReverseRandom(),
+        )
+
+        self.assertEqual([album["id"] for album in recommendations], ["b", "a"])
+
+    def test_balanced_strategy_keeps_score_primary_and_familiarity_secondary(self):
+        candidates = [
+            make_candidate("strong", "artist-strong", "Strong", "Strong", 25),
+            make_candidate("weak", "artist-weak", "Weak", "Weak", 0),
+            make_candidate("tie-unheard", "artist-tie-a", "Tie A", "Tie A", 0),
+            make_candidate("tie-familiar", "artist-tie-b", "Tie B", "Tie B", 25),
+        ]
+        profile = {
+            "artist_scores": {
+                "artist-strong": 200,
+                "artist-weak": 5,
+                "artist-tie-a": 20,
+                "artist-tie-b": 50,
+            }
+        }
+
+        recommendations = select_final_recommendations(
+            candidates,
+            profile,
+            recommendation_count=4,
+            strategy=BALANCED_AFFINITY_STRATEGY,
+            random_generator=random.Random(1),
+        )
+        numeric_keys = [
+            (
+                -album["recommendation"]["score"],
+                album["familiarity"]["score"],
+            )
+            for album in recommendations
+        ]
+
+        self.assertEqual(numeric_keys, sorted(numeric_keys))
+
     def test_complete_pool_is_considered_and_later_candidate_can_win(self):
         candidates = [
             make_candidate(f"album-{index}", f"artist-{index}", f"Artist {index}", f"Album {index}")
@@ -174,7 +313,9 @@ class RecommendationSelectionTests(unittest.TestCase):
             ):
                 _save_candidate_album_cache(candidates)
                 original_cache = json.loads(cache_path.read_text(encoding="utf-8"))
-                select_final_recommendations(_load_candidate_album_cache(), profile)
+                candidate_albums = _load_candidate_album_cache()
+                assert candidate_albums is not None
+                select_final_recommendations(candidate_albums, profile)
                 final_cache = json.loads(cache_path.read_text(encoding="utf-8"))
 
         self.assertEqual(final_cache, original_cache)
@@ -211,6 +352,39 @@ def test_prepare_user_profile_collects_data_and_builds_profile(monkeypatch):
         "fetch_client": spotify_client,
         "profile_data": spotify_data,
     }
+
+
+def test_get_or_prepare_user_profile_caches_miss_and_reuses_hit(monkeypatch, tmp_path):
+    taste_profile = {"artist_scores": {"artist-1": 50}}
+    prepare_calls = []
+
+    class FakeSpotifyClient:
+        def current_user(self):
+            return {"id": "spotify-user-123"}
+
+    spotify_client = FakeSpotifyClient()
+
+    def fake_prepare(client):
+        prepare_calls.append(client)
+        return taste_profile
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.prepare_user_profile",
+        fake_prepare,
+    )
+
+    first_result = get_or_prepare_user_profile(
+        spotify_client,
+        cache_root=tmp_path,
+    )
+    second_result = get_or_prepare_user_profile(
+        spotify_client,
+        cache_root=tmp_path,
+    )
+
+    assert first_result == taste_profile
+    assert second_result == taste_profile
+    assert prepare_calls == [spotify_client]
 
 
 def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch):
@@ -280,7 +454,6 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
 
 def test_generate_recommendations_returns_structured_results(monkeypatch):
     spotify_client = object()
-    spotify_data = {"top_artists": []}
     taste_profile = {"artist_scores": {"artist-1": 50}}
     selected_album = {
         "id": "album-1",
@@ -297,12 +470,8 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
     }
     calls = {}
 
-    def fake_fetch(client):
-        calls["fetch_client"] = client
-        return spotify_data
-
-    def fake_build_profile(data):
-        calls["profile_data"] = data
+    def fake_get_or_prepare_profile(client):
+        calls["profile_client"] = client
         return taste_profile
 
     def fake_find_candidates(client, profile):
@@ -317,12 +486,8 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
         return [selected_album]
 
     monkeypatch.setattr(
-        "music_taste.spotify.recommendations.fetch_and_save_spotify_data",
-        fake_fetch,
-    )
-    monkeypatch.setattr(
-        "music_taste.spotify.recommendations.build_taste_profile",
-        fake_build_profile,
+        "music_taste.spotify.recommendations.get_or_prepare_user_profile",
+        fake_get_or_prepare_profile,
     )
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.find_candidate_albums",
@@ -349,8 +514,7 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
         )
     ]
     assert calls == {
-        "fetch_client": spotify_client,
-        "profile_data": spotify_data,
+        "profile_client": spotify_client,
         "candidate_client": spotify_client,
         "candidate_profile": taste_profile,
         "selection_candidates": [{"id": "candidate"}],
@@ -372,14 +536,6 @@ def test_generate_recommendations_handles_missing_optional_album_media(monkeypat
     }
 
     monkeypatch.setattr(
-        "music_taste.spotify.recommendations.fetch_and_save_spotify_data",
-        lambda client: {},
-    )
-    monkeypatch.setattr(
-        "music_taste.spotify.recommendations.build_taste_profile",
-        lambda data: {},
-    )
-    monkeypatch.setattr(
         "music_taste.spotify.recommendations.find_candidate_albums",
         lambda client, profile: [],
     )
@@ -388,10 +544,52 @@ def test_generate_recommendations_handles_missing_optional_album_media(monkeypat
         lambda candidates, profile, recommendation_count: [selected_album],
     )
 
-    recommendation = generate_recommendations(object())[0]
+    recommendation = generate_recommendations_from_profile(object(), {})[0]
 
     assert recommendation.spotify_url is None
     assert recommendation.album_image_url is None
+
+
+def test_profile_generation_forwards_balanced_strategy(monkeypatch):
+    calls = {}
+    selected_album = {
+        "name": "Balanced Album",
+        "artists": [{"id": "artist-1", "name": "Artist One"}],
+        "familiarity": {"score": 0, "level": "unheard"},
+        "recommendation": {
+            "score": 50.0,
+            "artist_affinity": 10.0,
+            "explanation": "some prior artist interest; no album-familiarity signals",
+        },
+    }
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.find_candidate_albums",
+        lambda client, profile: [{"id": "candidate"}],
+    )
+
+    def fake_select(candidates, profile, recommendation_count, strategy):
+        calls["strategy"] = strategy
+        calls["limit"] = recommendation_count
+        return [selected_album]
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.select_final_recommendations",
+        fake_select,
+    )
+
+    recommendations = generate_recommendations_from_profile(
+        object(),
+        {"artist_scores": {}},
+        limit=5,
+        strategy=BALANCED_AFFINITY_STRATEGY,
+    )
+
+    assert len(recommendations) == 1
+    assert calls == {
+        "strategy": BALANCED_AFFINITY_STRATEGY,
+        "limit": 5,
+    }
 
 
 if __name__ == "__main__":

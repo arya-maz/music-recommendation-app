@@ -41,12 +41,9 @@ The project has a working recommendation engine, CLI, and API foundation.
 - Structured recommendation objects with album artwork and Spotify links
 - FastAPI backend with health, recommendation, and interactive documentation routes
 - Separation of profile preparation from recommendation generation
+- Versioned 24-hour filesystem cache for prepared Spotify user profiles
 - Reproducible runtime and development dependency files
 - Offline automated tests for the API and recommendation orchestration
-
-### Next Milestone
-
-- Prepared user-profile caching to avoid rebuilding the same profile on every request
 
 ### Planned
 
@@ -66,7 +63,10 @@ Spotify OAuth / Web API
 Spotify Data Collection
           │
           ▼
-Taste Profile Preparation  ◄── future profile cache
+Taste Profile Cache Manager
+          │
+          ├── valid profile → load profile
+          └── missing/stale profile → prepare and save profile
           │
           ▼
 Candidate Album Discovery
@@ -84,7 +84,7 @@ Structured Recommendations
           └── Command-line output
 ```
 
-Profile preparation and recommendation generation are intentionally separate. The expensive Spotify collection and profile-building stage can therefore be cached later without changing candidate discovery or ranking behavior.
+Profile preparation and recommendation generation are intentionally separate. Prepared profiles are cached for 24 hours by Spotify user ID; candidate discovery and ranking receive the resulting profile without knowing whether it was loaded or rebuilt. Development logs identify cache misses, hits and profile age, expiration, version mismatch, and corruption.
 
 ## Recommendation Strategy
 
@@ -124,7 +124,48 @@ The final recommendation score combines:
 40% discovery value (100 - familiarity score)
 ```
 
-Artist relevance uses a saturating transformation so very large raw affinity scores do not dominate the ranking. Deterministic tie-breaking makes results independent of candidate input order. The selector returns up to five albums, with no more than one album per primary artist.
+Artist relevance uses a saturating transformation so very large raw affinity scores do not dominate the ranking. Deterministic tie-breaking makes results independent of candidate input order. Artist and album names are used only after score, raw affinity, and familiarity are tied; the API and CLI preserve this ranked order. The selector returns up to five albums, with no more than one album per primary artist.
+
+### Experimental balanced-affinity strategy
+
+The unchanged default strategy is `lowest_affinity`. An opt-in
+`balanced_affinity` strategy operates only on the already-generated and filtered
+candidate pool. It targets three recommendations from the bottom 30% of
+candidate affinity percentiles and two from the 50th–90th percentiles. The
+middle band represents artists with meaningful prior interest, while the top
+10% is avoided when possible because those artists are likely to be heavily
+represented in existing listening.
+
+Within each band, recommendation score remains primary and familiarity remains
+the next ordering field. Candidates tied exactly on both values are shuffled;
+different scores are never randomized. Missing band allocations fall back to
+the best remaining unique-artist candidates.
+
+Strategy names, percentile bounds, and allocations are defined as named
+constants in `music_taste.spotify.rank_recommendations`. The default can be
+selected explicitly without changing the scoring logic:
+
+```python
+generate_recommendations_from_profile(
+    spotify_client,
+    taste_profile,
+    strategy="balanced_affinity",
+)
+```
+
+The API and CLI continue using `lowest_affinity` by default. For an offline
+side-by-side comparison using cached inputs:
+
+```bash
+python scripts/analyze_recommendation_pipeline.py \
+  --compare-strategies \
+  --seed 42
+```
+
+The current cached pool contains only affinity-10 candidates, so the balanced
+strategy cannot increase affinity diversity for that snapshot. It still varies
+exact ties, but a meaningful discovery/expansion comparison requires a candidate
+pool containing multiple affinity levels.
 
 ## API
 
@@ -170,6 +211,7 @@ React and persistent database storage are planned but not yet implemented.
 
 ```text
 music-recommendation-app/
+├── cache/                      # Ignored prepared Spotify user profiles
 ├── data/
 │   ├── cache/                  # External metadata caches
 │   ├── processed/              # Generated cleaned/enriched datasets
@@ -182,6 +224,7 @@ music-recommendation-app/
 │   ├── api/
 │   │   └── main.py             # FastAPI application
 │   ├── music_taste/
+│   │   ├── cache/              # Profile cache persistence and expiry
 │   │   ├── spotify/            # Spotify profile and recommendation pipeline
 │   │   └── ...                 # Original 365-album model workflow
 │   ├── enrich_aoty_tags.py     # Metadata enrichment
@@ -240,6 +283,30 @@ Then open:
 
 The recommendation endpoint performs Spotify authentication and external API work. Use it deliberately during development.
 
+### Inspecting the profile cache
+
+The read-only cache inspection utility reports metadata, profile type and keys,
+file size, and aggregate artist, album, and saved-track counts without printing
+the underlying listening data:
+
+```bash
+source .venv/bin/activate
+python scripts/inspect_profile.py
+```
+
+Pass `--user-id <spotify_user_id>` to inspect one cached user directory.
+
+For aggregate candidate-funnel, score-distribution, and tie analysis using only
+the cached profile and candidate album list, run:
+
+```bash
+python scripts/analyze_recommendation_pipeline.py
+```
+
+This read-only utility prints counts and distributions without printing artist
+names, album names, Spotify IDs, or raw listening-history records. Use
+`--user-id <spotify_user_id>` when more than one profile is cached.
+
 ### Spotify CLI
 
 ```bash
@@ -282,7 +349,7 @@ Detailed experiment history and architectural decisions are preserved in [`docs/
 - [x] Add a FastAPI backend and structured JSON response schema
 - [x] Separate profile preparation from recommendation generation
 - [x] Add offline API and orchestration tests
-- [ ] Cache prepared taste profiles with expiration and refresh behavior
+- [x] Cache prepared taste profiles with expiration and automatic refresh
 - [ ] Add Spotify OAuth for arbitrary users
 - [ ] Add persistent storage
 - [ ] Build a React frontend
