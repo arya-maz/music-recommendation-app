@@ -1,6 +1,6 @@
 # Music Recommendation App
 
-A Spotify-powered album recommendation platform backed by a personalized taste model. The project combines explicit album ratings, metadata enrichment, Spotify listening behavior, explainable ranking, and a FastAPI backend to recommend albums a user is likely to enjoy but may not have fully explored.
+A growing Spotify-powered album recommendation platform built around thoughtful candidate discovery, explainable ranking, and evidence-driven experimentation. The repository combines a configurable recommendation engine, Spotify integration, machine-learning research, profile caching, a FastAPI backend, offline analysis tools, and automated tests to recommend albums a user is likely to enjoy but may not have fully explored.
 
 ## Background
 
@@ -10,24 +10,37 @@ The goal of this project is to recommend albums to a user based on their persona
 
 ## What the Project Does Today
 
-The current application can:
+### Recommendation engine
 
-- authenticate with Spotify through Spotipy;
-- collect a user's top artists, top tracks, saved albums, saved tracks, and recently played tracks;
-- build an implicit taste profile from those listening signals;
-- identify underexplored albums from eligible artists already represented in the profile;
-- remove known albums, duplicate releases, and undesirable editions;
-- estimate album familiarity from saved, top-track, and recent-listening evidence;
-- rank the full eligible pool using artist relevance and discovery value;
-- return up to five explainable recommendations from unique artists;
-- expose recommendations as structured JSON through FastAPI; and
-- print the same recommendations through a command-line entry point.
+- Builds artist-affinity and known-album profiles from Spotify listening signals.
+- Discovers candidate albums from eligible artists already represented in the profile.
+- Removes known albums, duplicate Spotify album IDs, and deluxe, anniversary, expanded, remastered, live, remix, soundtrack, and similar editions.
+- Estimates album familiarity from saved albums, saved tracks, top tracks, and recent listening.
+- Scores the complete eligible pool using artist relevance and discovery value.
+- Supports configurable final-selection strategies without duplicating scoring logic.
+- Returns up to five explainable recommendations with no more than one album per artist.
+
+### Backend
+
+- Exposes a FastAPI REST API with health and recommendation endpoints.
+- Provides interactive Swagger/OpenAPI documentation.
+- Caches prepared Spotify profiles by user ID for 24 hours.
+- Automatically rebuilds missing, expired, version-mismatched, or corrupted profiles.
+- Keeps candidate discovery and recommendation generation separate from profile preparation.
+
+### Development and research tooling
+
+- Inspects cached profiles without modifying them.
+- Measures candidate funnels, affinity and score distributions, and exact ties offline.
+- Compares baseline and balanced-affinity recommendations using the same cached inputs.
+- Documents candidate-discovery, artist-affinity, and recommendation-strategy investigations.
+- Runs a 32-test offline suite covering the API, cache, pipeline, utilities, and strategies.
 
 The rating-modeling pipelines remain in the repository as related research. They document how the project evolved from predicting personal scores toward a practical album-discovery product.
 
 ## Current Status
 
-The project has a working recommendation engine, CLI, and API foundation.
+The project has a tested recommendation engine, CLI, API, caching layer, and research toolkit. It is actively evolving toward a user-facing, multi-user recommendation platform.
 
 ### Completed
 
@@ -42,28 +55,36 @@ The project has a working recommendation engine, CLI, and API foundation.
 - FastAPI backend with health, recommendation, and interactive documentation routes
 - Separation of profile preparation from recommendation generation
 - Versioned 24-hour filesystem cache for prepared Spotify user profiles
+- Cache lifecycle logging and read-only profile inspection
+- Candidate-funnel, score-distribution, and strategy-comparison tooling
+- Evidence-based candidate-discovery, affinity, and tie investigations
+- Configurable baseline and balanced-affinity recommendation strategies
 - Reproducible runtime and development dependency files
-- Offline automated tests for the API and recommendation orchestration
+- 32 offline automated tests across the API, cache, recommendation pipeline, utilities, and strategy selection
 
 ### Planned
 
 - User-facing Spotify OAuth flow
-- Persistent user and profile storage
 - React frontend
 - Deployment and production configuration
+- Secure multi-user token and profile isolation
+- Recommendation history and feedback collection
 
 The API currently uses the repository owner's configured Spotify credentials. It is a development backend, not yet a deployed multi-user service.
 
 ## System Architecture
 
 ```text
-Spotify OAuth / Web API
+Future user-facing Spotify OAuth
           │
           ▼
-Spotify Data Collection
+Spotify Web API / Spotipy client
           │
           ▼
-Taste Profile Cache Manager
+User Profile Preparation
+          │
+          ▼
+Versioned Profile Cache
           │
           ├── valid profile → load profile
           └── missing/stale profile → prepare and save profile
@@ -75,20 +96,23 @@ Candidate Album Discovery
 Filtering + Familiarity Scoring
           │
           ▼
-Deterministic Ranking
+Recommendation Scoring
+          │
+          ▼
+Configurable Selection Strategy
           │
           ▼
 Structured Recommendations
           │
-          ├── FastAPI JSON response
-          └── Command-line output
+          ├── FastAPI JSON response → future React frontend
+          └── CLI and offline analysis tools
 ```
 
 Profile preparation and recommendation generation are intentionally separate. Prepared profiles are cached for 24 hours by Spotify user ID; candidate discovery and ranking receive the resulting profile without knowing whether it was loaded or rebuilt. Development logs identify cache misses, hits and profile age, expiration, version mismatch, and corruption.
 
-## Recommendation Strategy
+## Recommendation Philosophy and Strategies
 
-The Spotify pipeline is currently rule-based and explainable rather than a machine-learning recommender.
+The production-facing Spotify pipeline is currently rule-based and explainable rather than a black-box machine-learning recommender. Candidate generation, familiarity, scoring, and final selection are separate stages so strategy experiments can be evaluated without silently changing the baseline.
 
 ### Taste profile
 
@@ -113,7 +137,7 @@ By default, the candidate finder excludes the user's top 10 artists, orders the 
 
 This currently supports deeper exploration of artists already present in the user's Spotify activity. Discovery of entirely new, adjacent artists is planned.
 
-### Familiarity and ranking
+### Familiarity and primary ranking
 
 Each eligible album receives a familiarity score based on saved-album, top-track, saved-track, and recent-listening signals. Highly familiar albums are excluded.
 
@@ -124,13 +148,15 @@ The final recommendation score combines:
 40% discovery value (100 - familiarity score)
 ```
 
-Artist relevance uses a saturating transformation so very large raw affinity scores do not dominate the ranking. Deterministic tie-breaking makes results independent of candidate input order. Artist and album names are used only after score, raw affinity, and familiarity are tied; the API and CLI preserve this ranked order. The selector returns up to five albums, with no more than one album per primary artist.
+Recommendation score remains the primary ranking signal. Artist relevance uses a saturating transformation so very large raw affinity scores do not dominate, while album familiarity preserves discovery value. The selector returns up to five albums, with no more than one album per primary artist.
 
-### Experimental balanced-affinity strategy
+The original `lowest_affinity` strategy remains available as the reproducible baseline. It preserves the established deterministic ranking: when score, raw affinity, and familiarity are identical, case-normalized artist name, album name, and Spotify album ID provide stable final tie-breakers.
 
-The unchanged default strategy is `lowest_affinity`. An opt-in
-`balanced_affinity` strategy operates only on the already-generated and filtered
-candidate pool. It targets three recommendations from the bottom 30% of
+### Balanced-affinity strategy
+
+The current default strategy is `balanced_affinity`. It operates only on the
+already-generated and filtered candidate pool and does not alter the underlying
+score. It targets three recommendations from the bottom 30% of
 candidate affinity percentiles and two from the 50th–90th percentiles. The
 middle band represents artists with meaningful prior interest, while the top
 10% is avoided when possible because those artists are likely to be heavily
@@ -139,11 +165,12 @@ represented in existing listening.
 Within each band, recommendation score remains primary and familiarity remains
 the next ordering field. Candidates tied exactly on both values are shuffled;
 different scores are never randomized. Missing band allocations fall back to
-the best remaining unique-artist candidates.
+the best remaining unique-artist candidates. This controlled randomness replaces
+alphabetical tie-breaking only in the balanced path.
 
-Strategy names, percentile bounds, and allocations are defined as named
-constants in `music_taste.spotify.rank_recommendations`. The default can be
-selected explicitly without changing the scoring logic:
+Strategy names, the default, percentile bounds, and allocations are defined as
+named constants in `music_taste.spotify.rank_recommendations`. Callers can
+select either strategy without changing scoring logic:
 
 ```python
 generate_recommendations_from_profile(
@@ -153,8 +180,9 @@ generate_recommendations_from_profile(
 )
 ```
 
-The API and CLI continue using `lowest_affinity` by default. For an offline
-side-by-side comparison using cached inputs:
+The API and CLI use `balanced_affinity` through the shared default. Pass
+`strategy="lowest_affinity"` from a Python caller to reproduce the original
+baseline. For an offline side-by-side comparison using cached inputs:
 
 ```bash
 python scripts/analyze_recommendation_pipeline.py \
@@ -162,10 +190,36 @@ python scripts/analyze_recommendation_pipeline.py \
   --seed 42
 ```
 
-The current cached pool contains only affinity-10 candidates, so the balanced
-strategy cannot increase affinity diversity for that snapshot. It still varies
-exact ties, but a meaningful discovery/expansion comparison requires a candidate
-pool containing multiple affinity levels.
+The strategy was added after analysis found a 90-album exact-score tie in the
+cached pool, driven by homogeneous affinity and familiarity evidence. The
+current pool still contains only affinity-10 candidates, so balanced selection
+can reduce deterministic alphabetical tie bias but cannot create genuine
+affinity diversity. A meaningful discovery-versus-expansion comparison requires
+a candidate pool containing multiple affinity levels.
+
+## Recommendation Research
+
+Recommendation changes are guided by reproducible measurements rather than
+arbitrary weight tuning. Completed investigations include:
+
+- a complete candidate-discovery and filtering trace;
+- recommendation-score and familiarity distributions;
+- artist-affinity calculation and provenance analysis;
+- exact-tie size and alphabetical tie-break analysis; and
+- an offline comparison of baseline and balanced-affinity selection.
+
+This work established that candidate generation can constrain recommendation
+quality before scoring begins: the current cached pool contains 94 eligible
+albums, 90 of which share the same score, while every surviving primary artist
+has affinity 10. Those findings motivated making controlled tie randomization
+the current strategy while preserving a configurable deterministic baseline and
+the established score formula.
+
+Detailed reports:
+
+- [`docs/CANDIDATE_DISCOVERY_REPORT.md`](docs/CANDIDATE_DISCOVERY_REPORT.md)
+- [`docs/ARTIST_AFFINITY_INVESTIGATION.md`](docs/ARTIST_AFFINITY_INVESTIGATION.md)
+- [`docs/BALANCED_AFFINITY_EXPERIMENT.md`](docs/BALANCED_AFFINITY_EXPERIMENT.md)
 
 ## API
 
@@ -174,7 +228,7 @@ The FastAPI application currently exposes:
 | Method | Route | Description |
 | --- | --- | --- |
 | `GET` | `/health` | Returns `{"status": "ok"}` |
-| `POST` | `/api/recommendations` | Builds a profile and returns five structured album recommendations |
+| `POST` | `/api/recommendations` | Loads or prepares a profile and returns five structured album recommendations |
 | `GET` | `/docs` | Opens FastAPI's interactive Swagger documentation |
 
 A recommendation response includes:
@@ -217,9 +271,14 @@ music-recommendation-app/
 │   ├── processed/              # Generated cleaned/enriched datasets
 │   └── raw/                    # Personal source data and Spotify responses
 ├── docs/
-│   └── PROJECT_CONTEXT.md      # Detailed history and engineering decisions
+│   ├── PROJECT_CONTEXT.md                  # Project history and decisions
+│   ├── CANDIDATE_DISCOVERY_REPORT.md       # End-to-end pipeline analysis
+│   ├── ARTIST_AFFINITY_INVESTIGATION.md    # Affinity provenance and tie analysis
+│   └── BALANCED_AFFINITY_EXPERIMENT.md     # Experimental strategy design/results
 ├── models/                     # Generated model artifacts
-├── notebooks/                  # Exploratory analysis
+├── scripts/
+│   ├── inspect_profile.py                  # Read-only profile cache inspection
+│   └── analyze_recommendation_pipeline.py  # Funnel, tie, and strategy analysis
 ├── src/
 │   ├── api/
 │   │   └── main.py             # FastAPI application
@@ -260,9 +319,9 @@ python -m pip install -r requirements-dev.txt
 Create a local `.env` file with your Spotify application credentials:
 
 ```text
-SPOTIPY_CLIENT_ID=your_client_id
-SPOTIPY_CLIENT_SECRET=your_client_secret
-SPOTIPY_REDIRECT_URI=http://127.0.0.1:8888/callback
+SPOTIFY_CLIENT_ID=your_client_id
+SPOTIFY_CLIENT_SECRET=your_client_secret
+SPOTIFY_REDIRECT_URI=http://127.0.0.1:8888/callback
 ```
 
 Do not commit `.env`, Spotify token caches, or personal listening data.
@@ -283,7 +342,9 @@ Then open:
 
 The recommendation endpoint performs Spotify authentication and external API work. Use it deliberately during development.
 
-### Inspecting the profile cache
+### Development utilities
+
+#### Inspecting the profile cache
 
 The read-only cache inspection utility reports metadata, profile type and keys,
 file size, and aggregate artist, album, and saved-track counts without printing
@@ -296,6 +357,8 @@ python scripts/inspect_profile.py
 
 Pass `--user-id <spotify_user_id>` to inspect one cached user directory.
 
+#### Analyzing recommendations
+
 For aggregate candidate-funnel, score-distribution, and tie analysis using only
 the cached profile and candidate album list, run:
 
@@ -306,6 +369,10 @@ python scripts/analyze_recommendation_pipeline.py
 This read-only utility prints counts and distributions without printing artist
 names, album names, Spotify IDs, or raw listening-history records. Use
 `--user-id <spotify_user_id>` when more than one profile is cached.
+
+Add `--compare-strategies` to print side-by-side baseline and balanced results.
+Use `--seed 42` when a repeatable comparison is useful; omit the seed to explore
+different selections within exact ties.
 
 ### Spotify CLI
 
@@ -323,7 +390,11 @@ source .venv/bin/activate
 PYTHONPATH=src python -m pytest -q
 ```
 
-The current suite uses mocks and does not need to contact Spotify.
+The current 32-test suite uses mocks and temporary caches; it does not need to
+contact Spotify. Coverage includes API response behavior, profile caching and
+expiration, recommendation scoring and selection, full-pool preservation,
+inspection utilities, strategy allocation and fallback, and controlled tie
+randomization.
 
 ## Research Pipelines
 
@@ -350,17 +421,23 @@ Detailed experiment history and architectural decisions are preserved in [`docs/
 - [x] Separate profile preparation from recommendation generation
 - [x] Add offline API and orchestration tests
 - [x] Cache prepared taste profiles with expiration and automatic refresh
+- [x] Add candidate, affinity, score-distribution, and tie-analysis tooling
+- [x] Add a balanced-affinity strategy while preserving the deterministic baseline
+- [x] Expand offline coverage to API, cache, utilities, and strategy behavior
 - [ ] Add Spotify OAuth for arbitrary users
-- [ ] Add persistent storage
 - [ ] Build a React frontend
 - [ ] Deploy the full application
+- [ ] Add secure multi-user token, profile, and cache isolation
 
-### Recommendation quality
+### Current recommendation focus
 
-- [ ] Tune ranking weights against reviewed recommendation sets
-- [ ] Add adjacent-artist discovery
-- [ ] Evaluate additional verified recommendation signals
-- [ ] Add configurable recommendation counts
+- [ ] Diversify candidate sources beyond the lowest-affinity boundary
+- [ ] Improve affinity granularity using validated evidence
+- [ ] Add recommendation history and prevent repeated suggestions
+- [ ] Collect explicit user feedback and reviewed recommendation sets
+- [ ] Expand explanations with candidate-source and uncertainty context
+- [ ] Add genre, era, novelty, and exploration controls
+- [ ] Evaluate additional recommendation strategies without replacing the baseline
 
 ### Modeling research
 
@@ -369,6 +446,15 @@ Detailed experiment history and architectural decisions are preserved in [`docs/
 - [ ] Improve performance analysis across score ranges
 - [ ] Investigate which Last.fm, Discogs, and album-level features add useful signal
 
+## Lessons Learned
+
+- Recommendation quality depends as much on candidate generation as final scoring.
+- Analysis tools and aggregate measurements should precede algorithm changes.
+- Large recommendation ties should be traced to their evidence before weights are adjusted.
+- Controlled randomness can improve variety inside exact ties without moving weaker scores ahead of stronger ones.
+- Separating profile preparation, candidate discovery, scoring, and strategy selection preserves reproducibility while enabling experiments.
+- A more granular number is useful only when it represents meaningful additional evidence.
+
 ## Purpose
 
-This project explores how explicit album ratings and implicit Spotify listening behavior can be combined to build a personalized album-discovery platform. It brings together machine learning, recommendation systems, metadata enrichment, REST API development, testing, and an evolving full-stack architecture in one portfolio project.
+This project explores how explicit album ratings and implicit Spotify listening behavior can support a personalized album-discovery platform. It brings together recommendation-system design, machine-learning experimentation, metadata enrichment, API development, caching, automated testing, and evidence-driven iteration in an architecture intended to keep growing.
