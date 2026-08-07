@@ -36,8 +36,8 @@ def test_recommendations_endpoint_uses_existing_pipeline(monkeypatch):
     def fake_get_spotify_client():
         return spotify_client
 
-    def fake_prepare_user_profile(received_client):
-        calls["prepare_client"] = received_client
+    def fake_get_or_prepare_user_profile(received_client):
+        calls["profile_client"] = received_client
         return taste_profile
 
     def fake_generate_recommendations_from_profile(received_client, profile, limit):
@@ -51,8 +51,8 @@ def test_recommendations_endpoint_uses_existing_pipeline(monkeypatch):
         fake_get_spotify_client,
     )
     monkeypatch.setattr(
-        "api.main.prepare_user_profile",
-        fake_prepare_user_profile,
+        "api.main.get_or_prepare_user_profile",
+        fake_get_or_prepare_user_profile,
     )
     monkeypatch.setattr(
         "api.main.generate_recommendations_from_profile",
@@ -63,7 +63,7 @@ def test_recommendations_endpoint_uses_existing_pipeline(monkeypatch):
 
     assert response.status_code == 200
     assert calls == {
-        "prepare_client": spotify_client,
+        "profile_client": spotify_client,
         "generate_client": spotify_client,
         "profile": taste_profile,
         "limit": 5,

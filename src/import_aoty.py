@@ -45,7 +45,7 @@ def clean_aoty_data(df: pd.DataFrame) -> pd.DataFrame:
     text_columns = ["artist", "album", "format"]
 
     for column in text_columns:
-        cleaned_df[column] = cleaned_df[column].astype(str).str.strip()
+        cleaned_df[column] = cleaned_df[column].astype("string").str.strip()
 
     cleaned_df["release_year"] = pd.to_numeric(
         cleaned_df["release_year"],

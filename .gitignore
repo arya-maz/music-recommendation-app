@@ -13,3 +13,5 @@ data/raw/spotify/
 .cache
 # Pytest
 .pytest_cache/
+# Prepared Spotify user profiles
+/cache/
