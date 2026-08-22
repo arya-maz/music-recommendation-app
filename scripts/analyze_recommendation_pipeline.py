@@ -21,7 +21,7 @@ from music_taste.cache.profile_cache import (  # noqa: E402
     USER_PROFILE_CACHE_ROOT,
 )
 from music_taste.spotify.find_candidates import (  # noqa: E402
-    CANDIDATE_ALBUMS_CACHE_PATH,
+    CANDIDATE_ALBUMS_FILENAME,
 )
 from music_taste.spotify.rank_recommendations import (  # noqa: E402
     BALANCED_AFFINITY_STRATEGY,
@@ -242,12 +242,12 @@ def _select_user_directory(cache_root: Path, spotify_user_id: str | None) -> Pat
 
 def load_analysis_inputs(
     cache_root: Path = USER_PROFILE_CACHE_ROOT,
-    candidate_cache_path: Path = CANDIDATE_ALBUMS_CACHE_PATH,
     spotify_user_id: str | None = None,
 ) -> tuple[dict, list[dict]]:
-    """Read one profile and the shared candidate cache without modifying either."""
+    """Read one user's profile and candidate cache without modifying either."""
 
     user_directory = _select_user_directory(cache_root, spotify_user_id)
+    candidate_cache_path = user_directory / CANDIDATE_ALBUMS_FILENAME
     with (user_directory / PROFILE_FILENAME).open("rb") as profile_file:
         profile = pickle.load(profile_file)
     with candidate_cache_path.open("r", encoding="utf-8") as candidate_file:

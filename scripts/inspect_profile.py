@@ -17,6 +17,7 @@ from music_taste.cache.profile_cache import (  # noqa: E402
     METADATA_FILENAME,
     PROFILE_FILENAME,
     USER_PROFILE_CACHE_ROOT,
+    get_user_cache_directory,
 )
 
 
@@ -93,7 +94,7 @@ def inspect_profiles(
     """Print cache metadata and aggregate profile facts without changing files."""
 
     if spotify_user_id:
-        user_directories = [cache_root / spotify_user_id]
+        user_directories = [get_user_cache_directory(spotify_user_id, cache_root)]
     elif cache_root.exists():
         user_directories = sorted(path for path in cache_root.iterdir() if path.is_dir())
     else:

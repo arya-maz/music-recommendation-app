@@ -7,6 +7,7 @@ from music_taste.cache.profile_cache import (
     PROFILE_TTL,
     PROFILE_VERSION,
     load_cached_profile,
+    migrate_legacy_spotify_data,
     save_cached_profile,
 )
 
@@ -77,6 +78,23 @@ def test_expired_cache_is_invalidated(tmp_path, caplog):
     assert "[Cache] Rebuilding profile..." in caplog.text
 
 
+def test_expiration_does_not_modify_another_user_cache(tmp_path):
+    other_user_id = "spotify-user-456"
+    save_cached_profile(SPOTIFY_USER_ID, PROFILE, now=NOW, cache_root=tmp_path)
+    save_cached_profile(other_user_id, PROFILE, now=NOW, cache_root=tmp_path)
+    other_profile = tmp_path / other_user_id / PROFILE_FILENAME
+    other_metadata = tmp_path / other_user_id / METADATA_FILENAME
+    original_other_files = (other_profile.read_bytes(), other_metadata.read_bytes())
+
+    assert load_cached_profile(
+        SPOTIFY_USER_ID,
+        now=NOW + PROFILE_TTL,
+        cache_root=tmp_path,
+    ) is None
+
+    assert (other_profile.read_bytes(), other_metadata.read_bytes()) == original_other_files
+
+
 def test_profile_version_mismatch_is_invalidated(tmp_path, caplog):
     save_cached_profile(
         SPOTIFY_USER_ID,
@@ -143,3 +161,26 @@ def test_corrupted_metadata_is_invalidated(tmp_path):
 
     assert result is None
     assert not (tmp_path / SPOTIFY_USER_ID).exists()
+
+
+def test_legacy_data_is_moved_once_without_overwriting_user_data(tmp_path):
+    cache_root = tmp_path / "cache" / "users"
+    legacy_root = tmp_path / "data" / "raw" / "spotify"
+    legacy_root.mkdir(parents=True)
+    (legacy_root / "top_artists.json").write_text('[{"id": "legacy"}]')
+    user_directory = cache_root / SPOTIFY_USER_ID
+    user_directory.mkdir(parents=True)
+    (user_directory / "saved_tracks.json").write_text('[{"id": "current"}]')
+    (legacy_root / "saved_tracks.json").write_text('[{"id": "legacy"}]')
+
+    migrated = migrate_legacy_spotify_data(
+        SPOTIFY_USER_ID,
+        cache_root=cache_root,
+        legacy_root=legacy_root,
+    )
+
+    assert migrated == [user_directory / "top_artists.json"]
+    assert not (legacy_root / "top_artists.json").exists()
+    assert (user_directory / "top_artists.json").read_text() == '[{"id": "legacy"}]'
+    assert (user_directory / "saved_tracks.json").read_text() == '[{"id": "current"}]'
+    assert (legacy_root / "saved_tracks.json").exists()

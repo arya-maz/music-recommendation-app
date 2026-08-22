@@ -51,7 +51,7 @@ def test_analysis_reads_cache_without_modifying_or_printing_private_values(
     capsys,
 ):
     profile_root = tmp_path / "users"
-    candidate_path = tmp_path / "candidate_albums.json"
+    candidate_path = profile_root / "private-user-id" / "candidate_albums.json"
     profile = {"artist_scores": {"private-artist-id": 10.0}}
     albums = [_album("private-album-id", "private-artist-id", "Private Name")]
     save_cached_profile(
@@ -71,7 +71,6 @@ def test_analysis_reads_cache_without_modifying_or_printing_private_values(
 
     loaded_profile, loaded_albums = load_analysis_inputs(
         cache_root=profile_root,
-        candidate_cache_path=candidate_path,
         spotify_user_id="private-user-id",
     )
     print_analysis(analyze_cached_candidates(loaded_profile, loaded_albums))

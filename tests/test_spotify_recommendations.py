@@ -11,6 +11,7 @@ from music_taste.spotify.find_candidates import (
 )
 from music_taste.spotify.rank_recommendations import (
     BALANCED_AFFINITY_STRATEGY,
+    DEFAULT_RECOMMENDATION_STRATEGY,
     FINAL_RECOMMENDATION_COUNT,
     LOWEST_AFFINITY_STRATEGY,
     _rank_with_random_exact_ties,
@@ -75,7 +76,7 @@ class RecommendationSelectionTests(unittest.TestCase):
         explicit = select_final_recommendations(
             candidates,
             profile,
-            strategy=LOWEST_AFFINITY_STRATEGY,
+            strategy=DEFAULT_RECOMMENDATION_STRATEGY,
         )
 
         self.assertEqual(default, explicit)
@@ -306,17 +307,12 @@ class RecommendationSelectionTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as temporary_directory:
             cache_path = Path(temporary_directory) / "candidate_albums.json"
-
-            with patch(
-                "music_taste.spotify.find_candidates.CANDIDATE_ALBUMS_CACHE_PATH",
-                cache_path,
-            ):
-                _save_candidate_album_cache(candidates)
-                original_cache = json.loads(cache_path.read_text(encoding="utf-8"))
-                candidate_albums = _load_candidate_album_cache()
-                assert candidate_albums is not None
-                select_final_recommendations(candidate_albums, profile)
-                final_cache = json.loads(cache_path.read_text(encoding="utf-8"))
+            _save_candidate_album_cache(candidates, cache_path)
+            original_cache = json.loads(cache_path.read_text(encoding="utf-8"))
+            candidate_albums = _load_candidate_album_cache(cache_path)
+            assert candidate_albums is not None
+            select_final_recommendations(candidate_albums, profile)
+            final_cache = json.loads(cache_path.read_text(encoding="utf-8"))
 
         self.assertEqual(final_cache, original_cache)
         self.assertEqual(len(final_cache), 10)
@@ -328,8 +324,9 @@ def test_prepare_user_profile_collects_data_and_builds_profile(monkeypatch):
     taste_profile = {"artist_scores": {}, "known_album_ids": []}
     calls = {}
 
-    def fake_fetch(client):
+    def fake_fetch(client, user_directory):
         calls["fetch_client"] = client
+        calls["user_directory"] = user_directory
         return spotify_data
 
     def fake_build_profile(data):
@@ -345,11 +342,13 @@ def test_prepare_user_profile_collects_data_and_builds_profile(monkeypatch):
         fake_build_profile,
     )
 
-    result = prepare_user_profile(spotify_client)
+    user_directory = Path("cache/users/spotify-user-123")
+    result = prepare_user_profile(spotify_client, user_directory)
 
     assert result is taste_profile
     assert calls == {
         "fetch_client": spotify_client,
+        "user_directory": user_directory,
         "profile_data": spotify_data,
     }
 
@@ -364,8 +363,9 @@ def test_get_or_prepare_user_profile_caches_miss_and_reuses_hit(monkeypatch, tmp
 
     spotify_client = FakeSpotifyClient()
 
-    def fake_prepare(client):
+    def fake_prepare(client, user_directory):
         prepare_calls.append(client)
+        assert user_directory == tmp_path / "spotify-user-123"
         return taste_profile
 
     monkeypatch.setattr(
@@ -388,7 +388,11 @@ def test_get_or_prepare_user_profile_caches_miss_and_reuses_hit(monkeypatch, tmp
 
 
 def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch):
-    spotify_client = object()
+    class FakeSpotifyClient:
+        def current_user(self):
+            return {"id": "spotify-user-123"}
+
+    spotify_client = FakeSpotifyClient()
     taste_profile = {"artist_scores": {"artist-1": 50}}
     selected_album = {
         "id": "album-1",
@@ -408,9 +412,10 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
     def fail_if_called(*args, **kwargs):
         raise AssertionError("profile-based generation must not prepare the profile")
 
-    def fake_find_candidates(client, profile):
+    def fake_find_candidates(client, profile, user_directory):
         calls["candidate_client"] = client
         calls["candidate_profile"] = profile
+        calls["user_directory"] = user_directory
         return [{"id": "candidate"}]
 
     def fake_select(candidates, profile, recommendation_count):
@@ -446,6 +451,7 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
     assert calls == {
         "candidate_client": spotify_client,
         "candidate_profile": taste_profile,
+        "user_directory": Path(__file__).resolve().parents[1] / "cache" / "users" / "spotify-user-123",
         "selection_candidates": [{"id": "candidate"}],
         "selection_profile": taste_profile,
         "selection_limit": 3,
@@ -453,7 +459,11 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
 
 
 def test_generate_recommendations_returns_structured_results(monkeypatch):
-    spotify_client = object()
+    class FakeSpotifyClient:
+        def current_user(self):
+            return {"id": "spotify-user-123"}
+
+    spotify_client = FakeSpotifyClient()
     taste_profile = {"artist_scores": {"artist-1": 50}}
     selected_album = {
         "id": "album-1",
@@ -474,9 +484,10 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
         calls["profile_client"] = client
         return taste_profile
 
-    def fake_find_candidates(client, profile):
+    def fake_find_candidates(client, profile, user_directory):
         calls["candidate_client"] = client
         calls["candidate_profile"] = profile
+        calls["user_directory"] = user_directory
         return [{"id": "candidate"}]
 
     def fake_select(candidates, profile, recommendation_count):
@@ -517,6 +528,7 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
         "profile_client": spotify_client,
         "candidate_client": spotify_client,
         "candidate_profile": taste_profile,
+        "user_directory": Path(__file__).resolve().parents[1] / "cache" / "users" / "spotify-user-123",
         "selection_candidates": [{"id": "candidate"}],
         "selection_profile": taste_profile,
         "selection_limit": 3,
@@ -524,6 +536,10 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
 
 
 def test_generate_recommendations_handles_missing_optional_album_media(monkeypatch):
+    class FakeSpotifyClient:
+        def current_user(self):
+            return {"id": "spotify-user-123"}
+
     selected_album = {
         "name": "Album Without Media",
         "artists": [{"id": "artist-1", "name": "Artist One"}],
@@ -537,20 +553,24 @@ def test_generate_recommendations_handles_missing_optional_album_media(monkeypat
 
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.find_candidate_albums",
-        lambda client, profile: [],
+        lambda client, profile, user_directory: [],
     )
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.select_final_recommendations",
         lambda candidates, profile, recommendation_count: [selected_album],
     )
 
-    recommendation = generate_recommendations_from_profile(object(), {})[0]
+    recommendation = generate_recommendations_from_profile(FakeSpotifyClient(), {})[0]
 
     assert recommendation.spotify_url is None
     assert recommendation.album_image_url is None
 
 
-def test_profile_generation_forwards_balanced_strategy(monkeypatch):
+def test_profile_generation_forwards_nondefault_strategy(monkeypatch):
+    class FakeSpotifyClient:
+        def current_user(self):
+            return {"id": "spotify-user-123"}
+
     calls = {}
     selected_album = {
         "name": "Balanced Album",
@@ -565,7 +585,7 @@ def test_profile_generation_forwards_balanced_strategy(monkeypatch):
 
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.find_candidate_albums",
-        lambda client, profile: [{"id": "candidate"}],
+        lambda client, profile, user_directory: [{"id": "candidate"}],
     )
 
     def fake_select(candidates, profile, recommendation_count, strategy):
@@ -579,15 +599,15 @@ def test_profile_generation_forwards_balanced_strategy(monkeypatch):
     )
 
     recommendations = generate_recommendations_from_profile(
-        object(),
+        FakeSpotifyClient(),
         {"artist_scores": {}},
         limit=5,
-        strategy=BALANCED_AFFINITY_STRATEGY,
+        strategy=LOWEST_AFFINITY_STRATEGY,
     )
 
     assert len(recommendations) == 1
     assert calls == {
-        "strategy": BALANCED_AFFINITY_STRATEGY,
+        "strategy": LOWEST_AFFINITY_STRATEGY,
         "limit": 5,
     }
 
