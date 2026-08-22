@@ -9,9 +9,7 @@ from spotipy.exceptions import SpotifyException
 from music_taste.spotify.score_familiarity import calculate_album_familiarity
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-RAW_SPOTIFY_DIR = PROJECT_ROOT / "data" / "raw" / "spotify"
-CANDIDATE_ALBUMS_CACHE_PATH = RAW_SPOTIFY_DIR / "candidate_albums.json"
+CANDIDATE_ALBUMS_FILENAME = "candidate_albums.json"
 
 VERSION_WORDS = [
     "anniversary",
@@ -48,18 +46,17 @@ MAX_RATE_LIMIT_RETRIES = 3
 MAX_RATE_LIMIT_RETRY_SECONDS = 60
 
 
-def _load_candidate_album_cache() -> list[dict] | None:
-    if not CANDIDATE_ALBUMS_CACHE_PATH.exists():
+def _load_candidate_album_cache(cache_path: Path) -> list[dict] | None:
+    if not cache_path.exists():
         return None
 
-    with CANDIDATE_ALBUMS_CACHE_PATH.open("r", encoding="utf-8") as file:
+    with cache_path.open("r", encoding="utf-8") as file:
         return json.load(file)
 
 
-def _save_candidate_album_cache(albums: list[dict]) -> None:
-    RAW_SPOTIFY_DIR.mkdir(parents=True, exist_ok=True)
-
-    with CANDIDATE_ALBUMS_CACHE_PATH.open("w", encoding="utf-8") as file:
+def _save_candidate_album_cache(albums: list[dict], cache_path: Path) -> None:
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    with cache_path.open("w", encoding="utf-8") as file:
         json.dump(albums, file, indent=2)
 
 
@@ -257,6 +254,7 @@ def _attach_familiarity(albums: list[dict], taste_profile: dict) -> list[dict]:
 def find_candidate_albums(
     sp,
     taste_profile: dict,
+    user_directory: Path,
     limit_artists: int = 25,
     albums_per_request: int = 10,
     max_pages_per_artist: int = 3,
@@ -265,8 +263,9 @@ def find_candidate_albums(
     excluded_top_artist_count: int = 10,
     artist_selection_mode: str = "low_familiarity",
 ) -> list[dict]:
+    candidate_cache_path = user_directory / CANDIDATE_ALBUMS_FILENAME
     if use_cache:
-        cached_albums = _load_candidate_album_cache()
+        cached_albums = _load_candidate_album_cache(candidate_cache_path)
 
         if cached_albums is not None:
             return _attach_familiarity(cached_albums, taste_profile)
@@ -295,7 +294,7 @@ def find_candidate_albums(
             )
 
             if response is None:
-                _save_candidate_album_cache(raw_candidate_albums)
+                _save_candidate_album_cache(raw_candidate_albums, candidate_cache_path)
                 return _attach_familiarity(raw_candidate_albums, taste_profile)
 
             items = response["items"]
@@ -328,6 +327,6 @@ def find_candidate_albums(
 
         time.sleep(request_delay_seconds)
 
-    _save_candidate_album_cache(raw_candidate_albums)
+    _save_candidate_album_cache(raw_candidate_albums, candidate_cache_path)
 
     return _attach_familiarity(raw_candidate_albums, taste_profile)

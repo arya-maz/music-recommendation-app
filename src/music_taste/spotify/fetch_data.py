@@ -1,14 +1,9 @@
 import json
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
-RAW_SPOTIFY_DIR = PROJECT_ROOT / "data" / "raw" / "spotify"
-
-
-def save_json(data, filename: str) -> None:
-    RAW_SPOTIFY_DIR.mkdir(parents=True, exist_ok=True)
-
-    output_path = RAW_SPOTIFY_DIR / filename
+def save_json(data, filename: str, user_directory: Path) -> None:
+    user_directory.mkdir(parents=True, exist_ok=True)
+    output_path = user_directory / filename
 
     with output_path.open("w", encoding="utf-8") as file:
         json.dump(data, file, indent=2)
@@ -72,7 +67,7 @@ def fetch_saved_tracks(sp, limit: int = 50):
     return tracks
 
 
-def fetch_and_save_spotify_data(sp) -> dict:
+def fetch_and_save_spotify_data(sp, user_directory: Path) -> dict:
     spotify_data = {
         "top_artists": fetch_top_artists(sp),
         "top_tracks": fetch_top_tracks(sp),
@@ -81,10 +76,10 @@ def fetch_and_save_spotify_data(sp) -> dict:
         "saved_tracks": fetch_saved_tracks(sp),
     }
 
-    save_json(spotify_data["top_artists"], "top_artists.json")
-    save_json(spotify_data["top_tracks"], "top_tracks.json")
-    save_json(spotify_data["recently_played"], "recently_played.json")
-    save_json(spotify_data["saved_albums"], "saved_albums.json")
-    save_json(spotify_data["saved_tracks"], "saved_tracks.json")
+    save_json(spotify_data["top_artists"], "top_artists.json", user_directory)
+    save_json(spotify_data["top_tracks"], "top_tracks.json", user_directory)
+    save_json(spotify_data["recently_played"], "recently_played.json", user_directory)
+    save_json(spotify_data["saved_albums"], "saved_albums.json", user_directory)
+    save_json(spotify_data["saved_tracks"], "saved_tracks.json", user_directory)
 
     return spotify_data

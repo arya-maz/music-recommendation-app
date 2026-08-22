@@ -5,6 +5,7 @@ import logging
 import os
 import pickle
 import re
+import shutil
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -20,6 +21,7 @@ PROFILE_TTL = timedelta(hours=24)
 PROFILE_FILENAME = "profile.pkl"
 METADATA_FILENAME = "metadata.json"
 SPOTIFY_USER_ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]+$")
+LEGACY_SPOTIFY_DATA_ROOT = PROJECT_ROOT / "data" / "raw" / "spotify"
 
 
 def _format_profile_age(age: timedelta) -> str:
@@ -36,21 +38,55 @@ def _utc_now() -> datetime:
     return datetime.now(timezone.utc)
 
 
-def _user_cache_directory(
+def get_user_cache_directory(
     spotify_user_id: str,
     cache_root: Path = USER_PROFILE_CACHE_ROOT,
+    *,
+    create: bool = False,
 ) -> Path:
+    """Return the isolated cache directory for one authenticated Spotify user."""
+
     if not SPOTIFY_USER_ID_PATTERN.fullmatch(spotify_user_id):
         raise ValueError("Spotify user ID contains unsupported characters.")
 
-    return cache_root / spotify_user_id
+    user_directory = cache_root / spotify_user_id
+    if create:
+        user_directory.mkdir(parents=True, exist_ok=True)
+    return user_directory
+
+
+def migrate_legacy_spotify_data(
+    spotify_user_id: str,
+    cache_root: Path = USER_PROFILE_CACHE_ROOT,
+    legacy_root: Path = LEGACY_SPOTIFY_DATA_ROOT,
+) -> list[Path]:
+    """Move legacy development caches into the first authenticated user cache."""
+
+    user_directory = get_user_cache_directory(
+        spotify_user_id,
+        cache_root,
+        create=True,
+    )
+    if not legacy_root.is_dir():
+        return []
+
+    migrated_paths = []
+    for source_path in legacy_root.iterdir():
+        if not source_path.is_file():
+            continue
+        destination_path = user_directory / source_path.name
+        if destination_path.exists():
+            continue
+        shutil.move(source_path, destination_path)
+        migrated_paths.append(destination_path)
+    return migrated_paths
 
 
 def _cache_paths(
     spotify_user_id: str,
     cache_root: Path = USER_PROFILE_CACHE_ROOT,
 ) -> tuple[Path, Path]:
-    user_directory = _user_cache_directory(spotify_user_id, cache_root)
+    user_directory = get_user_cache_directory(spotify_user_id, cache_root)
     return (
         user_directory / PROFILE_FILENAME,
         user_directory / METADATA_FILENAME,

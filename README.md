@@ -326,6 +326,45 @@ SPOTIFY_REDIRECT_URI=http://127.0.0.1:8888/callback
 
 Do not commit `.env`, Spotify token caches, or personal listening data.
 
+### Spotify user-data storage
+
+Spotify OAuth credentials remain in Spotipy's project-root `.cache` file. That
+file is exclusively an OAuth implementation detail and is not part of the
+recommendation-data cache.
+
+All Spotify-derived recommendation data is isolated by the authenticated
+Spotify user ID (never the display name):
+
+```text
+cache/
+└── users/
+    └── <spotify_user_id>/
+        ├── metadata.json
+        ├── profile.pkl
+        ├── top_artists.json
+        ├── top_tracks.json
+        ├── saved_albums.json
+        ├── saved_tracks.json
+        ├── recently_played.json
+        └── candidate_albums.json
+```
+
+The application creates `cache/users/<spotify_user_id>/` automatically after
+authentication. Reads and refreshes are confined to that directory, so one
+user's raw responses, candidates, metadata, and profile are never reused for
+another user.
+
+Profile freshness continues to use `last_profile_update` in `metadata.json`.
+Profiles younger than 24 hours are reused. An expired or invalid profile is
+rebuilt from Spotify and only that authenticated user's files are refreshed.
+
+On the first authenticated run, files in the legacy development location
+`data/raw/spotify/` are moved into the authenticated user's directory when the
+corresponding destination files do not exist. Existing destination files are
+never overwritten; any conflicting legacy files remain in place for manual
+review. After migration or regeneration, no runtime component reads from the
+legacy directory.
+
 ## Running the Project
 
 ### FastAPI backend
