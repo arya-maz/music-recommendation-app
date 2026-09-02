@@ -141,8 +141,14 @@ def spotify_callback(
 
 
 @app.get("/api/auth/me")
-def auth_me(user_id: str = Depends(authenticated_user_id)) -> dict[str, str]:
-    return {"spotify_user_id": user_id}
+def auth_me(
+    user_id: str = Depends(authenticated_user_id),
+    store: AuthStore = Depends(get_auth_store),
+) -> dict[str, str]:
+    return {
+        "spotify_user_id": user_id,
+        "account_name": store.get_user_display_name(user_id) or user_id,
+    }
 
 
 @app.post("/api/auth/logout", status_code=204)

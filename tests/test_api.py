@@ -135,7 +135,10 @@ def test_oauth_callback_creates_session_and_logout_invalidates_it(client, auth_s
     assert migrations == [("legacy-user-123", "stable-account-456")]
     assert auth_store.get_token("stable-account-456")["refresh_token"] == "refresh"
     assert b"refresh" not in auth_store.database_path.read_bytes()
-    assert client.get("/api/auth/me").json() == {"spotify_user_id": "stable-account-456"}
+    assert client.get("/api/auth/me").json() == {
+        "spotify_user_id": "stable-account-456",
+        "account_name": "stable-account-456",
+    }
 
     assert client.post("/api/auth/logout").status_code == 204
     assert client.get("/api/auth/me").status_code == 401

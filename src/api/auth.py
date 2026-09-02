@@ -222,6 +222,14 @@ class AuthStore:
                 return None
         return row.spotify_user_id if row else None
 
+    def get_user_display_name(self, spotify_user_id: str) -> str | None:
+        with self.engine.begin() as connection:
+            return connection.execute(
+                select(users.c.display_name).where(
+                    users.c.spotify_user_id == spotify_user_id
+                )
+            ).scalar_one_or_none()
+
     def delete_session(self, session_id: str) -> None:
         with self.engine.begin() as connection:
             connection.execute(delete(sessions).where(sessions.c.session_hash == _digest(session_id)))
