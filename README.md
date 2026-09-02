@@ -260,7 +260,9 @@ A recommendation response includes:
 - Discogs API
 - pytest
 
-React is planned but not yet implemented. The application persistence layer
+React/Vite powers a thin, responsive frontend with Spotify sign-in,
+recommendation cards, feedback controls, loading and recovery states, and a
+no-auth preview mode. The application persistence layer
 supports PostgreSQL in production, with SQLite retained for local development
 and isolated offline tests.
 
@@ -340,6 +342,9 @@ python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().d
 ```
 
 Register the exact `SPOTIFY_REDIRECT_URI` in the Spotify developer dashboard.
+Use `127.0.0.1` consistently for the frontend, login request, and callback during
+local development. Mixing `localhost` and `127.0.0.1` prevents the callback from
+receiving the browser-bound OAuth state cookie and causes an invalid-state error.
 For production, use an HTTPS callback URL, keep `APP_COOKIE_SECURE=true`, retain
 the encryption key across deployments. Apply schema migrations with
 `PYTHONPATH=src alembic upgrade head` before starting the API. For local-only
@@ -433,6 +438,28 @@ Then open:
 
 The recommendation endpoint performs Spotify authentication and external API work. Use it deliberately during development.
 
+### React frontend
+
+In a second terminal, install the frontend packages and start Vite:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Then open `http://127.0.0.1:5173`. Vite proxies `/api` to the local FastAPI
+server. The landing page also includes a preview mode with placeholder albums,
+so the interface can be reviewed without starting Spotify OAuth. Feedback
+controls are visual-only in this placeholder version and are not persisted.
+The preview is also directly available at `http://127.0.0.1:5173/preview`.
+The app always opens on the landing page. Authenticated users can explicitly
+load recommendations, log out, or delete their account and locally stored data.
+
+Set `VITE_API_BASE_URL` when the API is hosted at a separate origin. The API
+must also set `FRONTEND_ORIGIN` to the frontend's exact origin so credentialed
+session requests are permitted.
+
 ### Development utilities
 
 #### Inspecting the profile cache
@@ -516,7 +543,7 @@ Detailed experiment history and architectural decisions are preserved in [`docs/
 - [x] Add a balanced-affinity strategy while preserving the deterministic baseline
 - [x] Expand offline coverage to API, cache, utilities, and strategy behavior
 - [x] Add Spotify OAuth for arbitrary users
-- [ ] Build a React frontend
+- [x] Build a placeholder React frontend
 - [ ] Deploy the full application
 - [x] Add secure multi-user token, profile, and cache isolation
 

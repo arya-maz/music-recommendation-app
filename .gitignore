@@ -13,6 +13,8 @@ data/processed/
 .cache
 # Pytest
 .pytest_cache/
+frontend/node_modules/
+frontend/dist/
 # Prepared Spotify user profiles
 /cache/
 # Server-side sessions and encrypted Spotify OAuth tokens
