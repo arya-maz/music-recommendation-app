@@ -387,6 +387,27 @@ def test_get_or_prepare_user_profile_caches_miss_and_reuses_hit(monkeypatch, tmp
     assert prepare_calls == [spotify_client]
 
 
+def test_profile_cache_prefers_stable_spotify_account_id(monkeypatch, tmp_path):
+    taste_profile = {"artist_scores": {"artist-1": 50}}
+
+    class FakeSpotifyClient:
+        def current_user(self):
+            return {"id": "legacy-user-123", "account_id": "stable-account-456"}
+
+    def fake_prepare(client, user_directory):
+        assert user_directory == tmp_path / "stable-account-456"
+        return taste_profile
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.prepare_user_profile",
+        fake_prepare,
+    )
+
+    assert get_or_prepare_user_profile(
+        FakeSpotifyClient(), cache_root=tmp_path
+    ) == taste_profile
+
+
 def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch):
     class FakeSpotifyClient:
         def current_user(self):

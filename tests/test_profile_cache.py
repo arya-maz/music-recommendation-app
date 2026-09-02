@@ -1,6 +1,8 @@
 import json
 from datetime import datetime, timedelta, timezone
 
+import pytest
+
 from music_taste.cache.profile_cache import (
     METADATA_FILENAME,
     PROFILE_FILENAME,
@@ -8,6 +10,7 @@ from music_taste.cache.profile_cache import (
     PROFILE_VERSION,
     load_cached_profile,
     migrate_legacy_spotify_data,
+    migrate_user_data_identity,
     save_cached_profile,
 )
 
@@ -184,3 +187,40 @@ def test_legacy_data_is_moved_once_without_overwriting_user_data(tmp_path):
     assert (user_directory / "top_artists.json").read_text() == '[{"id": "legacy"}]'
     assert (user_directory / "saved_tracks.json").read_text() == '[{"id": "current"}]'
     assert (legacy_root / "saved_tracks.json").exists()
+
+
+def test_legacy_user_cache_is_migrated_to_stable_account_id(tmp_path):
+    stable_account_id = "stable-account-456"
+    save_cached_profile(SPOTIFY_USER_ID, PROFILE, now=NOW, cache_root=tmp_path)
+    legacy_directory = tmp_path / SPOTIFY_USER_ID
+    (legacy_directory / "saved_tracks.json").write_text('[{"id": "track-1"}]')
+
+    migrated = migrate_user_data_identity(
+        SPOTIFY_USER_ID,
+        stable_account_id,
+        cache_root=tmp_path,
+    )
+
+    assert migrated is True
+    assert not legacy_directory.exists()
+    assert (tmp_path / stable_account_id / "saved_tracks.json").exists()
+    assert load_cached_profile(stable_account_id, now=NOW, cache_root=tmp_path) == PROFILE
+
+
+def test_identity_migration_refuses_to_overwrite_stable_user_cache(tmp_path):
+    legacy_directory = tmp_path / SPOTIFY_USER_ID
+    stable_directory = tmp_path / "stable-account-456"
+    legacy_directory.mkdir()
+    stable_directory.mkdir()
+    (legacy_directory / "profile.pkl").write_bytes(b"legacy")
+    (stable_directory / "profile.pkl").write_bytes(b"stable")
+
+    with pytest.raises(FileExistsError):
+        migrate_user_data_identity(
+            SPOTIFY_USER_ID,
+            "stable-account-456",
+            cache_root=tmp_path,
+        )
+
+    assert (legacy_directory / "profile.pkl").read_bytes() == b"legacy"
+    assert (stable_directory / "profile.pkl").read_bytes() == b"stable"

@@ -23,6 +23,8 @@ The goal of this project is to recommend albums to a user based on their persona
 ### Backend
 
 - Exposes a FastAPI REST API with health and recommendation endpoints.
+- Implements Spotify authorization-code OAuth with one-time, browser-bound state.
+- Uses opaque, server-side application sessions and encrypted per-user Spotify tokens.
 - Provides interactive Swagger/OpenAPI documentation.
 - Caches prepared Spotify profiles by user ID for 24 hours.
 - Automatically rebuilds missing, expired, version-mismatched, or corrupted profiles.
@@ -34,7 +36,7 @@ The goal of this project is to recommend albums to a user based on their persona
 - Measures candidate funnels, affinity and score distributions, and exact ties offline.
 - Compares baseline and balanced-affinity recommendations using the same cached inputs.
 - Documents candidate-discovery, artist-affinity, and recommendation-strategy investigations.
-- Runs a 32-test offline suite covering the API, cache, pipeline, utilities, and strategies.
+- Runs a 50-test offline suite covering auth, API, cache, pipeline, utilities, and strategies.
 
 The rating-modeling pipelines remain in the repository as related research. They document how the project evolved from predicting personal scores toward a practical album-discovery product.
 
@@ -60,22 +62,21 @@ The project has a tested recommendation engine, CLI, API, caching layer, and res
 - Evidence-based candidate-discovery, affinity, and tie investigations
 - Configurable baseline and balanced-affinity recommendation strategies
 - Reproducible runtime and development dependency files
-- 32 offline automated tests across the API, cache, recommendation pipeline, utilities, and strategy selection
+- 50 offline automated tests across auth, API, cache, recommendation pipeline, utilities, and strategy selection
 
 ### Planned
 
-- User-facing Spotify OAuth flow
 - React frontend
 - Deployment and production configuration
-- Secure multi-user token and profile isolation
 - Recommendation history and feedback collection
 
-The API currently uses the repository owner's configured Spotify credentials. It is a development backend, not yet a deployed multi-user service.
+The API now resolves each request through an isolated server-side session and
+per-user Spotify token. Deployment hardening and a user-facing frontend remain.
 
 ## System Architecture
 
 ```text
-Future user-facing Spotify OAuth
+Spotify authorization-code OAuth
           │
           ▼
 Spotify Web API / Spotipy client
@@ -108,7 +109,7 @@ Structured Recommendations
           └── CLI and offline analysis tools
 ```
 
-Profile preparation and recommendation generation are intentionally separate. Prepared profiles are cached for 24 hours by Spotify user ID; candidate discovery and ranking receive the resulting profile without knowing whether it was loaded or rebuilt. Development logs identify cache misses, hits and profile age, expiration, version mismatch, and corruption.
+Profile preparation and recommendation generation are intentionally separate. Prepared profiles are cached for 24 hours by Spotify's stable account ID; candidate discovery and ranking receive the resulting profile without knowing whether it was loaded or rebuilt. Development logs identify cache misses, hits and profile age, expiration, version mismatch, and corruption.
 
 ## Recommendation Philosophy and Strategies
 
@@ -259,7 +260,9 @@ A recommendation response includes:
 - Discogs API
 - pytest
 
-React and persistent database storage are planned but not yet implemented.
+React is planned but not yet implemented. The application persistence layer
+supports PostgreSQL in production, with SQLite retained for local development
+and isolated offline tests.
 
 ## Repository Structure
 
@@ -281,7 +284,8 @@ music-recommendation-app/
 │   └── analyze_recommendation_pipeline.py  # Funnel, tie, and strategy analysis
 ├── src/
 │   ├── api/
-│   │   └── main.py             # FastAPI application
+│   │   ├── auth.py             # Session and encrypted token persistence
+│   │   └── main.py             # FastAPI application and OAuth routes
 │   ├── music_taste/
 │   │   ├── cache/              # Profile cache persistence and expiry
 │   │   ├── spotify/            # Spotify profile and recommendation pipeline
@@ -321,24 +325,64 @@ Create a local `.env` file with your Spotify application credentials:
 ```text
 SPOTIFY_CLIENT_ID=your_client_id
 SPOTIFY_CLIENT_SECRET=your_client_secret
-SPOTIFY_REDIRECT_URI=http://127.0.0.1:8888/callback
+SPOTIFY_REDIRECT_URI=http://127.0.0.1:8000/api/auth/callback
+SPOTIFY_TOKEN_ENCRYPTION_KEY=replace_with_a_generated_fernet_key
+DATABASE_URL=postgresql+psycopg://user:password@host:5432/music_recommendations
+FRONTEND_AUTH_SUCCESS_URL=http://127.0.0.1:5173/
+FRONTEND_ORIGIN=http://127.0.0.1:5173
+APP_COOKIE_SECURE=false
 ```
 
-Do not commit `.env`, Spotify token caches, or personal listening data.
+Generate the encryption key once with:
+
+```bash
+python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+```
+
+Register the exact `SPOTIFY_REDIRECT_URI` in the Spotify developer dashboard.
+For production, use an HTTPS callback URL, keep `APP_COOKIE_SECURE=true`, retain
+the encryption key across deployments. Apply schema migrations with
+`PYTHONPATH=src alembic upgrade head` before starting the API. For local-only
+development, omit `DATABASE_URL` and set `AUTH_DATABASE_PATH=data/auth/auth.db`
+to use SQLite. Do not commit `.env`, local databases, or personal listening data.
+When the React app is hosted on another origin, it must send requests with
+credentials enabled; `FRONTEND_ORIGIN` permits only that exact origin.
 
 ### Spotify user-data storage
 
-Spotify OAuth credentials remain in Spotipy's project-root `.cache` file. That
-file is exclusively an OAuth implementation detail and is not part of the
-recommendation-data cache.
+Spotify tokens are encrypted in the server-side database and associated with a
+durable user row keyed by the stable Spotify `account_id` returned by `/me`.
+Profile version and refresh timestamps are also persisted; the prepared profile
+payload remains in the existing filesystem cache. Browser cookies contain only opaque
+session identifiers; their hashes are stored server-side. Spotipy refreshes an
+expired access token through a per-user cache handler and persists the rotated
+token without exposing it to the browser.
+
+The browser-facing authentication lifecycle is:
+
+```text
+GET  /api/auth/login       redirect to Spotify
+GET  /api/auth/callback    validate state, identify user, create session
+GET  /api/auth/me          return the authenticated Spotify account identity
+POST /api/auth/logout      invalidate the current session
+DELETE /api/auth/account   delete local account data and all sessions
+POST /api/recommendations  require a valid session
+```
+
+Account deletion requires a JSON body of `{"confirm": true}`. The user is
+derived exclusively from the authenticated session. Deletion removes every
+application session and encrypted Spotify token for that user, plus the entire
+user-specific cache directory containing profiles, downloaded Spotify data,
+and candidate results. It does not sign the user out of spotify.com or revoke
+the app grant in Spotify's account settings.
 
 All Spotify-derived recommendation data is isolated by the authenticated
-Spotify user ID (never the display name):
+Spotify account ID (never the display name):
 
 ```text
 cache/
 └── users/
-    └── <spotify_user_id>/
+    └── <spotify_account_id>/
         ├── metadata.json
         ├── profile.pkl
         ├── top_artists.json
@@ -349,10 +393,18 @@ cache/
         └── candidate_albums.json
 ```
 
-The application creates `cache/users/<spotify_user_id>/` automatically after
+The application creates `cache/users/<spotify_account_id>/` automatically after
 authentication. Reads and refreshes are confined to that directory, so one
 user's raw responses, candidates, metadata, and profile are never reused for
 another user.
+
+For compatibility, authentication falls back to Spotify's legacy `id` field if
+`account_id` is absent. On the first login after this migration, existing
+sessions and encrypted tokens are moved from the legacy ID to `account_id`, and
+the legacy cache directory is atomically renamed. Migration refuses to overwrite
+an existing destination directory. Sessions created before this identity change
+are invalidated once, requiring one fresh Spotify login to establish and verify
+the stable identity.
 
 Profile freshness continues to use `last_profile_update` in `metadata.json`.
 Profiles younger than 24 hours are reused. An expired or invalid profile is
@@ -426,11 +478,11 @@ The CLI prints each album's artist, title, recommendation score, artist affinity
 
 ```bash
 source .venv/bin/activate
-PYTHONPATH=src python -m pytest -q
+PYTHONPATH=.:src python -m pytest -q
 ```
 
-The current 32-test suite uses mocks and temporary caches; it does not need to
-contact Spotify. Coverage includes API response behavior, profile caching and
+The current 50-test suite uses mocks and temporary caches; it does not need to
+contact Spotify. Coverage includes OAuth/session behavior, API response behavior, profile caching and
 expiration, recommendation scoring and selection, full-pool preservation,
 inspection utilities, strategy allocation and fallback, and controlled tie
 randomization.
@@ -463,10 +515,10 @@ Detailed experiment history and architectural decisions are preserved in [`docs/
 - [x] Add candidate, affinity, score-distribution, and tie-analysis tooling
 - [x] Add a balanced-affinity strategy while preserving the deterministic baseline
 - [x] Expand offline coverage to API, cache, utilities, and strategy behavior
-- [ ] Add Spotify OAuth for arbitrary users
+- [x] Add Spotify OAuth for arbitrary users
 - [ ] Build a React frontend
 - [ ] Deploy the full application
-- [ ] Add secure multi-user token, profile, and cache isolation
+- [x] Add secure multi-user token, profile, and cache isolation
 
 ### Current recommendation focus
 
