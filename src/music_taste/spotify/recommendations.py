@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
+from typing import Protocol
 
 from music_taste.cache.profile_cache import (
     USER_PROFILE_CACHE_ROOT,
@@ -31,6 +34,12 @@ class Recommendation:
     artist_affinity: float
     familiarity_score: float
     familiarity_label: str
+
+
+class ProfileMetadataStore(Protocol):
+    def save_profile_metadata(
+        self, spotify_user_id: str, profile_version: int, last_profile_update: datetime
+    ) -> None: ...
 
 
 def _spotify_url(album: dict) -> str | None:
@@ -70,7 +79,9 @@ def _recommendation_from_album(album: dict) -> Recommendation:
 
 def _authenticated_user_id(spotify_client) -> str:
     spotify_user = spotify_client.current_user()
-    spotify_user_id = spotify_user.get("id") if isinstance(spotify_user, dict) else None
+    spotify_user_id = None
+    if isinstance(spotify_user, dict):
+        spotify_user_id = spotify_user.get("account_id") or spotify_user.get("id")
     if not isinstance(spotify_user_id, str) or not spotify_user_id:
         raise ValueError("Spotify current-user response is missing the user ID.")
     return spotify_user_id
@@ -86,6 +97,7 @@ def prepare_user_profile(spotify_client, user_directory: Path) -> dict:
 def get_or_prepare_user_profile(
     spotify_client,
     cache_root: Path = USER_PROFILE_CACHE_ROOT,
+    profile_metadata_store: ProfileMetadataStore | None = None,
 ) -> dict:
     """Load the authenticated user's profile or prepare and cache a fresh one."""
 
@@ -100,6 +112,13 @@ def get_or_prepare_user_profile(
     )
 
     if cached_profile is not None:
+        if profile_metadata_store is not None:
+            metadata = json.loads((user_directory / "metadata.json").read_text())
+            profile_metadata_store.save_profile_metadata(
+                spotify_user_id,
+                int(metadata["profile_version"]),
+                datetime.fromisoformat(metadata["last_profile_update"]),
+            )
         return cached_profile
 
     taste_profile = prepare_user_profile(spotify_client, user_directory)
@@ -108,6 +127,13 @@ def get_or_prepare_user_profile(
         taste_profile,
         cache_root=cache_root,
     )
+    if profile_metadata_store is not None:
+        metadata = json.loads((user_directory / "metadata.json").read_text())
+        profile_metadata_store.save_profile_metadata(
+            spotify_user_id,
+            int(metadata["profile_version"]),
+            datetime.fromisoformat(metadata["last_profile_update"]),
+        )
     return taste_profile
 
 

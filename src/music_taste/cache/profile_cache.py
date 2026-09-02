@@ -55,6 +55,46 @@ def get_user_cache_directory(
     return user_directory
 
 
+def migrate_user_data_identity(
+    legacy_user_id: str,
+    stable_account_id: str,
+    cache_root: Path = USER_PROFILE_CACHE_ROOT,
+) -> bool:
+    """Atomically move one legacy-ID cache directory to a stable account ID."""
+
+    legacy_directory = get_user_cache_directory(legacy_user_id, cache_root)
+    stable_directory = get_user_cache_directory(stable_account_id, cache_root)
+    if legacy_directory == stable_directory or not legacy_directory.exists():
+        return False
+    if legacy_directory.is_symlink():
+        raise ValueError("Legacy user cache must not be a symbolic link.")
+    if stable_directory.exists():
+        raise FileExistsError(
+            "Both legacy and stable user cache directories exist; refusing to overwrite data."
+        )
+
+    stable_directory.parent.mkdir(parents=True, exist_ok=True)
+    legacy_directory.replace(stable_directory)
+
+    metadata_path = stable_directory / METADATA_FILENAME
+    if metadata_path.is_file():
+        try:
+            with metadata_path.open("r", encoding="utf-8") as metadata_file:
+                metadata = json.load(metadata_file)
+            if isinstance(metadata, dict):
+                metadata["spotify_user_id"] = stable_account_id
+                temporary_path = metadata_path.with_suffix(".json.tmp")
+                with temporary_path.open("w", encoding="utf-8") as metadata_file:
+                    json.dump(metadata, metadata_file, indent=2)
+                os.replace(temporary_path, metadata_path)
+        except (json.JSONDecodeError, OSError):
+            # The normal cache loader will invalidate malformed metadata later.
+            pass
+        finally:
+            metadata_path.with_suffix(".json.tmp").unlink(missing_ok=True)
+    return True
+
+
 def migrate_legacy_spotify_data(
     spotify_user_id: str,
     cache_root: Path = USER_PROFILE_CACHE_ROOT,
@@ -134,6 +174,19 @@ def invalidate_cached_profile(
         profile_path.parent.rmdir()
     except OSError:
         pass
+
+
+def delete_user_data(
+    spotify_user_id: str,
+    cache_root: Path = USER_PROFILE_CACHE_ROOT,
+) -> None:
+    """Delete all locally cached Spotify-derived data for one validated user."""
+
+    user_directory = get_user_cache_directory(spotify_user_id, cache_root)
+    if user_directory.is_symlink():
+        user_directory.unlink()
+    elif user_directory.is_dir():
+        shutil.rmtree(user_directory)
 
 
 def load_cached_profile(
