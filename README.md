@@ -544,13 +544,13 @@ Detailed experiment history and architectural decisions are preserved in [`docs/
 - [x] Expand offline coverage to API, cache, utilities, and strategy behavior
 - [x] Add Spotify OAuth for arbitrary users
 - [x] Build a placeholder React frontend
-- [ ] Deploy the full application
 - [x] Add secure multi-user token, profile, and cache isolation
+- [ ] Deploy the full application
 
 ### Current recommendation focus
 
-- [ ] Diversify candidate sources beyond the lowest-affinity boundary
-- [ ] Improve affinity granularity using validated evidence
+- [x] Diversify candidate sources beyond the lowest-affinity boundary
+- [x] Improve affinity using validated evidence
 - [ ] Add recommendation history and prevent repeated suggestions
 - [ ] Collect explicit user feedback and reviewed recommendation sets
 - [ ] Expand explanations with candidate-source and uncertainty context
@@ -559,10 +559,10 @@ Detailed experiment history and architectural decisions are preserved in [`docs/
 
 ### Modeling research
 
-- [ ] Run AOTY feature-group ablation experiments
-- [ ] Compare additional regression models
-- [ ] Improve performance analysis across score ranges
-- [ ] Investigate which Last.fm, Discogs, and album-level features add useful signal
+- [x] Run AOTY feature-group ablation experiments
+- [x] Compare additional regression models
+- [x] Improve performance analysis across score ranges
+- [x] Investigate which Last.fm, Discogs, and album-level features add useful signal
 
 ## Lessons Learned
 
