@@ -1,4 +1,5 @@
 import json
+import random
 import re
 import string
 import time
@@ -44,6 +45,13 @@ SAVED_TRACK_ALBUM_KNOWN_THRESHOLD = 1
 SPOTIFY_ARTIST_ALBUMS_MAX_LIMIT = 10
 MAX_RATE_LIMIT_RETRIES = 3
 MAX_RATE_LIMIT_RETRY_SECONDS = 60
+
+STRATIFIED_AFFINITY_BANDS = (
+    (10.0, 35.0, 1),
+    (35.0, 60.0, 2),
+    (60.0, 80.0, 2),
+)
+SMALL_PROFILE_MAX_ARTISTS = 20
 
 
 def _load_candidate_album_cache(cache_path: Path) -> list[dict] | None:
@@ -201,8 +209,80 @@ def _select_candidate_artist_ids(
     limit_artists: int,
     excluded_top_artist_count: int,
     artist_selection_mode: str,
+    random_generator=None,
 ) -> list[str]:
     artist_scores = taste_profile["artist_scores"]
+
+    if artist_selection_mode == "stratified_affinity":
+        generator = random_generator or random
+        target_count = min(
+            limit_artists,
+            sum(selection_count for _, _, selection_count in STRATIFIED_AFFINITY_BANDS),
+            len(artist_scores),
+        )
+
+        if len(artist_scores) <= SMALL_PROFILE_MAX_ARTISTS:
+            return generator.sample(list(artist_scores), target_count)
+
+        sorted_affinities = sorted(float(score) for score in artist_scores.values())
+
+        if not sorted_affinities:
+            return []
+
+        if len(sorted_affinities) == 1 or len(set(sorted_affinities)) == 1:
+            affinity_percentiles = {
+                affinity: 50.0 for affinity in set(sorted_affinities)
+            }
+        else:
+            affinity_percentiles = {}
+            for affinity in set(sorted_affinities):
+                lower_count = sum(value < affinity for value in sorted_affinities)
+                equal_count = sum(value == affinity for value in sorted_affinities)
+                average_zero_based_rank = lower_count + (equal_count - 1) / 2
+                affinity_percentiles[affinity] = (
+                    100.0
+                    * average_zero_based_rank
+                    / (len(sorted_affinities) - 1)
+                )
+
+        artist_percentiles = {
+            artist_id: affinity_percentiles[float(score)]
+            for artist_id, score in artist_scores.items()
+        }
+        selected_artist_ids = []
+        for lower_bound, upper_bound, selection_count in STRATIFIED_AFFINITY_BANDS:
+            band_artist_ids = [
+                artist_id
+                for artist_id, percentile in artist_percentiles.items()
+                if lower_bound <= percentile
+                and (
+                    percentile < upper_bound
+                    or (upper_bound == 80.0 and percentile == upper_bound)
+                )
+            ]
+            remaining_slots = target_count - len(selected_artist_ids)
+            if remaining_slots <= 0:
+                break
+            sample_count = min(selection_count, remaining_slots, len(band_artist_ids))
+            selected_artist_ids.extend(generator.sample(band_artist_ids, sample_count))
+
+        if len(selected_artist_ids) < target_count:
+            remaining_artist_ids = [
+                artist_id
+                for artist_id, percentile in artist_percentiles.items()
+                if 10.0 <= percentile <= 80.0
+                and artist_id not in selected_artist_ids
+            ]
+            sample_count = min(
+                target_count - len(selected_artist_ids),
+                len(remaining_artist_ids),
+            )
+            selected_artist_ids.extend(
+                generator.sample(remaining_artist_ids, sample_count)
+            )
+
+        return selected_artist_ids
+
     top_artist_ids = taste_profile.get("top_artist_ids", [])
     excluded_artist_ids = set(top_artist_ids[:excluded_top_artist_count])
 
@@ -225,7 +305,8 @@ def _select_candidate_artist_ids(
         )
     else:
         raise ValueError(
-            "artist_selection_mode must be either 'low_familiarity' or 'adjacent'."
+            "artist_selection_mode must be 'stratified_affinity', "
+            "'low_familiarity', or 'adjacent'."
         )
 
     return sorted_artist_ids[:limit_artists]
@@ -261,7 +342,8 @@ def find_candidate_albums(
     request_delay_seconds: float = 0.35,
     use_cache: bool = True,
     excluded_top_artist_count: int = 10,
-    artist_selection_mode: str = "low_familiarity",
+    artist_selection_mode: str = "stratified_affinity",
+    random_generator=None,
 ) -> list[dict]:
     candidate_cache_path = user_directory / CANDIDATE_ALBUMS_FILENAME
     if use_cache:
@@ -275,6 +357,7 @@ def find_candidate_albums(
         limit_artists=limit_artists,
         excluded_top_artist_count=excluded_top_artist_count,
         artist_selection_mode=artist_selection_mode,
+        random_generator=random_generator,
     )
     request_limit = min(albums_per_request, SPOTIFY_ARTIST_ALBUMS_MAX_LIMIT)
 

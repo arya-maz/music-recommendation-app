@@ -8,6 +8,7 @@ from unittest.mock import patch
 from music_taste.spotify.find_candidates import (
     _load_candidate_album_cache,
     _save_candidate_album_cache,
+    _select_candidate_artist_ids,
 )
 from music_taste.spotify.rank_recommendations import (
     BALANCED_AFFINITY_STRATEGY,
@@ -58,6 +59,66 @@ def make_candidate(
 
 
 class RecommendationSelectionTests(unittest.TestCase):
+    def test_stratified_artist_selection_uses_requested_affinity_bands(self):
+        profile = {
+            "artist_scores": {
+                f"artist-{index}": index for index in range(1, 101)
+            }
+        }
+
+        selected = _select_candidate_artist_ids(
+            profile,
+            limit_artists=25,
+            excluded_top_artist_count=10,
+            artist_selection_mode="stratified_affinity",
+            random_generator=random.Random(7),
+        )
+        selected_scores = [profile["artist_scores"][artist_id] for artist_id in selected]
+
+        self.assertEqual(len(selected_scores), 5)
+        self.assertEqual(sum(11 <= score <= 35 for score in selected_scores), 1)
+        self.assertEqual(sum(36 <= score <= 60 for score in selected_scores), 2)
+        self.assertEqual(sum(61 <= score <= 80 for score in selected_scores), 2)
+
+    def test_small_profile_selects_from_all_artists_without_percentile_limits(self):
+        profile = {
+            "artist_scores": {
+                f"artist-{index}": index for index in range(1, 21)
+            }
+        }
+        expected = random.Random(3).sample(list(profile["artist_scores"]), 5)
+
+        selected = _select_candidate_artist_ids(
+            profile,
+            limit_artists=25,
+            excluded_top_artist_count=10,
+            artist_selection_mode="stratified_affinity",
+            random_generator=random.Random(3),
+        )
+
+        self.assertEqual(selected, expected)
+
+    def test_twenty_one_artist_profile_uses_stratified_affinity_bands(self):
+        profile = {
+            "artist_scores": {
+                f"artist-{index}": index for index in range(1, 22)
+            }
+        }
+
+        selected = _select_candidate_artist_ids(
+            profile,
+            limit_artists=25,
+            excluded_top_artist_count=10,
+            artist_selection_mode="stratified_affinity",
+            random_generator=random.Random(5),
+        )
+        selected_scores = [profile["artist_scores"][artist_id] for artist_id in selected]
+
+        self.assertEqual(len(selected_scores), 5)
+        self.assertEqual(sum(3 <= score <= 7 for score in selected_scores), 1)
+        self.assertEqual(sum(8 <= score <= 12 for score in selected_scores), 2)
+        self.assertEqual(sum(13 <= score <= 17 for score in selected_scores), 2)
+
     def test_explicit_baseline_strategy_matches_existing_default(self):
         candidates = [
             make_candidate(
