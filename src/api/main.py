@@ -16,6 +16,7 @@ from music_taste.cache.profile_cache import delete_user_data, migrate_user_data_
 from music_taste.spotify.client import get_spotify_client, get_spotify_oauth
 from music_taste.spotify.recommendations import (
     Recommendation,
+    RecommendationRerollError,
     generate_recommendations_from_profile,
     get_or_prepare_user_profile,
 )
@@ -41,6 +42,10 @@ OAUTH_STATE_COOKIE = "spotify_oauth_state"
 
 class AccountDeletionRequest(BaseModel):
     confirm: Literal[True]
+
+
+class RecommendationRequest(BaseModel):
+    roll: Literal[1, 2] = 1
 
 
 @lru_cache
@@ -176,6 +181,7 @@ def delete_account(
 
 @app.post("/api/recommendations")
 def create_recommendations(
+    recommendation_request: RecommendationRequest | None = None,
     spotify_client=Depends(authenticated_spotify_client),
     store: AuthStore = Depends(get_auth_store),
 ) -> list[Recommendation]:
@@ -183,8 +189,18 @@ def create_recommendations(
         spotify_client,
         profile_metadata_store=store,
     )
-    return generate_recommendations_from_profile(
-        spotify_client,
-        taste_profile,
-        limit=5,
-    )
+    try:
+        if recommendation_request is None:
+            return generate_recommendations_from_profile(
+                spotify_client,
+                taste_profile,
+                limit=5,
+            )
+        return generate_recommendations_from_profile(
+            spotify_client,
+            taste_profile,
+            limit=5,
+            roll=recommendation_request.roll,
+        )
+    except RecommendationRerollError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
