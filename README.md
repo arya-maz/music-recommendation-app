@@ -129,12 +129,18 @@ It also tracks albums the user is likely to know using Spotify album IDs and nor
 
 ### Candidate discovery
 
-By default, the candidate finder excludes the user's top 10 artists, orders the remaining eligible artists from lower to higher affinity, and searches up to 25 of them. It removes:
+For profiles containing 21 or more artists, the candidate finder randomly selects two artists from the 0th–35th affinity-percentile band, two from the 35th–60th band, and one from the 60th–80th band. If a band cannot fill its allocation, the remaining slots are drawn from the eligible 0th–80th percentile pool. Profiles containing 20 or fewer artists instead draw up to five artists from the entire profile. It removes:
 
 - known albums;
 - duplicate Spotify album IDs;
 - normalized matches for albums already represented in the user's profile; and
 - deluxe, remastered, live, remix, soundtrack, expanded, instrumental, bonus, and similar editions.
+
+If a selected artist has no album left after filtering, the finder draws another
+unused artist from the same percentile band. Once that band is exhausted, it
+falls back to the unused 0th–80th percentile pool. An artist is examined at most
+once per roll, and fewer than five artists are returned only if the permitted
+pool itself cannot provide five viable catalogs.
 
 This currently supports deeper exploration of artists already present in the user's Spotify activity. Discovery of entirely new, adjacent artists is planned.
 
@@ -229,7 +235,7 @@ The FastAPI application currently exposes:
 | Method | Route | Description |
 | --- | --- | --- |
 | `GET` | `/health` | Returns `{"status": "ok"}` |
-| `POST` | `/api/recommendations` | Loads or prepares a profile and returns five structured album recommendations |
+| `POST` | `/api/recommendations` | Loads or prepares a profile and returns five structured album recommendations. Send `{"roll": 1}` initially and `{"roll": 2}` for the single allowed fresh reroll. |
 | `GET` | `/docs` | Opens FastAPI's interactive Swagger documentation |
 
 A recommendation response includes:
@@ -261,7 +267,7 @@ A recommendation response includes:
 - pytest
 
 React/Vite powers a thin, responsive frontend with Spotify sign-in,
-recommendation cards, feedback controls, loading and recovery states, and a
+recommendation cards, loading and recovery states, and a
 no-auth preview mode. The application persistence layer
 supports PostgreSQL in production, with SQLite retained for local development
 and isolated offline tests.
@@ -395,7 +401,8 @@ cache/
         ├── saved_albums.json
         ├── saved_tracks.json
         ├── recently_played.json
-        └── candidate_albums.json
+        ├── candidate_albums.json
+        └── recommendation_roll.json
 ```
 
 The application creates `cache/users/<spotify_account_id>/` automatically after
@@ -445,7 +452,7 @@ In a second terminal, install the frontend packages and start Vite:
 ```bash
 cd frontend
 npm install
-npm run dev
+npm run dev -- --host 127.0.0.1
 ```
 
 Then open `http://127.0.0.1:5173`. Vite proxies `/api` to the local FastAPI
@@ -508,11 +515,12 @@ source .venv/bin/activate
 PYTHONPATH=.:src python -m pytest -q
 ```
 
-The current 50-test suite uses mocks and temporary caches; it does not need to
+The current 57-test suite uses mocks and temporary caches; it does not need to
 contact Spotify. Coverage includes OAuth/session behavior, API response behavior, profile caching and
 expiration, recommendation scoring and selection, full-pool preservation,
 inspection utilities, strategy allocation and fallback, and controlled tie
-randomization.
+randomization. It also verifies that the one permitted reroll excludes the
+primary artists shown in the initial result.
 
 ## Research Pipelines
 

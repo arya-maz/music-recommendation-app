@@ -4,7 +4,7 @@ import pytest
 
 from api.auth import AuthStore, UserTokenCacheHandler
 from api.main import app, authenticated_spotify_client, get_auth_store
-from music_taste.spotify.recommendations import Recommendation
+from music_taste.spotify.recommendations import Recommendation, RecommendationRerollError
 
 
 @pytest.fixture
@@ -94,6 +94,28 @@ def test_recommendations_endpoint_uses_existing_pipeline(client, auth_store, mon
         "familiarity_score": 15.0,
         "familiarity_label": "lightly familiar",
     }
+
+
+def test_recommendations_endpoint_forwards_second_roll(client, auth_store, monkeypatch):
+    spotify_client = object()
+    calls = {}
+    app.dependency_overrides[authenticated_spotify_client] = lambda: spotify_client
+    monkeypatch.setattr(
+        "api.main.get_or_prepare_user_profile",
+        lambda received_client, profile_metadata_store: {"artist_scores": {}},
+    )
+
+    def fake_generate(received_client, profile, limit, roll):
+        calls["roll"] = roll
+        raise RecommendationRerollError("reroll already used")
+
+    monkeypatch.setattr("api.main.generate_recommendations_from_profile", fake_generate)
+
+    response = client.post("/api/recommendations", json={"roll": 2})
+
+    assert calls == {"roll": 2}
+    assert response.status_code == 409
+    assert response.json() == {"detail": "reroll already used"}
 
 
 def test_oauth_callback_creates_session_and_logout_invalidates_it(client, auth_store, monkeypatch):

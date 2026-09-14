@@ -22,6 +22,12 @@ from music_taste.spotify.rank_recommendations import (
     select_final_recommendations,
 )
 
+RECOMMENDATION_ROLL_FILENAME = "recommendation_roll.json"
+
+
+class RecommendationRerollError(RuntimeError):
+    """Raised when a second recommendation roll is unavailable or already used."""
+
 
 @dataclass(frozen=True)
 class Recommendation:
@@ -74,6 +80,37 @@ def _recommendation_from_album(album: dict) -> Recommendation:
         artist_affinity=float(recommendation["artist_affinity"]),
         familiarity_score=float(familiarity.get("score", 0.0)),
         familiarity_label=familiarity.get("level", "unknown"),
+    )
+
+
+def _primary_artist_id(album: dict) -> str | None:
+    artists = album.get("artists") or []
+    if not artists:
+        return None
+    artist_id = artists[0].get("id")
+    return artist_id if isinstance(artist_id, str) and artist_id else None
+
+
+def _load_recommendation_roll(user_directory: Path) -> dict | None:
+    roll_path = user_directory / RECOMMENDATION_ROLL_FILENAME
+    if not roll_path.exists():
+        return None
+    try:
+        state = json.loads(roll_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+    return state if isinstance(state, dict) else None
+
+
+def _save_recommendation_roll(
+    user_directory: Path,
+    roll: int,
+    primary_artist_ids: list[str],
+) -> None:
+    roll_path = user_directory / RECOMMENDATION_ROLL_FILENAME
+    roll_path.write_text(
+        json.dumps({"roll": roll, "primary_artist_ids": primary_artist_ids}, indent=2),
+        encoding="utf-8",
     )
 
 
@@ -143,15 +180,34 @@ def generate_recommendations_from_profile(
     limit: int = FINAL_RECOMMENDATION_COUNT,
     strategy: str = DEFAULT_RECOMMENDATION_STRATEGY,
     cache_root: Path = USER_PROFILE_CACHE_ROOT,
+    roll: int = 1,
 ) -> list[Recommendation]:
     """Generate structured recommendations from an already-prepared profile."""
 
     spotify_user_id = _authenticated_user_id(spotify_client)
     user_directory = get_user_cache_directory(spotify_user_id, cache_root, create=True)
+    if roll not in {1, 2}:
+        raise ValueError("roll must be 1 or 2")
+
+    excluded_artist_ids: set[str] = set()
+    if roll == 2:
+        previous_roll = _load_recommendation_roll(user_directory)
+        if previous_roll is None or previous_roll.get("roll") != 1:
+            raise RecommendationRerollError(
+                "Discover 5 more is available once after the initial recommendations."
+            )
+        excluded_artist_ids = {
+            artist_id
+            for artist_id in previous_roll.get("primary_artist_ids", [])
+            if isinstance(artist_id, str) and artist_id
+        }
+
     candidate_albums = find_candidate_albums(
         spotify_client,
         taste_profile,
         user_directory,
+        use_cache=False,
+        excluded_artist_ids=excluded_artist_ids,
     )
     if strategy == DEFAULT_RECOMMENDATION_STRATEGY:
         selected_albums = select_final_recommendations(
@@ -167,6 +223,13 @@ def generate_recommendations_from_profile(
             strategy=strategy,
         )
 
+    primary_artist_ids = [
+        artist_id
+        for album in selected_albums
+        if (artist_id := _primary_artist_id(album)) is not None
+    ]
+    _save_recommendation_roll(user_directory, roll, primary_artist_ids)
+
     return [_recommendation_from_album(album) for album in selected_albums]
 
 
@@ -174,15 +237,22 @@ def generate_recommendations(
     spotify_client,
     limit: int = FINAL_RECOMMENDATION_COUNT,
     strategy: str = DEFAULT_RECOMMENDATION_STRATEGY,
+    cache_root: Path = USER_PROFILE_CACHE_ROOT,
+    roll: int = 1,
 ) -> list[Recommendation]:
     """Load or prepare a profile and generate recommendations in one call."""
 
-    taste_profile = get_or_prepare_user_profile(spotify_client)
+    if cache_root == USER_PROFILE_CACHE_ROOT:
+        taste_profile = get_or_prepare_user_profile(spotify_client)
+    else:
+        taste_profile = get_or_prepare_user_profile(spotify_client, cache_root=cache_root)
     if strategy == DEFAULT_RECOMMENDATION_STRATEGY:
         return generate_recommendations_from_profile(
             spotify_client,
             taste_profile,
             limit=limit,
+            cache_root=cache_root,
+            roll=roll,
         )
 
     return generate_recommendations_from_profile(
@@ -190,4 +260,6 @@ def generate_recommendations(
         taste_profile,
         limit=limit,
         strategy=strategy,
+        cache_root=cache_root,
+        roll=roll,
     )

@@ -47,9 +47,9 @@ MAX_RATE_LIMIT_RETRIES = 3
 MAX_RATE_LIMIT_RETRY_SECONDS = 60
 
 STRATIFIED_AFFINITY_BANDS = (
-    (10.0, 35.0, 1),
+    (0.0, 35.0, 2),
     (35.0, 60.0, 2),
-    (60.0, 80.0, 2),
+    (60.0, 80.0, 1),
 )
 SMALL_PROFILE_MAX_ARTISTS = 20
 
@@ -204,57 +204,109 @@ def _is_known_album(album: dict, taste_profile: dict) -> bool:
     return False
 
 
+def _artist_affinity_percentiles(artist_scores: dict) -> dict[str, float]:
+    sorted_affinities = sorted(float(score) for score in artist_scores.values())
+    if not sorted_affinities:
+        return {}
+
+    if len(sorted_affinities) == 1 or len(set(sorted_affinities)) == 1:
+        affinity_percentiles = {
+            affinity: 50.0 for affinity in set(sorted_affinities)
+        }
+    else:
+        affinity_percentiles = {}
+        for affinity in set(sorted_affinities):
+            lower_count = sum(value < affinity for value in sorted_affinities)
+            equal_count = sum(value == affinity for value in sorted_affinities)
+            average_zero_based_rank = lower_count + (equal_count - 1) / 2
+            affinity_percentiles[affinity] = (
+                100.0
+                * average_zero_based_rank
+                / (len(sorted_affinities) - 1)
+            )
+
+    return {
+        artist_id: affinity_percentiles[float(score)]
+        for artist_id, score in artist_scores.items()
+    }
+
+
+def _stratified_artist_queues(
+    taste_profile: dict,
+    excluded_artist_ids: set[str],
+    random_generator=None,
+) -> tuple[list[tuple[list[str], int]], list[str]]:
+    """Return shuffled band queues and a shuffled 0th–80th fallback queue."""
+
+    generator = random_generator or random
+    artist_scores = taste_profile["artist_scores"]
+    artist_percentiles = _artist_affinity_percentiles(artist_scores)
+    band_queues = []
+
+    for lower_bound, upper_bound, selection_count in STRATIFIED_AFFINITY_BANDS:
+        artist_ids = [
+            artist_id
+            for artist_id, percentile in artist_percentiles.items()
+            if artist_id not in excluded_artist_ids
+            and lower_bound <= percentile
+            and (
+                percentile < upper_bound
+                or (upper_bound == 80.0 and percentile == upper_bound)
+            )
+        ]
+        generator.shuffle(artist_ids)
+        band_queues.append((artist_ids, selection_count))
+
+    fallback_artist_ids = [
+        artist_id
+        for artist_id, percentile in artist_percentiles.items()
+        if artist_id not in excluded_artist_ids and 0.0 <= percentile <= 80.0
+    ]
+    generator.shuffle(fallback_artist_ids)
+    return band_queues, fallback_artist_ids
+
+
 def _select_candidate_artist_ids(
     taste_profile: dict,
     limit_artists: int,
     excluded_top_artist_count: int,
     artist_selection_mode: str,
     random_generator=None,
+    excluded_artist_ids: set[str] | None = None,
 ) -> list[str]:
     artist_scores = taste_profile["artist_scores"]
+    excluded_artist_ids = excluded_artist_ids or set()
 
     if artist_selection_mode == "stratified_affinity":
         generator = random_generator or random
         target_count = min(
             limit_artists,
             sum(selection_count for _, _, selection_count in STRATIFIED_AFFINITY_BANDS),
-            len(artist_scores),
+            len(
+                [
+                    artist_id
+                    for artist_id in artist_scores
+                    if artist_id not in excluded_artist_ids
+                ]
+            ),
         )
 
         if len(artist_scores) <= SMALL_PROFILE_MAX_ARTISTS:
-            return generator.sample(list(artist_scores), target_count)
+            eligible_artist_ids = [
+                artist_id
+                for artist_id in artist_scores
+                if artist_id not in excluded_artist_ids
+            ]
+            return generator.sample(eligible_artist_ids, target_count)
 
-        sorted_affinities = sorted(float(score) for score in artist_scores.values())
-
-        if not sorted_affinities:
-            return []
-
-        if len(sorted_affinities) == 1 or len(set(sorted_affinities)) == 1:
-            affinity_percentiles = {
-                affinity: 50.0 for affinity in set(sorted_affinities)
-            }
-        else:
-            affinity_percentiles = {}
-            for affinity in set(sorted_affinities):
-                lower_count = sum(value < affinity for value in sorted_affinities)
-                equal_count = sum(value == affinity for value in sorted_affinities)
-                average_zero_based_rank = lower_count + (equal_count - 1) / 2
-                affinity_percentiles[affinity] = (
-                    100.0
-                    * average_zero_based_rank
-                    / (len(sorted_affinities) - 1)
-                )
-
-        artist_percentiles = {
-            artist_id: affinity_percentiles[float(score)]
-            for artist_id, score in artist_scores.items()
-        }
+        artist_percentiles = _artist_affinity_percentiles(artist_scores)
         selected_artist_ids = []
         for lower_bound, upper_bound, selection_count in STRATIFIED_AFFINITY_BANDS:
             band_artist_ids = [
                 artist_id
                 for artist_id, percentile in artist_percentiles.items()
                 if lower_bound <= percentile
+                and artist_id not in excluded_artist_ids
                 and (
                     percentile < upper_bound
                     or (upper_bound == 80.0 and percentile == upper_bound)
@@ -270,8 +322,9 @@ def _select_candidate_artist_ids(
             remaining_artist_ids = [
                 artist_id
                 for artist_id, percentile in artist_percentiles.items()
-                if 10.0 <= percentile <= 80.0
+                if 0.0 <= percentile <= 80.0
                 and artist_id not in selected_artist_ids
+                and artist_id not in excluded_artist_ids
             ]
             sample_count = min(
                 target_count - len(selected_artist_ids),
@@ -344,6 +397,7 @@ def find_candidate_albums(
     excluded_top_artist_count: int = 10,
     artist_selection_mode: str = "stratified_affinity",
     random_generator=None,
+    excluded_artist_ids: set[str] | None = None,
 ) -> list[dict]:
     candidate_cache_path = user_directory / CANDIDATE_ALBUMS_FILENAME
     if use_cache:
@@ -352,19 +406,17 @@ def find_candidate_albums(
         if cached_albums is not None:
             return _attach_familiarity(cached_albums, taste_profile)
 
-    candidate_artist_ids = _select_candidate_artist_ids(
-        taste_profile=taste_profile,
-        limit_artists=limit_artists,
-        excluded_top_artist_count=excluded_top_artist_count,
-        artist_selection_mode=artist_selection_mode,
-        random_generator=random_generator,
-    )
     request_limit = min(albums_per_request, SPOTIFY_ARTIST_ALBUMS_MAX_LIMIT)
-
     raw_candidate_albums = []
     seen_album_ids = set()
+    attempted_artist_ids = set()
+    excluded_artist_ids = excluded_artist_ids or set()
 
-    for artist_id in candidate_artist_ids:
+    def collect_artist_albums(artist_id: str) -> tuple[bool, bool]:
+        """Return whether the artist is viable and whether collection must stop."""
+
+        artist_albums = []
+        artist_seen_album_ids = set()
         offset = 0
         pages_fetched = 0
 
@@ -377,31 +429,36 @@ def find_candidate_albums(
             )
 
             if response is None:
-                _save_candidate_album_cache(raw_candidate_albums, candidate_cache_path)
-                return _attach_familiarity(raw_candidate_albums, taste_profile)
+                return False, True
 
             items = response["items"]
-
             if not items:
                 break
 
             for album in items:
                 album_id = album["id"]
+                primary_artist_id = next(
+                    (
+                        artist.get("id")
+                        for artist in album.get("artists", [])
+                        if artist.get("id")
+                    ),
+                    None,
+                )
 
-                if album_id in seen_album_ids:
+                if primary_artist_id != artist_id:
                     continue
-
+                if album_id in seen_album_ids or album_id in artist_seen_album_ids:
+                    continue
                 if _is_known_album(album, taste_profile):
                     continue
-
                 if _is_unwanted_album_version(album):
                     continue
 
-                seen_album_ids.add(album_id)
-                raw_candidate_albums.append(album)
+                artist_seen_album_ids.add(album_id)
+                artist_albums.append(album)
 
             pages_fetched += 1
-
             if not response["next"]:
                 break
 
@@ -409,6 +466,90 @@ def find_candidate_albums(
             time.sleep(request_delay_seconds)
 
         time.sleep(request_delay_seconds)
+        viable_albums = _attach_familiarity(artist_albums, taste_profile)
+        if not viable_albums:
+            return False, False
+
+        viable_album_ids = {album["id"] for album in viable_albums}
+        raw_candidate_albums.extend(
+            album for album in artist_albums if album["id"] in viable_album_ids
+        )
+        seen_album_ids.update(viable_album_ids)
+        return True, False
+
+    target_count = min(
+        limit_artists,
+        sum(selection_count for _, _, selection_count in STRATIFIED_AFFINITY_BANDS),
+        len(
+            [
+                artist_id
+                for artist_id in taste_profile["artist_scores"]
+                if artist_id not in excluded_artist_ids
+            ]
+        ),
+    )
+    viable_artist_count = 0
+
+    if artist_selection_mode == "stratified_affinity":
+        generator = random_generator or random
+        if len(taste_profile["artist_scores"]) <= SMALL_PROFILE_MAX_ARTISTS:
+            artist_queue = [
+                artist_id
+                for artist_id in taste_profile["artist_scores"]
+                if artist_id not in excluded_artist_ids
+            ]
+            generator.shuffle(artist_queue)
+            band_queues = [(artist_queue, target_count)]
+            fallback_artist_ids = []
+        else:
+            band_queues, fallback_artist_ids = _stratified_artist_queues(
+                taste_profile,
+                excluded_artist_ids,
+                random_generator=generator,
+            )
+
+        for artist_queue, required_count in band_queues:
+            viable_in_band = 0
+            while artist_queue and viable_in_band < required_count:
+                artist_id = artist_queue.pop()
+                if artist_id in attempted_artist_ids:
+                    continue
+                attempted_artist_ids.add(artist_id)
+                is_viable, must_stop = collect_artist_albums(artist_id)
+                if must_stop:
+                    _save_candidate_album_cache(
+                        raw_candidate_albums,
+                        candidate_cache_path,
+                    )
+                    return _attach_familiarity(raw_candidate_albums, taste_profile)
+                if is_viable:
+                    viable_in_band += 1
+                    viable_artist_count += 1
+
+        while fallback_artist_ids and viable_artist_count < target_count:
+            artist_id = fallback_artist_ids.pop()
+            if artist_id in attempted_artist_ids:
+                continue
+            attempted_artist_ids.add(artist_id)
+            is_viable, must_stop = collect_artist_albums(artist_id)
+            if must_stop:
+                _save_candidate_album_cache(raw_candidate_albums, candidate_cache_path)
+                return _attach_familiarity(raw_candidate_albums, taste_profile)
+            if is_viable:
+                viable_artist_count += 1
+    else:
+        candidate_artist_ids = _select_candidate_artist_ids(
+            taste_profile=taste_profile,
+            limit_artists=limit_artists,
+            excluded_top_artist_count=excluded_top_artist_count,
+            artist_selection_mode=artist_selection_mode,
+            random_generator=random_generator,
+            excluded_artist_ids=excluded_artist_ids,
+        )
+        for artist_id in candidate_artist_ids:
+            _, must_stop = collect_artist_albums(artist_id)
+            if must_stop:
+                break
 
     _save_candidate_album_cache(raw_candidate_albums, candidate_cache_path)
 

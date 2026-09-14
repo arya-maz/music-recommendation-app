@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from music_taste.spotify.find_candidates import (
+    find_candidate_albums,
     _load_candidate_album_cache,
     _save_candidate_album_cache,
     _select_candidate_artist_ids,
@@ -22,6 +23,7 @@ from music_taste.spotify.rank_recommendations import (
 )
 from music_taste.spotify.recommendations import (
     Recommendation,
+    RecommendationRerollError,
     generate_recommendations,
     generate_recommendations_from_profile,
     get_or_prepare_user_profile,
@@ -76,9 +78,9 @@ class RecommendationSelectionTests(unittest.TestCase):
         selected_scores = [profile["artist_scores"][artist_id] for artist_id in selected]
 
         self.assertEqual(len(selected_scores), 5)
-        self.assertEqual(sum(11 <= score <= 35 for score in selected_scores), 1)
+        self.assertEqual(sum(1 <= score <= 35 for score in selected_scores), 2)
         self.assertEqual(sum(36 <= score <= 60 for score in selected_scores), 2)
-        self.assertEqual(sum(61 <= score <= 80 for score in selected_scores), 2)
+        self.assertEqual(sum(61 <= score <= 80 for score in selected_scores), 1)
 
     def test_small_profile_selects_from_all_artists_without_percentile_limits(self):
         profile = {
@@ -115,9 +117,81 @@ class RecommendationSelectionTests(unittest.TestCase):
         selected_scores = [profile["artist_scores"][artist_id] for artist_id in selected]
 
         self.assertEqual(len(selected_scores), 5)
-        self.assertEqual(sum(3 <= score <= 7 for score in selected_scores), 1)
+        self.assertEqual(sum(1 <= score <= 7 for score in selected_scores), 2)
         self.assertEqual(sum(8 <= score <= 12 for score in selected_scores), 2)
-        self.assertEqual(sum(13 <= score <= 17 for score in selected_scores), 2)
+        self.assertEqual(sum(13 <= score <= 17 for score in selected_scores), 1)
+
+    def test_reroll_excludes_previous_artists_and_fills_from_zero_to_eighty(self):
+        profile = {
+            "artist_scores": {
+                f"artist-{index}": index for index in range(1, 101)
+            }
+        }
+        excluded = {
+            *(f"artist-{index}" for index in range(1, 35)),
+            "artist-40",
+        }
+
+        selected = _select_candidate_artist_ids(
+            profile,
+            limit_artists=25,
+            excluded_top_artist_count=10,
+            artist_selection_mode="stratified_affinity",
+            random_generator=random.Random(9),
+            excluded_artist_ids=excluded,
+        )
+
+        self.assertEqual(len(selected), 5)
+        self.assertTrue(set(selected).isdisjoint(excluded))
+        self.assertTrue(
+            all(profile["artist_scores"][artist_id] <= 80 for artist_id in selected)
+        )
+
+    def test_candidate_generation_replaces_artist_with_no_valid_albums(self):
+        class FakeSpotifyClient:
+            def __init__(self):
+                self.artist_requests = []
+
+            def artist_albums(self, artist_id, **kwargs):
+                self.artist_requests.append(artist_id)
+                if len(self.artist_requests) == 1:
+                    return {"items": [], "next": None}
+                return {
+                    "items": [
+                        {
+                            "id": f"album-{artist_id}",
+                            "name": f"Album {artist_id}",
+                            "artists": [{"id": artist_id, "name": artist_id}],
+                        }
+                    ],
+                    "next": None,
+                }
+
+        profile = {
+            "artist_scores": {
+                f"artist-{index}": index for index in range(1, 101)
+            }
+        }
+        client = FakeSpotifyClient()
+
+        candidates = find_candidate_albums(
+            client,
+            profile,
+            Path(tempfile.mkdtemp()),
+            request_delay_seconds=0,
+            use_cache=False,
+            random_generator=random.Random(11),
+        )
+
+        candidate_scores = [
+            profile["artist_scores"][album["artists"][0]["id"]]
+            for album in candidates
+        ]
+        self.assertEqual(len(client.artist_requests), 6)
+        self.assertEqual(len(candidates), 5)
+        self.assertEqual(sum(1 <= score <= 35 for score in candidate_scores), 2)
+        self.assertEqual(sum(36 <= score <= 60 for score in candidate_scores), 2)
+        self.assertEqual(sum(61 <= score <= 80 for score in candidate_scores), 1)
 
     def test_explicit_baseline_strategy_matches_existing_default(self):
         candidates = [
@@ -494,7 +568,7 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
     def fail_if_called(*args, **kwargs):
         raise AssertionError("profile-based generation must not prepare the profile")
 
-    def fake_find_candidates(client, profile, user_directory):
+    def fake_find_candidates(client, profile, user_directory, **kwargs):
         calls["candidate_client"] = client
         calls["candidate_profile"] = profile
         calls["user_directory"] = user_directory
@@ -521,6 +595,10 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.select_final_recommendations",
         fake_select,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations._save_recommendation_roll",
+        lambda *args: None,
     )
 
     recommendations = generate_recommendations_from_profile(
@@ -566,7 +644,7 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
         calls["profile_client"] = client
         return taste_profile
 
-    def fake_find_candidates(client, profile, user_directory):
+    def fake_find_candidates(client, profile, user_directory, **kwargs):
         calls["candidate_client"] = client
         calls["candidate_profile"] = profile
         calls["user_directory"] = user_directory
@@ -589,6 +667,10 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.select_final_recommendations",
         fake_select,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations._save_recommendation_roll",
+        lambda *args: None,
     )
 
     recommendations = generate_recommendations(spotify_client, limit=3)
@@ -635,11 +717,15 @@ def test_generate_recommendations_handles_missing_optional_album_media(monkeypat
 
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.find_candidate_albums",
-        lambda client, profile, user_directory: [],
+        lambda client, profile, user_directory, **kwargs: [],
     )
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.select_final_recommendations",
         lambda candidates, profile, recommendation_count: [selected_album],
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations._save_recommendation_roll",
+        lambda *args: None,
     )
 
     recommendation = generate_recommendations_from_profile(FakeSpotifyClient(), {})[0]
@@ -667,7 +753,7 @@ def test_profile_generation_forwards_nondefault_strategy(monkeypatch):
 
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.find_candidate_albums",
-        lambda client, profile, user_directory: [{"id": "candidate"}],
+        lambda client, profile, user_directory, **kwargs: [{"id": "candidate"}],
     )
 
     def fake_select(candidates, profile, recommendation_count, strategy):
@@ -678,6 +764,10 @@ def test_profile_generation_forwards_nondefault_strategy(monkeypatch):
     monkeypatch.setattr(
         "music_taste.spotify.recommendations.select_final_recommendations",
         fake_select,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations._save_recommendation_roll",
+        lambda *args: None,
     )
 
     recommendations = generate_recommendations_from_profile(
@@ -692,6 +782,78 @@ def test_profile_generation_forwards_nondefault_strategy(monkeypatch):
         "strategy": LOWEST_AFFINITY_STRATEGY,
         "limit": 5,
     }
+
+
+def test_second_roll_excludes_first_roll_primary_artists_and_is_single_use(
+    monkeypatch,
+    tmp_path,
+):
+    class FakeSpotifyClient:
+        def current_user(self):
+            return {"id": "spotify-user-123"}
+
+    calls = []
+
+    def album_for(artist_id):
+        album = make_candidate(
+            f"album-{artist_id}",
+            artist_id,
+            artist_id.title(),
+            f"Album {artist_id}",
+        )
+        album["recommendation"] = {
+            "score": 50.0,
+            "artist_affinity": 25.0,
+            "explanation": "test recommendation",
+        }
+        return album
+
+    def fake_find_candidates(client, profile, user_directory, **kwargs):
+        excluded = kwargs["excluded_artist_ids"]
+        calls.append({"use_cache": kwargs["use_cache"], "excluded": excluded})
+        artist_ids = (
+            ["a", "b", "c", "d", "e"]
+            if not excluded
+            else ["f", "g", "h", "i", "j"]
+        )
+        return [album_for(artist_id) for artist_id in artist_ids]
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.find_candidate_albums",
+        fake_find_candidates,
+    )
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.select_final_recommendations",
+        lambda candidates, profile, recommendation_count: candidates,
+    )
+
+    client = FakeSpotifyClient()
+    profile = {"artist_scores": {}}
+    first = generate_recommendations_from_profile(client, profile, cache_root=tmp_path)
+    second = generate_recommendations_from_profile(
+        client,
+        profile,
+        cache_root=tmp_path,
+        roll=2,
+    )
+
+    assert [recommendation.artist_name for recommendation in first] == [
+        "A", "B", "C", "D", "E"
+    ]
+    assert [recommendation.artist_name for recommendation in second] == [
+        "F", "G", "H", "I", "J"
+    ]
+    assert calls == [
+        {"use_cache": False, "excluded": set()},
+        {"use_cache": False, "excluded": {"a", "b", "c", "d", "e"}},
+    ]
+    with unittest.TestCase().assertRaises(RecommendationRerollError):
+        generate_recommendations_from_profile(
+            client,
+            profile,
+            cache_root=tmp_path,
+            roll=2,
+        )
 
 
 if __name__ == "__main__":
