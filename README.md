@@ -129,7 +129,7 @@ It also tracks albums the user is likely to know using Spotify album IDs and nor
 
 ### Candidate discovery
 
-For profiles containing 21 or more artists, the candidate finder randomly selects two artists from the 0th–35th affinity-percentile band, two from the 35th–60th band, and one from the 60th–80th band. If a band cannot fill its allocation, the remaining slots are drawn from the eligible 0th–80th percentile pool. Profiles containing 20 or fewer artists instead draw up to five artists from the entire profile. It removes:
+For profiles containing 21 or more artists, the candidate finder randomly selects two artists from the 0th–35th affinity-percentile band, two from the 35th–60th band, and one from the 60th–80th band. A band must contain at least five eligible artists to participate directly. If it contains fewer than five, its entire allocation is drawn from the eligible 0th–80th percentile pool instead, preventing a very small band from repeatedly forcing the same artist into every result. Profiles containing 20 or fewer artists instead draw up to five artists from the entire profile. It removes:
 
 - known albums;
 - duplicate Spotify album IDs;
@@ -244,6 +244,7 @@ A recommendation response includes:
 {
   "artist_name": "Example Artist",
   "album_name": "Example Album",
+  "release_year": "1997",
   "spotify_url": "https://open.spotify.com/album/...",
   "album_image_url": "https://i.scdn.co/image/...",
   "recommendation_score": 78.4,
@@ -515,7 +516,7 @@ source .venv/bin/activate
 PYTHONPATH=.:src python -m pytest -q
 ```
 
-The current 57-test suite uses mocks and temporary caches; it does not need to
+The current 58-test suite uses mocks and temporary caches; it does not need to
 contact Spotify. Coverage includes OAuth/session behavior, API response behavior, profile caching and
 expiration, recommendation scoring and selection, full-pool preservation,
 inspection utilities, strategy allocation and fallback, and controlled tie

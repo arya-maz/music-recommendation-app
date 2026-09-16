@@ -10,6 +10,7 @@ from music_taste.spotify.find_candidates import (
     _load_candidate_album_cache,
     _save_candidate_album_cache,
     _select_candidate_artist_ids,
+    _stratified_artist_queues,
 )
 from music_taste.spotify.rank_recommendations import (
     BALANCED_AFFINITY_STRATEGY,
@@ -146,6 +147,34 @@ class RecommendationSelectionTests(unittest.TestCase):
         self.assertTrue(
             all(profile["artist_scores"][artist_id] <= 80 for artist_id in selected)
         )
+
+    def test_undersized_band_uses_full_zero_to_eighty_fallback(self):
+        profile = {
+            "artist_scores": {
+                **{f"low-{index}": 1 for index in range(50)},
+                "adela": 2,
+                **{f"high-{index}": 3 for index in range(49)},
+            }
+        }
+
+        band_queues, fallback_artist_ids = _stratified_artist_queues(
+            profile,
+            excluded_artist_ids=set(),
+            random_generator=random.Random(4),
+        )
+        selected = _select_candidate_artist_ids(
+            profile,
+            limit_artists=25,
+            excluded_top_artist_count=10,
+            artist_selection_mode="stratified_affinity",
+            random_generator=random.Random(4),
+        )
+
+        self.assertEqual(len(band_queues[0][0]), 50)
+        self.assertEqual(band_queues[1][0], [])
+        self.assertEqual(len(band_queues[2][0]), 49)
+        self.assertIn("adela", fallback_artist_ids)
+        self.assertEqual(len(selected), 5)
 
     def test_candidate_generation_replaces_artist_with_no_valid_albums(self):
         class FakeSpotifyClient:
@@ -553,6 +582,7 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
     selected_album = {
         "id": "album-1",
         "name": "Album One",
+        "release_date": "1997-05-21",
         "artists": [{"id": "artist-1", "name": "Artist One"}],
         "external_urls": {"spotify": "https://open.spotify.test/album/1"},
         "images": [{"url": "https://images.test/album-1.jpg"}],
@@ -608,6 +638,7 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
     )
 
     assert recommendations[0].album_name == "Album One"
+    assert recommendations[0].release_year == "1997"
     assert calls == {
         "candidate_client": spotify_client,
         "candidate_profile": taste_profile,

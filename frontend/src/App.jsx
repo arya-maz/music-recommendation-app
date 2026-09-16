@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react'
 const API = import.meta.env.VITE_API_BASE_URL || ''
 const FEEDBACK_ENABLED = false
 const picks = [
-  ['OK Computer','Radiohead','Restless guitars, electronic detail, and widescreen songwriting reward the kind of focused listening your library suggests.','Lightly familiar','Listening pattern',['#8ca7a1','#d8e2df']],
-  ['Graduation','Kanye West','Bright synths, arena-sized hooks, and ambitious production make this an accessible bridge between anthemic Hip-Hop and electronic Pop.','Lightly familiar','Taste crossover',['#8a58a5','#e76f9e']],
-  ['ANTI','Rihanna','A dark, intimate pop record whose adventurous production reaches beyond the smash-hit singles.','New to you','Taste crossover',['#8b1d28','#d7b79a']],
-  ['Heaven or Las Vegas','Cocteau Twins','Dreamlike guitars and luminous melodies offer an inviting route into richly textured alternative music.','Lightly familiar','Related artist',['#cf5549','#efb45e']],
-  ['White Pony','Deftones','Drony, cut-throat Alternative Metal meet a hazy atmosphere in a record that balances aggression with unusual emotional depth.','New to you','Genre connection',['#d6d2c8','#313334']],
-  ['To Pimp a Butterfly','Kendrick Lamar','Dense storytelling and live-band arrangements bring together adventurous Hip-Hop, Jazz, Funk, and Soul.','Somewhat familiar','Taste crossover',['#262626','#d0c6ad']],
-  ['Master of Puppets','Metallica','Thrash Metal precision meets ambitious song structures, making this a natural fit for your heavier listening.','Somewhat familiar','Genre connection',['#9a2f25','#161719']],
-  ['House of Balloons','The Weeknd','Nocturnal production and emotionally raw songwriting connect the atmospheric Darkwave and R&B sides of your taste.','New to you','Mood match',['#202020','#b9b5ad']],
-  ['Lateralus','TOOL','Patient builds, intricate rhythms, and immersive sequencing suit your interest in albums designed as complete journeys.','Lightly familiar','Listening pattern',['#7f2e26','#d4a05b']],
-  ['ASTROWORLD','Travis Scott','Layered modern production and seamless transitions turn a collection of rap songs into a vivid, immersive world.','New to you','Listening pattern',['#6b3b62','#d78555']],
-].map(([album_name,artist_name,reason,familiarity_label,discovery,colors])=>({album_name,artist_name,reason,familiarity_label,discovery,colors}))
+  ['OK Computer','Radiohead','1997',['#8ca7a1','#d8e2df']],
+  ['Graduation','Kanye West','2007',['#8a58a5','#e76f9e']],
+  ['ANTI','Rihanna','2016',['#8b1d28','#d7b79a']],
+  ['Heaven or Las Vegas','Cocteau Twins','1990',['#cf5549','#efb45e']],
+  ['White Pony','Deftones','2000',['#d6d2c8','#313334']],
+  ['To Pimp a Butterfly','Kendrick Lamar','2015',['#262626','#d0c6ad']],
+  ['Master of Puppets','Metallica','1986',['#9a2f25','#161719']],
+  ['House of Balloons','The Weeknd','2011',['#202020','#b9b5ad']],
+  ['Lateralus','TOOL','2001',['#7f2e26','#d4a05b']],
+  ['ASTROWORLD','Travis Scott','2018',['#6b3b62','#d78555']],
+].map(([album_name,artist_name,release_year,colors])=>({album_name,artist_name,release_year,colors}))
 
 function Header({ authenticated, accountName, previewing, logout, deleteAccount, home }) {
   return <header><button className="brand" onClick={home}><i>▥</i> LINER NOTES</button><div className="header-actions">{previewing&&<button className="link" onClick={home}>← Back to home</button>}<details className="account-menu"><summary><span className="avatar" aria-hidden="true"><i/></span><span>{authenticated?accountName:'Not logged in'}</span><b aria-hidden="true">⌄</b></summary><div className="account-dropdown">{authenticated?<><button onClick={logout}>Log out <span>↗</span></button><button className="delete-option" onClick={deleteAccount}>Delete account &amp; data <span>×</span></button></>:<a href={`${API}/api/auth/login`}>Connect with Spotify <span>↗</span></a>}</div></details></div></header>
@@ -38,7 +38,7 @@ function Cover({ album, number }) {
 
 function Card({ album, number, choice, choose }) {
   const options=[['interested','＋','Interested'],['no','−','Not interested'],['known','✓','Already know this']]
-  return <article className="card"><Cover album={album} number={number}/><div><h2>{album.album_name}</h2><p className="artist">{album.artist_name}</p><p className="reason">{album.reason}</p><div className="card-actions"><a className={`spotify ${album.spotify_url?'':'disabled'}`} href={album.spotify_url||undefined} target="_blank" rel="noreferrer">Open in Spotify ↗</a>{FEEDBACK_ENABLED&&<div className="feedback">{options.map(([value,icon,label])=><button key={value} className={choice===value?'selected':''} onClick={()=>choose(value)} title={label} aria-label={label} aria-pressed={choice===value}><span>{icon}</span><b>{label}</b></button>)}</div>}</div></div></article>
+  return <article className="card"><Cover album={album} number={number}/><div>{album.release_year&&<p className="artist">{album.release_year}</p>}<h2>{album.album_name}</h2><p className="artist">{album.artist_name}</p><div className="card-actions"><a className={`spotify ${album.spotify_url?'':'disabled'}`} href={album.spotify_url||undefined} target="_blank" rel="noreferrer">Open in Spotify ↗</a>{FEEDBACK_ENABLED&&<div className="feedback">{options.map(([value,icon,label])=><button key={value} className={choice===value?'selected':''} onClick={()=>choose(value)} title={label} aria-label={label} aria-pressed={choice===value}><span>{icon}</span><b>{label}</b></button>)}</div>}</div></div></article>
 }
 
 function Results({ albums, demo, choices, choose, more, busy, hasRerolled }) {

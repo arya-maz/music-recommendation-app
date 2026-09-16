@@ -44,8 +44,9 @@ def test_recommendations_endpoint_uses_existing_pipeline(client, auth_store, mon
             recommendation_score=72.5,
             reason="strong artist-fit evidence; low album familiarity",
             artist_affinity=80.0,
-            familiarity_score=15.0,
-            familiarity_label="lightly familiar",
+                familiarity_score=15.0,
+                familiarity_label="lightly familiar",
+                release_year=str(1990 + index),
         )
         for index in range(1, 6)
     ]
@@ -93,6 +94,7 @@ def test_recommendations_endpoint_uses_existing_pipeline(client, auth_store, mon
         "artist_affinity": 80.0,
         "familiarity_score": 15.0,
         "familiarity_label": "lightly familiar",
+        "release_year": "1991",
     }
 
 
