@@ -52,6 +52,7 @@ STRATIFIED_AFFINITY_BANDS = (
     (60.0, 80.0, 1),
 )
 SMALL_PROFILE_MAX_ARTISTS = 20
+MIN_STRATIFIED_BAND_ARTISTS = 5
 
 
 def _load_candidate_album_cache(cache_path: Path) -> list[dict] | None:
@@ -254,6 +255,8 @@ def _stratified_artist_queues(
                 or (upper_bound == 80.0 and percentile == upper_bound)
             )
         ]
+        if len(artist_ids) < MIN_STRATIFIED_BAND_ARTISTS:
+            artist_ids = []
         generator.shuffle(artist_ids)
         band_queues.append((artist_ids, selection_count))
 
@@ -299,40 +302,30 @@ def _select_candidate_artist_ids(
             ]
             return generator.sample(eligible_artist_ids, target_count)
 
-        artist_percentiles = _artist_affinity_percentiles(artist_scores)
+        band_queues, fallback_artist_ids = _stratified_artist_queues(
+            taste_profile,
+            excluded_artist_ids,
+            random_generator=generator,
+        )
         selected_artist_ids = []
-        for lower_bound, upper_bound, selection_count in STRATIFIED_AFFINITY_BANDS:
-            band_artist_ids = [
-                artist_id
-                for artist_id, percentile in artist_percentiles.items()
-                if lower_bound <= percentile
-                and artist_id not in excluded_artist_ids
-                and (
-                    percentile < upper_bound
-                    or (upper_bound == 80.0 and percentile == upper_bound)
-                )
-            ]
+        for band_artist_ids, selection_count in band_queues:
             remaining_slots = target_count - len(selected_artist_ids)
             if remaining_slots <= 0:
                 break
             sample_count = min(selection_count, remaining_slots, len(band_artist_ids))
-            selected_artist_ids.extend(generator.sample(band_artist_ids, sample_count))
+            selected_artist_ids.extend(band_artist_ids[:sample_count])
 
         if len(selected_artist_ids) < target_count:
             remaining_artist_ids = [
                 artist_id
-                for artist_id, percentile in artist_percentiles.items()
-                if 0.0 <= percentile <= 80.0
-                and artist_id not in selected_artist_ids
-                and artist_id not in excluded_artist_ids
+                for artist_id in fallback_artist_ids
+                if artist_id not in selected_artist_ids
             ]
             sample_count = min(
                 target_count - len(selected_artist_ids),
                 len(remaining_artist_ids),
             )
-            selected_artist_ids.extend(
-                generator.sample(remaining_artist_ids, sample_count)
-            )
+            selected_artist_ids.extend(remaining_artist_ids[:sample_count])
 
         return selected_artist_ids
 

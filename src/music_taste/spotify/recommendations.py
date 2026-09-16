@@ -40,6 +40,7 @@ class Recommendation:
     artist_affinity: float
     familiarity_score: float
     familiarity_label: str
+    release_year: str | None = None
 
 
 class ProfileMetadataStore(Protocol):
@@ -62,6 +63,14 @@ def _album_image_url(album: dict) -> str | None:
     return images[0].get("url")
 
 
+def _release_year(album: dict) -> str | None:
+    release_date = album.get("release_date")
+    if not isinstance(release_date, str) or len(release_date) < 4:
+        return None
+    year = release_date[:4]
+    return year if year.isdigit() else None
+
+
 def _recommendation_from_album(album: dict) -> Recommendation:
     artist_name = ", ".join(
         artist.get("name", "unknown artist")
@@ -80,6 +89,7 @@ def _recommendation_from_album(album: dict) -> Recommendation:
         artist_affinity=float(recommendation["artist_affinity"]),
         familiarity_score=float(familiarity.get("score", 0.0)),
         familiarity_label=familiarity.get("level", "unknown"),
+        release_year=_release_year(album),
     )
 
 
