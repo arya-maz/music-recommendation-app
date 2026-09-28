@@ -111,6 +111,11 @@ Structured Recommendations
 
 Profile preparation and recommendation generation are intentionally separate. Prepared profiles are cached for 24 hours by Spotify's stable account ID; candidate discovery and ranking receive the resulting profile without knowing whether it was loaded or rebuilt. Development logs identify cache misses, hits and profile age, expiration, version mismatch, and corruption.
 
+Web recommendation requests reuse the Spotify account ID already verified and
+stored during OAuth instead of calling Spotify's current-user endpoint again.
+CLI and direct Python callers retain a one-request identity fallback when no
+authenticated application-session ID is available.
+
 ## Recommendation Philosophy and Strategies
 
 The production-facing Spotify pipeline is currently rule-based and explainable rather than a black-box machine-learning recommender. Candidate generation, familiarity, scoring, and final selection are separate stages so strategy experiments can be evaluated without silently changing the baseline.
@@ -129,7 +134,7 @@ It also tracks albums the user is likely to know using Spotify album IDs and nor
 
 ### Candidate discovery
 
-For profiles containing 21 or more artists, the candidate finder randomly selects two artists from the 0th–35th affinity-percentile band, two from the 35th–60th band, and one from the 60th–80th band. A band must contain at least five eligible artists to participate directly. If it contains fewer than five, its entire allocation is drawn from the eligible 0th–80th percentile pool instead, preventing a very small band from repeatedly forcing the same artist into every result. Profiles containing 20 or fewer artists instead draw up to five artists from the entire profile. It removes:
+For profiles containing 21 or more artists, the candidate finder randomly selects two artists from the 10th–50th affinity-percentile band, two from the 50th–75th band, and one from the 75th–90th band. A band must contain at least five eligible artists to participate directly. If it contains fewer than five, its entire allocation is drawn from the eligible 10th–90th percentile pool instead, preventing a very small band from repeatedly forcing the same artist into every result. Profiles containing 20 or fewer artists instead draw up to five artists from the entire profile. It removes:
 
 - known albums;
 - duplicate Spotify album IDs;
@@ -138,7 +143,7 @@ For profiles containing 21 or more artists, the candidate finder randomly select
 
 If a selected artist has no album left after filtering, the finder draws another
 unused artist from the same percentile band. Once that band is exhausted, it
-falls back to the unused 0th–80th percentile pool. An artist is examined at most
+falls back to the unused 10th–90th percentile pool. An artist is examined at most
 once per roll, and fewer than five artists are returned only if the permitted
 pool itself cannot provide five viable catalogs.
 
@@ -516,7 +521,7 @@ source .venv/bin/activate
 PYTHONPATH=.:src python -m pytest -q
 ```
 
-The current 58-test suite uses mocks and temporary caches; it does not need to
+The current 59-test suite uses mocks and temporary caches; it does not need to
 contact Spotify. Coverage includes OAuth/session behavior, API response behavior, profile caching and
 expiration, recommendation scoring and selection, full-pool preservation,
 inspection utilities, strategy allocation and fallback, and controlled tie

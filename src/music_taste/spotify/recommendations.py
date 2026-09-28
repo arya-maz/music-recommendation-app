@@ -145,10 +145,12 @@ def get_or_prepare_user_profile(
     spotify_client,
     cache_root: Path = USER_PROFILE_CACHE_ROOT,
     profile_metadata_store: ProfileMetadataStore | None = None,
+    spotify_user_id: str | None = None,
 ) -> dict:
     """Load the authenticated user's profile or prepare and cache a fresh one."""
 
-    spotify_user_id = _authenticated_user_id(spotify_client)
+    if spotify_user_id is None:
+        spotify_user_id = _authenticated_user_id(spotify_client)
     if cache_root == USER_PROFILE_CACHE_ROOT:
         migrate_legacy_spotify_data(spotify_user_id, cache_root=cache_root)
     user_directory = get_user_cache_directory(spotify_user_id, cache_root, create=True)
@@ -191,10 +193,12 @@ def generate_recommendations_from_profile(
     strategy: str = DEFAULT_RECOMMENDATION_STRATEGY,
     cache_root: Path = USER_PROFILE_CACHE_ROOT,
     roll: int = 1,
+    spotify_user_id: str | None = None,
 ) -> list[Recommendation]:
     """Generate structured recommendations from an already-prepared profile."""
 
-    spotify_user_id = _authenticated_user_id(spotify_client)
+    if spotify_user_id is None:
+        spotify_user_id = _authenticated_user_id(spotify_client)
     user_directory = get_user_cache_directory(spotify_user_id, cache_root, create=True)
     if roll not in {1, 2}:
         raise ValueError("roll must be 1 or 2")
@@ -252,10 +256,18 @@ def generate_recommendations(
 ) -> list[Recommendation]:
     """Load or prepare a profile and generate recommendations in one call."""
 
+    spotify_user_id = _authenticated_user_id(spotify_client)
     if cache_root == USER_PROFILE_CACHE_ROOT:
-        taste_profile = get_or_prepare_user_profile(spotify_client)
+        taste_profile = get_or_prepare_user_profile(
+            spotify_client,
+            spotify_user_id=spotify_user_id,
+        )
     else:
-        taste_profile = get_or_prepare_user_profile(spotify_client, cache_root=cache_root)
+        taste_profile = get_or_prepare_user_profile(
+            spotify_client,
+            cache_root=cache_root,
+            spotify_user_id=spotify_user_id,
+        )
     if strategy == DEFAULT_RECOMMENDATION_STRATEGY:
         return generate_recommendations_from_profile(
             spotify_client,
@@ -263,6 +275,7 @@ def generate_recommendations(
             limit=limit,
             cache_root=cache_root,
             roll=roll,
+            spotify_user_id=spotify_user_id,
         )
 
     return generate_recommendations_from_profile(
@@ -272,4 +285,5 @@ def generate_recommendations(
         strategy=strategy,
         cache_root=cache_root,
         roll=roll,
+        spotify_user_id=spotify_user_id,
     )

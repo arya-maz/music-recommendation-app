@@ -47,10 +47,12 @@ MAX_RATE_LIMIT_RETRIES = 3
 MAX_RATE_LIMIT_RETRY_SECONDS = 60
 
 STRATIFIED_AFFINITY_BANDS = (
-    (0.0, 35.0, 2),
-    (35.0, 60.0, 2),
-    (60.0, 80.0, 1),
+    (10.0, 50.0, 2),
+    (50.0, 75.0, 2),
+    (75.0, 90.0, 1),
 )
+STRATIFIED_FALLBACK_MIN_PERCENTILE = 10.0
+STRATIFIED_FALLBACK_MAX_PERCENTILE = 90.0
 SMALL_PROFILE_MAX_ARTISTS = 20
 MIN_STRATIFIED_BAND_ARTISTS = 5
 
@@ -237,7 +239,7 @@ def _stratified_artist_queues(
     excluded_artist_ids: set[str],
     random_generator=None,
 ) -> tuple[list[tuple[list[str], int]], list[str]]:
-    """Return shuffled band queues and a shuffled 0th–80th fallback queue."""
+    """Return shuffled band queues and a shuffled 10th–90th fallback queue."""
 
     generator = random_generator or random
     artist_scores = taste_profile["artist_scores"]
@@ -252,7 +254,10 @@ def _stratified_artist_queues(
             and lower_bound <= percentile
             and (
                 percentile < upper_bound
-                or (upper_bound == 80.0 and percentile == upper_bound)
+                or (
+                    upper_bound == STRATIFIED_FALLBACK_MAX_PERCENTILE
+                    and percentile == upper_bound
+                )
             )
         ]
         if len(artist_ids) < MIN_STRATIFIED_BAND_ARTISTS:
@@ -263,7 +268,10 @@ def _stratified_artist_queues(
     fallback_artist_ids = [
         artist_id
         for artist_id, percentile in artist_percentiles.items()
-        if artist_id not in excluded_artist_ids and 0.0 <= percentile <= 80.0
+        if artist_id not in excluded_artist_ids
+        and STRATIFIED_FALLBACK_MIN_PERCENTILE
+        <= percentile
+        <= STRATIFIED_FALLBACK_MAX_PERCENTILE
     ]
     generator.shuffle(fallback_artist_ids)
     return band_queues, fallback_artist_ids

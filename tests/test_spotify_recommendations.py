@@ -79,9 +79,9 @@ class RecommendationSelectionTests(unittest.TestCase):
         selected_scores = [profile["artist_scores"][artist_id] for artist_id in selected]
 
         self.assertEqual(len(selected_scores), 5)
-        self.assertEqual(sum(1 <= score <= 35 for score in selected_scores), 2)
-        self.assertEqual(sum(36 <= score <= 60 for score in selected_scores), 2)
-        self.assertEqual(sum(61 <= score <= 80 for score in selected_scores), 1)
+        self.assertEqual(sum(11 <= score <= 50 for score in selected_scores), 2)
+        self.assertEqual(sum(51 <= score <= 75 for score in selected_scores), 2)
+        self.assertEqual(sum(76 <= score <= 90 for score in selected_scores), 1)
 
     def test_small_profile_selects_from_all_artists_without_percentile_limits(self):
         profile = {
@@ -118,11 +118,11 @@ class RecommendationSelectionTests(unittest.TestCase):
         selected_scores = [profile["artist_scores"][artist_id] for artist_id in selected]
 
         self.assertEqual(len(selected_scores), 5)
-        self.assertEqual(sum(1 <= score <= 7 for score in selected_scores), 2)
-        self.assertEqual(sum(8 <= score <= 12 for score in selected_scores), 2)
-        self.assertEqual(sum(13 <= score <= 17 for score in selected_scores), 1)
+        self.assertGreaterEqual(sum(3 <= score <= 10 for score in selected_scores), 2)
+        self.assertGreaterEqual(sum(11 <= score <= 15 for score in selected_scores), 2)
+        self.assertTrue(all(3 <= score <= 19 for score in selected_scores))
 
-    def test_reroll_excludes_previous_artists_and_fills_from_zero_to_eighty(self):
+    def test_reroll_excludes_previous_artists_and_fills_from_ten_to_ninety(self):
         profile = {
             "artist_scores": {
                 f"artist-{index}": index for index in range(1, 101)
@@ -145,10 +145,13 @@ class RecommendationSelectionTests(unittest.TestCase):
         self.assertEqual(len(selected), 5)
         self.assertTrue(set(selected).isdisjoint(excluded))
         self.assertTrue(
-            all(profile["artist_scores"][artist_id] <= 80 for artist_id in selected)
+            all(
+                11 <= profile["artist_scores"][artist_id] <= 90
+                for artist_id in selected
+            )
         )
 
-    def test_undersized_band_uses_full_zero_to_eighty_fallback(self):
+    def test_undersized_band_uses_full_ten_to_ninety_fallback(self):
         profile = {
             "artist_scores": {
                 **{f"low-{index}": 1 for index in range(50)},
@@ -218,9 +221,9 @@ class RecommendationSelectionTests(unittest.TestCase):
         ]
         self.assertEqual(len(client.artist_requests), 6)
         self.assertEqual(len(candidates), 5)
-        self.assertEqual(sum(1 <= score <= 35 for score in candidate_scores), 2)
-        self.assertEqual(sum(36 <= score <= 60 for score in candidate_scores), 2)
-        self.assertEqual(sum(61 <= score <= 80 for score in candidate_scores), 1)
+        self.assertEqual(sum(11 <= score <= 50 for score in candidate_scores), 2)
+        self.assertEqual(sum(51 <= score <= 75 for score in candidate_scores), 2)
+        self.assertEqual(sum(76 <= score <= 90 for score in candidate_scores), 1)
 
     def test_explicit_baseline_strategy_matches_existing_default(self):
         candidates = [
@@ -551,6 +554,31 @@ def test_get_or_prepare_user_profile_caches_miss_and_reuses_hit(monkeypatch, tmp
     assert prepare_calls == [spotify_client]
 
 
+def test_supplied_user_id_skips_spotify_identity_lookup_for_profile(
+    monkeypatch,
+    tmp_path,
+):
+    taste_profile = {"artist_scores": {"artist-1": 50}}
+
+    class FakeSpotifyClient:
+        def current_user(self):
+            raise AssertionError("current_user must not be called with a supplied ID")
+
+    monkeypatch.setattr(
+        "music_taste.spotify.recommendations.prepare_user_profile",
+        lambda client, user_directory: taste_profile,
+    )
+
+    result = get_or_prepare_user_profile(
+        FakeSpotifyClient(),
+        cache_root=tmp_path,
+        spotify_user_id="spotify-user-123",
+    )
+
+    assert result == taste_profile
+    assert (tmp_path / "spotify-user-123" / "profile.pkl").exists()
+
+
 def test_profile_cache_prefers_stable_spotify_account_id(monkeypatch, tmp_path):
     taste_profile = {"artist_scores": {"artist-1": 50}}
 
@@ -575,7 +603,7 @@ def test_profile_cache_prefers_stable_spotify_account_id(monkeypatch, tmp_path):
 def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch):
     class FakeSpotifyClient:
         def current_user(self):
-            return {"id": "spotify-user-123"}
+            raise AssertionError("current_user must not be called with a supplied ID")
 
     spotify_client = FakeSpotifyClient()
     taste_profile = {"artist_scores": {"artist-1": 50}}
@@ -635,6 +663,7 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
         spotify_client,
         taste_profile,
         limit=3,
+        spotify_user_id="spotify-user-123",
     )
 
     assert recommendations[0].album_name == "Album One"
@@ -651,7 +680,10 @@ def test_profile_based_generation_does_not_fetch_or_rebuild_profile(monkeypatch)
 
 def test_generate_recommendations_returns_structured_results(monkeypatch):
     class FakeSpotifyClient:
+        current_user_calls = 0
+
         def current_user(self):
+            self.current_user_calls += 1
             return {"id": "spotify-user-123"}
 
     spotify_client = FakeSpotifyClient()
@@ -671,8 +703,9 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
     }
     calls = {}
 
-    def fake_get_or_prepare_profile(client):
+    def fake_get_or_prepare_profile(client, spotify_user_id):
         calls["profile_client"] = client
+        calls["profile_user_id"] = spotify_user_id
         return taste_profile
 
     def fake_find_candidates(client, profile, user_directory, **kwargs):
@@ -719,8 +752,10 @@ def test_generate_recommendations_returns_structured_results(monkeypatch):
             familiarity_label="lightly familiar",
         )
     ]
+    assert spotify_client.current_user_calls == 1
     assert calls == {
         "profile_client": spotify_client,
+        "profile_user_id": "spotify-user-123",
         "candidate_client": spotify_client,
         "candidate_profile": taste_profile,
         "user_directory": Path(__file__).resolve().parents[1] / "cache" / "users" / "spotify-user-123",
