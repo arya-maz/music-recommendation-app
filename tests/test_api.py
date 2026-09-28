@@ -52,17 +52,30 @@ def test_recommendations_endpoint_uses_existing_pipeline(client, auth_store, mon
     ]
     calls = {}
 
-    def fake_get_or_prepare_user_profile(received_client, profile_metadata_store):
+    def fake_get_or_prepare_user_profile(
+        received_client,
+        profile_metadata_store,
+        spotify_user_id,
+    ):
         calls["profile_client"] = received_client
         calls["profile_metadata_store"] = profile_metadata_store
+        calls["profile_user_id"] = spotify_user_id
         return taste_profile
 
-    def fake_generate_recommendations_from_profile(received_client, profile, limit):
+    def fake_generate_recommendations_from_profile(
+        received_client,
+        profile,
+        limit,
+        spotify_user_id,
+    ):
         calls["generate_client"] = received_client
         calls["profile"] = profile
         calls["limit"] = limit
+        calls["generate_user_id"] = spotify_user_id
         return expected_recommendations
 
+    session = auth_store.create_session("spotify-user-123")
+    client.cookies.set("music_session", session)
     app.dependency_overrides[authenticated_spotify_client] = lambda: spotify_client
     monkeypatch.setattr(
         "api.main.get_or_prepare_user_profile",
@@ -79,9 +92,11 @@ def test_recommendations_endpoint_uses_existing_pipeline(client, auth_store, mon
     assert calls == {
         "profile_client": spotify_client,
         "profile_metadata_store": auth_store,
+        "profile_user_id": "spotify-user-123",
         "generate_client": spotify_client,
         "profile": taste_profile,
         "limit": 5,
+        "generate_user_id": "spotify-user-123",
     }
     assert len(response.json()) == 5
     assert response.json()[0] == {
@@ -101,21 +116,26 @@ def test_recommendations_endpoint_uses_existing_pipeline(client, auth_store, mon
 def test_recommendations_endpoint_forwards_second_roll(client, auth_store, monkeypatch):
     spotify_client = object()
     calls = {}
+    session = auth_store.create_session("spotify-user-123")
+    client.cookies.set("music_session", session)
     app.dependency_overrides[authenticated_spotify_client] = lambda: spotify_client
     monkeypatch.setattr(
         "api.main.get_or_prepare_user_profile",
-        lambda received_client, profile_metadata_store: {"artist_scores": {}},
+        lambda received_client, profile_metadata_store, spotify_user_id: {
+            "artist_scores": {}
+        },
     )
 
-    def fake_generate(received_client, profile, limit, roll):
+    def fake_generate(received_client, profile, limit, roll, spotify_user_id):
         calls["roll"] = roll
+        calls["user_id"] = spotify_user_id
         raise RecommendationRerollError("reroll already used")
 
     monkeypatch.setattr("api.main.generate_recommendations_from_profile", fake_generate)
 
     response = client.post("/api/recommendations", json={"roll": 2})
 
-    assert calls == {"roll": 2}
+    assert calls == {"roll": 2, "user_id": "spotify-user-123"}
     assert response.status_code == 409
     assert response.json() == {"detail": "reroll already used"}
 

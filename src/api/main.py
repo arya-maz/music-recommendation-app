@@ -182,12 +182,14 @@ def delete_account(
 @app.post("/api/recommendations")
 def create_recommendations(
     recommendation_request: RecommendationRequest | None = None,
+    user_id: str = Depends(authenticated_user_id),
     spotify_client=Depends(authenticated_spotify_client),
     store: AuthStore = Depends(get_auth_store),
 ) -> list[Recommendation]:
     taste_profile = get_or_prepare_user_profile(
         spotify_client,
         profile_metadata_store=store,
+        spotify_user_id=user_id,
     )
     try:
         if recommendation_request is None:
@@ -195,12 +197,14 @@ def create_recommendations(
                 spotify_client,
                 taste_profile,
                 limit=5,
+                spotify_user_id=user_id,
             )
         return generate_recommendations_from_profile(
             spotify_client,
             taste_profile,
             limit=5,
             roll=recommendation_request.roll,
+            spotify_user_id=user_id,
         )
     except RecommendationRerollError as exc:
         raise HTTPException(status_code=409, detail=str(exc)) from exc
