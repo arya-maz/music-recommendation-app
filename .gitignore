@@ -19,3 +19,14 @@ frontend/dist/
 /cache/
 # Server-side sessions and encrypted Spotify OAuth tokens
 /data/auth/
+
+# Archived AOTY research kept locally, outside the application repository
+/aoty_enriched_model_error_report.txt
+/aoty_model_error_report.txt
+/data/cache/discogs_album_genres_cache.json
+/data/cache/lastfm_album_metadata_cache.json
+/data/cache/lastfm_album_tags_cache.json
+/data/raw/aoty_export.csv
+/src/enrich_aoty_tags.py
+/src/import_aoty.py
+/src/train_aoty_model.py
