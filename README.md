@@ -4,15 +4,13 @@ An album discovery application that takes a user's Spotify listening data and re
 
 Liner Notes is designed around a specific  problem: recommendations should feel recognizable enough to inspire interest, but not so familiar that they simply repeat albums the listener already knows. This application analyzes Spotify listening habits, selects artists from a deliberately bounded familiarity range, filters their catalogs, and returns one album from each of five distinct artists selected through the filtering process.
 
-The repository contains the complete React frontend, FastAPI backend, Spotify recommendation pipeline, secure multi-user authentication, offline analysis tools, automated tests, and the earlier machine-learning experiments that shaped the final product.
+The repository contains the React frontend, FastAPI backend, Spotify recommendation pipeline, secure multi-user authentication, and local setup tools.
 
 ## Why I Built It
 
 In 2025, I challenged myself to listen to 365 albums I had never heard before. Some were new releases, while many were older records or albums from recent years that I had simply missed. Honestly, it was less of a challenge and more of tasking myself to explore artists, albums, genres, styles, and trends beyond what I am already familiar with, chasing a high of discovering that one album or artist among the endless sea that I connect with on an extremely deep level.
 
-Liner Notes began as a model trained on my explicit album ratings based on a profile I have on albumoftheyear.org (i.e. "AOTY") -- a site for users to rate, review, and discuss music. While it applied to my particular circumstances as an AOTY user of many years, I felt that shifting my focus to a Spotify-backed dataset rather than uploading an AOTY data export would make my application more accessible and user-friendly.
-
-The project subsequently evolved into a Spotify-connected application based on implicit listening behavior rather than a private ratings dataset.
+Liner Notes turns that interest in album discovery into a Spotify-connected application based on listening behavior. It helps listeners find overlooked albums from artists adjacent to their existing tastes.
 
 ## Product Overview
 
@@ -162,8 +160,6 @@ Deleting an account removes application data but does not revoke the application
 | Spotify integration | Spotipy, Spotify Web API, OAuth 2.0 |
 | Persistence | SQLAlchemy, PostgreSQL, SQLite, Alembic |
 | Security | Fernet token encryption, hashed sessions and OAuth state |
-| Testing | pytest, FastAPI TestClient, mocked Spotify clients |
-| Research | pandas, NumPy, scikit-learn, CatBoost |
 
 ## API Overview
 
@@ -180,159 +176,119 @@ Deleting an account removes application data but does not revoke the application
 
 Recommendation requests accept `{"roll": 1}` for the initial result and `{"roll": 2}` for the single permitted reroll.
 
-## Local Development
+## Clone and Run Locally
+
+Each installation uses its owner's **Spotify Client ID and Client Secret**, not a shared API key. No private datasets or trained models are needed for the application.
 
 ### Prerequisites
 
-- Python 3.12 or another version compatible with the pinned dependencies
-- Node.js and npm
-- A Spotify developer application
-- PostgreSQL for a production-like setup, or SQLite for local development
+- Git
+- Python **3.12**, available as `python`
+- Node.js **20+** and npm; a currently supported LTS release is recommended
+- A Spotify account eligible to create a development-mode app (currently the app owner needs Premium)
 
-### 1. Install the backend
+The setup and launcher are designed for macOS, Linux, and Windows. Offline tests and frontend lint/build checks pass on macOS; a fresh installation and full launcher startup remain unverified. Windows and Linux have not yet been verified on physical machines. Local storage uses SQLite automatically; PostgreSQL is not required.
+
+### 1. Clone and install
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/arya-maz/music-recommendation-app.git
 cd music-recommendation-app
-
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements-dev.txt
+python manage.py setup
 ```
 
-### 2. Configure the environment
+On Windows, `py -3.12 manage.py setup` and `py -3.12 manage.py run` are alternatives if `python` is not available.
 
-Create `.env` in the repository root:
+Setup creates `.venv`, installs only the application dependencies, installs the frontend from its lockfile with `npm ci`, and creates `.env` with a randomly generated encryption key. Dependency installation requires internet access. Setup does not authenticate with Spotify or call its API.
 
-```dotenv
-SPOTIFY_CLIENT_ID=your_client_id
-SPOTIFY_CLIENT_SECRET=your_client_secret
-SPOTIFY_REDIRECT_URI=http://127.0.0.1:8000/api/auth/callback
-SPOTIFY_TOKEN_ENCRYPTION_KEY=replace_with_a_generated_fernet_key
-FRONTEND_AUTH_SUCCESS_URL=http://127.0.0.1:5173/
-FRONTEND_ORIGIN=http://127.0.0.1:5173
-APP_COOKIE_SECURE=false
+Rerunning setup preserves an existing `.env` and encryption key. Keep that key: replacing it makes existing encrypted Spotify tokens unreadable. Application dependencies are in `requirements.txt`. The public checkout contains the application and installation instructions; personal development tools and documentation are kept locally.
 
-# Choose one persistence option:
-AUTH_DATABASE_PATH=data/auth/auth.db
-# DATABASE_URL=postgresql+psycopg://user:password@host:5432/music_recommendations
-```
+### 2. Create your personal Spotify application
 
-Generate a Fernet key once:
+1. Open the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) and create an app for your personal installation. Select **Web API** if asked which APIs you will use.
+2. Set the redirect URI to exactly:
+
+   ```text
+   http://127.0.0.1:8000/api/auth/callback
+   ```
+
+3. Copy the app's **Client ID** and **Client Secret** into the corresponding placeholders in the generated `.env` file.
+4. Check **Users Management** and ensure the Spotify account you will connect is authorized for that app. Any additional tester must also be allowlisted.
+
+Use the other generated defaults as they are for this launcher. Spotify requires an explicit loopback address for local HTTP callbacks; do not substitute `localhost`.
+
+Your `.env`, token storage, and user caches stay local and are ignored by Git. Never share your Client Secret or include your local config in screenshots or bug reports. To start from a manually created config, copy `.env.example` to `.env` and generate an encryption key using:
 
 ```bash
-python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+python -c "import base64, os; print(base64.urlsafe_b64encode(os.urandom(32)).decode())"
 ```
 
-Register the exact `SPOTIFY_REDIRECT_URI` in the Spotify developer dashboard. Use `127.0.0.1` consistently during local development; mixing it with `localhost` prevents the OAuth state cookie from reaching the callback.
+Paste the result into `SPOTIFY_TOKEN_ENCRYPTION_KEY`.
 
-If PostgreSQL is configured, apply migrations before starting the API:
+Spotify access is governed by its current [app setup rules](https://developer.spotify.com/documentation/web-api/concepts/apps), [redirect URI requirements](https://developer.spotify.com/documentation/web-api/concepts/redirect_uri), [quota rules](https://developer.spotify.com/documentation/web-api/concepts/quota-modes), and [Developer Policy](https://developer.spotify.com/policy). Personal credentials do not guarantee endpoint access or exempt an installation from Spotify's terms; this setup is not a way to bypass public-app access restrictions.
+
+### 3. Start Liner Notes
 
 ```bash
-PYTHONPATH=src alembic upgrade head
+python manage.py run
 ```
 
-SQLite initializes its local schema automatically.
+Open **http://127.0.0.1:5173**, connect Spotify, and load recommendations. Both services run in one terminal; **Ctrl+C** stops them. Starting the launcher does not initiate Spotify login; connecting and requesting recommendations do use Spotify's API.
 
-### 3. Start the backend
+The launcher checks configuration and port availability before starting. It binds both services to your local device, and the frontend uses its existing proxy to reach the API. The API documentation is at `http://127.0.0.1:8000/docs`; the sample preview is at `http://127.0.0.1:5173/preview`.
+
+### Troubleshooting
+
+| Problem | What to check |
+| --- | --- |
+| Setup cannot find Python or Node | Install the required versions and restart your terminal. |
+| Setup fails during dependency installation | Check the installation output and internet connection, then rerun setup. Existing configuration is preserved. |
+| Missing Spotify credentials | Fill in both placeholders in `.env`; Spotify uses a Client ID and Client Secret. |
+| Redirect mismatch or invalid OAuth state | Register the exact callback above and use `127.0.0.1` consistently in both browser and configuration. |
+| Spotify returns 403 | Check the app's allowlist and whether Spotify permits the requested endpoints for that app. |
+| Spotify returns 429 | Pause requests; rate limits and development quotas still apply to your personal app. |
+| Port 8000 or 5173 is occupied | Stop the existing service before starting this launcher. |
+| Tokens fail after changing the encryption key | Restore the original key; if unavailable, use a fresh installation and reconnect. |
+
+Local account deletion removes this installation's stored credentials and Spotify-derived data. To revoke Spotify's authorization grant too, remove the app through your Spotify account's Apps settings.
+
+### Manual development and custom configurations
+
+For backend development, activate `.venv` (`source .venv/bin/activate` on macOS/Linux, `.venv\Scripts\Activate.ps1` in Windows PowerShell), then run:
 
 ```bash
-source .venv/bin/activate
-PYTHONPATH=src python -m uvicorn api.main:app --reload
+PYTHONPATH=src python -m uvicorn api.main:app --reload --host 127.0.0.1 --env-file .env
 ```
 
-The API runs at `http://127.0.0.1:8000`; interactive documentation is available at `http://127.0.0.1:8000/docs`.
-
-### 4. Start the frontend
-
-In a second terminal:
-
-```bash
-cd frontend
-npm install
-npm run dev -- --host 127.0.0.1
-```
-
-Open `http://127.0.0.1:5173`. The no-auth preview is available at `/preview`.
-
-If the API and frontend use different origins, set `VITE_API_BASE_URL` for the frontend and set `FRONTEND_ORIGIN` to the frontend's exact origin on the backend.
-
-## Testing and Validation
-
-The complete automated suite runs offline with mocked Spotify clients and temporary caches; it does not consume Spotify API quota.
-
-```bash
-source .venv/bin/activate
-PYTHONPATH=.:src python -m pytest -q
-```
-
-Coverage includes:
-
-- OAuth state, encrypted token persistence, sessions, and account deletion
-- Profile caching, expiration, versioning, corruption recovery, and user isolation
-- Artist-affinity percentiles, small-profile behavior, and `2 + 2 + 1` allocation
-- Undersized-band fallback and invalid-catalog replacement
-- Known-album, duplicate-edition, and familiarity filtering
-- Recommendation scoring, tie behavior, and unique-artist selection
-- Roll 2 exclusion and single-use enforcement
-- API response behavior and redundant-request prevention
-- Read-only inspection and recommendation-analysis utilities
-
-Frontend validation is available through:
+In PowerShell, set `$env:PYTHONPATH="src"` first and omit the `PYTHONPATH=src` prefix. Start the frontend separately:
 
 ```bash
 cd frontend
-npm run lint
-npm run build
+npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
 ```
 
-## Development and Research
+For PostgreSQL, set `DATABASE_URL` and apply `PYTHONPATH=src alembic upgrade head` before starting the backend. Keep the SQLite default for the standard clone-and-run path. If customizing origins, coordinate `VITE_API_BASE_URL`, `FRONTEND_ORIGIN`, the callback URI, and the frontend success URL. The launcher intentionally requires the standard local URLs; use the manual commands for custom configurations.
 
-The current application is the result of several distinct iterations:
+## Validation Status
 
-1. **Explicit rating prediction** — a CatBoost experiment trained on a personal 365-album dataset.
-2. **Larger ratings pipeline** — an Album of the Year export expanded to approximately 1,189 albums and enriched through Discogs and Last.fm tags; this experiment is now archived outside the application repository.
-3. **Spotify candidate discovery** — a practical recommendation pipeline based on implicit listening behavior.
-4. **Catalog-bias correction** — selecting artists before albums so large discographies do not receive disproportionate influence.
-5. **Affinity-band refinement** — moving from the least-familiar artists to the current 10th–90th percentile sweet spot.
-6. **Production-oriented application work** — OAuth, multi-user persistence, caching, request-efficiency improvements, a REST API, and a responsive frontend.
-
-The original 365-album modeling pipeline remains as an archive of the preliminary stage of this project, not as a dependency of the live Spotify recommendation workflow. The original AOTY import, enrichment, and model-evaluation files are retained locally but excluded from Git so application users do not need to clone unrelated datasets and experiments.
-
-Detailed investigations are documented in:
-
-- [`docs/PROJECT_CONTEXT.md`](docs/PROJECT_CONTEXT.md)
-- [`docs/CANDIDATE_DISCOVERY_REPORT.md`](docs/CANDIDATE_DISCOVERY_REPORT.md)
-- [`docs/ARTIST_AFFINITY_INVESTIGATION.md`](docs/ARTIST_AFFINITY_INVESTIGATION.md)
-- [`docs/BALANCED_AFFINITY_EXPERIMENT.md`](docs/BALANCED_AFFINITY_EXPERIMENT.md)
-
-Read-only development utilities are also available:
-
-```bash
-python scripts/inspect_profile.py
-python scripts/analyze_recommendation_pipeline.py
-```
-
-Both tools report aggregate profile and recommendation behavior without printing private artist names, album names, Spotify IDs, or listening-history records.
+The application passed 61 offline tests, including an isolated copy without research datasets or dependencies, and the frontend build passes. The test suite and internal development reports are maintained locally and are not included in public checkouts. A fresh-device installation and live Spotify end-to-end verification remain outstanding.
 
 ## Repository Layout
 
 ```text
 music-recommendation-app/
+├── manage.py                       # Setup and two-service local launcher
+├── .env.example                    # Credential-free local configuration template
 ├── frontend/                       # React/Vite application
 ├── src/
 │   ├── api/                        # FastAPI, OAuth, sessions, persistence
 │   └── music_taste/
 │       ├── cache/                  # Versioned per-user profile cache
 │       └── spotify/                # Collection and recommendation pipeline
-├── scripts/                        # Read-only inspection and analysis tools
-├── tests/                          # Offline automated test suite
 ├── migrations/                     # Alembic database migrations
-├── docs/                           # Research reports and project history
-├── data/                           # Local/private datasets and generated data
-├── requirements.txt                # Runtime dependencies
-└── requirements-dev.txt            # Development and testing dependencies
+├── data/                           # Local account/session storage
+├── cache/                          # Private per-user Spotify caches (ignored)
+└── requirements.txt                # Liner Notes application dependencies
 ```
 
 ## Current Status and Next Steps
