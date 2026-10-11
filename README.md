@@ -267,6 +267,17 @@ cd frontend
 npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
 ```
 
+To subsequently run the application, run the following two commands in two separate terminals:
+
+```bash
+PYTHONPATH=src uvicorn api.main:app --reload
+```
+
+```bash
+cd frontend
+npm run dev -- --host 127.0.0.1
+```
+
 For PostgreSQL, set `DATABASE_URL` and apply `PYTHONPATH=src alembic upgrade head` before starting the backend. Keep the SQLite default for the standard clone-and-run path. If customizing origins, coordinate `VITE_API_BASE_URL`, `FRONTEND_ORIGIN`, the callback URI, and the frontend success URL. The launcher intentionally requires the standard local URLs; use the manual commands for custom configurations.
 
 ## Validation Status
