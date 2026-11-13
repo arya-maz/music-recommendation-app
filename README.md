@@ -326,3 +326,13 @@ Remaining work is intentionally narrow:
 ## Project Scope
 
 Liner Notes is a personal-scale exploration of recommendation-system design, Spotify API integration, secure authentication, data caching, API development, frontend product design, automated testing, and evidence-driven iteration. Its purpose is not to reproduce Spotify's global recommendation system, but to solve a narrower product problem well: helping a listener choose a small number of albums that feel both personally relevant and genuinely worth discovering rather than nonsensical recommendations based off of poor-quality data.
+
+### Temporary local recording override
+
+`frontend/src/recordingDemo.js` sets `RECORDING_DEMO_ENABLED = false`; authentic recommendations are restored. In Vite development mode only, successful recommendation responses display the ten curated albums in two ordered batches of five. The real recommendation requests and pipeline still run; loading, errors, Spotify login, account deletion, and the preview route retain their existing behavior. Production builds always display the authentic results.
+
+To enable a future local recording, temporarily set the flag to `true`, then restore it to `false` afterward. No server restart is required when Vite is running; refresh the page before the next walkthrough.
+
+### Credential storage safeguards
+
+OAuth code exchange uses an in-memory token cache. Only the authenticated per-user database handler persists tokens, encrypted with the configured Fernet key. The application does not use Spotipy’s default shared plaintext `.cache` file. Local `.env` variants, token-cache variants, and raw Spotify exports are ignored by Git; `.env.example` remains tracked.

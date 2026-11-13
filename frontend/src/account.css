@@ -1,6 +1,6 @@
 .welcome { font-size: 13px; font-weight: 600; margin: 0 0 18px; }
 .header-actions { display: flex; align-items: center; gap: 22px; }
-.account-menu { position: relative; }
+.account-menu { position: relative; color: var(--ink); }
 .account-menu summary { min-height: 44px; display: flex; align-items: center; gap: 10px; padding: 5px 13px 5px 6px; border: 1px solid #1e211d33; border-radius: 24px; background: #ebe6db; cursor: pointer; font-size: 12px; font-weight: 600; list-style: none; }
 .account-menu summary::-webkit-details-marker { display: none; }
 .account-menu summary b { font-size: 13px; font-weight: 400; margin-left: 2px; transition: transform .2s; }

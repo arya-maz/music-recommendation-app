@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+from spotipy.cache_handler import MemoryCacheHandler
 
 
 load_dotenv()
@@ -17,7 +18,8 @@ def get_spotify_oauth(*, cache_handler=None, open_browser: bool = False) -> Spot
         client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
         redirect_uri=os.getenv("SPOTIFY_REDIRECT_URI"),
         scope=SPOTIFY_SCOPES,
-        cache_handler=cache_handler,
+        # Code exchange and CLI defaults must never write shared plaintext tokens.
+        cache_handler=cache_handler if cache_handler is not None else MemoryCacheHandler(),
         open_browser=open_browser,
     )
 

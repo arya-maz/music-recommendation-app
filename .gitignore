@@ -3,9 +3,14 @@ __pycache__/
 .DS_Store
 *.pkl
 .env
+.env.*
+!.env.example
 
 # Spotify OAuth token cache
 .cache
+.cache-*
+.cache.*
+/data/raw/spotify/
 
 # Pytest
 .pytest_cache/

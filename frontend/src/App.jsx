@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { albumsForRecordingRoll } from './recordingDemo'
 
 const API = import.meta.env.VITE_API_BASE_URL || ''
 const FEEDBACK_ENABLED = false
@@ -50,7 +51,7 @@ export default function App(){
   const [view,setView]=useState(previewRoute?'demo':'landing'),[auth,setAuth]=useState('checking'),[accountName,setAccountName]=useState('Spotify user'),[albums,setAlbums]=useState(previewRoute?picks.slice(0,5):[]),[choices,setChoices]=useState({}),[busy,setBusy]=useState(false),[confirming,setConfirming]=useState(false),[accountBusy,setAccountBusy]=useState(false),[accountError,setAccountError]=useState('')
   const [hasRerolled,setHasRerolled]=useState(false)
   useEffect(()=>{fetch(`${API}/api/auth/me`,{credentials:'include'}).then(r=>{if(!r.ok){setAuth('signed-out');return null}return r.json()}).then(data=>{if(data){setAccountName(data.account_name||data.spotify_user_id||'Spotify user');setAuth('authenticated')}}).catch(()=>setAuth('signed-out'));function followRoute(){setHasRerolled(false);if(location.pathname==='/preview'){setAlbums(picks.slice(0,5));setView('demo')}else{setAlbums([]);setChoices({});setView('landing')}}window.addEventListener('popstate',followRoute);return()=>window.removeEventListener('popstate',followRoute)},[])
-  function request(roll){return fetch(`${API}/api/recommendations`,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({roll})}).then(r=>{if(r.status===401)throw Error('reauth');if(!r.ok)throw Error('error');return r.json()})}
+  function request(roll){return fetch(`${API}/api/recommendations`,{method:'POST',credentials:'include',headers:{'Content-Type':'application/json'},body:JSON.stringify({roll})}).then(r=>{if(r.status===401)throw Error('reauth');if(!r.ok)throw Error('error');return r.json()}).then(albums=>albumsForRecordingRoll(roll,albums))}
   function load(){setHasRerolled(false);setView('loading');return request(1).then(d=>{setAlbums(d);setView('results')}).catch(e=>setView(e.message))}
   function preview(){history.pushState({},'', '/preview');setHasRerolled(false);setAlbums(picks.slice(0,5));setView('demo');scrollTo({top:0,behavior:'smooth'})}
   function more(){if(hasRerolled)return;setBusy(true);setChoices({});if(view==='demo'){setTimeout(()=>{setAlbums(picks.slice(5,10));setHasRerolled(true);setBusy(false);scrollTo({top:0,behavior:'smooth'})},750)}else request(2).then(d=>{setAlbums(d);setHasRerolled(true);scrollTo({top:0,behavior:'smooth'})}).catch(e=>setView(e.message)).finally(()=>setBusy(false))}
